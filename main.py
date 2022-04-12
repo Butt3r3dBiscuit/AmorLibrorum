@@ -1,7 +1,6 @@
 import os
 import mysql.connector
 
-our_servers_password = "root"
 try:
 
 
