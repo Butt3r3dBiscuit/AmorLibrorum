@@ -1,15 +1,14 @@
+import os
 import mysql.connector
 
 our_servers_password = "root"
-#change this to your server password
-
 try:
 
 
     db = mysql.connector.connect(
         host="localhost",
         user="root",
-        passwd=our_servers_password,
+        passwd=os.environ.get("DBPassword"),
         database="testdatabase")
 
     mycursor = db.cursor()
@@ -22,7 +21,7 @@ except:
     db = mysql.connector.connect(
         host="localhost",
         user="root",
-        passwd=our_servers_password)
+        passwd=os.environ.get("DBPassword"))
 
     mycursor = db.cursor()
     mycursor.execute("create database testdatabase")
