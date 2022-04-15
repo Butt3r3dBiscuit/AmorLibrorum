@@ -1,34 +1,43 @@
 import os
 import mysql.connector
 
-try:
-    db = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        passwd=os.environ.get("DBPassword"),
-        database="testdatabase")
+def log_in(database_name="testdatabase"): #log into the database
+    try:
+        db = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            passwd=os.environ.get("DBPassword"),
+            database=database_name)
 
-    print("database has already been installed")
-    exit()
-except:
-    db = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        passwd=os.environ.get("DBPassword"))
+        print("database has already been installed")
+        return db
+    except:
+        db = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            passwd=os.environ.get("DBPassword"))
 
+        mycursor = db.cursor()
+        mycursor.execute(f"create database {database_name}")
+        log_in()
+
+def initialization(my_cursor):
+    #here we are going to build the database's core
+    my_cursor.execute("CREATE USER 'user'@'localhost' IDENTIFIED BY 'Password123_'")
+    my_cursor.execute("FLUSH PRIVILEGES;")
+
+
+
+if __name__ == "__main__":
+    db = log_in()
     mycursor = db.cursor()
-    mycursor.execute("create database testdatabase")
 
-    db = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        passwd=os.environ.get("DBPassword"),
-        database="testdatabase")
+    initialization(mycursor)
 
-    mycursor = db.cursor()
-    mycursor.execute("CREATE USER 'test'@'localhost' IDENTIFIED BY 'MyGreatPW123_'")
-    mycursor.execute("FLUSH PRIVILEGES;")
-    #to drop a user use: DROP USER 'test'@'localhost';
+    #here we could reference the starting app Ig
+
+    # mycursor.execute("DROP USER 'user'@'localhost';")
+
 
 
 
