@@ -3,6 +3,7 @@ from tkinter import *
 root = Tk()
 root.geometry('300x150')
 root.title('Log in')
+root.resizable(False, False)
 
 login_button = Button(root, text="Log in", height=2, width=11)
 login_button.pack()

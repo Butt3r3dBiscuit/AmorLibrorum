@@ -32,7 +32,10 @@ def initialization(my_cursor):
 if __name__ == "__main__":
     db = log_in("employees")
     mycursor = db.cursor()
-    print(mycursor)
+    mycursor.execute("show tables;")
+    for i in mycursor:
+        print(i[0])
+
     initialization(mycursor)
 
     #here we could reference the starting app Ig

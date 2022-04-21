@@ -7,7 +7,7 @@ try:
     db = mysql.connector.connect(
         host="localhost",
         user="root",
-        passwd=os.environ.get("DBPassword"),
+        passwd="MyN3wP4ssw0rd!*",
         database="testdatabase")
 
     mycursor = db.cursor()
@@ -20,7 +20,7 @@ except:
     db = mysql.connector.connect(
         host="localhost",
         user="root",
-        passwd=os.environ.get("DBPassword"))
+        passwd="MyN3wP4ssw0rd!*")
 
     mycursor = db.cursor()
     mycursor.execute("create database testdatabase")
