@@ -45,4 +45,3 @@ CREATE TABLE `Book_entry` (
   FOREIGN KEY (`Book_ID(local)`) REFERENCES `Transactions`(`Book_ID(local)`),
   KEY `PK_FK` (`copy_of(ISBNM)`)
 );
-
