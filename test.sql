@@ -1,18 +1,26 @@
 CREATE TABLE `Book` (
   `ISBN` varchar(17) NOT NULL,
-  `Original_title` varchar(50) NOT NULL,
   `Title` varchar(50) NOT NULL,
-  `Author(s)` varchar(50) NOT NULL,
+  `Title_untranslated` varchar(50),
+  `Author(s)` varchar(100) NOT NULL,
   `publisher` varchar(20) NOT NULL,
-  `publisher(year)` int(4) NOT NULL,
+  `published(year)` int(4) NOT NULL,
   `pages` int(5) NOT NULL,
   `language` varchar(30) NOT NULL,
-  `translator` varchar(30) NOT NULL,
-  `edition` int(2) NOT NULL,
-  `dimensions/type` ENUM("paperback","hardcover") NOT NULL,
-  `location` char(2) NOT NULL,
-  `section` int(2) NOT NULL,
+  `translator` varchar(30),
+  `edition` int(2) ,
+  `book_type` ENUM("paperback","hardcover"),
+  `location` int(3) NOT NULL,
+  `section` int(3) NOT NULL,
   PRIMARY KEY (`ISBN`)
+);
+
+CREATE TABLE `Book_entry` (
+  `Book_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `copy_of(ISBN)` varchar(17) NOT NULL,
+  `status` ENUM("used","just like new","new") DEFAULT "new",
+  PRIMARY KEY (`Book_ID`),
+  FOREIGN KEY (`copy_of(ISBN)`) REFERENCES `Book`(`ISBN`)
 );
 
 CREATE TABLE `Employees` (
@@ -32,16 +40,7 @@ CREATE TABLE `Transactions` (
   `Price` int(4) NOT NULL,
   `Type` ENUM("Buy","Sell") NOT NULL,
   PRIMARY KEY (`Transaction_ID`),
-  FOREIGN KEY (`Employee_ID`) REFERENCES `Employees`(`Employee_ID`),
-  KEY `PK_FK` (`Book_ID(local)`, `Employee_ID`)
+  FOREIGN KEY (`Book_ID(local)`) REFERENCES `Book_entry`(`Book_ID`),
+  FOREIGN KEY (`Employee_ID`) REFERENCES `Employees`(`Employee_ID`)
 );
 
-CREATE TABLE `Book_entry` (
-  `Book_ID(local)` int(11) NOT NULL AUTO_INCREMENT,
-  `copy_of(ISBNM)` varchar(17) NOT NULL,
-  `status` ENUM("used","just like new","new") NOT NULL,
-  PRIMARY KEY (`Book_ID(local)`),
-  FOREIGN KEY (`copy_of(ISBNM)`) REFERENCES `Book`(`ISBN`),
-  FOREIGN KEY (`Book_ID(local)`) REFERENCES `Transactions`(`Book_ID(local)`),
-  KEY `PK_FK` (`copy_of(ISBNM)`)
-);

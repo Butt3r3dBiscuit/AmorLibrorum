@@ -8,14 +8,14 @@ db = mysql.connector.connect(
     passwd="MyN3wP4ssw0rd!*")
 
 mycursor = db.cursor()
-mycursor.execute("drop database testdatabase;")
-mycursor.execute("create database testdatabase;")
+#mycursor.execute("drop database testdatabase;")
+mycursor.execute("create database testdatabase1;")
 
 db = mysql.connector.connect(
             host="localhost",
             user="root",
             passwd="MyN3wP4ssw0rd!*",
-            database="testdatabase")
+            database="testdatabase1")
 mycursor = db.cursor()
 f = open("test.sql")
 full_sql = f.read()
