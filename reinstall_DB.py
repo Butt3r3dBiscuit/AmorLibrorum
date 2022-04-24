@@ -1,5 +1,6 @@
 # https://stackoverflow.com/questions/36574621/running-a-entire-sql-script-via-python
 import mysql.connector
+# pip install mysql-connector-python
 # import pandas as pd
 
 def reinstall(database_name="AmorLibrorum",sql_script="AmorLibrorum.sql"):
