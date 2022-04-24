@@ -1,6 +1,6 @@
 # https://stackoverflow.com/questions/36574621/running-a-entire-sql-script-via-python
 import mysql.connector
-import pandas as pd
+# import pandas as pd
 
 def reinstall(database_name="AmorLibrorum",sql_script="AmorLibrorum.sql"):
     db = mysql.connector.connect(
@@ -27,14 +27,14 @@ def reinstall(database_name="AmorLibrorum",sql_script="AmorLibrorum.sql"):
     except FileNotFoundError:
         print("Here will be a pop_up that such directory doesn't exist or sth")
 
-def filling_up(excel_file):
-    df = pd.read_excel(excel_file)
+# def filling_up(excel_file):
+#     df = pd.read_excel(excel_file)
 
-    print(df["title"][0])
+#     print(df["title"][0])
 
 if __name__=="__main__":
     reinstall()
-    filling_up("Amor_librorum.xlsx")
+    # filling_up("Amor_librorum.xlsx")
 
 
 '''
