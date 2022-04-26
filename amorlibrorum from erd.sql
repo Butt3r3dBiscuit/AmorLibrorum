@@ -42,3 +42,5 @@ CREATE TABLE `Transactions` (
   FOREIGN KEY (`Book_ID(local)`) REFERENCES `Employees`(`Employee_ID`),
   FOREIGN KEY (`Transaction_ID`) REFERENCES `Book_entry`(`Book_ID`)
 );
+
+insert into book (ISBN, Title, Author(s), publisher, published(year), pages, language, location, section) values ()
