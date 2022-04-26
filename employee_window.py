@@ -1,5 +1,8 @@
 from tkinter import *
 
+rel_width = 0.1
+rel_height = 0.05
+
 #Window
 window = Tk()
 width= window.winfo_screenwidth()
@@ -23,8 +26,6 @@ Version = LabelFrame(window, text="Version")
 Language = LabelFrame(window, text="Language")
 All = LabelFrame(window, text="All")
 
-rel_width = 0.1
-rel_height = 0.05
 
 #Placement Buttons
 Finantial.place(relx=1, relwidth=rel_width, relheight=rel_height, anchor=NE)
@@ -42,5 +43,3 @@ Language.place(relx=0.8, rely=0.3, relwidth=rel_width, relheight=rel_height, anc
 All.place(relx=0.95, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor=E)
 
 window.mainloop()
-
-#test
