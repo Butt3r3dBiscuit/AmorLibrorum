@@ -1,7 +1,8 @@
 import os
 import mysql.connector
+import reinstall_DB
 
-def log_in(database_name="testdatabase"): #log into the database
+def log_in(database_name="AmorLibrorum"): #log into the database
     try:
         db = mysql.connector.connect(
             host="localhost",
@@ -12,6 +13,9 @@ def log_in(database_name="testdatabase"): #log into the database
         print("database has already been installed")
         return db
     except:
+        reinstall_DB.reinstall(database_name)
+        log_in()
+        '''
         db = mysql.connector.connect(
             host="localhost",
             user="root",
@@ -20,23 +24,31 @@ def log_in(database_name="testdatabase"): #log into the database
         mycursor = db.cursor()
         mycursor.execute(f"create database {database_name}")
         log_in()
+        '''
 
-def initialization(my_cursor):
+def user_intergration(my_cursor):
     #here we are going to build the database's core
-    '''
-    my_cursor.execute("CREATE USER 'user'@'localhost' IDENTIFIED BY 'Password123_'")
-    my_cursor.execute("FLUSH PRIVILEGES;")
-    '''
-
-
-if __name__ == "__main__":
-    db = log_in("employees")
-    mycursor = db.cursor()
+    try:
+        my_cursor.execute("CREATE USER 'user'@'localhost' IDENTIFIED BY 'Password123_'")
+        my_cursor.execute("FLUSH PRIVILEGES;")
+        my_cursor.execute("GRANT SELECT ON AmorLibrorum.book TO 'user'@'localhost'")
+    except mysql.connector.errors.DatabaseError:
+        mycursor.execute("DROP USER 'user'@'localhost';")
+        return user_intergration(my_cursor)
     mycursor.execute("show tables;")
     for i in mycursor:
         print(i[0])
 
-    initialization(mycursor)
+
+if __name__ == "__main__":
+    db = log_in()
+    mycursor = db.cursor()
+
+    # mycursor.execute("show tables;")
+    # for i in mycursor:
+    #     print(i[0])
+
+    user_intergration(mycursor)
 
     #here we could reference the starting app ig
 

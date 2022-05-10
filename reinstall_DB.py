@@ -1,5 +1,8 @@
 # https://stackoverflow.com/questions/36574621/running-a-entire-sql-script-via-python
 import mysql.connector
+
+# pip install mysql-connector-python
+
 # import pandas as pd
 
 def reinstall(database_name="AmorLibrorum",sql_script="AmorLibrorum.sql"):
@@ -26,6 +29,8 @@ def reinstall(database_name="AmorLibrorum",sql_script="AmorLibrorum.sql"):
             mycursor.execute(sql_command)
     except FileNotFoundError:
         print("Here will be a pop_up that such directory doesn't exist or sth")
+    mycursor.close()
+    db.close()
 
 # def filling_up(excel_file):
 #     df = pd.read_excel(excel_file)
