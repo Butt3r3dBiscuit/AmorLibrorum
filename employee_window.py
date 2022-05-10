@@ -11,7 +11,7 @@ window.geometry("%dx%d" % (width, height))
 window.title("Employee Window")
 
 #Buttons
-Finantial = Button(window, text="Finantial")
+Financial = Button(window, text="Financial")
 Add_book = Button(window, text="Add Book")
 Sell = Button(window, text="Sell")
 Add_employee = Button(window, text="Add Employee")
@@ -28,7 +28,7 @@ All = LabelFrame(window, text="All")
 
 
 #Placement Buttons
-Finantial.place(relx=1, relwidth=rel_width, relheight=rel_height, anchor=NE)
+Financial.place(relx=1, relwidth=rel_width, relheight=rel_height, anchor=NE)
 Add_book.place(relx=0.9, relwidth=rel_width, relheight=rel_height, anchor=NE)
 Sell.place(relx=0.8, relwidth=rel_width, relheight=rel_height, anchor=NE)
 Add_employee.place(relx=0.7, relwidth=rel_width, relheight=rel_height, anchor=NE)
