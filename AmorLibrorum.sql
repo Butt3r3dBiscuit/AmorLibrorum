@@ -28,6 +28,20 @@ CREATE TABLE `Price_exceptions` (
   FOREIGN KEY (`Book_ID`) REFERENCES `Book_entries`(`Book_ID`)
 );
 
+CREATE TABLE `if_translated` (
+  `ISBN` varchar(13) NOT NULL,
+  `translator` varchar(50) NOT NULL,
+  `Title_untranslated` varchar(50),
+  `translated_from` varchar(20) NOT NULL,
+  FOREIGN KEY (`ISBN`) REFERENCES `Books`(`ISBN`)
+);
+
+CREATE TABLE `Authors` (
+  `ISBN` int NOT NULL,
+  `author_name` varchar(50),
+  `author_surname` varchar(50)
+);
+
 CREATE TABLE `Employees` (
   `Employee_ID` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) NOT NULL,
@@ -49,21 +63,7 @@ CREATE TABLE `Transactions` (
   FOREIGN KEY (`Book_ID(local)`) REFERENCES `Book_entries`(`Book_ID`)
 );
 
-CREATE TABLE `if_translated` (
-  `ISBN` varchar(13) NOT NULL,
-  `translator` varchar(50) NOT NULL,
-  `Title_untranslated` varchar(50),
-  `translated_from` varchar(20) NOT NULL,
-  FOREIGN KEY (`ISBN`) REFERENCES `Books`(`ISBN`)
-);
-
 CREATE TABLE `variables` (
   `margin` int
-);
-
-CREATE TABLE `Authors` (
-  `author_id` int NOT NULL,
-  `author_name` varchar(50),
-  `author_surname` varchar(50)
 );
 
