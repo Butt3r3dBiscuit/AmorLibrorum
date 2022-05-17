@@ -65,3 +65,34 @@ INSERT INTO `employees` VALUES (2, "Frank", "Brandse", "Manager", "An0therqwerty
 
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+
+LOCK TABLES `transactions` WRITE;
+/*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
+INSERT INTO `transactions` VALUES (1, "Margje", "Penning", "Manager", "NotAn0therqwertypassword", "margje@amorlibrorum.boek")
+INSERT INTO `transactions` VALUES (2, "Frank", "Brandse", "Manager", "An0therqwertyp4ssword", "frank@amorlibrorum.boek")
+
+INSERT INTO `transactions` VALUES (1, 1, 1, 2017-06-15, 1081)
+INSERT INTO `transactions` VALUES (2, 2, 1, 2017-06-15, 1081)
+INSERT INTO `transactions` VALUES (3, 3, 1, 2017-06-15, 1081)
+INSERT INTO `transactions` VALUES (4, 4, 1, 2017-06-15, 1081)
+INSERT INTO `transactions` VALUES (5, 5, 1, 2017-06-15, 1081)
+INSERT INTO `transactions` VALUES (6, 6, 1, 2017-06-15, 1081)
+INSERT INTO `transactions` VALUES (7, 7, 1, 2017-06-15, 1081)
+INSERT INTO `transactions` VALUES (8, 8, 1, 2017-06-15, 1081)
+INSERT INTO `transactions` VALUES (9, 9, 1, 2017-06-15, 1081)
+INSERT INTO `transactions` VALUES (10, 10, 1, 2017-06-15, 898)
+INSERT INTO `transactions` VALUES (11, 11, 2, 2017-06-16, 2499)
+INSERT INTO `transactions` VALUES (12, 12, 2, 2017-06-16, 1198)
+INSERT INTO `transactions` VALUES (13, 13, 2, 2017-06-16, 1126)
+INSERT INTO `transactions` VALUES (14, 14, 2, 2017-06-16, 942)
+INSERT INTO `transactions` VALUES (15, 15, 2, 2017-06-16, 1222)
+INSERT INTO `transactions` VALUES (16, 16, 2, 2017-06-16, 998)
+INSERT INTO `transactions` VALUES (17, 17, 2, 2017-06-16, 998)
+INSERT INTO `transactions` VALUES (18, 18, 2, 2017-06-16, 998)
+INSERT INTO `transactions` VALUES (19, 19, 2, 2017-06-16, 2499)
+INSERT INTO `transactions` VALUES (20, 20, 2, 2017-06-16, 2499)
+
+/*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
+UNLOCK TABLES;
