@@ -70,9 +70,6 @@ UNLOCK TABLES;
 
 LOCK TABLES `transactions` WRITE;
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
-INSERT INTO `transactions` VALUES (1, "Margje", "Penning", "Manager", "NotAn0therqwertypassword", "margje@amorlibrorum.boek")
-INSERT INTO `transactions` VALUES (2, "Frank", "Brandse", "Manager", "An0therqwertyp4ssword", "frank@amorlibrorum.boek")
-
 INSERT INTO `transactions` VALUES (1, 1, 1, 2017-06-15, 1081)
 INSERT INTO `transactions` VALUES (2, 2, 1, 2017-06-15, 1081)
 INSERT INTO `transactions` VALUES (3, 3, 1, 2017-06-15, 1081)
