@@ -1,8 +1,5 @@
 #insert functions
 
-from matplotlib.pyplot import psd
-
-
 def add_to_books(ISBN, Title, publisher, published_year, pages, language, edition, book_type, location, section, genre):
     query = f"insert into books values ({ISBN}, {Title}, {publisher}, {published_year}, {pages}, {language}, {edition}, {book_type}, {location}, {section}, {genre})"
     return query
