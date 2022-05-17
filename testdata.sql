@@ -1,3 +1,5 @@
+start transaction;
+
 LOCK TABLES `books` WRITE;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
 INSERT INTO `books` VALUES (9781501110368, "It Ends with Us","Atria","2016", "384", "English", null, "paperback", "78", "58", "College Romance, Fiction");
