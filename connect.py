@@ -14,11 +14,11 @@ def connect_user():
         print(e)
         return e
 
-def connect_employee(password_from_log_in):
+def connect_employee(email, password_from_log_in):
     try:
         db = mysql.connector.connect(
             host="localhost",
-            user="root",
+            user=f{email},
             passwd=f"{password_from_log_in}",
             database="AmorLibrorum")
 
