@@ -37,7 +37,7 @@ CREATE TABLE `if_translated` (
 );
 
 CREATE TABLE `Authors` (
-  `ISBN` int NOT NULL,
+  `ISBN` varchar(13) NOT NULL,
   `author_name` varchar(50),
   `author_surname` varchar(50)
 );
