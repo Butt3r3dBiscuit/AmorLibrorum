@@ -18,7 +18,7 @@ CREATE TABLE `Book_entries` (
   `ISBN` varchar(13) NOT NULL,
   `status/comment` varchar(100),
   PRIMARY KEY (`Book_ID`),
-  FOREIGN KEY (`copy_of(ISBN)`) REFERENCES `Books`(`ISBN`)
+  FOREIGN KEY (`ISBN`) REFERENCES `Books`(`ISBN`)
 );
 
 CREATE TABLE `Price_exceptions` (
@@ -60,7 +60,7 @@ CREATE TABLE `Transactions` (
   `Price(in_cents)` int NOT NULL,
   PRIMARY KEY (`Transaction_ID`),
   FOREIGN KEY (`Employee_ID`) REFERENCES `Employees`(`Employee_ID`),
-  FOREIGN KEY (`Book_ID(local)`) REFERENCES `Book_entries`(`Book_ID`)
+  FOREIGN KEY (`Book_ID`) REFERENCES `Book_entries`(`Book_ID`)
 );
 
 CREATE TABLE `variables` (
