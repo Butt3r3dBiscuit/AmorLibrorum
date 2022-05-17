@@ -9,7 +9,7 @@ CREATE TABLE `Books` (
   `book_type` ENUM("paperback","hardcover"),
   `location` int NOT NULL,
   `section` int NOT NULL,
-  `Genre` varchar(30),
+  `Genre` varchar(50),
   PRIMARY KEY (`ISBN`)
 );
 
