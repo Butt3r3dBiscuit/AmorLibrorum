@@ -8,6 +8,7 @@ INSERT INTO `books` VALUES (9781538724731,"Verity","Grand Central Publishing","2
 INSERT INTO `books` VALUES (9781501161938,"The Seven Husbands of Evelyn Hugo: A Novel","Washington Square Press","2018", "400", "English", null, "paperback", "2", "718", "Holiday Romance")
 INSERT INTO `books` VALUES (9780593334833,"Book Lovers","Berkley","2022", "400", "English", null, "paperback", "17", "18", "Sisters Fiction, Romantic Comedy")
 INSERT INTO `books` VALUES (9780735219109,"Where the Crawdads Sing","Penguin Publishing Group","2021", "400", "English", null, "paperback", "7", "7", "Fiction")
+INSERT INTO `books` VALUES (9786094872082, "Priesaikos laužytojas", "BALTO leidybos namai", "2021", "320", "Lithuanian", 1, "hardcover", "2", "2", "Thriller, Suspense, Romantic")
 
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -36,6 +37,7 @@ INSERT INTO `book_entries` VALUES (17, 9780735219109, null)
 INSERT INTO `book_entries` VALUES (18, 9780735219109, null)
 INSERT INTO `book_entries` VALUES (19, 9781476797090, null)
 INSERT INTO `book_entries` VALUES (20, 9781476797090, null)
+INSERT INTO `book_entries` VALUES (21, 9786094872082, null)
 
 /*!40000 ALTER TABLE `book_entries` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -52,6 +54,7 @@ INSERT INTO `authors` VALUES (9781538724731, "Colleen", "Hoover")
 INSERT INTO `authors` VALUES (9781501161938, "Taylor", "Jenkins Reid")
 INSERT INTO `authors` VALUES (9780593334833, "Emily", "Henry")
 INSERT INTO `authors` VALUES (9780735219109, "Delia", "Owens")
+INSERT INTO `authors` VALUES (9786094872082, "Leena", "Lehtolainen")
 
 /*!40000 ALTER TABLE `authors` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -90,6 +93,17 @@ INSERT INTO `transactions` VALUES (17, 17, 2, 2017-06-16, 998)
 INSERT INTO `transactions` VALUES (18, 18, 2, 2017-06-16, 998)
 INSERT INTO `transactions` VALUES (19, 19, 2, 2017-06-16, 2499)
 INSERT INTO `transactions` VALUES (20, 20, 2, 2017-06-16, 2499)
+INSERT INTO `transactions` VALUES (21, 21, 2, 2021-05-05, 739)
 
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
+LOCK TABLES `if_translated` WRITE;
+/*!40000 ALTER TABLE `if_translated` DISABLE KEYS */;
+
+INSERT INTO `if_translated` VALUES (9786094872082, "Aida Krilavičienė", "Valapatto", "Finnish")
+
+/*!40000 ALTER TABLE `if_translated` ENABLE KEYS */;
 UNLOCK TABLES;
