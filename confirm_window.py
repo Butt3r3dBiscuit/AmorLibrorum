@@ -7,7 +7,7 @@ window.geometry('300x200')
 
 
 def msg1():
-   messagebox.askquestion('Ask Question', 'Do you want to continue?')
+   messagebox.askquestion('Confrimation', 'Do you want to continue?')
 
 
 Button(window, text='Click Me', command=msg1).pack(pady=50)
