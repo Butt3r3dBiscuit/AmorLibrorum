@@ -15,7 +15,7 @@ CREATE TABLE `Books` (
 
 CREATE TABLE `Book_entries` (
   `Book_ID` int NOT NULL AUTO_INCREMENT,
-  `copy_of(ISBN)` varchar(13) NOT NULL,
+  `ISBN` varchar(13) NOT NULL,
   `status/comment` varchar(100),
   PRIMARY KEY (`Book_ID`),
   FOREIGN KEY (`copy_of(ISBN)`) REFERENCES `Books`(`ISBN`)
@@ -54,7 +54,7 @@ CREATE TABLE `Employees` (
 
 CREATE TABLE `Transactions` (
   `Transaction_ID` int NOT NULL AUTO_INCREMENT,
-  `Book_ID(local)` int NOT NULL,
+  `Book_ID` int NOT NULL,
   `Employee_ID` int NOT NULL,
   `Date` DATE NOT NULL,
   `Price(in_cents)` int NOT NULL,
