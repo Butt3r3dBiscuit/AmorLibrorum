@@ -18,48 +18,48 @@ class Guest:
                   "         AND BEN.ISBN=BO.ISBN" \
                   "         AND BO.ISBN=B.ISBN"
         if title == "" and author_name == "" and author_surname == "":
-            conditions = "WHERE", cor_sub
+            conditions = "WHERE", cor_sub, ")"
         if title != "":
             cor_sub = cor_sub, \
                       "AND (BO.ISBN IN (SELECT ISBN FROM BOOKS" \
                       "                WHERE TITLE LIKE '%", title, "'" \
-                      "                OR TITLE LIKE '", title, "%')))" \
+                      "                OR TITLE LIKE '", title, "%')" \
                       "OR BO.ISBN IN (SELECT ISBN FROM IF_TRANSLATED" \
                       "               WHERE UNTRANSLATED_TITLE LIKE '%", title, "'" \
-                      "               OR UNTRANSLATED_TITLE LIKE '", title, "%'))))"
+                      "               OR UNTRANSLATED_TITLE LIKE '", title, "%'))"
             conditions = "WHERE B.TITLE LIKE '%", title, "'" \
                          "OR B.TITLE LIKE '", title, "%'" \
                          "OR IT.TITLE_UNTRANSLATED LIKE '%", title, "'" \
                          "OR IT.TITLE_UNTRANSLATED LIKE '", title, "%'" \
-                         "AND", cor_sub
+                         "AND", cor_sub, ")"
         if author_name != "" and author_surname == "":
             cor_sub = cor_sub, \
                       "AND BO.ISBN IN (SELECT ISBN FROM AUTHORS" \
                       "                WHERE AUTHOR_NAME LIKE '%", author_name, "'" \
-                      "                OR AUTHOR_NAME LIKE '", author_name, "%')))"
+                      "                OR AUTHOR_NAME LIKE '", author_name, "%')"
             conditions = "WHERE A.AUTHOR_NAME LIKE '%", author_name, "'" \
                          "OR A.AUTHOR_NAME LIKE '", author_name, "%'" \
-                         "AND", cor_sub
+                         "AND", cor_sub, ")"
         if author_surname != "" and author_name == "":
             cor_sub = cor_sub, \
                       "AND BO.ISBN IN (SELECT ISBN FROM AUTHORS" \
                       "                WHERE AUTHOR_SURNAME LIKE '%", author_surname, "'" \
-                      "                OR AUTHOR_SURNAME LIKE '", author_surname, "%')))"
+                      "                OR AUTHOR_SURNAME LIKE '", author_surname, "%')"
             conditions = "WHERE A.AUTHOR_SURNAME LIKE '%", author_surname, "'" \
                          "OR A.AUTHOR_SURNAME LIKE '", author_surname, "%'" \
-                         "AND", cor_sub
+                         "AND", cor_sub, ")"
         if author_name != "" and author_surname != "":
             cor_sub = cor_sub, \
                       "AND BO.ISBN IN (SELECT ISBN FROM AUTHORS" \
                       "                WHERE (AUTHOR_NAME LIKE '%", author_name, "'" \
-                      "                OR AUTHOR_NAME LIKE '", author_name, "%'))))" \
+                      "                OR AUTHOR_NAME LIKE '", author_name, "%')" \
                       "                AND (AUTHOR_SURNAME LIKE '%", author_surname, "'" \
-                      "                OR AUTHOR_SURNAME LIKE '", author_surname, "%'))))"
+                      "                OR AUTHOR_SURNAME LIKE '", author_surname, "%'))"
             conditions = "WHERE (A.AUTHOR_NAME LIKE '%", author_name, "'" \
                          "OR A.AUTHOR_NAME LIKE '", author_name, "%')" \
                          "AND (A.AUTHOR_SURNAME LIKE '%", author_surname, "'" \
                          "OR A.AUTHOR_SURNAME LIKE '", author_surname, "%')" \
-                         "AND", cor_sub
+                         "AND", cor_sub, ")"
         mycursor.execute("SELECT B.TITLE, A.AUTHOR_NAME, A.AUTHOR_SURNAME, B.LANGUAGE, B.GENRE, B.LOCATION, B.EDITION, B.BOOK_TYPE, T.PRICE, COUNT(BE.BOOK_ID)"
                          "FROM BOOK AS B"
                          "INNER JOIN"
