@@ -49,12 +49,7 @@ def install_sql_file(database_name="AmorLibrorum",sql_script="AmorLibrorum.sql")
         database=database_name)
     mycursor = db.cursor()
     try:
-        f = open(f"{sql_script}")
-        full_sql = f.read()
-        sql_commands = full_sql.replace('\n', '').split(';')[:-1]
-        for sql_command in sql_commands:
-            mycursor.execute(sql_command)
-            #mycursor.execute(sql_command)
+        mycursor.execute(f"source {sql_script}")
     except FileNotFoundError:
         print("Here will be a pop_up that such directory doesn't exist or sth")
     mycursor.close()

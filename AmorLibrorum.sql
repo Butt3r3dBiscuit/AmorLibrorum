@@ -1,7 +1,7 @@
 CREATE TABLE `Books` (
   `ISBN` varchar(13) NOT NULL,
-  `Title` varchar(50) NOT NULL,
-  `publisher` varchar(20) NOT NULL,
+  `Title` varchar(100) NOT NULL,
+  `publisher` varchar(100) NOT NULL,
   `published(year)` int NOT NULL,
   `pages` int NOT NULL,
   `language` varchar(30) NOT NULL,
