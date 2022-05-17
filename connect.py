@@ -14,6 +14,20 @@ def connect_user():
         print(e)
         return e
 
+def connect_employee(email, password_from_log_in):
+    try:
+        db = mysql.connector.connect(
+            host="localhost",
+            user=f"{email}",
+            passwd=f"{password_from_log_in}",
+            database="AmorLibrorum")
+
+        print("database has already been installed")
+        return db
+    except mysql.connector.errors.ProgrammingError as e:
+        print(e)
+        return e
+
 def connect_admin(password_from_log_in):
     try:
         db = mysql.connector.connect(
