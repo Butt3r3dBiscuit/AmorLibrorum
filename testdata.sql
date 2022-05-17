@@ -7,6 +7,61 @@ INSERT INTO `books` VALUES (9780735211292,"Atomic Habits: An Easy & Proven Way t
 INSERT INTO `books` VALUES (9781538724731,"Verity","Grand Central Publishing","2021", "336", "English", null, "paperback", "74", "578", "Suspense, Thriller")
 INSERT INTO `books` VALUES (9781501161938,"The Seven Husbands of Evelyn Hugo: A Novel","Washington Square Press","2018", "400", "English", null, "paperback", "2", "718", "Holiday Romance")
 INSERT INTO `books` VALUES (9780593334833,"Book Lovers","Berkley","2022", "400", "English", null, "paperback", "17", "18", "Sisters Fiction, Romantic Comedy")
+INSERT INTO `books` VALUES (9780735219109,"Where the Crawdads Sing","Penguin Publishing Group","2021", "400", "English", null, "paperback", "7", "7", "Fiction")
 
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
+LOCK TABLES `book_entries` WRITE;
+/*!40000 ALTER TABLE `book_entries` DISABLE KEYS */;
+INSERT INTO `book_entries` VALUES (1, 9781501110368, null)
+INSERT INTO `book_entries` VALUES (2, 9781501110368, null)
+INSERT INTO `book_entries` VALUES (3, 9781501110368, null)
+INSERT INTO `book_entries` VALUES (4, 9781501110368, null)
+INSERT INTO `book_entries` VALUES (5, 9781501110368, null)
+INSERT INTO `book_entries` VALUES (6, 9781501110368, null)
+INSERT INTO `book_entries` VALUES (7, 9781501110368, null)
+INSERT INTO `book_entries` VALUES (8, 9781501110368, null)
+INSERT INTO `book_entries` VALUES (9, 9781501110368, null)
+INSERT INTO `book_entries` VALUES (10, 9780679805274, null)
+INSERT INTO `book_entries` VALUES (11, 9781476797090, null)
+INSERT INTO `book_entries` VALUES (12, 9780735211292, null)
+INSERT INTO `book_entries` VALUES (13, 9781538724731, null)
+INSERT INTO `book_entries` VALUES (14, 9781501161938, null)
+INSERT INTO `book_entries` VALUES (15, 9780593334833, null)
+INSERT INTO `book_entries` VALUES (16, 9780735219109, null)
+INSERT INTO `book_entries` VALUES (17, 9780735219109, null)
+INSERT INTO `book_entries` VALUES (18, 9780735219109, null)
+INSERT INTO `book_entries` VALUES (19, 9781476797090, null)
+INSERT INTO `book_entries` VALUES (20, 9781476797090, null)
+
+/*!40000 ALTER TABLE `book_entries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
+LOCK TABLES `authors` WRITE;
+/*!40000 ALTER TABLE `authors` DISABLE KEYS */;
+INSERT INTO `authors` VALUES (9781501110368, "Colleen", "Hoover")
+INSERT INTO `authors` VALUES (9780679805274, "Dr.", "Seuss")
+INSERT INTO `authors` VALUES (9781476797090, "Alan","Shipnuck")
+INSERT INTO `authors` VALUES (9780735211292, "James", "Clear")
+INSERT INTO `authors` VALUES (9781538724731, "Colleen", "Hoover")
+INSERT INTO `authors` VALUES (9781501161938, "Taylor", "Jenkins Reid")
+INSERT INTO `authors` VALUES (9780593334833, "Emily", "Henry")
+INSERT INTO `authors` VALUES (9780735219109, "Delia", "Owens")
+
+/*!40000 ALTER TABLE `authors` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
+LOCK TABLES `employees` WRITE;
+/*!40000 ALTER TABLE `employees` DISABLE KEYS */;
+INSERT INTO `employees` VALUES (1, "Margje", "Penning", "Manager", "NotAn0therqwertypassword", "margje@amorlibrorum.boek")
+INSERT INTO `employees` VALUES (2, "Frank", "Brandse", "Manager", "An0therqwertyp4ssword", "frank@amorlibrorum.boek")
+
+/*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
