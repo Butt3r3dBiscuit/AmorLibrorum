@@ -15,6 +15,7 @@ def reinstall(database_name="AmorLibrorum",sql_script="AmorLibrorum.sql"):
     mycursor.execute(f"drop database if exists {database_name};")
     mycursor.execute(f"CREATE DATABASE {database_name} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;")
 
+
     db = mysql.connector.connect(
         host="localhost",
         user="root",
