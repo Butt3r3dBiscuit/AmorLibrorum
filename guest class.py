@@ -76,3 +76,6 @@ class Guest:
                          "ON IT.ISBN=B.ISBN",
                          conditions,
                          "GROUP BY B.ISBN")
+
+test = Guest()
+test.search("Colleen","Hoover","It Ends with Us")
