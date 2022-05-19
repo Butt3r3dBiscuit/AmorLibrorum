@@ -31,7 +31,7 @@ class Guest:
                                       "OR AUTHOR_NAME LIKE '" + author_name + "%') "
             conditions = "WHERE A.AUTHOR_NAME LIKE '%" + author_name + "' " \
                          "OR A.AUTHOR_NAME LIKE '" + author_name + "%' " \
-                         "AND" + cor_sub + ") "
+                         "AND " + cor_sub + ") "
         if author_surname != "" and author_name == "":
             cor_sub = cor_sub + \
                       "AND BO.ISBN IN (SELECT ISBN FROM AUTHORS " \
@@ -39,7 +39,7 @@ class Guest:
                                       "OR AUTHOR_SURNAME LIKE '" + author_surname + "%') "
             conditions = "WHERE A.AUTHOR_SURNAME LIKE '%" + author_surname + "' " \
                          "OR A.AUTHOR_SURNAME LIKE '" + author_surname + "%' " \
-                         "AND" + cor_sub + ") "
+                         "AND " + cor_sub + ") "
         if author_name != "" and author_surname != "":
             cor_sub = cor_sub + \
                       "AND BO.ISBN IN (SELECT ISBN FROM AUTHORS " \
@@ -51,7 +51,7 @@ class Guest:
                                 "OR A.AUTHOR_NAME LIKE '" + author_name + "%') " \
                          "AND (A.AUTHOR_SURNAME LIKE '%" + author_surname + "' " \
                               "OR A.AUTHOR_SURNAME LIKE '" + author_surname + "%') " \
-                         "AND" + cor_sub + ") "
+                         "AND " + cor_sub + ") "
         query = "SELECT B.TITLE, A.AUTHOR_NAME, A.AUTHOR_SURNAME, B.LANGUAGE, B.GENRE, B.LOCATION, B.EDITION, B.BOOK_TYPE, T.PRICE, COUNT(BE.BOOK_ID) " \
                 "FROM BOOK AS B " \
                 "INNER JOIN " \
