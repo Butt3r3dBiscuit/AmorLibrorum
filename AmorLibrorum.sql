@@ -2,7 +2,7 @@ CREATE TABLE `Books` (
   `ISBN` varchar(13) NOT NULL,
   `Title` varchar(50) NOT NULL,
   `publisher` varchar(20) NOT NULL,
-  `published(year)` int NOT NULL,
+  `year_published` int NOT NULL,
   `pages` int NOT NULL,
   `language` varchar(30) NOT NULL,
   `edition` int,
@@ -15,16 +15,16 @@ CREATE TABLE `Books` (
 
 CREATE TABLE `Book_entries` (
   `Book_ID` int NOT NULL AUTO_INCREMENT,
-  `copy_of(ISBN)` varchar(17) NOT NULL,
+  `ISBN` varchar(17) NOT NULL,
   `status/comment` varchar(100),
   PRIMARY KEY (`Book_ID`),
-  FOREIGN KEY (`copy_of(ISBN)`) REFERENCES `Books`(`ISBN`)
+  FOREIGN KEY (`ISBN`) REFERENCES `Books`(`ISBN`)
 );
 
 CREATE TABLE `Price_exceptions` (
   `Book_ID` int NOT NULL,
-  `New_price(in_cents)` int,
-  `Comment` varchar(30),
+  `new_price_in_cents` int,
+  `comment` varchar(30),
   FOREIGN KEY (`Book_ID`) REFERENCES `Book_entries`(`Book_ID`)
 );
 
@@ -57,7 +57,7 @@ CREATE TABLE `Transactions` (
   `Book_ID(local)` int NOT NULL,
   `Employee_ID` int NOT NULL,
   `Date` DATE NOT NULL,
-  `Price(in_cents)` int NOT NULL,
+  `price_in_cents` int NOT NULL,
   PRIMARY KEY (`Transaction_ID`),
   FOREIGN KEY (`Employee_ID`) REFERENCES `Employees`(`Employee_ID`),
   FOREIGN KEY (`Book_ID(local)`) REFERENCES `Book_entries`(`Book_ID`)
