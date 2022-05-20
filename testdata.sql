@@ -112,3 +112,12 @@ INSERT INTO `if_translated` VALUES (9786094872082, "LT: 11ąčęėįšųūž Kri
 /*!40000 ALTER TABLE `if_translated` ENABLE KEYS */;
 UNLOCK TABLES;
 
+
+
+
+LOCK TABLES `Price_exceptions` WRITE;
+/*!40000 ALTER TABLE `Price_exceptions` DISABLE KEYS */;
+INSERT INTO `Price_exceptions` VALUES (21, 850, "Book was damaged by a customer");
+
+/*!40000 ALTER TABLE `Price_exceptions` ENABLE KEYS */;
+UNLOCK TABLES;
