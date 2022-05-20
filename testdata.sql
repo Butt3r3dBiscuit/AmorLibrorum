@@ -67,6 +67,7 @@ LOCK TABLES `employees` WRITE;
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
 INSERT INTO `employees` VALUES (1, "Margje", "Penning", "Manager", "NotAn0therqwertypassword", "margje@amorlibrorum.boek");
 INSERT INTO `employees` VALUES (2, "Frank", "Brandse", "Manager", "An0therqwertyp4ssword", "frank@amorlibrorum.boek");
+INSERT INTO `employees` VALUES (3, "Casual", "Employee", "Staff", "YetAn0therqwertyp4ssword", "casual@amorlibrorum.boek");
 
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
