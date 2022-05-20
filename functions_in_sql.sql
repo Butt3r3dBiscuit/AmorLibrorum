@@ -1,4 +1,3 @@
-DELIMITER $$
 drop function if exists price_determination;
 
 CREATE function price_determination(book_id_given int)
@@ -15,6 +14,4 @@ CREATE function price_determination(book_id_given int)
             SET price = -buying_price * margin_var;
         end if;
     RETURN price;
-END$$
-
-DELIMITER ;
+END;
