@@ -4,7 +4,6 @@
     <file url="file://$PROJECT_DIR$/AmorLibrorum.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/install.py" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/main.py" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/random_books_addition.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/reinstall_DB.py" dialect="MySQL" />
   </component>
 </project>
