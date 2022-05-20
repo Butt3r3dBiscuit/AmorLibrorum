@@ -64,6 +64,6 @@ CREATE TABLE `Transactions` (
 );
 
 CREATE TABLE `variables` (
-  `margin` int
+  `margin` float(4,3)
 );
 

@@ -121,3 +121,10 @@ INSERT INTO `Price_exceptions` VALUES (21, 850, "Book was damaged by a customer"
 
 /*!40000 ALTER TABLE `Price_exceptions` ENABLE KEYS */;
 UNLOCK TABLES;
+
+LOCK TABLES `variables` WRITE;
+/*!40000 ALTER TABLE `variables` DISABLE KEYS */;
+INSERT INTO `variables` VALUES (1.21);
+
+/*!40000 ALTER TABLE `variables` ENABLE KEYS */;
+UNLOCK TABLES;
