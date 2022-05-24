@@ -15,7 +15,7 @@ def book_search(book_id):
                      f"AND BE.BOOK_ID={book_id}")
     price_exc = mycursor.fetchall()
     if len(price_exc) == 0:
-        book_search = f"SELECT B.TITLE, A.AUTHOR_NAME, A.AUTHOR_SURNAME, B.EDITION, B.BOOK_TYPE, B.LOCATION, B.SECTION, B.LANGUAGE, price_determination({book_id}) " \
+        book_search = f"SELECT B.TITLE, A.AUTHOR_NAME, A.AUTHOR_SURNAME, B.EDITION, B.BOOK_TYPE, B.LOCATION, B.SECTION, B.LANGUAGE, PRICE_DETERMINATION({book_id}) " \
                       "FROM BOOKS AS B " \
                       "LEFT JOIN " \
                       "AUTHORS A " \
