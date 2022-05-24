@@ -16,7 +16,7 @@ CREATE TABLE `Books` (
 CREATE TABLE `Book_entries` (
   `Book_ID` int NOT NULL AUTO_INCREMENT,
   `ISBN` varchar(13) NOT NULL,
-  `status/comment` varchar(100),
+  `status_comment` varchar(100),
   PRIMARY KEY (`Book_ID`),
   FOREIGN KEY (`ISBN`) REFERENCES `Books`(`ISBN`)
 );
