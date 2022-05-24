@@ -4,8 +4,8 @@ class Guest:
         
     def search(self, author_name="", author_surname="", title=""):
         conditions = ""
-        cor_sub = "T.PRICE=(SELECT MAX(TR.PRICE) " \
-                           "FROM TRANSACTIONS TR, BOOK_ENTRY BEN, BOOK BO " \
+        cor_sub = "T.PRICE_IN_CENTS=(SELECT MAX(TR.PRICE_IN_CENTS) " \
+                           "FROM TRANSACTIONS TR, BOOK_ENTRIES BEN, BOOKS BO " \
                            "WHERE TR.BOOK_ID=BEN.BOOK_ID " \
                            "AND BEN.ISBN=BO.ISBN " \
                            "AND BO.ISBN=B.ISBN "
@@ -17,8 +17,8 @@ class Guest:
                                        "WHERE TITLE LIKE '%" + title + "' " \
                                        "OR TITLE LIKE '" + title + "%') " \
                       "OR BO.ISBN IN (SELECT ISBN FROM IF_TRANSLATED " \
-                                     "WHERE UNTRANSLATED_TITLE LIKE '% " + title + "' " \
-                                     "OR UNTRANSLATED_TITLE LIKE ' " + title + "%')) "
+                                     "WHERE TITLE_UNTRANSLATED LIKE '% " + title + "' " \
+                                     "OR TITLE_UNTRANSLATED LIKE ' " + title + "%')) "
             conditions = "WHERE B.TITLE LIKE '%" + title + "' " \
                          "OR B.TITLE LIKE '" + title + "%' " \
                          "OR IT.TITLE_UNTRANSLATED LIKE '%" + title + "' " \
@@ -52,20 +52,18 @@ class Guest:
                          "AND (A.AUTHOR_SURNAME LIKE '%" + author_surname + "' " \
                               "OR A.AUTHOR_SURNAME LIKE '" + author_surname + "%') " \
                          "AND " + cor_sub + ") "
-        query = "SELECT B.TITLE, A.AUTHOR_NAME, A.AUTHOR_SURNAME, B.LANGUAGE, B.GENRE, B.LOCATION, B.EDITION, B.BOOK_TYPE, T.PRICE, COUNT(BE.BOOK_ID) " \
-                "FROM BOOK AS B " \
-                "INNER JOIN " \
-                "AUTHORS AS A " \
+        query = "SELECT B.TITLE, A.AUTHOR_NAME, A.AUTHOR_SURNAME, B.LANGUAGE, B.GENRE, B.LOCATION, B.EDITION, B.BOOK_TYPE, T.PRICE_IN_CENTS, COUNT(BE.BOOK_ID) " \
+                "FROM BOOKS B LEFT JOIN AUTHORS A " \
                 "ON B.ISBN=A.ISBN " \
-                "INNER JOIN " \
-                "BOOK_ENTRY AS BE " \
+                "LEFT JOIN BOOK_ENTRIES BE " \
                 "ON B.ISBN=BE.ISBN " \
-                "INNER JOIN " \
-                "TRANSACTIONS AS T " \
+                "LEFT JOIN TRANSACTIONS T " \
                 "ON BE.BOOK_ID=T.BOOK_ID " \
-                "INNER JOIN " \
-                "IF_TRANSLATED AS IT " \
+                "LEFT JOIN IF_TRANSLATED IT " \
                 "ON IT.ISBN=B.ISBN " \
                 + conditions + \
                 "GROUP BY B.ISBN"
         return query
+
+Test = Guest()
+print(Test.search("", "", "It Ends"))
