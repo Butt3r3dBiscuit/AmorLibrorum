@@ -95,19 +95,40 @@ class Admin:
     def search_records_Employee_id(self, Employee_id=2):#search by employee_id
         query = f""
         return query
-    
-    def num_of_sales(self, date=None, Employee_id=None, ISBN=None):#number of sales per employee and/or ISBN and/or date
+
+    def num_of_sales(self, start_date=None, end_date=None, Employee_id=None, ISBN=None):#number of sales per employee and/or ISBN and/or date
         query = f"select count(a.book_id) from transactions a, book_entries b where a.book_id=b.book_id and a.price_in_cents>0"
         if ISBN!=None:
             query = query + f" and b.ISBN={ISBN}"
         if Employee_id!=None:
-            query = query + f" and a.Employee_id={Employee_id}"
-        if date!=None:
-            query = query + f" and a.date={date}"
+            query += f" and a.Employee_id={Employee_id}"
+        if start_date!=None:
+            query += f" and a.date>={start_date}"
+        if end_date!=None:
+            query += f" and a.date<{end_date}"
+        return query
+
+    def profits(self, employee_id=None, start_date=None, end_date=None):
+        query = f"select sum(price_in_cents) from transactions"
+        if employee_id!=None:
+            if "=" not in query:
+                query += f" where employee_id={employee_id}" 
+            else:
+                query += f" and employee_id={employee_id}"
+        if start_date!=None:
+            if ("=" or ">=") not in query:
+                query += f" where date>='{start_date}'"
+            else:
+                query += f" and date>='{start_date}'"
+        if end_date!=None:
+            if ("=" or "<") not in query:
+                query += f" where date<'{end_date}'"
+            else:
+                query += f" and date<'{end_date}'"
         return query
 
 admin = Admin()
-curry = admin.inventory_search_authors_books()
+curry = admin.profits(start_date="2021-02-20", employee_id=1)
 print(curry)
 
 class Employee:
@@ -123,9 +144,9 @@ try:
         passwd="MyN3wP4ssw0rd!*",
         database="amorlibrorum")
 except:
-    print("Something went wrong sucks for u bud :3")
+    print("Something went wrong which sucks for u bud :3")
 
-def query_to_value(db, query):
+def query_to_value(db, query):#returns a list of values
     mycursor = db.cursor()
     mycursor.execute(query)
     for x in mycursor:
