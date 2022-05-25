@@ -25,3 +25,8 @@ CREATE function price_determination(book_id_given int)
         end if;
     RETURN return_string;
 END;
+
+-- drop trigger if exists ISBN_cz;
+
+-- create trigger ISBN_cz before insert on Book_entries
+--    for each row
