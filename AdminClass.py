@@ -182,13 +182,14 @@ class Employee:
 # except:
 #     print("Something went wrong which sucks for u bud :3")
 
-db = connect.connect_admin("MyN3wP4ssw0rd!*")
+db = connect.connect_admin("MyN3wP4ssw0rd!*") #temporal solution
 
 def query_to_value(db, query):  # returns a list of values
     mycursor = db.cursor()
     mycursor.execute(query)
-    for x in mycursor:
+    for (x) in mycursor:
         return x
 
 
-print(query_to_value(db, curry))
+test = (query_to_value(db, curry))
+print(test[0])
