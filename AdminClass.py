@@ -21,7 +21,7 @@ def add_to_Price_exceptions(book_id, newprice, comment):
     return query
 
 def add_to_Transactions(book_id, employee_id, date, Price):
-    query = f"insert into transactions(book_ID, Employee_ID, date, Price(in_cents)) values ({book_id}, {employee_id}, {date}, {Price})"
+    query = f"insert into transactions(book_ID, Employee_ID, date, Price_in_cents) values ({book_id}, {employee_id}, {date}, {Price})"
     return query
 
 def add_to_employees(Name, Surname, position, Password, email):
