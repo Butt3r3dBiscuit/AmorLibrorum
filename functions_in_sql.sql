@@ -1,3 +1,17 @@
+DROP USER if exists 'margje@amorlibrorum.boek'@'localhost';
+DROP USER if exists 'frank@amorlibrorum.boek'@'localhost';
+
+CREATE USER 'margje@amorlibrorum.boek'@'localhost' IDENTIFIED BY 'NotAn0therqwer!ypassword';
+FLUSH PRIVILEGES;
+CREATE USER 'frank@amorlibrorum.boek'@'localhost' IDENTIFIED BY 'An0!herqwertyp4ssword';
+FLUSH PRIVILEGES;
+
+grant all privileges on AmorLibrorum.* to 'margje@amorlibrorum.boek'@'localhost';
+grant all privileges on AmorLibrorum.* to 'frank@amorlibrorum.boek'@'localhost';
+
+
+
+
 drop function if exists price_determination;
 
 CREATE function price_determination(book_id_given int)
