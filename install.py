@@ -53,6 +53,8 @@ if __name__ == "__main__":
     #here we could reference the starting app ig
 
     # mycursor.execute("DROP USER 'user'@'localhost';")
+    # test
+    
 
 
 
