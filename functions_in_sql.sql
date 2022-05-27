@@ -28,5 +28,6 @@ END;
 
 -- drop trigger if exists ISBN_cz;
 
+-- create handler that checks while adding boook to book_entries if the ISBN exists already in the books
 -- create trigger ISBN_cz before insert on Book_entries
 --    for each row
