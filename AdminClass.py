@@ -140,28 +140,33 @@ class Admin:
             query += f" and a.date<{end_date}"
         return query
 
-    def profits(self, employee_id=None, start_date=None, end_date=None):
-        query = f"select sum(price_in_cents) from transactions"
+    def profits(self, ISBN=None, employee_id=None, start_date=None, end_date=None):
+        query = f"select sum(a.price_in_cents) from transactions a, book_entries b"
+        if ISBN is not None:
+            if "=" not in query:
+                query += f" where a.book_id=b.book_id and b.ISBN={ISBN}"
+            else:
+                query += f" and a.book_id=b.book_id and b.ISBN={ISBN}"
         if employee_id is not None:
             if "=" not in query:
-                query += f" where employee_id={employee_id}"
+                query += f" where a.employee_id={employee_id}"
             else:
-                query += f" and employee_id={employee_id}"
+                query += f" and a.employee_id={employee_id}"
         if start_date is not None:
             if ("=" or ">=") not in query:
-                query += f" where date>='{start_date}'"
+                query += f" where a.date>='{start_date}'"
             else:
-                query += f" and date>='{start_date}'"
+                query += f" and a.date>='{start_date}'"
         if end_date is not None:
             if ("=" or "<") not in query:
-                query += f" where date<'{end_date}'"
+                query += f" where a.date<'{end_date}'"
             else:
-                query += f" and date<'{end_date}'"
+                query += f" and a.date<'{end_date}'"
         return query
 
 
 admin = Admin()
-curry = admin.search_records(ISBN=9780593334833)
+curry = admin.profits(ISBN=9780593334833, employee_id=2)
 print(curry)
 
 
