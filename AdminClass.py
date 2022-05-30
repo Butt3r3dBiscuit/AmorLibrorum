@@ -127,7 +127,8 @@ class Admin:
             query+= f" and c.book_id={Book_id}"
         return query
 
-    def num_of_sales(self, start_date=None, end_date=None, Employee_id=None, ISBN=None):  # number of sales per employee and/or ISBN and/or date
+    def num_of_sales(self, start_date=None, end_date=None, Employee_id=None, ISBN=None):
+        #returns number of sales
         query = f"select count(a.book_id) from transactions a, book_entries b" \
                 f" where a.book_id=b.book_id and a.price_in_cents>0"
         if ISBN is not None:
@@ -141,6 +142,7 @@ class Admin:
         return query
 
     def profits(self, ISBN=None, employee_id=None, start_date=None, end_date=None):
+        #returns profit in cents
         query = f"select sum(a.price_in_cents) from transactions a, book_entries b"
         if ISBN is not None:
             if "=" not in query:
