@@ -116,6 +116,7 @@ class Admin:
                 f" a.book_type, c.price_in_cents from books a, authors b, transactions c, book_entries d," \
                 f" employees e where a.ISBN=d.ISBN and c.book_id=d.book_id and d.ISBN=b.ISBN and" \
                 f" e.employee_id=c.employee_id and c.book_id={Book_id}"
+        return query
 
     def search_records_ISBN(self, ISBN=9780593334833):  # search by ISBN
         query = f"select e.name, e.surname, a.ISBN, a.title, b.author_name, b.author_surname, a.edition, a.book_type," \
@@ -162,7 +163,7 @@ class Admin:
 
 
 admin = Admin()
-curry = admin.profits(start_date="2021-02-20", employee_id=1)
+curry = admin.search_records_Book_id(Book_id=15)
 print(curry)
 
 
