@@ -102,31 +102,29 @@ class Admin:
                 f" authors b where a.ISBN={ISBN} and b.ISBN={ISBN}"
         return query
 
-    def inventory_search_num_books(self, ISBN=9780593334833):  # returns the number of books
+    def inventory_search_num_books(self, ISBN=9780593334833):
+        #returns the number of books
         query = f"select count(book_id) from book_entries where ISBN={ISBN}"
         return query
 
-    def inventory_search_exceptionsprice(self, ISBN=9780593334833):  # returns book_ids
+    def inventory_search_exceptionsprice(self, ISBN=9780593334833):
+        #returns list of book_ids
         query = f"select a.book_id from book_entries a, price_exceptions b where a.book_id=b.book_id and a.ISBN={ISBN}"
         return query
 
     # transaction search
-    def search_records_Book_id(self, Book_id=15):  # search records by book_id
-        query = f"select e.name, e.surname, a.ISBN, a.title, b.author_name, b.author_surname, a.edition," \
-                f" a.book_type, c.price_in_cents from books a, authors b, transactions c, book_entries d," \
+    def search_records(self, ISBN=None, Employee_id=None, Book_id=None):
+        #returns book_id, ISBN, title, author_name, author_surname, edition, book_type, name, surname, price_in_cents
+        query = f"select c.book_id, a.ISBN, a.title, b.author_name, b.author_surname, a.edition," \
+                f" a.book_type, e.name, e.surname, c.price_in_cents from books a, authors b, transactions c, book_entries d," \
                 f" employees e where a.ISBN=d.ISBN and c.book_id=d.book_id and d.ISBN=b.ISBN and" \
-                f" e.employee_id=c.employee_id and c.book_id={Book_id}"
-        return query
-
-    def search_records_ISBN(self, ISBN=9780593334833):  # search by ISBN
-        query = f"select e.name, e.surname, a.ISBN, a.title, b.author_name, b.author_surname, a.edition, a.book_type," \
-                f" c.price_in_cents from books a, authors b, transactions c, book_entries d," \
-                f" employees e where a.ISBN=d.ISBN and c.book_id=d.book_id and d.ISBN=b.ISBN and" \
-                f" e.employee_id=c.employee_id and a.ISBN={ISBN}"
-        return query
-
-    def search_records_Employee_id(self, Employee_id=2):  # search by employee_id
-        query = f""
+                f" e.employee_id=c.employee_id"
+        if ISBN!=None:
+            query+= f" and a.ISBN={ISBN}"
+        if Employee_id!=None:
+            query+= f" and e.Employee_id={Employee_id}"
+        if Book_id!=None:
+            query+= f" and c.book_id={Book_id}"
         return query
 
     def num_of_sales(self, start_date=None, end_date=None, Employee_id=None, ISBN=None):  # number of sales per employee and/or ISBN and/or date
@@ -163,7 +161,7 @@ class Admin:
 
 
 admin = Admin()
-curry = admin.search_records_Book_id(Book_id=15)
+curry = admin.search_records(ISBN=9780593334833)
 print(curry)
 
 
@@ -182,12 +180,12 @@ class Employee:
 
 db = connect.connect_admin("MyN3wP4ssw0rd!*") #temporal solution
 
-def query_to_value(db, query):  # returns a list of values
+def query_to_values(db, query):  # returns a list of values
     mycursor = db.cursor()
     mycursor.execute(query)
     for (x) in mycursor:
         return x
 
 
-test = (query_to_value(db, curry))
+test = (query_to_values(db, curry))
 print(test)
