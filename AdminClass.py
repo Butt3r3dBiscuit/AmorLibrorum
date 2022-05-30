@@ -58,8 +58,7 @@ def inventory_search(ISBN):
 # Admin class query
 class Admin:
     # insert queries
-    def add_to_books(self, ISBN, Title, publisher, published_year, pages, language, edition, book_type, location,
-                     section, genre):
+    def add_to_books(self, ISBN, Title, publisher, published_year, pages, language, edition, book_type, location, section, genre):
         query = f"insert into books values ({ISBN}, {Title}, {publisher}, {published_year}, {pages}, {language}," \
                 f" {edition}, {book_type}, {location}, {section}, {genre})"
         return query
@@ -95,10 +94,9 @@ class Admin:
         return query
 
     # inventory search
-    def inventory_search_authors_books(self,
-                                       ISBN=9780593334833):  #
-        """returns ISBN, title, author_name, author_surname, publisher, year_published,
-         pages, language, edition, book_type, location, section and Genre"""
+    def inventory_search_authors_books(self, ISBN=9780593334833):  #
+        #returns ISBN, title, author_name, author_surname, publisher, year_published,
+        #pages, language, edition, book_type, location, section and Genre
         query = f"select a.ISBN, a.title, b.author_name, b.author_surname, a.publisher, a.year_published, a.pages," \
                 f" a.language, a.edition, a.book_type, a.location, a.section, a.Genre from books a," \
                 f" authors b where a.ISBN={ISBN} and b.ISBN={ISBN}"
@@ -130,8 +128,7 @@ class Admin:
         query = f""
         return query
 
-    def num_of_sales(self, start_date=None, end_date=None, Employee_id=None,
-                     ISBN=None):  # number of sales per employee and/or ISBN and/or date
+    def num_of_sales(self, start_date=None, end_date=None, Employee_id=None, ISBN=None):  # number of sales per employee and/or ISBN and/or date
         query = f"select count(a.book_id) from transactions a, book_entries b" \
                 f" where a.book_id=b.book_id and a.price_in_cents>0"
         if ISBN is not None:
@@ -192,4 +189,4 @@ def query_to_value(db, query):  # returns a list of values
 
 
 test = (query_to_value(db, curry))
-print(test[0])
+print(test)
