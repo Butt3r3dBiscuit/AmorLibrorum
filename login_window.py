@@ -1,8 +1,14 @@
 from tkinter import *
 
 root = Tk()
-root.geometry('300x150')
-root.title('Log in')
+
+width = root.winfo_screenwidth()
+height = root.winfo_screenheight()
+root.geometry("%dx%d" % (width, height))
+root.title("Employee Window")
+
+# root.geometry('300x150')
+# root.title('Log in')
 root.resizable(False, False)
 
 login_button = Button(root, text="Log in", height=2, width=11)
