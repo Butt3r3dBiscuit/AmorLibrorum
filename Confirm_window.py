@@ -11,3 +11,11 @@ button = Button(window,text = "Click Me", command = Click)
 button.pack()
 
 window.mainloop()
+
+# def logOut():
+#    resp = messagebox.askquestion('', 'Are you sure?')
+#    if resp == 'yes':
+#         ws.destroy()
+        
+#    else:
+#         pass
