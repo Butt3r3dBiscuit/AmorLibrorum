@@ -1,6 +1,14 @@
+import mysql.connector
+db = mysql.connector.connect(
+            host="localhost",
+            user="root",
+            passwd="MyN3wP4ssw0rd!*",
+            database="AmorLibrorum")
+cursor = db.cursor()
+
 class Guest:
     def __init__(self):
-        a = 0
+        pass
         
     def search(self, author_name="", author_surname="", title=""):
         conditions = ""
@@ -52,18 +60,19 @@ class Guest:
                          f"AND (A.AUTHOR_SURNAME LIKE '%{author_surname}' " \
                               f"OR A.AUTHOR_SURNAME LIKE '{author_surname}%') " \
                          f"AND {cor_sub}) "
-        query = "SELECT B.TITLE, A.AUTHOR_NAME, A.AUTHOR_SURNAME, B.LANGUAGE, B.GENRE, B.LOCATION, B.EDITION, B.BOOK_TYPE, T.PRICE_IN_CENTS, COUNT(BE.BOOK_ID) " \
-                "FROM BOOKS B LEFT JOIN AUTHORS A " \
-                "ON B.ISBN=A.ISBN " \
-                "LEFT JOIN BOOK_ENTRIES BE " \
-                "ON B.ISBN=BE.ISBN " \
-                "LEFT JOIN TRANSACTIONS T " \
-                "ON BE.BOOK_ID=T.BOOK_ID " \
-                "LEFT JOIN IF_TRANSLATED IT " \
-                "ON IT.ISBN=B.ISBN " \
-                f"{conditions}" \
-                "GROUP BY B.ISBN"
-        return query
-
+        cursor.execute("SELECT B.TITLE, A.AUTHOR_NAME, A.AUTHOR_SURNAME, B.LANGUAGE, B.GENRE, B.LOCATION, B.EDITION, B.BOOK_TYPE, T.PRICE_IN_CENTS, COUNT(BE.BOOK_ID) " \
+                       "FROM BOOKS B LEFT JOIN AUTHORS A " 
+                       "ON B.ISBN=A.ISBN " 
+                       "LEFT JOIN BOOK_ENTRIES BE " 
+                       "ON B.ISBN=BE.ISBN " 
+                       "LEFT JOIN TRANSACTIONS T "
+                       "ON BE.BOOK_ID=T.BOOK_ID " 
+                       "LEFT JOIN IF_TRANSLATED IT " 
+                       "ON IT.ISBN=B.ISBN " 
+                       f"{conditions}" 
+                       "GROUP BY B.ISBN")
+        result = cursor.fetchall()
+        return result
+    
 Test = Guest()
 print(Test.search("", "", "It Ends"))
