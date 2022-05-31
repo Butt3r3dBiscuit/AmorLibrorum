@@ -2,8 +2,6 @@ import os
 import mysql.connector
 
 try:
-
-
     db = mysql.connector.connect(
         host="localhost",
         user="root",
@@ -16,6 +14,7 @@ try:
 
     for x in mycursor:
         print(x)
+
 except:
     db = mysql.connector.connect(
         host="localhost",
@@ -24,6 +23,3 @@ except:
 
     mycursor = db.cursor()
     mycursor.execute("create database testdatabase")
-
-
-
