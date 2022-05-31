@@ -15,8 +15,8 @@ window.title("Book search")
 # window.title("start Window")
 
 def open_login_window():
-    import login_window
     window.destroy()
+    import login_window
 
 
 
