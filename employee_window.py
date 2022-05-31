@@ -3,28 +3,28 @@ from tkinter import *
 rel_width = 0.1
 rel_height = 0.05
 
-#Window
-window = Tk()
-width= window.winfo_screenwidth()
-height= window.winfo_screenheight()
-window.geometry("%dx%d" % (width, height))
-window.title("Employee Window")
+#employee_window
+employee_window = Tk()
+width= employee_window.winfo_screenwidth()
+height= employee_window.winfo_screenheight()
+employee_window.geometry("%dx%d" % (width, height))
+employee_window.title("this is employee_window.py")
 
 #Buttons
-Financial = Button(window, text="Financial")
-Add_book = Button(window, text="Add Book")
-Sell = Button(window, text="Sell")
-Add_employee = Button(window, text="Add Employee")
+Financial = Button(employee_window, text="Financial")
+Add_book = Button(employee_window, text="Add Book")
+Sell = Button(employee_window, text="Sell")
+Add_employee = Button(employee_window, text="Add Employee")
 
 
 #Text
-Book_search = Label(window, text="Book Search")
-Title = LabelFrame(window, text="Title")
-Author = LabelFrame(window, text="Author")
-Editor = LabelFrame(window, text="Editor")
-Version = LabelFrame(window, text="Version")
-Language = LabelFrame(window, text="Language")
-All = LabelFrame(window, text="All")
+Book_search = Label(employee_window, text="Book Search")
+Title = LabelFrame(employee_window, text="Title")
+Author = LabelFrame(employee_window, text="Author")
+Editor = LabelFrame(employee_window, text="Editor")
+Version = LabelFrame(employee_window, text="Version")
+Language = LabelFrame(employee_window, text="Language")
+All = LabelFrame(employee_window, text="All")
 
 
 #Placement Buttons
@@ -42,4 +42,4 @@ Version.place(relx=0.65, rely=0.3, relwidth=rel_width, relheight=rel_height, anc
 Language.place(relx=0.8, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor=E)
 All.place(relx=0.95, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor=E)
 
-window.mainloop()
+employee_window.mainloop()
