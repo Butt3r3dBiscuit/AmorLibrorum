@@ -7,8 +7,15 @@ window = Tk()
 window.geometry("800x400")
 window.title("start Window")
 
+def open_login_window():
+    window.destroy()
+    import login_window
 
-Login = Button(window, text="Log in", height=25, width=45)
+
+
+
+
+Login = Button(window, text="Log in", height=25, width=45, command=open_login_window)
 Login.place(relx=1, relwidth=rel_width, relheight=rel_height, anchor=NE)
 
 Book_search = Label(window, text="Book search: ", font='Helvetica 18 bold')
