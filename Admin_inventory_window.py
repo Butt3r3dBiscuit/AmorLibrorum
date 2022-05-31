@@ -8,7 +8,7 @@ window = Tk()
 width = window.winfo_screenwidth()
 height = window.winfo_screenheight()
 window.geometry("%dx%d" % (width, height))
-window.title("Employee Window")
+window.title("Inventory Window")
 
 # text
 Add_book = Label(window, text="Add Book: ", font='Helvetica 18 bold')
@@ -54,9 +54,13 @@ def no_button():
     Origin_text.pack_forget()
     Origin_label.pack_forget()
 
+def open_employee_window():
+    #window.destroy()
+    import employee_window
+    print("test")
 
 # Buttons
-Employee = Button(window, text="Employee")
+Employee = Button(window, text="Employee", command=open_employee_window)
 Finance = Button(window, text="Finance")
 Inventory = Button(window, text="Inventory")
 Save = Button(window, text="Save")
