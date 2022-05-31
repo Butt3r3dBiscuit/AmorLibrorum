@@ -20,3 +20,9 @@ password_text = Text(root, height=1, width=30)
 password_text.pack()
 
 root.mainloop()
+
+'''
+ except Exception as e:
+        if e.errno==1045:
+            #this error catches if user exists
+'''
