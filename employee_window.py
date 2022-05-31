@@ -9,6 +9,7 @@ width= employee_window.winfo_screenwidth()
 height= employee_window.winfo_screenheight()
 employee_window.geometry("%dx%d" % (width, height))
 employee_window.title("this is employee_window.py")
+# employee_window.attributes('-fullscreen',True)
 
 #Buttons
 Financial = Button(employee_window, text="Financial")
