@@ -22,9 +22,16 @@ password_label.pack()
 password_text = Entry(root, width=35, show="*") #Entry allows to have password concealed
 password_text.pack()
 
-# else:
-#             messagebox.showerror('', 'Incorrect credentials')
+
+# warn = "Username can't be empty"
+# warn = "Password can't be empty"
+#
+#     if (u == un and p == pd):
+#         ws.destroy()
+#         import app    
 #     else:
-#         messagebox.showerror('', warn)
+#         messagebox.showerror('', 'Incorrect credentials')
+# else:
+#     messagebox.showerror('', warn)
 
 root.mainloop()
