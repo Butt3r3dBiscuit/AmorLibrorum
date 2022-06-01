@@ -1,11 +1,18 @@
 from tkinter import *
 
+
 rel_width = 0.1
 rel_height = 0.2
 
 window = Tk()
-window.geometry("800x400")
-window.title("start Window")
+width = window.winfo_screenwidth()
+height = window.winfo_screenheight()
+window.geometry("%dx%d" % (width, height))
+window.title("Book search")
+
+# window = Tk()
+# window.geometry("800x400")
+# window.title("start Window")
 
 def open_login_window():
     window.destroy()

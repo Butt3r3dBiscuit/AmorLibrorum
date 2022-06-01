@@ -3,6 +3,8 @@ from tkinter import *
 rel_width = 0.1
 rel_height = 0.05
 
+
+
 #Window
 window = Tk()
 width= window.winfo_screenwidth()
@@ -10,9 +12,15 @@ height= window.winfo_screenheight()
 window.geometry("%dx%d" % (width, height))
 window.title("Employee Window")
 
+
+# functions
+def open_inventory():
+    #window.destroy()
+    import Admin_inventory_window
+
 #Buttons
 Financial = Button(window, text="Financial")
-Add_book = Button(window, text="Add Book")
+Add_book = Button(window, text="Add Book", command=open_inventory)
 Sell = Button(window, text="Sell")
 Add_employee = Button(window, text="Add Employee")
 
