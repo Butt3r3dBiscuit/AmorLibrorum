@@ -7,9 +7,6 @@ root.geometry("400x400")
 
 class Elder:
     def __init__(self, master):
-        root = Tk()
-        root.title("test")
-        root.geometry("400x400")
         myFrame = Frame(master)
         myFrame.pack()
 
@@ -20,7 +17,6 @@ class Elder:
         from tkinter_child import  Child
         Child(master)
         root.destroy()
-
 
 
 
