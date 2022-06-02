@@ -1,5 +1,6 @@
 import tkinter as tk
 from sep_page_one import PageOne
+from sep_start_page import StartPage
 
 class SeaofBTCapp(tk.Tk):
 
@@ -14,6 +15,7 @@ class SeaofBTCapp(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
+
 
         for F in (StartPage, PageOne):
             print("here", F)
@@ -30,20 +32,10 @@ class SeaofBTCapp(tk.Tk):
         frame = self.frames[cont]
         frame.tkraise()
 
-class StartPage(tk.Frame):
 
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        label = tk.Label(self, text="Start Page", font=LARGE_FONT)
-        label.pack(pady=10, padx=10)
-
-        button1 = tk.Button(self, text="Visit Page 1",
-                            command=lambda: controller.show_frame(PageOne))
-        button1.pack()
 
 
 if __name__=='__main__':
-
     LARGE_FONT = ("Verdana", 12)
 
 
