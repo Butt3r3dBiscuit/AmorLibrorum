@@ -55,7 +55,7 @@ def no_button():
     Origin_label.pack_forget()
 
 def open_employee_window():
-    #window.destroy()
+    window.destroy()
     import employee_window
     print("test")
 

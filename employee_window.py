@@ -15,7 +15,7 @@ window.title("Employee Window")
 
 # functions
 def open_inventory():
-    #window.destroy()
+    window.destroy()
     import Admin_inventory_window
 
 #Buttons
