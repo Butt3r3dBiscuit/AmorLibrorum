@@ -1,4 +1,5 @@
 import tkinter as tk
+#here we will put names of files
 from sep_page_one import PageOne
 from sep_start_page import StartPage
 
@@ -16,6 +17,7 @@ class SeaofBTCapp(tk.Tk):
 
         self.frames = {}
 
+#here we will put names of classes in respective files
 
         for F in (StartPage, PageOne):
             print("here", F)
