@@ -15,6 +15,11 @@ class login_window(tk.Frame):
         # root.geometry('300x150')
         # root.title('Log in')
         # root.resizable(False, False)
+        back_button = tk.Button(self, text="Return home",height=2, width=11,
+                                command= lambda: controller.show_frame(Start_window.Start_window))
+        back_button.pack()
+        back_button.place(x=0,y=0)
+
 
         login_button = tk.Button(self, text="Log in", height=2, width=11)
         login_button.pack()
