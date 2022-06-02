@@ -14,9 +14,10 @@ class Elder:
         self.myButton.pack(pady=20)
 
     def clicker(self, master):
-        from tkinter_child import  Child
+        from tkinter_child import Child
         Child(master)
-        root.destroy()
+        print("was here")
+        master.destroy()
 
 
 

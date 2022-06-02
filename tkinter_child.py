@@ -9,9 +9,9 @@ class Child():
         self.myButton.pack(pady=20)
 
     def clicker(self, master, new_window):
+        new_window.destroy()
         from tkinter_main import Elder
         print(1)
-        #new_window.destroy()
-        #Elder(master)
+        Elder(master)
 
 print("Ok")
