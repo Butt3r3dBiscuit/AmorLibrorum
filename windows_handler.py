@@ -1,14 +1,17 @@
 import tkinter as tk
 #here we will put names of files
-from sep_page_one import PageOne
-from sep_start_page import StartPage
+from Start_window import Start_window
+from login_window import login_window
 
-class SeaofBTCapp(tk.Tk):
+class Handler(tk.Tk):
 
     def __init__(self, *args, **kwargs):
 
         tk.Tk.__init__(self, *args, **kwargs)
         container = tk.Frame(self)
+        width = tk.Tk.winfo_screenwidth(self)
+        height = tk.Tk.winfo_screenheight(self)
+        tk.Tk.geometry(self,f"{width}x{height}")
 
         container.pack(side="top", fill="both", expand= True)
 
@@ -19,7 +22,7 @@ class SeaofBTCapp(tk.Tk):
 
 #here we will put names of classes in respective files
 
-        for F in (StartPage, PageOne):
+        for F in (Start_window, login_window):
             print("here", F)
             frame = F(container, self)
 
@@ -27,7 +30,7 @@ class SeaofBTCapp(tk.Tk):
 
             frame.grid(row=0,column=0, sticky="nsew")
 
-        self.show_frame(StartPage)
+        self.show_frame(Start_window)
 
     def show_frame(self, cont):
 
@@ -41,5 +44,5 @@ if __name__=='__main__':
     LARGE_FONT = ("Verdana", 12)
 
 
-    app = SeaofBTCapp()
+    app = Handler()
     app.mainloop()

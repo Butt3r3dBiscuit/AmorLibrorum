@@ -9,6 +9,7 @@ class SeaofBTCapp(tk.Tk):
 
         tk.Tk.__init__(self, *args, **kwargs)
         container = tk.Frame(self)
+        tk.Tk.geometry(self,"1000x500")
 
         container.pack(side="top", fill="both", expand= True)
 
