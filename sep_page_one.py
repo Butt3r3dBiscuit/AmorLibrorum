@@ -1,5 +1,4 @@
 import tkinter as tk
-# from now_make_it_separate_files import StartPage
 import sep_start_page
 
 
