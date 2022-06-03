@@ -2,6 +2,7 @@ import tkinter as tk
 import Start_window
 import Employees_sales_tab
 from connect import connect_admin, connect_employee
+import Admin_inventory_window
 
 class login_window(tk.Frame):
     def __init__(self, parent, controller):
@@ -63,6 +64,8 @@ class login_window(tk.Frame):
     def new_window(self,position, controller):
         if position=="Staff":
             controller.show_frame(Employees_sales_tab.Employee_sales_window)
+        elif position=="Manager":
+            controller.show_frame()
 
 
 
