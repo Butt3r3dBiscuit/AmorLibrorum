@@ -21,6 +21,8 @@ def employee_user_addition(my_cursor,username,password):
 
         my_cursor.execute(f"GRANT SELECT ON AmorLibrorum.variables TO '{username}'@'localhost'")
 
+        my_cursor.execute(f"GRANT SELECT (position, email) ON AmorLibrorum.Employees TO '{username}'@'localhost'")
+
 
 
 
@@ -44,3 +46,5 @@ if __name__=="__main__":
     my_cursor = db.cursor()
     ## test add user
     employee_user_addition(my_cursor,"Jan@mail.com","MyCoolPassword123!")
+
+#for dropping

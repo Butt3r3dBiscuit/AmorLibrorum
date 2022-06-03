@@ -33,12 +33,28 @@ class login_window(tk.Frame):
 
         password_label = tk.Label(self, text="Password", width = "15")
         password_label.pack()
-        password_text = tk.Text(self, height=1, width=30)
-        password_text.pack()
+        self.password_text = tk.Text(self, height=1, width=30)
+        self.password_text.pack()
 
     def log_in(self):
-        email = self.email_text.get("1.0", "end")
+        email = self.email_text.get("1.0","end-1c")
         print(email)
+        if email=="margje@amorlibrorum.boek":
+            print(True)
+        else:
+            print([email])
+        password = self.password_text.get("1.0","end-1c ")
+        print(password)
+        db = connect_employee(email,password)
+        if db == 1045:
+            error_label = tk.Label(self, text="User not found!", width = "15", fg="red")
+            error_label.pack()
+        else:
+            my_cursor = db.cursor()
+
+
+
+
 
 
         '''

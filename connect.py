@@ -25,8 +25,9 @@ def connect_employee(email, password_from_log_in):
         print("database has already been installed")
         return db
     except mysql.connector.errors.ProgrammingError as e:
-        print(e)
-        return e
+        if e.errno == 1045:
+            print("user doesn't exist")
+            return 1045
 
 def connect_admin(password_from_log_in):
     try:
