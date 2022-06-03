@@ -2,6 +2,7 @@ import tkinter as tk
 #here we will put names of files
 from Start_window import Start_window
 from login_window import login_window
+from Employees_sales_tab import Employee_sales_window
 
 class Handler(tk.Tk):
 
@@ -22,7 +23,7 @@ class Handler(tk.Tk):
 
 #here we will put names of classes in respective files
 
-        for F in (Start_window, login_window):
+        for F in (Start_window, login_window, Employee_sales_window):
             print("here", F)
             frame = F(container, self)
 

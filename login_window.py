@@ -1,5 +1,6 @@
 import tkinter as tk
 import Start_window
+import Employees_sales_tab
 from connect import connect_admin, connect_employee
 
 class login_window(tk.Frame):
@@ -22,7 +23,7 @@ class login_window(tk.Frame):
         back_button.place(x=0,y=0)
 
 
-        login_button = tk.Button(self, text="Log in", height=2, width=11, command= self.log_in)
+        login_button = tk.Button(self, text="Log in", height=2, width=11, command=lambda: self.log_in(controller))
         login_button.pack()
         login_button.place(x=200, y=95)
 
@@ -36,7 +37,7 @@ class login_window(tk.Frame):
         self.password_text = tk.Text(self, height=1, width=30)
         self.password_text.pack()
 
-    def log_in(self):
+    def log_in(self, controller):
         email = self.email_text.get("1.0","end-1c")
         print(email)
         if email=="margje@amorlibrorum.boek":
@@ -54,10 +55,12 @@ class login_window(tk.Frame):
             my_cursor.execute(f"select position from employees where email='{email}'")
             for (x) in my_cursor:
                 position = x[0]
-            print(position)
-
-
-
+            self.new_window(position,controller)
+            success_label = tk.Label(self, text=f"User found! Position {position}", width="30", fg="green")
+            success_label.pack()
+    def new_window(self,position, controller):
+        if position=="Staff":
+            controller.show_frame(Employees_sales_tab.Employee_sales_window)
 
 
 
