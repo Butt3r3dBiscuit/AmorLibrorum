@@ -49,6 +49,8 @@ class login_window(tk.Frame):
         print(password)
         # email = "casual@amorlibrorum.boek" #temp
         # password = "YetAn0!herqwertyp4ssword" #temp
+        email = "frank@amorlibrorum.boek"
+        password = "An0!herqwertyp4ssword"
         db = connect_employee(email,password)
         if db == 1045:
             error_label = tk.Label(self, text="User not found!", width = "15", fg="red")
@@ -58,6 +60,7 @@ class login_window(tk.Frame):
             my_cursor.execute(f"select position from employees where email='{email}'")
             for (x) in my_cursor:
                 position = x[0]
+                print("here is position: ", position)
             self.new_window(position,controller)
             success_label = tk.Label(self, text=f"User found! Position {position}", width="30", fg="green")
             success_label.pack()
@@ -65,7 +68,7 @@ class login_window(tk.Frame):
         if position=="Staff":
             controller.show_frame(Employees_sales_tab.Employee_sales_window)
         elif position=="Manager":
-            controller.show_frame()
+            controller.show_frame(Admin_inventory_window.Admin_inventory_window)
 
 
 
