@@ -19,10 +19,11 @@ class Admin_inventory_window(tk.Frame):
         #test push
 
         # text
-        Add_book = tk.Label(self, text="Add Book: ", font='Helvetica 18 bold')
-        Search_book = tk.Label(self, text="Search Book: ", font='Helvetica 18 bold')
-        Found_book = tk.Label(self, text="Books Found: ", font='Helvetica 18 bold')
-        Set_sellprice = tk.Label(self, text="Set Sellprice: ", font='Helvetica 18 bold')
+        helvetica_font="Helvetica 18 bold"
+        Add_book = tk.Label(self, text="Add Book: ", font=helvetica_font)
+        Search_book = tk.Label(self, text="Search Book: ", font=helvetica_font)
+        Found_book = tk.Label(self, text="Books Found: ", font=helvetica_font)
+        Set_sellprice = tk.Label(self, text="Set Sellprice: ", font=helvetica_font)
 
         Title = tk.Label(self, text="Title")
         Author = tk.Label(self, text="Author")
@@ -164,7 +165,7 @@ class Admin_inventory_window(tk.Frame):
         Genre_text.pack()
 
         # Buttons show hide
-        self.Translated_label = tk.Label(self, text="Is it translated?", width="15", font='Helvetica 18 bold')
+        self.Translated_label = tk.Label(self, text="Is it translated?", width="15", font=helvetica_font)
         Yes = tk.Button(self, text='Yes', command=self.yes_button)
         Yes.pack(pady=20)
         No = tk.Button(self, text='No', command=self.no_button)
