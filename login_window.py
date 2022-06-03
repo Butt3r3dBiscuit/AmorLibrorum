@@ -46,6 +46,8 @@ class login_window(tk.Frame):
             print([email])
         password = self.password_text.get("1.0","end-1c ")
         print(password)
+        # email = "casual@amorlibrorum.boek" #temp
+        # password = "YetAn0!herqwertyp4ssword" #temp
         db = connect_employee(email,password)
         if db == 1045:
             error_label = tk.Label(self, text="User not found!", width = "15", fg="red")

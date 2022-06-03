@@ -18,6 +18,10 @@ class Employee_sales_window(tk.Frame):
         Sell = tk.Button(self, text="Sell")
         Sell.place(relx=1, rely=0.9, relwidth=rel_width, relheight=0.1, anchor="e")
 
+        Log_out = tk.Button(self, text="Log out",
+                            command=lambda: controller.show_frame(Start_window.Start_window))
+        Log_out.place(relx=1, rely=0, relwidth=rel_width,relheight=0.1, anchor="ne")
+
         Book_label = tk.Label(self, text="Book ID", width = "15")
         Book_label.pack()
         Book_text = tk.Text(self, borderwidth=1, relief="groove")
@@ -50,7 +54,6 @@ class Employee_sales_window(tk.Frame):
         Language.place(relx=0.7, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
         Sell_price.place(relx=0.8, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
         In_store.place(relx=0.9, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
-
 
 
 
