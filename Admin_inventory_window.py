@@ -16,6 +16,7 @@ class Admin_inventory_window(tk.Frame):
         # height = window.winfo_screenheight()
         # window.geometry("%dx%d" % (width, height))
         # window.title("Inventory Window")
+        #test push
 
         # text
         Add_book = tk.Label(self, text="Add Book: ", font='Helvetica 18 bold')
