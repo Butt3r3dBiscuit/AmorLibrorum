@@ -106,8 +106,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `if_translated` WRITE;
 /*!40000 ALTER TABLE `if_translated` DISABLE KEYS */;
-INSERT INTO `if_translated` VALUES (9786094872082, "Aida Krilavičienė", "Valapatto", "Finnish");
-INSERT INTO `if_translated` VALUES (9786094872082, "LT: 11ąčęėįšųūž Krilavičienė", "VRL: ðøåælöæøåþ", "intl: áóòe~eã~uõíC");
+INSERT INTO `if_translated` VALUES (9786094872082, "Aida Krilaviciene", "Valapatto", "Finnish");
 
 /*!40000 ALTER TABLE `if_translated` ENABLE KEYS */;
 UNLOCK TABLES;

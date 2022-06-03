@@ -35,7 +35,7 @@ class login_window(tk.Frame):
 
         password_label = tk.Label(self, text="Password", width = "15")
         password_label.pack()
-        self.password_text = tk.Text(self, height=1, width=30)
+        self.password_text = tk.Entry(self, width=40, show="*")
         self.password_text.pack()
 
     def log_in(self, controller):
