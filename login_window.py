@@ -30,7 +30,7 @@ class login_window(tk.Frame):
 
         email_label = tk.Label(self, text="Email Adress", width = "15")
         email_label.pack()
-        self.email_text = tk.Entry(self, width=30)
+        self.email_text = tk.Entry(self, width=40)
         self.email_text.pack()
 
         password_label = tk.Label(self, text="Password", width = "15")
