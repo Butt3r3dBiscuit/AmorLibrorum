@@ -1,5 +1,5 @@
 import tkinter as tk
-
+import Start_window
 
 # to be added - other windows
 
@@ -53,6 +53,7 @@ class Admin_inventory_window(tk.Frame):
         Search = tk.Button(self, text="Search")
         Search_all = tk.Button(self, text="Search All")
         Set = tk.Button(self, text="Set")
+        Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
 
         # place label
         Add_book.place(relx=0.2, rely=0.6, relwidth=rel_width, relheight=rel_height, anchor="e")
@@ -64,6 +65,7 @@ class Admin_inventory_window(tk.Frame):
         Inventory.place(relx=0.8, relwidth=rel_width, relheight=rel_height, anchor="ne")
         Save.place(relx=1, rely=0.975, relwidth=rel_width, relheight=rel_height, anchor="e")
         Undo.place(relx=0.9, rely=0.975, relwidth=rel_width, relheight=rel_height, anchor="e")
+        Log_out.place(relx=0,rely=0,relwidth=rel_width, relheight=rel_height, anchor="nw")
 
         # text and labels
         Sell_Price_label = tk.Label(self, text="Sell Price", width="15")
