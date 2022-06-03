@@ -40,13 +40,13 @@ class login_window(tk.Frame):
 
     def log_in(self, controller):
         email = self.email_text.get()
-        print(email)
+        print("email: ", email)
         if email=="margje@amorlibrorum.boek":
             print(True)
         else:
             print([email])
         password = self.password_text.get()
-        print(password)
+        print("password: ", password)
         # email = "casual@amorlibrorum.boek" #temp
         # password = "YetAn0!herqwertyp4ssword" #temp
         email = "frank@amorlibrorum.boek"
