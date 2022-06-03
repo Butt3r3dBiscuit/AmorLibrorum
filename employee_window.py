@@ -3,6 +3,8 @@ from tkinter import *
 rel_width = 0.1
 rel_height = 0.05
 
+
+
 #employee_window
 employee_window = Tk()
 width= employee_window.winfo_screenwidth()
@@ -10,6 +12,7 @@ height= employee_window.winfo_screenheight()
 employee_window.geometry("%dx%d" % (width, height))
 employee_window.title("this is employee_window.py")
 # employee_window.attributes('-fullscreen',True)
+employee_window.minsize(width=850, height=550)
 
 #Buttons
 Financial = Button(employee_window, text="Financial")
