@@ -1,3 +1,6 @@
 **/.DS_Store
 **/Users/janjelinek/Library/CloudStorage/OneDrive-HogeschoolInholland/Inholland/ME1_4/AmorLibrorum/__pycache__
 random.py
+*.pyc
+*.pyc
+__pycache__/connect.cpython-39.pyc
