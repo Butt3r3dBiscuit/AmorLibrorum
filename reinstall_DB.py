@@ -23,7 +23,7 @@ def reinstall(database_name="AmorLibrorum",sql_script="AmorLibrorum.sql"):
         database=database_name)
     mycursor = db.cursor()
     try:
-        f = open(f"{sql_script}")
+        f = open(f"{sql_script}", encoding="utf8")
         full_sql = f.read()
         sql_commands = full_sql.replace('\n', '').split(';')[:-1]
         for sql_command in sql_commands:
