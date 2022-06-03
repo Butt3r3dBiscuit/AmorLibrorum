@@ -51,6 +51,11 @@ class login_window(tk.Frame):
             error_label.pack()
         else:
             my_cursor = db.cursor()
+            my_cursor.execute(f"select position from employees where email='{email}'")
+            for (x) in my_cursor:
+                position = x[0]
+            print(position)
+
 
 
 

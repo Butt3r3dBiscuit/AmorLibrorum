@@ -45,6 +45,6 @@ if __name__=="__main__":
     db = connect.connect_admin("MyN3wP4ssw0rd!*")
     my_cursor = db.cursor()
     ## test add user
-    employee_user_addition(my_cursor,"Jan@mail.com","MyCoolPassword123!")
+    employee_user_addition(my_cursor,"casual@amorlibrorum.boek","YetAn0!herqwertyp4ssword")
 
 #for dropping
