@@ -1,3 +1,17 @@
+DROP USER if exists 'margje@amorlibrorum.boek'@'localhost';
+DROP USER if exists 'frank@amorlibrorum.boek'@'localhost';
+
+CREATE USER 'margje@amorlibrorum.boek'@'localhost' IDENTIFIED BY 'NotAn0therqwer!ypassword';
+FLUSH PRIVILEGES;
+CREATE USER 'frank@amorlibrorum.boek'@'localhost' IDENTIFIED BY 'An0!herqwertyp4ssword';
+FLUSH PRIVILEGES;
+
+grant all privileges on AmorLibrorum.* to 'margje@amorlibrorum.boek'@'localhost';
+grant all privileges on AmorLibrorum.* to 'frank@amorlibrorum.boek'@'localhost';
+
+
+
+
 drop function if exists price_determination;
 
 CREATE function price_determination(book_id_given int)
@@ -25,3 +39,9 @@ CREATE function price_determination(book_id_given int)
         end if;
     RETURN return_string;
 END;
+
+-- drop trigger if exists ISBN_cz;
+
+-- create handler that checks while adding boook to book_entries if the ISBN exists already in the books
+-- create trigger ISBN_cz before insert on Book_entries
+--    for each row
