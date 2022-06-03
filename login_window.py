@@ -30,7 +30,7 @@ class login_window(tk.Frame):
 
         email_label = tk.Label(self, text="Email Adress", width = "15")
         email_label.pack()
-        self.email_text = tk.Text(self, height=1, width=30)
+        self.email_text = tk.Entry(self, width=30)
         self.email_text.pack()
 
         password_label = tk.Label(self, text="Password", width = "15")
@@ -39,13 +39,13 @@ class login_window(tk.Frame):
         self.password_text.pack()
 
     def log_in(self, controller):
-        email = self.email_text.get("1.0","end-1c")
+        email = self.email_text.get()
         print(email)
         if email=="margje@amorlibrorum.boek":
             print(True)
         else:
             print([email])
-        password = self.password_text.get("1.0","end-1c ")
+        password = self.password_text.get()
         print(password)
         # email = "casual@amorlibrorum.boek" #temp
         # password = "YetAn0!herqwertyp4ssword" #temp
