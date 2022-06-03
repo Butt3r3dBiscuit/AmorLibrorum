@@ -71,97 +71,97 @@ class Admin_inventory_window(tk.Frame):
         # text and labels
         Sell_Price_label = tk.Label(self, text="Sell Price", width="15")
         Sell_Price_label.pack()
-        Sell_Price_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        Sell_Price_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Sell_Price_text.pack()
 
         Isbn_label3 = tk.Label(self, text="ISBN", width="15")
         Isbn_label3.pack()
-        Isbn_text3 = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        Isbn_text3 = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Isbn_text3.pack()
 
         Isbn_label2 = tk.Label(self, text="ISBN", width="15")
         Isbn_label2.pack()
-        Isbn_text2 = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        Isbn_text2 = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Isbn_text2.pack()
 
         Isbn_label = tk.Label(self, text="ISBN", width="15")
         Isbn_label.pack()
-        Isbn_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        Isbn_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Isbn_text.pack()
 
         Title_label = tk.Label(self, text="Title", width="15")
         Title_label.pack()
-        Title_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        Title_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Title_text.pack()
 
         Author_label = tk.Label(self, text="Author", width="15")
         Author_label.pack()
-        Author_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        Author_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Author_text.pack()
 
         Surname_label = tk.Label(self, text="Surname", width="15")
         Surname_label.pack()
-        Surname_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        Surname_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Surname_text.pack()
 
         Edition_label = tk.Label(self, text="Edition", width="15")
         Edition_label.pack()
-        Edition_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        Edition_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Edition_text.pack()
 
         Version_label = tk.Label(self, text="Version", width="15")
         Version_label.pack()
-        Version_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        Version_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Version_text.pack()
 
         Language_label = tk.Label(self, text="Language", width="15")
         Language_label.pack()
-        Language_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        Language_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Language_text.pack()
 
         Buy_label = tk.Label(self, text="Buy Price", width="15")
         Buy_label.pack()
-        Buy_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        Buy_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Buy_text.pack()
 
         Instore_label = tk.Label(self, text="InStore", width="15")
         Instore_label.pack()
-        Instore_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        Instore_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Instore_text.pack()
 
         Publisher_label = tk.Label(self, text="Publisher", width="15")
         Publisher_label.pack()
-        Publisher_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        Publisher_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Publisher_text.pack()
 
         Year_label = tk.Label(self, text="Year", width="15")
         Year_label.pack()
-        Year_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        Year_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Year_text.pack()
 
         Pages_label = tk.Label(self, text="Pages", width="15")
         Pages_label.pack()
-        Pages_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        Pages_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Pages_text.pack()
 
         Booktype_label = tk.Label(self, text="Book Type", width="15")
         Booktype_label.pack()
-        Booktype_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        Booktype_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Booktype_text.pack()
 
         Location_label = tk.Label(self, text="Location", width="15")
         Location_label.pack()
-        Location_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        Location_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Location_text.pack()
 
         Section_label = tk.Label(self, text="Section", width="15")
         Section_label.pack()
-        Section_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        Section_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Section_text.pack()
 
         Genre_label = tk.Label(self, text="Genre", width="15")
         Genre_label.pack()
-        Genre_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        Genre_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Genre_text.pack()
 
         # Buttons show hide
@@ -174,17 +174,17 @@ class Admin_inventory_window(tk.Frame):
         # show hide text and labels
         Translator_label = tk.Label(self, text="Translator", width="15")
         Translator_label.pack()
-        self.Translator_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        self.Translator_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Translator_text.pack()
 
         self.Untranslated_label = tk.Label(self, text="Original Title", width="15")
         self.Untranslated_label.pack()
-        self.Untranslated_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        self.Untranslated_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Untranslated_text.pack()
 
         self.Origin_label = tk.Label(self, text="Origin", width="15")
         self.Origin_label.pack()
-        self.Origin_text = tk.Text(self, height=0.5, width=30, borderwidth=1, relief="groove")
+        self.Origin_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Origin_text.pack()
 
         # label and text place 1
