@@ -72,12 +72,9 @@ class login_window(tk.Frame):
             # success_label = tk.Label(self, text=f"User found! Position {position}", width="30", fg="green")
             # success_label.pack()
     def new_window(self,position, controller):
-        try:
-            self.password_text.destroy()
-            self.password_text = tk.Entry(self, width=40, show="*")
-            self.password_text.pack()
-        except AttributeError:
-            print("label has not yet been created")
+        self.password_text.destroy()
+        self.password_text = tk.Entry(self, width=40, show="*")
+        self.password_text.pack()
         if position=="Staff":
             try:
                 self.error_label.destroy()
@@ -99,12 +96,10 @@ class login_window(tk.Frame):
             self.error_label.destroy()
         except AttributeError:
             print("label has not yet been created")
-        try:
-            self.password_text.destroy()
-            self.password_text = tk.Entry(self, width=40, show="*")
-            self.password_text.pack()
-        except AttributeError:
-            print("label has not yet been created")
+        self.password_text.destroy()
+        self.password_text = tk.Entry(self, width=40, show="*")
+        self.password_text.pack()
+
         controller.show_frame(Start_window.Start_window)
 
 
