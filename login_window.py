@@ -77,7 +77,7 @@ class login_window(tk.Frame):
                 self.error_label.destroy()
             except AttributeError:
                 print("label has not yet been created")
-            Employees_sales_tab.emp_id = self.emloyee_id
+            Employees_sales_tab.emp_id = self.employee_id
             print(Employees_sales_tab.emp_id)
             controller.show_frame(Employees_sales_tab.Employee_sales_window)
         elif position=="Manager":
