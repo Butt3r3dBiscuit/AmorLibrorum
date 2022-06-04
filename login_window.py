@@ -53,6 +53,10 @@ class login_window(tk.Frame):
         # password = "An0!herqwertyp4ssword"
         db = connect_employee(email,password)
         if db == 1045:
+            try:
+                self.error_label.destroy()
+            except AttributeError:
+                print("label has not yet been created")
             self.error_label = tk.Label(self, text="User not found!", width = "15", fg="red")
             # error_label.pack()
             self.error_label.place(relx=0.5, rely=0.15, anchor="n")
