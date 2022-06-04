@@ -1,10 +1,11 @@
 import tkinter as tk
 import Start_window
 
+emp_id = None
+
 class Employee_sales_window(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self,parent)
-
         rel_width = 0.1
         rel_height = 0.05
 

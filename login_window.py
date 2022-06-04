@@ -9,7 +9,7 @@ class login_window(tk.Frame):
         tk.Frame.__init__(self,parent)
 
         # root = tk.Tk
-
+        print(Admin_inventory_window.emp_id)
         # width = root.winfo_screenwidth()
         # height = root.winfo_screenheight()
         # root.geometry("%dx%d" % (width, height))
@@ -57,17 +57,23 @@ class login_window(tk.Frame):
             error_label.pack()
         else:
             my_cursor = db.cursor()
-            my_cursor.execute(f"select position from employees where email='{email}'")
+            my_cursor.execute(f"select position, Employee_ID from employees where email='{email}'")
             for (x) in my_cursor:
                 position = x[0]
                 print("here is position: ", position)
+                self.employee_id = x[1]
+                print("here is the id: ", self.employee_id)
             self.new_window(position,controller)
             success_label = tk.Label(self, text=f"User found! Position {position}", width="30", fg="green")
             success_label.pack()
     def new_window(self,position, controller):
         if position=="Staff":
+            Admin_inventory_window.emp_id = self.emloyee_id
+            print(Admin_inventory_window.emp_id)
             controller.show_frame(Employees_sales_tab.Employee_sales_window)
         elif position=="Manager":
+            Admin_inventory_window.emp_id = self.employee_id
+            print(Admin_inventory_window.emp_id)
             controller.show_frame(Admin_inventory_window.Admin_inventory_window)
 
 

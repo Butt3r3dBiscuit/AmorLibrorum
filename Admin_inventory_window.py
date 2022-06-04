@@ -2,6 +2,7 @@ import tkinter as tk
 import Start_window
 
 # to be added - other windows
+emp_id = None
 
 class Admin_inventory_window(tk.Frame):
     def __init__(self, parent, controller):
@@ -9,7 +10,6 @@ class Admin_inventory_window(tk.Frame):
 
         rel_width = 0.1
         rel_height = 0.05
-
         # Window
         # window = Tk()
         # width = window.winfo_screenwidth()
@@ -257,6 +257,8 @@ class Admin_inventory_window(tk.Frame):
         self.Untranslated_text.pack()
         self.Origin_text.pack()
         self.Origin_label.pack()
+        print("hello")
+        print(emp_id)
 
     def no_button(self):
         self.Translated_label.pack_forget()
