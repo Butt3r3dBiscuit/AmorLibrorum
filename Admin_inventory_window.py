@@ -1,5 +1,6 @@
 import tkinter as tk
 import Start_window
+import employee_window
 
 # to be added - other windows
 emp_id = None
@@ -45,7 +46,7 @@ class Admin_inventory_window(tk.Frame):
         Set_sellprice.place(relx=0.2, rely=0.45, relwidth=rel_width, relheight=rel_height, anchor="e")
 
         # Buttons
-        Employee = tk.Button(self, text="Employee", command=self.open_employee_window)
+        Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(employee_window.employee_window))
         Finance = tk.Button(self, text="Finance")
         Inventory = tk.Button(self, text="Inventory")
         Save = tk.Button(self, text="Save")
