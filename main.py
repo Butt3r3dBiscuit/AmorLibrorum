@@ -15,6 +15,7 @@ class Handler(tk.Tk):
         width = tk.Tk.winfo_screenwidth(self)
         height = tk.Tk.winfo_screenheight(self)
         tk.Tk.geometry(self,f"{width}x{height}")
+        tk.Tk.title(self,"Amorlibrorum")
 
         container.pack(side="top", fill="both", expand= True)
 
