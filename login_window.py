@@ -19,7 +19,7 @@ class login_window(tk.Frame):
         # root.title('Log in')
         # root.resizable(False, False)
         back_button = tk.Button(self, text="Return home",height=2, width=11,
-                                command= lambda: controller.show_frame(Start_window.Start_window))
+                                command= lambda: self.back_button(controller))
         back_button.pack()
         back_button.place(x=0,y=0)
 
@@ -49,12 +49,13 @@ class login_window(tk.Frame):
         print("password: ", password)
         # email = "casual@amorlibrorum.boek" #temp
         # password = "YetAn0!herqwertyp4ssword" #temp
-        email = "frank@amorlibrorum.boek"
-        password = "An0!herqwertyp4ssword"
+        # email = "frank@amorlibrorum.boek"
+        # password = "An0!herqwertyp4ssword"
         db = connect_employee(email,password)
         if db == 1045:
-            error_label = tk.Label(self, text="User not found!", width = "15", fg="red")
-            error_label.pack()
+            self.error_label = tk.Label(self, text="User not found!", width = "15", fg="red")
+            # error_label.pack()
+            self.error_label.place(relx=0.5, rely=0.15, anchor="n")
         else:
             my_cursor = db.cursor()
             my_cursor.execute(f"select position, Employee_ID from employees where email='{email}'")
@@ -68,14 +69,27 @@ class login_window(tk.Frame):
             # success_label.pack()
     def new_window(self,position, controller):
         if position=="Staff":
+            try:
+                self.error_label.destroy()
+            except AttributeError:
+                print("label has not yet been created")
             Employees_sales_tab.emp_id = self.emloyee_id
             print(Employees_sales_tab.emp_id)
             controller.show_frame(Employees_sales_tab.Employee_sales_window)
         elif position=="Manager":
+            try:
+                self.error_label.destroy()
+            except AttributeError:
+                print("label has not yet been created")
             Admin_inventory_window.emp_id = self.employee_id
             print(Admin_inventory_window.emp_id)
             controller.show_frame(Admin_inventory_window.Admin_inventory_window)
-
+    def back_button(self, controller):
+        try:
+            self.error_label.destroy()
+        except AttributeError:
+            print("label has not yet been created")
+        controller.show_frame(Start_window.Start_window)
 
 
 
