@@ -26,6 +26,8 @@ class employee_window(tk.Frame):
         Add_book = tk.Button(self, text="Add Book", command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
         Sell = tk.Button(self, text="Sell", command=self.test_emp_id)
         Add_employee = tk.Button(self, text="Add Employee")
+        Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
+
         
         
         #Text
@@ -43,7 +45,9 @@ class employee_window(tk.Frame):
         Add_book.place(relx=0.9, relwidth=rel_width, relheight=rel_height, anchor="ne")
         Sell.place(relx=0.8, relwidth=rel_width, relheight=rel_height, anchor="ne")
         Add_employee.place(relx=0.7, relwidth=rel_width, relheight=rel_height, anchor="ne")
-        
+        Log_out.place(relx=0,rely=0,relwidth=rel_width, relheight=rel_height, anchor="nw")
+
+
         #Placement Text
         Book_search.place(relx=0.18, rely=0.15, relwidth=rel_width, relheight=rel_height, anchor="e")
         Title.place(relx=0.2, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
