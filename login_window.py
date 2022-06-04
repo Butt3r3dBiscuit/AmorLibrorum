@@ -68,8 +68,8 @@ class login_window(tk.Frame):
             success_label.pack()
     def new_window(self,position, controller):
         if position=="Staff":
-            Admin_inventory_window.emp_id = self.emloyee_id
-            print(Admin_inventory_window.emp_id)
+            Employees_sales_tab.emp_id = self.emloyee_id
+            print(Employees_sales_tab.emp_id)
             controller.show_frame(Employees_sales_tab.Employee_sales_window)
         elif position=="Manager":
             Admin_inventory_window.emp_id = self.employee_id
