@@ -1,9 +1,10 @@
 import connect
 from user_creation import employee_user_addition
+import mysql.connector
 
 # insert queries
 def add_to_books(ISBN, Title, publisher, published_year, pages, language, location, section, edition, genre, book_type):
-    query = f"insert into books(ISBN, Title, publisher, published_year, pages, language," \
+    query = f"insert into books(ISBN, Title, publisher, year_published, pages, language," \
             f" location, section, book_type, edition, genre) values ({ISBN}, '{Title}', '{publisher}', {published_year}, {pages}, '{language}'," \
             f" {location}, {section}, '{book_type}', '{edition}', '{genre}')"
     return query
@@ -13,7 +14,7 @@ def add_to_authors(ISBN, author_name, author_surname):
     return query
 
 def add_to_if_translated(ISBN, translator, Title_untranslated, translated_from):
-    query = f"insert into if_translated values ({ISBN}, {translator}, {Title_untranslated}, {translated_from})"
+    query = f"insert into if_translated values ({ISBN}, '{translator}', '{Title_untranslated}', '{translated_from}')"
     return query
 
 def add_to_Book_entries(ISBN, status_comment):
@@ -126,64 +127,56 @@ class Admin:
 
     def add_book(self, mycursor, ISBN, Title, author_name, author_surname, publisher, published_year, pages, language, book_type, location, section, genre, employee_id, date, Price, status_comment="NULL", translator="NULL", Title_untranslated="NULL", translated_from="NULL", edition="NULL", number_of_copies=1):
         #queries
-        Book_entries = add_to_Book_entries(ISBN=ISBN, status_comment=status_comment)
-        print(Book_entries)
-        books = add_to_books(ISBN=ISBN, Title=Title, publisher=publisher, published_year=published_year, pages=pages, language=language, edition=edition, book_type=book_type, location=location, section=section, genre=genre)
-        print(books)
-        authors = add_to_authors(ISBN=ISBN, author_name=author_name, author_surname=author_surname)
-        print(authors)
-        if_translated = add_to_if_translated(ISBN=ISBN, translator=translator, Title_untranslated=Title_untranslated, translated_from=translated_from)
-        print(if_translated)
-        
-        Transactions = add_to_Transactions(book_id, employee_id, date, Price)
-        print(Transactions)
+        add_book_entries = add_to_Book_entries(ISBN=ISBN, status_comment=status_comment)
+        print(add_book_entries)
+        add_book = add_to_books(ISBN=ISBN, Title=Title, publisher=publisher, published_year=published_year, pages=pages, language=language, edition=edition, book_type=book_type, location=location, section=section, genre=genre)
+        print(add_book)
+        add_authors = add_to_authors(ISBN=ISBN, author_name=author_name, author_surname=author_surname)
+        print(add_authors)
+        add_if_translated = add_to_if_translated(ISBN, translator, Title_untranslated, translated_from)
+        print(add_if_translated)
 
-        #adds to book_entries
-        for i in range(number_of_copies):
-            mycursor.execute(Book_entries)
-        #adds to transactions
-        book_id_list = mycursor.execute(f"select book_id from book_entries where ISBN={ISBN}")
-        for x in book_id_list:
-            for book_id in x:
-                mycursor.execute(Transactions)
         #if book not yet in database adds to books, auhtors, if_translated
-        ISBN_list = mycursor.execute("select ISBN from books")
+        ISBN_list = mycursor.execute("select ISBN from books", multi=True)
+        print(ISBN_list)
         for i in ISBN_list:
             if ISBN not in i:
                 #adds to books
-                mycursor.execute(books)
+                mycursor.execute(add_book)
                 #adds to authors
-                mycursor.execute(authors)
+                mycursor.execute(add_authors)
                 #adds to translated if translated
                 if translator!=None or Title_untranslated!=None or translated_from!=None:
-                    mycursor.execute(if_translated)
-
-
-
-
+                    mycursor.execute(add_if_translated)
+        
+        #adds to book_entries
+        for i in range(number_of_copies):
+            mycursor.execute(add_book_entries)
+        
+        #adds to transactions
+        book_id_list = mycursor.execute(f"select book_id from book_entries where ISBN={ISBN}", multi=True)
+        for l1st in book_id_list:
+            for book_id in l1st:
+                print(add_to_Transactions(book_id=book_id[0], employee_id=employee_id, date=date, Price=Price))
+                mycursor.execute(add_to_Transactions(book_id=book_id[0], employee_id=employee_id, date=date, Price=Price))
 
 admin = Admin()
 db = connect.connect_admin("MyN3wP4ssw0rd!*")
 mycursor= db.cursor()
 
-mycursor.execute("start transaction;")
-admin.add_book(mycursor=mycursor, ISBN=9780590353403, Title="Harry Potter and the Sorcerer's Stone", author_name="Joanne", author_surname="Rowling", publisher="Scholastic Inc", published_year='2003', pages="309", language="English (USA)", book_type="Hardcover", location="7", section="7", genre="Fiction", employee_id=2, date="2022-06-02", Price=1000, translator="Harry potter", Title_untranslated="Harry Potter and the Philosopher's Stone", translated_from="English", edition="Library Edition", number_of_copies=1)
+#call add_book procedure
+admin.add_book(mycursor=mycursor, ISBN=9780590353403, Title="Harry Potter and the Sorcerers Stone", author_name="Joanne", author_surname="Rowling", publisher="Scholastic Inc", published_year=2003, pages="309", language="English (USA)", book_type="Hardcover", location="7", section="7", genre="Fiction", employee_id=2, date="2022-06-02", Price=1000, translator="Joanne Rowling", Title_untranslated="Harry Potter and the Philosophers Stone", translated_from="English", edition=1, number_of_copies=1)
+
+ISBN_list = mycursor.execute("select ISBN from Books")
+ISBN_potter = 9780590353403
+for x in ISBN_list:
+    if ISBN_potter not in x:
+        mycursor.execute("commit;")
+
 
 
 class Employee:
     pass
-
-
-# try:
-#     db = mysql.connector.connect(
-#         host="localhost",
-#         user="root",
-#         passwd="MyN3wP4ssw0rd!*",
-#         database="amorlibrorum")
-# except:
-#     print("Something went wrong which sucks for u bud :3")
-
-db = connect.connect_admin("MyN3wP4ssw0rd!*") #temporal solution
 
 # def query_to_values(db, query):  # returns a list of values
 #     mycursor = db.cursor()
