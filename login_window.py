@@ -64,8 +64,8 @@ class login_window(tk.Frame):
                 self.employee_id = x[1]
                 print("here is the id: ", self.employee_id)
             self.new_window(position,controller)
-            success_label = tk.Label(self, text=f"User found! Position {position}", width="30", fg="green")
-            success_label.pack()
+            # success_label = tk.Label(self, text=f"User found! Position {position}", width="30", fg="green")
+            # success_label.pack()
     def new_window(self,position, controller):
         if position=="Staff":
             Employees_sales_tab.emp_id = self.emloyee_id
