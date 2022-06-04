@@ -23,7 +23,6 @@ class login_window(tk.Frame):
         back_button.pack()
         back_button.place(x=0,y=0)
 
-
         login_button = tk.Button(self, text="Log in", height=2, width=11, command=lambda: self.log_in(controller))
         login_button.pack()
         login_button.place(x=200, y=95)
@@ -55,6 +54,7 @@ class login_window(tk.Frame):
         if db == 1045:
             try:
                 self.error_label.destroy()
+                self.error_label = tk.Label(self, text="User not found!", width="15", fg="red")
             except AttributeError:
                 print("label has not yet been created")
             self.error_label = tk.Label(self, text="User not found!", width = "15", fg="red")
@@ -72,6 +72,9 @@ class login_window(tk.Frame):
             # success_label = tk.Label(self, text=f"User found! Position {position}", width="30", fg="green")
             # success_label.pack()
     def new_window(self,position, controller):
+        self.password_text.destroy()
+        self.password_text = tk.Entry(self, width=40, show="*")
+        self.password_text.pack()
         if position=="Staff":
             try:
                 self.error_label.destroy()
@@ -93,6 +96,10 @@ class login_window(tk.Frame):
             self.error_label.destroy()
         except AttributeError:
             print("label has not yet been created")
+        self.password_text.destroy()
+        self.password_text = tk.Entry(self, width=40, show="*")
+        self.password_text.pack()
+
         controller.show_frame(Start_window.Start_window)
 
 
