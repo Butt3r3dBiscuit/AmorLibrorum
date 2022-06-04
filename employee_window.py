@@ -24,7 +24,7 @@ class employee_window(tk.Frame):
         #Buttons
         Financial = tk.Button(self, text="Financial")
         Add_book = tk.Button(self, text="Add Book", command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
-        Sell = tk.Button(self, text="Sell")
+        Sell = tk.Button(self, text="Sell", command=self.test_emp_id)
         Add_employee = tk.Button(self, text="Add Employee")
         
         
@@ -53,3 +53,7 @@ class employee_window(tk.Frame):
         Language.place(relx=0.8, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
         All.place(relx=0.95, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
     
+    def test_emp_id(self):
+        print(Admin_inventory_window.emp_id)
+        print('this is just to test that we have the emp_id loaded - not sure if we need it here but ye')
+        print("we could make it so that in one of the corners there would be sth like logged as:")
