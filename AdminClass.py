@@ -2,38 +2,39 @@ import connect
 from user_creation import employee_user_addition
 
 # insert queries
-def add_to_books(self, ISBN, Title, publisher, published_year, pages, language, edition, book_type, location, section, genre):
-    query = f"insert into books values ({ISBN}, {Title}, {publisher}, {published_year}, {pages}, {language}," \
-            f" {edition}, {book_type}, {location}, {section}, {genre})"
+def add_to_books(ISBN, Title, publisher, published_year, pages, language, location, section, edition, genre, book_type):
+    query = f"insert into books(ISBN, Title, publisher, published_year, pages, language," \
+            f" location, section, book_type, edition, genre) values ({ISBN}, '{Title}', '{publisher}', {published_year}, {pages}, '{language}'," \
+            f" {location}, {section}, '{book_type}', '{edition}', '{genre}')"
     return query
 
-def add_to_authors(self, ISBN, author_name, author_surname):
-    query = f"insert into Authors values ({ISBN}, {author_name}, {author_surname})"
+def add_to_authors(ISBN, author_name, author_surname):
+    query = f"insert into Authors values ({ISBN}, '{author_name}', '{author_surname}')"
     return query
 
-def add_to_if_translated(self, ISBN, translator, Title_translated, translated_from):
-    query = f"insert into if_translated values ({ISBN}, {translator}, {Title_translated}, {translated_from})"
+def add_to_if_translated(ISBN, translator, Title_untranslated, translated_from):
+    query = f"insert into if_translated values ({ISBN}, {translator}, {Title_untranslated}, {translated_from})"
     return query
 
-def add_to_Book_entries(self, ISBN, status_comment):
-    query = f"insert into book_entries(ISBN, status/comment) values ({ISBN}, {status_comment})"
+def add_to_Book_entries(ISBN, status_comment):
+    query = f"insert into book_entries(ISBN, status_comment) values ({ISBN}, '{status_comment}')"
     return query
 
-def add_to_Price_exceptions(self, book_id, newprice, comment):
+def add_to_Price_exceptions(book_id, newprice, comment):
     query = f"insert into Price_exceptions values ({book_id}, {newprice}, {comment})"
     return query
 
-def add_to_Transactions(self, book_id, employee_id, date, Price):
+def add_to_Transactions(book_id, employee_id, date, Price):
     query = f"insert into transactions(Book_ID, Employee_ID, Date, Price_in_cents) values ({book_id}," \
-            f" {employee_id}, {date}, {Price})"
+            f" {employee_id}, '{date}', {Price})"
     return query
 
-def add_to_employees(self, Name, Surname, position, Password, email):
+def add_to_employees(Name, Surname, position, Password, email):
     query = f"insert into employees(Name, Surname, position, Password, email) values({Name}, {Surname}," \
             f" {position}, {Password}, {email})"
     return query
 
-def add_to_variables(self, margin):
+def add_to_variables(margin):
     query = f"insert into variables(margin) values ({margin})"
     return query
 
@@ -123,26 +124,39 @@ class Admin:
     def add_user(self, mycursor, email, password):
         employee_user_addition(mycursor, email, password)
 
-    def add_book(self, mycursor, ISBN, Title, author_name, author_surname, publisher, published_year, pages, language, book_type, location, section, genre, employee_id, date, Price, status_comment=None,translator=None, Title_translated=None, translated_from=None, edition=None, number_of_copies=1):
+    def add_book(self, mycursor, ISBN, Title, author_name, author_surname, publisher, published_year, pages, language, book_type, location, section, genre, employee_id, date, Price, status_comment="NULL", translator="NULL", Title_untranslated="NULL", translated_from="NULL", edition="NULL", number_of_copies=1):
+        #queries
+        Book_entries = add_to_Book_entries(ISBN=ISBN, status_comment=status_comment)
+        print(Book_entries)
+        books = add_to_books(ISBN=ISBN, Title=Title, publisher=publisher, published_year=published_year, pages=pages, language=language, edition=edition, book_type=book_type, location=location, section=section, genre=genre)
+        print(books)
+        authors = add_to_authors(ISBN=ISBN, author_name=author_name, author_surname=author_surname)
+        print(authors)
+        if_translated = add_to_if_translated(ISBN=ISBN, translator=translator, Title_untranslated=Title_untranslated, translated_from=translated_from)
+        print(if_translated)
+        
+        Transactions = add_to_Transactions(book_id, employee_id, date, Price)
+        print(Transactions)
+
         #adds to book_entries
         for i in range(number_of_copies):
-            mycursor.execute(add_to_Book_entries(ISBN, status_comment))
-        #if book not yet in database adds to books, auhtors, transactions, if_translated
+            mycursor.execute(Book_entries)
+        #adds to transactions
+        book_id_list = mycursor.execute(f"select book_id from book_entries where ISBN={ISBN}")
+        for x in book_id_list:
+            for book_id in x:
+                mycursor.execute(Transactions)
+        #if book not yet in database adds to books, auhtors, if_translated
         ISBN_list = mycursor.execute("select ISBN from books")
         for i in ISBN_list:
-            if ISBN in i:
+            if ISBN not in i:
                 #adds to books
-                mycursor.execute(add_to_books(ISBN, Title, publisher, published_year, pages, language, edition, book_type, location, section, genre))
+                mycursor.execute(books)
                 #adds to authors
-                mycursor.execute(add_to_authors(ISBN, author_name, author_surname))
-                #adds to transactions
-                book_id_list = mycursor.execute(f"select book_id from book_entries where ISBN={ISBN}")
-                for x in book_id_list:
-                    for book_id in x:
-                        mycursor.execute(add_to_Transactions(book_id, employee_id, date, Price))
+                mycursor.execute(authors)
                 #adds to translated if translated
-                if translator!=None or Title_translated!=None or translated_from!=None:
-                    mycursor.execute(add_to_if_translated(ISBN, translator, Title_translated, translated_from))
+                if translator!=None or Title_untranslated!=None or translated_from!=None:
+                    mycursor.execute(if_translated)
 
 
 
@@ -152,7 +166,8 @@ admin = Admin()
 db = connect.connect_admin("MyN3wP4ssw0rd!*")
 mycursor= db.cursor()
 
-admin.add_book(mycursor=mycursor, ISBN, Title, author_name, author_surname, publisher, published_year, pages, language, book_type, location, section, genre, employee_id, date, Price, status_comment=None,translator=None, Title_translated=None, translated_from=None, edition=None, number_of_copies=1)
+mycursor.execute("start transaction;")
+admin.add_book(mycursor=mycursor, ISBN=9780590353403, Title="Harry Potter and the Sorcerer's Stone", author_name="Joanne", author_surname="Rowling", publisher="Scholastic Inc", published_year='2003', pages="309", language="English (USA)", book_type="Hardcover", location="7", section="7", genre="Fiction", employee_id=2, date="2022-06-02", Price=1000, translator="Harry potter", Title_untranslated="Harry Potter and the Philosopher's Stone", translated_from="English", edition="Library Edition", number_of_copies=1)
 
 
 class Employee:
