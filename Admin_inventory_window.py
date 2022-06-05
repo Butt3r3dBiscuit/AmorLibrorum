@@ -5,6 +5,7 @@ import employee_window
 # to be added - other windows
 emp_id = None
 
+
 class Admin_inventory_window(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -17,10 +18,10 @@ class Admin_inventory_window(tk.Frame):
         # height = window.winfo_screenheight()
         # window.geometry("%dx%d" % (width, height))
         # window.title("Inventory Window")
-        #test push
+        # test push
 
         # text
-        helvetica_font="Helvetica 18 bold"
+        helvetica_font = "Helvetica 18 bold"
         Add_book = tk.Label(self, text="Add Book: ", font=helvetica_font)
         Search_book = tk.Label(self, text="Search Book: ", font=helvetica_font)
         Found_book = tk.Label(self, text="Books Found: ", font=helvetica_font)
@@ -46,7 +47,8 @@ class Admin_inventory_window(tk.Frame):
         Set_sellprice.place(relx=0.2, rely=0.45, relwidth=rel_width, relheight=rel_height, anchor="e")
 
         # Buttons
-        Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(employee_window.employee_window))
+        Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(
+            employee_window.employee_window))
         Finance = tk.Button(self, text="Finance")
         Inventory = tk.Button(self, text="Inventory")
         Save = tk.Button(self, text="Save")
@@ -67,7 +69,7 @@ class Admin_inventory_window(tk.Frame):
         Inventory.place(relx=0.8, relwidth=rel_width, relheight=rel_height, anchor="ne")
         Save.place(relx=1, rely=0.975, relwidth=rel_width, relheight=rel_height, anchor="e")
         Undo.place(relx=0.9, rely=0.975, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Log_out.place(relx=0,rely=0,relwidth=rel_width, relheight=rel_height, anchor="nw")
+        Log_out.place(relx=0, rely=0, relwidth=rel_width, relheight=rel_height, anchor="nw")
 
         # text and labels
         Sell_Price_label = tk.Label(self, text="Sell Price", width="15")
@@ -251,7 +253,7 @@ class Admin_inventory_window(tk.Frame):
 
     # button functions
 
-    def yes_button(self,rel_width, rel_height):
+    def yes_button(self, rel_width, rel_height):
         # self.Translated_label.pack()
         # self.Translator_text.pack()
         # self.Untranslated_label.pack()

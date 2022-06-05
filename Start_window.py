@@ -1,6 +1,7 @@
 import tkinter as tk
 import login_window
 
+
 class Start_window(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -14,13 +15,8 @@ class Start_window(tk.Frame):
         # window.geometry("800x400")
         # window.title("start Window")
 
-
-
-
-
-
-
-        Login = tk.Button(self, text="Log in", height=25, width=45, command=lambda: controller.show_frame(login_window.login_window))
+        Login = tk.Button(self, text="Log in", height=25, width=45, command=lambda: controller.show_frame(
+            login_window.login_window))
         Login.place(relx=1, relwidth=rel_width, relheight=rel_height, anchor='ne')
 
         Book_search = tk.Label(self, text="Book search: ", font='Helvetica 18 bold')
@@ -34,7 +30,6 @@ class Start_window(tk.Frame):
         Language = tk.Label(self, text="Language")
         Sell_price = tk.Label(self, text="SellPrice")
         In_store = tk.Label(self, text="InStore")
-
 
         Book_search.place(relx=0.2, rely=0.2, relwidth=0.2, relheight=rel_height, anchor="e")
         Found.place(relx=0.2, rely=0.6, relwidth=0.2, relheight=rel_height, anchor="e")
@@ -54,4 +49,3 @@ class Start_window(tk.Frame):
 
         Search = tk.Button(self, text="Search")
         Search.place(relx=0.8, rely=0.4, relwidth=rel_width, relheight=0.1, anchor="e")
-

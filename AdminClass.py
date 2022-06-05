@@ -1,6 +1,5 @@
 import connect
 from user_creation import employee_user_addition
-import mysql.connector
 
 
 # insert queries

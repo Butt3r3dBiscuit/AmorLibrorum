@@ -3,15 +3,16 @@ import Start_window
 
 emp_id = None
 
+
 class Employee_sales_window(tk.Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self,parent)
+        tk.Frame.__init__(self, parent)
         rel_width = 0.1
         rel_height = 0.05
 
-# window = Tk()
-# window.geometry("800x400")
-# window.title("Employee sales tab")
+        # window = Tk()
+        # window.geometry("800x400")
+        # window.title("Employee sales tab")
 
         Search = tk.Button(self, text="Search")
         Search.place(relx=0.4, rely=0.35, relwidth=rel_width, relheight=0.1, anchor="e")
@@ -21,15 +22,14 @@ class Employee_sales_window(tk.Frame):
 
         Log_out = tk.Button(self, text="Log out",
                             command=lambda: controller.show_frame(Start_window.Start_window))
-        Log_out.place(relx=1, rely=0, relwidth=rel_width,relheight=0.1, anchor="ne")
+        Log_out.place(relx=1, rely=0, relwidth=rel_width, relheight=0.1, anchor="ne")
 
-        Book_label = tk.Label(self, text="Book ID", width = "15")
+        Book_label = tk.Label(self, text="Book ID", width="15")
         Book_label.pack()
         Book_text = tk.Text(self, borderwidth=1, relief="groove")
         Book_text.pack()
         Book_text.place(relx=0.3, rely=0.35, relwidth=0.2, relheight=0.1, anchor="e")
         Book_label.place(relx=0.2, rely=0.25, relwidth=rel_width, relheight=rel_height, anchor="e")
-
 
         Book_search = tk.Label(self, text="Book search: ", font='Helvetica 18 bold')
         Found = tk.Label(self, text="Found: ", font='Helvetica 18 bold')
@@ -43,7 +43,6 @@ class Employee_sales_window(tk.Frame):
         Sell_price = tk.Label(self, text="SellPrice")
         In_store = tk.Label(self, text="InStore")
 
-
         Book_search.place(relx=0.25, rely=0.1, relwidth=0.2, relheight=rel_height, anchor="e")
         Found.place(relx=0.2, rely=0.5, relwidth=0.2, relheight=rel_height, anchor="e")
         Title.place(relx=0.1, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
@@ -56,8 +55,4 @@ class Employee_sales_window(tk.Frame):
         Sell_price.place(relx=0.8, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
         In_store.place(relx=0.9, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
 
-
-
-
         # window.mainloop()
-

@@ -1,5 +1,6 @@
 import mysql.connector
 
+
 def connect_user():
     try:
         db = mysql.connector.connect(
@@ -13,6 +14,7 @@ def connect_user():
     except mysql.connector.errors.ProgrammingError as e:
         print(e)
         return e
+
 
 def connect_employee(email, password_from_log_in):
     try:
@@ -29,6 +31,7 @@ def connect_employee(email, password_from_log_in):
             print("user doesn't exist")
             return 1045
 
+
 def connect_admin(password_from_log_in):
     try:
         db = mysql.connector.connect(
@@ -43,6 +46,7 @@ def connect_admin(password_from_log_in):
         print(e)
         return e
 
-if __name__== "__main__":
-    mycursor= connect_user()
+
+if __name__ == "__main__":
+    mycursor = connect_user()
     connect_admin("MyN3wP4ssw0rd!*")
