@@ -321,9 +321,12 @@ class Admin_inventory_window(tk.Frame):
         Publisher = self.Publisher_text.get()
         Year = self.Year_text.get()
         Pages = self.Pages_text.get()
-        Booktype = self.Booktype_listbox.get()
+        for i in self.Booktype_listbox.curselection():
+            Booktype = (self.Booktype_listbox.get(i))
+        # Booktype = self.Booktype_listbox.get()
         Location = self.Location_text.get()
         Section = self.Section_text.get()
         Genre = self.Genre_text.get()
         
         print(ISBN, Title, Author, Surname, Edition, Version, Language, Buy_price)
+        print(Instore,Publisher,Year,Pages,Booktype, Location, Section, Genre)
