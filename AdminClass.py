@@ -1,39 +1,47 @@
 import connect
 from user_creation import employee_user_addition
-import mysql.connector
+
 
 # insert queries
 def add_to_books(ISBN, Title, publisher, published_year, pages, language, location, section, edition, genre, book_type):
     query = f"insert into books(ISBN, Title, publisher, year_published, pages, language," \
-            f" location, section, book_type, edition, genre) values ({ISBN}, '{Title}', '{publisher}', {published_year}, {pages}, '{language}'," \
+            f" location, section, book_type, edition, genre) values ({ISBN}, '{Title}', '{publisher}', " \
+            f"{published_year}, {pages}, '{language}'," \
             f" {location}, {section}, '{book_type}', '{edition}', '{genre}')"
     return query
+
 
 def add_to_authors(ISBN, author_name, author_surname):
     query = f"insert into Authors values ({ISBN}, '{author_name}', '{author_surname}')"
     return query
 
+
 def add_to_if_translated(ISBN, translator, Title_untranslated, translated_from):
     query = f"insert into if_translated values ({ISBN}, '{translator}', '{Title_untranslated}', '{translated_from}')"
     return query
+
 
 def add_to_Book_entries(ISBN, status_comment):
     query = f"insert into book_entries(ISBN, status_comment) values ({ISBN}, '{status_comment}')"
     return query
 
+
 def add_to_Price_exceptions(book_id, newprice, comment):
     query = f"insert into Price_exceptions values ({book_id}, {newprice}, {comment})"
     return query
+
 
 def add_to_Transactions(book_id, employee_id, date, Price):
     query = f"insert into transactions(Book_ID, Employee_ID, Date, Price_in_cents) values ({book_id}," \
             f" {employee_id}, '{date}', {Price})"
     return query
 
+
 def add_to_employees(Name, Surname, position, Password, email):
     query = f"insert into employees(Name, Surname, position, Password, email) values({Name}, {Surname}," \
             f" {position}, {Password}, {email})"
     return query
+
 
 def add_to_variables(margin):
     query = f"insert into variables(margin) values ({margin})"
@@ -103,20 +111,20 @@ def employee_search(name, surname):
 class Admin:
     # inventory search
     def inventory_search_authors_books(self, ISBN=9780593334833):  #
-        #returns ISBN, title, author_name, author_surname, publisher, year_published,
-        #pages, language, edition, book_type, location, section and Genre
+        # returns ISBN, title, author_name, author_surname, publisher, year_published,
+        # pages, language, edition, book_type, location, section and Genre
         query = f"select a.ISBN, a.title, b.author_name, b.author_surname, a.publisher, a.year_published, a.pages," \
                 f" a.language, a.edition, a.book_type, a.location, a.section, a.Genre from books a," \
                 f" authors b where a.ISBN={ISBN} and b.ISBN={ISBN}"
         return query
 
     def inventory_search_num_books(self, ISBN=9780593334833):
-        #returns the number of books
+        # returns the number of books
         query = f"select count(book_id) from book_entries where ISBN={ISBN}"
         return query
 
     def inventory_search_exceptionsprice(self, ISBN=9780593334833):
-        #returns list of book_ids
+        # returns list of book_ids
         query = f"select a.book_id from book_entries a, price_exceptions b where a.book_id=b.book_id and a.ISBN={ISBN}"
         return query
     
@@ -148,10 +156,10 @@ class Admin:
             if ISBN not in ISBN_list:
                 #adds to books
                 mycursor.execute(add_book)
-                #adds to authors
+                # adds to authors
                 mycursor.execute(add_authors)
-                #adds to translated if translated
-                if translator!=None or Title_untranslated!=None or translated_from!=None:
+                # adds to translated if translated
+                if translator is not None or Title_untranslated is not None or translated_from is not None:
                     mycursor.execute(add_if_translated)
             #adds to book_entries
             for i in range(number_of_copies):
