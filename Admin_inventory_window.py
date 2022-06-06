@@ -321,7 +321,7 @@ class Admin_inventory_window(tk.Frame):
         Publisher = self.Publisher_text.get()
         Year = self.Year_text.get()
         Pages = self.Pages_text.get()
-        Booktype = self.Booktype_listbox
+        Booktype = self.Booktype_listbox.get()
         Location = self.Location_text.get()
         Section = self.Section_text.get()
         Genre = self.Genre_text.get()
