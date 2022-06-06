@@ -132,17 +132,26 @@ class Admin:
     def add_user(self, mycursor, email, password):
         employee_user_addition(mycursor, email, password)
 
-    def add_book(self, mycursor, ISBN, Title, author_name, author_surname, publisher, published_year, pages, language, book_type, location, section, genre, employee_id, date, Price, status_comment="NULL", translator="NULL", Title_untranslated="NULL", translated_from="NULL", edition="NULL", number_of_copies=1):
+    def add_book(self, mycursor, ISBN, Title, author_name, author_surname, publisher, 
+    published_year, pages, language, book_type, location, section, genre, employee_id, date, 
+    Price, status_comment="NULL", translator="NULL", Title_untranslated="NULL", translated_from="NULL", 
+    edition="NULL", number_of_copies=1):
         try:
             #queries
             add_book_entries = add_to_Book_entries(ISBN=ISBN, status_comment=status_comment)
             print(add_book_entries)
-            add_book = add_to_books(ISBN=ISBN, Title=Title, publisher=publisher, published_year=published_year, pages=pages, language=language, edition=edition, book_type=book_type, location=location, section=section, genre=genre)
+
+            add_book = add_to_books(ISBN=ISBN, Title=Title, publisher=publisher, 
+            published_year=published_year, pages=pages, language=language, edition=edition, 
+            book_type=book_type, location=location, section=section, genre=genre)
             print(add_book)
+
             add_authors = add_to_authors(ISBN=ISBN, author_name=author_name, author_surname=author_surname)
             print(add_authors)
+
             add_if_translated = add_to_if_translated(ISBN, translator, Title_untranslated, translated_from)
             print(add_if_translated)
+            
             #checks if price is negative
             if Price<0:
                 Price*=-1
