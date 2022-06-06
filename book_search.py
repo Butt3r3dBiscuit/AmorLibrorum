@@ -1,10 +1,12 @@
 import mysql.connector
+
 db = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            passwd="MyN3wP4ssw0rd!*",
-            database="AmorLibrorum")
+    host="localhost",
+    user="root",
+    passwd="MyN3wP4ssw0rd!*",
+    database="AmorLibrorum")
 mycursor = db.cursor()
+
 
 def book_search(book_id):
     mycursor.execute("SELECT PE.NEW_PRICE_IN_CENTS "
@@ -15,7 +17,8 @@ def book_search(book_id):
                      f"AND BE.BOOK_ID={book_id}")
     price_exc = mycursor.fetchall()
     if len(price_exc) == 0:
-        book_search = f"SELECT B.TITLE, A.AUTHOR_NAME, A.AUTHOR_SURNAME, B.EDITION, B.BOOK_TYPE, B.LOCATION, B.SECTION, B.LANGUAGE, PRICE_DETERMINATION({book_id}) " \
+        book_search = f"SELECT B.TITLE, A.AUTHOR_NAME, A.AUTHOR_SURNAME, B.EDITION, B.BOOK_TYPE, B.LOCATION," \
+                      f" B.SECTION, B.LANGUAGE, PRICE_DETERMINATION({book_id}) " \
                       "FROM BOOKS AS B " \
                       "LEFT JOIN " \
                       "AUTHORS A " \
@@ -29,7 +32,8 @@ def book_search(book_id):
                       f"WHERE BE.BOOK_ID={book_id}"
 
     else:
-        book_search = "SELECT B.TITLE, A.AUTHOR_NAME, A.AUTHOR_SURNAME, B.EDITION, B.BOOK_TYPE, B.LOCATION, B.SECTION, B.LANGUAGE, PE.NEW_PRICE_IN_CENTS " \
+        book_search = "SELECT B.TITLE, A.AUTHOR_NAME, A.AUTHOR_SURNAME, B.EDITION, B.BOOK_TYPE, B.LOCATION," \
+                      " B.SECTION, B.LANGUAGE, PE.NEW_PRICE_IN_CENTS " \
                       "FROM BOOKS B " \
                       "LEFT JOIN " \
                       "AUTHORS A " \

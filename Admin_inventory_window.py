@@ -5,6 +5,7 @@ import employee_window
 # to be added - other windows
 emp_id = None
 
+
 class Admin_inventory_window(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -17,10 +18,10 @@ class Admin_inventory_window(tk.Frame):
         # height = window.winfo_screenheight()
         # window.geometry("%dx%d" % (width, height))
         # window.title("Inventory Window")
-        #test push
+        # test push
 
         # text
-        helvetica_font="Helvetica 18 bold"
+        helvetica_font = "Helvetica 18 bold"
         Add_book = tk.Label(self, text="Add Book: ", font=helvetica_font)
         Search_book = tk.Label(self, text="Search Book: ", font=helvetica_font)
         Found_book = tk.Label(self, text="Books Found: ", font=helvetica_font)
@@ -46,7 +47,8 @@ class Admin_inventory_window(tk.Frame):
         Set_sellprice.place(relx=0.2, rely=0.45, relwidth=rel_width, relheight=rel_height, anchor="e")
 
         # Buttons
-        Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(employee_window.employee_window))
+        Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(
+            employee_window.employee_window))
         Finance = tk.Button(self, text="Finance")
         Inventory = tk.Button(self, text="Inventory")
         Save = tk.Button(self, text="Save")
@@ -67,7 +69,7 @@ class Admin_inventory_window(tk.Frame):
         Inventory.place(relx=0.8, relwidth=rel_width, relheight=rel_height, anchor="ne")
         Save.place(relx=1, rely=0.975, relwidth=rel_width, relheight=rel_height, anchor="e")
         Undo.place(relx=0.9, rely=0.975, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Log_out.place(relx=0,rely=0,relwidth=rel_width, relheight=rel_height, anchor="nw")
+        Log_out.place(relx=0, rely=0, relwidth=rel_width, relheight=rel_height, anchor="nw")
 
         # text and labels
         Sell_Price_label = tk.Label(self, text="Sell Price", width="15")
@@ -167,19 +169,19 @@ class Admin_inventory_window(tk.Frame):
 
         # Buttons show hide
         self.Translated_label = tk.Label(self, text="Is it translated?", width="15", font=helvetica_font)
-        Yes = tk.Button(self, text='Yes', command=self.yes_button)
+        Yes = tk.Button(self, text='Yes', command=lambda: self.yes_button(rel_width, rel_height))
         Yes.pack(pady=20)
         No = tk.Button(self, text='No', command=self.no_button)
         No.pack()
 
         # show hide text and labels
-        Translator_label = tk.Label(self, text="Translator", width="15")
-        Translator_label.pack()
+        self.Translator_label = tk.Label(self, text="Translator", width="15")
+        self.Translator_label.pack()
         self.Translator_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Translator_text.pack()
 
         self.Untranslated_label = tk.Label(self, text="Original Title", width="15")
-        self.Untranslated_label.pack()
+        # self.Untranslated_label.pack() WTF
         self.Untranslated_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Untranslated_text.pack()
 
@@ -226,7 +228,7 @@ class Admin_inventory_window(tk.Frame):
 
         # label and text place 3
         self.Translator_text.place(relx=0.2, rely=0.9, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Translator_label.place(relx=0.2, rely=0.85, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Translator_label.place(relx=0.2, rely=0.85, relwidth=rel_width, relheight=rel_height, anchor="e")
         self.Untranslated_text.place(relx=0.3, rely=0.9, relwidth=rel_width, relheight=rel_height, anchor="e")
         self.Untranslated_label.place(relx=0.3, rely=0.85, relwidth=rel_width, relheight=rel_height, anchor="e")
         self.Origin_text.place(relx=0.4, rely=0.9, relwidth=rel_width, relheight=rel_height, anchor="e")
@@ -251,23 +253,49 @@ class Admin_inventory_window(tk.Frame):
 
     # button functions
 
-    def yes_button(self):
-        self.Translated_label.pack()
-        self.Translator_text.pack()
-        self.Untranslated_label.pack()
-        self.Untranslated_text.pack()
-        self.Origin_text.pack()
-        self.Origin_label.pack()
+    def yes_button(self, rel_width, rel_height):
+        # self.Translated_label.pack()
+        # self.Translator_text.pack()
+        # self.Untranslated_label.pack()
+        # self.Untranslated_text.pack()
+        # self.Origin_text.pack()
+        # self.Origin_label.pack()
+        try:
+            self.Translator_text.destroy()
+            self.Untranslated_label.destroy()
+            self.Untranslated_text.destroy()
+            self.Origin_text.destroy()
+            self.Origin_label.destroy()
+            self.Translator_label.destroy()
+        except AttributeError:
+            print("already exists")
+
+        self.Translator_label = tk.Label(self, text="Translator", width="15")
+        self.Translator_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Untranslated_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Untranslated_label = tk.Label(self, text="Original Title", width="15")
+        self.Origin_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Origin_label = tk.Label(self, text="Origin", width="15")
+        # self.Translated_label = tk.Label(self, text="Is it translated?", width="15", font=helvetica_font)
+
+        self.Translator_label.place(relx=0.2, rely=0.85, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Translator_text.place(relx=0.2, rely=0.9, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Untranslated_text.place(relx=0.3, rely=0.9, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Untranslated_label.place(relx=0.3, rely=0.85, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Origin_text.place(relx=0.4, rely=0.9, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Origin_label.place(relx=0.4, rely=0.85, relwidth=rel_width, relheight=rel_height, anchor="e")
+        # self.Translated_label.place(relx=0.65, rely=0.85, relwidth=rel_width, relheight=rel_height, anchor="e")
         print("hello")
         print(emp_id)
 
     def no_button(self):
-        self.Translated_label.pack_forget()
-        self.Translator_text.pack_forget()
-        self.Untranslated_label.pack_forget()
-        self.Untranslated_text.pack_forget()
-        self.Origin_text.pack_forget()
-        self.Origin_label.pack_forget()
+        # self.Translated_label.destroy()
+        self.Translator_text.destroy()
+        self.Untranslated_label.destroy()
+        self.Untranslated_text.destroy()
+        self.Origin_text.destroy()
+        self.Origin_label.destroy()
+        self.Translator_label.destroy()
 
     def open_employee_window(self):
         print("to be added")
