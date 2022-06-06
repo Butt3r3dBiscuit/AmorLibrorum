@@ -194,30 +194,31 @@ class Admin:
         mycursor.execute(search)
         result_fetch = mycursor.fetchall()
         return result_fetch
-        
-admin = Admin()
-db = connect.connect_admin("MyN3wP4ssw0rd!*")
-mycursor= db.cursor()
-mycursor.execute("select ISBN from books")
-ISBN_list = mycursor.fetchall()
 
-#call add_book procedure
-#admin.add_book(mycursor=mycursor, ISBN=9780590353403, Title="Harry Potter and the Sorcerers Stone", author_name="Joanne", author_surname="Rowling", publisher="Scholastic Inc", published_year=2003, pages="309", language="English (USA)", book_type="Hardcover", location="7", section="7", genre="Fiction", employee_id=2, date="2022-06-02", Price=1000, translator="Joanne Rowling", Title_untranslated="Harry Potter and the Philosophers Stone", translated_from="English", edition=1, number_of_copies=1)
+if __name__ == "__main__":
+    admin = Admin()
+    db = connect.connect_admin("MyN3wP4ssw0rd!*")
+    mycursor= db.cursor()
+    mycursor.execute("select ISBN from books")
+    ISBN_list = mycursor.fetchall()
 
-#call search records procedure
-print(admin.search_records(mycursor=mycursor, ISBN=9780593334833, Employee_id=None, Book_id=None))
+    #call add_book procedure
+    #admin.add_book(mycursor=mycursor, ISBN=9780590353403, Title="Harry Potter and the Sorcerers Stone", author_name="Joanne", author_surname="Rowling", publisher="Scholastic Inc", published_year=2003, pages="309", language="English (USA)", book_type="Hardcover", location="7", section="7", genre="Fiction", employee_id=2, date="2022-06-02", Price=1000, translator="Joanne Rowling", Title_untranslated="Harry Potter and the Philosophers Stone", translated_from="English", edition=1, number_of_copies=1)
 
-# ISBN_potter = 9780590353403
-# for x in ISBN_list:
-#     if ISBN_potter not in x:
-#         mycursor.execute("commit;")
+    #call search records procedure
+    print(admin.search_records(mycursor=mycursor, ISBN=9780593334833, Employee_id=None, Book_id=None))
 
-# def query_to_values(db, query):  # returns a list of values
-#     mycursor = db.cursor()
-#     mycursor.execute(query)
-#     for (x) in mycursor:
-#         return x
+    # ISBN_potter = 9780590353403
+    # for x in ISBN_list:
+    #     if ISBN_potter not in x:
+    #         mycursor.execute("commit;")
+
+    # def query_to_values(db, query):  # returns a list of values
+    #     mycursor = db.cursor()
+    #     mycursor.execute(query)
+    #     for (x) in mycursor:
+    #         return x
 
 
-# test = (query_to_values(db, curry))
-# print(test)
+    # test = (query_to_values(db, curry))
+    # print(test)
