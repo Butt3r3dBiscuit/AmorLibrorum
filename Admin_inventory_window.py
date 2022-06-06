@@ -1,6 +1,7 @@
 import tkinter as tk
 import Start_window
 import employee_window
+import AdminClass
 
 # to be added - other windows
 emp_id = None
@@ -53,7 +54,7 @@ class Admin_inventory_window(tk.Frame):
         Inventory = tk.Button(self, text="Inventory")
         Save = tk.Button(self, text="Save")
         Undo = tk.Button(self, text="Undo")
-        Add = tk.Button(self, text="Add")
+        Add = tk.Button(self, text="Add", command=self.add_book) # for adding
         Search = tk.Button(self, text="Search")
         Search_all = tk.Button(self, text="Search All")
         Set = tk.Button(self, text="Set")
@@ -87,85 +88,85 @@ class Admin_inventory_window(tk.Frame):
         Isbn_text2 = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Isbn_text2.pack()
 
-        Isbn_label = tk.Label(self, text="ISBN", width="15")
+        Isbn_label = tk.Label(self, text="ISBN", width="15") #for add book
         Isbn_label.pack()
-        Isbn_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Isbn_text.pack()
+        self.Isbn_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        # Isbn_text.pack()
 
         Title_label = tk.Label(self, text="Title", width="15")
         Title_label.pack()
-        Title_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Title_text.pack()
+        self.Title_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Title_text.pack()
 
         Author_label = tk.Label(self, text="Author", width="15")
         Author_label.pack()
-        Author_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Author_text.pack()
+        self.Author_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Author_text.pack()
 
         Surname_label = tk.Label(self, text="Surname", width="15")
         Surname_label.pack()
-        Surname_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Surname_text.pack()
+        self.Surname_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Surname_text.pack()
 
         Edition_label = tk.Label(self, text="Edition", width="15")
         Edition_label.pack()
-        Edition_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Edition_text.pack()
+        self.Edition_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Edition_text.pack()
 
         Version_label = tk.Label(self, text="Version", width="15")
         Version_label.pack()
-        Version_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Version_text.pack()
+        self.Version_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Version_text.pack()
 
         Language_label = tk.Label(self, text="Language", width="15")
         Language_label.pack()
-        Language_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Language_text.pack()
+        self.Language_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Language_text.pack()
 
         Buy_label = tk.Label(self, text="Buy Price", width="15")
         Buy_label.pack()
-        Buy_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Buy_text.pack()
+        self.Buy_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Buy_text.pack()
 
         Instore_label = tk.Label(self, text="InStore", width="15")
         Instore_label.pack()
-        Instore_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Instore_text.pack()
+        self.Instore_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Instore_text.pack()
 
         Publisher_label = tk.Label(self, text="Publisher", width="15")
         Publisher_label.pack()
-        Publisher_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Publisher_text.pack()
+        self.Publisher_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Publisher_text.pack()
 
         Year_label = tk.Label(self, text="Year", width="15")
         Year_label.pack()
-        Year_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Year_text.pack()
+        self.Year_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Year_text.pack()
 
         Pages_label = tk.Label(self, text="Pages", width="15")
         Pages_label.pack()
-        Pages_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Pages_text.pack()
+        self.Pages_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Pages_text.pack()
 
         Booktype_label = tk.Label(self, text="Book Type", width="15")
         Booktype_label.pack()
-        Booktype_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Booktype_text.pack()
+        self.Booktype_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Booktype_text.pack()
 
         Location_label = tk.Label(self, text="Location", width="15")
         Location_label.pack()
-        Location_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Location_text.pack()
+        self.Location_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Location_text.pack()
 
         Section_label = tk.Label(self, text="Section", width="15")
         Section_label.pack()
-        Section_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Section_text.pack()
+        self.Section_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Section_text.pack()
 
         Genre_label = tk.Label(self, text="Genre", width="15")
         Genre_label.pack()
-        Genre_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Genre_text.pack()
+        self.Genre_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Genre_text.pack()
 
         # Buttons show hide
         self.Translated_label = tk.Label(self, text="Is it translated?", width="15", font=helvetica_font)
@@ -191,39 +192,39 @@ class Admin_inventory_window(tk.Frame):
         self.Origin_text.pack()
 
         # label and text place 1
-        Isbn_text.place(relx=0.2, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Isbn_text.place(relx=0.2, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
         Isbn_label.place(relx=0.2, rely=0.65, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Title_text.place(relx=0.3, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Title_text.place(relx=0.3, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
         Title_label.place(relx=0.3, rely=0.65, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Author_text.place(relx=0.4, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Author_text.place(relx=0.4, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
         Author_label.place(relx=0.4, rely=0.65, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Surname_text.place(relx=0.5, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Surname_text.place(relx=0.5, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
         Surname_label.place(relx=0.5, rely=0.65, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Edition_text.place(relx=0.6, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Edition_text.place(relx=0.6, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
         Edition_label.place(relx=0.6, rely=0.65, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Version_text.place(relx=0.7, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Version_text.place(relx=0.7, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
         Version_label.place(relx=0.7, rely=0.65, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Language_text.place(relx=0.8, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Language_text.place(relx=0.8, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
         Language_label.place(relx=0.8, rely=0.65, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Buy_text.place(relx=0.9, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Buy_text.place(relx=0.9, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
         Buy_label.place(relx=0.9, rely=0.65, relwidth=rel_width, relheight=rel_height, anchor="e")
 
         # label and text place 2
-        Instore_text.place(relx=0.2, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Instore_text.place(relx=0.2, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
         Instore_label.place(relx=0.2, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Publisher_text.place(relx=0.3, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Publisher_text.place(relx=0.3, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
         Publisher_label.place(relx=0.3, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Year_text.place(relx=0.4, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Year_text.place(relx=0.4, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
         Year_label.place(relx=0.4, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Pages_text.place(relx=0.5, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Pages_text.place(relx=0.5, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
         Pages_label.place(relx=0.5, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Booktype_text.place(relx=0.6, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Booktype_text.place(relx=0.6, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
         Booktype_label.place(relx=0.6, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Location_text.place(relx=0.7, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Location_text.place(relx=0.7, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
         Location_label.place(relx=0.7, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Section_text.place(relx=0.8, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Section_text.place(relx=0.8, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
         Section_label.place(relx=0.8, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Genre_text.place(relx=0.9, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Genre_text.place(relx=0.9, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
         Genre_label.place(relx=0.9, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
 
         # label and text place 3
@@ -299,3 +300,23 @@ class Admin_inventory_window(tk.Frame):
 
     def open_employee_window(self):
         print("to be added")
+
+    def add_book(self):
+        ISBN = self.Isbn_text.get()
+        Title = self.Title_text.get()
+        Author = self.Author_text.get()
+        Surname = self.Surname_text.get()
+        Edition = self.Edition_text.get()
+        Version = self.Version_text.get()
+        Language = self.Language_text.get()
+        Buy_price = self.Buy_text.get()
+        Instore = self.Instore_text.get() #what is it for?
+        Publisher = self.Publisher_text.get()
+        Year = self.Year_text.get()
+        Pages = self.Pages_text.get()
+        Booktype = self.Booktype_text.get()
+        Location = self.Location_text.get()
+        Section = self.Section_text.get()
+        Genre = self.Genre_text.get()
+        
+        print(ISBN, Title, Author, Surname, Edition, Version, Language, Buy_price)
