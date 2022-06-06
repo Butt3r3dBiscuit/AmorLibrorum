@@ -176,14 +176,14 @@ class Admin_inventory_window(tk.Frame):
 
         # show hide text and labels
         self.Translator_label = tk.Label(self, text="Translator", width="15")
-        self.Translator_label.pack()
+        # self.Translator_label.pack()
         self.Translator_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        self.Translator_text.pack()
+        # self.Translator_text.pack()
 
         self.Untranslated_label = tk.Label(self, text="Original Title", width="15")
         # self.Untranslated_label.pack() WTF
         self.Untranslated_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        self.Untranslated_text.pack()
+        # self.Untranslated_text.pack()
 
         self.Origin_label = tk.Label(self, text="Origin", width="15")
         self.Origin_label.pack()
@@ -227,12 +227,12 @@ class Admin_inventory_window(tk.Frame):
         Genre_label.place(relx=0.9, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
 
         # label and text place 3
-        self.Translator_text.place(relx=0.2, rely=0.9, relwidth=rel_width, relheight=rel_height, anchor="e")
-        self.Translator_label.place(relx=0.2, rely=0.85, relwidth=rel_width, relheight=rel_height, anchor="e")
-        self.Untranslated_text.place(relx=0.3, rely=0.9, relwidth=rel_width, relheight=rel_height, anchor="e")
-        self.Untranslated_label.place(relx=0.3, rely=0.85, relwidth=rel_width, relheight=rel_height, anchor="e")
-        self.Origin_text.place(relx=0.4, rely=0.9, relwidth=rel_width, relheight=rel_height, anchor="e")
-        self.Origin_label.place(relx=0.4, rely=0.85, relwidth=rel_width, relheight=rel_height, anchor="e")
+        # self.Translator_text.place(relx=0.2, rely=0.9, relwidth=rel_width, relheight=rel_height, anchor="e")
+        # self.Translator_label.place(relx=0.2, rely=0.85, relwidth=rel_width, relheight=rel_height, anchor="e")
+        # self.Untranslated_text.place(relx=0.3, rely=0.9, relwidth=rel_width, relheight=rel_height, anchor="e")
+        # self.Untranslated_label.place(relx=0.3, rely=0.85, relwidth=rel_width, relheight=rel_height, anchor="e")
+        # self.Origin_text.place(relx=0.4, rely=0.9, relwidth=rel_width, relheight=rel_height, anchor="e")
+        # self.Origin_label.place(relx=0.4, rely=0.85, relwidth=rel_width, relheight=rel_height, anchor="e")
         self.Translated_label.place(relx=0.65, rely=0.85, relwidth=rel_width, relheight=rel_height, anchor="e")
         Yes.place(relx=0.6, rely=0.9, relwidth=rel_width, relheight=rel_height, anchor="e")
         No.place(relx=0.7, rely=0.9, relwidth=rel_width, relheight=rel_height, anchor="e")
