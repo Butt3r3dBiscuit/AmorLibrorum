@@ -193,9 +193,9 @@ class Admin_inventory_window(tk.Frame):
         # self.Untranslated_text.pack()
 
         self.Origin_label = tk.Label(self, text="Origin", width="15")
-        self.Origin_label.pack()
+        # self.Origin_label.pack()
         self.Origin_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        self.Origin_text.pack()
+        # self.Origin_text.pack()
 
         # label and text place 1
         self.Isbn_text.place(relx=0.2, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
