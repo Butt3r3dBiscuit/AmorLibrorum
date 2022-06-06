@@ -148,10 +148,16 @@ class Admin_inventory_window(tk.Frame):
         self.Pages_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Pages_text.pack()
 
+        # Booktype_label = tk.Label(self, text="Book Type", width="15")
+        types = ("Paperback","Hardcover")
+
+        types_var = tk.StringVar(value=types)
         Booktype_label = tk.Label(self, text="Book Type", width="15")
         Booktype_label.pack()
-        self.Booktype_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        self.Booktype_text.pack()
+        # self.Booktype_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Booktype_listbox = tk.Listbox(self,listvariable=types_var)
+        self.Booktype_listbox.pack()
+        # self.Booktype_text.pack()
 
         Location_label = tk.Label(self, text="Location", width="15")
         Location_label.pack()
@@ -218,7 +224,8 @@ class Admin_inventory_window(tk.Frame):
         Year_label.place(relx=0.4, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
         self.Pages_text.place(relx=0.5, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
         Pages_label.place(relx=0.5, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
-        self.Booktype_text.place(relx=0.6, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Booktype_listbox.place(relx=0.6, rely=0.8, relwidth=rel_width, relheight=rel_height*0.85, anchor="e")
+        # self.Booktype_text.place(relx=0.6, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
         Booktype_label.place(relx=0.6, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
         self.Location_text.place(relx=0.7, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
         Location_label.place(relx=0.7, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
@@ -314,7 +321,7 @@ class Admin_inventory_window(tk.Frame):
         Publisher = self.Publisher_text.get()
         Year = self.Year_text.get()
         Pages = self.Pages_text.get()
-        Booktype = self.Booktype_text.get()
+        Booktype = self.Booktype_listbox
         Location = self.Location_text.get()
         Section = self.Section_text.get()
         Genre = self.Genre_text.get()
