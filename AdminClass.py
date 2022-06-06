@@ -1,3 +1,4 @@
+import mysql.connector
 import connect
 from user_creation import employee_user_addition
 
@@ -151,7 +152,7 @@ class Admin:
 
             add_if_translated = add_to_if_translated(ISBN, translator, Title_untranslated, translated_from)
             print(add_if_translated)
-            
+
             #checks if price is negative
             if Price<0:
                 Price*=-1
