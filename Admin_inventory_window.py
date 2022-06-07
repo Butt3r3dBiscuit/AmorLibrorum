@@ -34,7 +34,7 @@ class Admin_inventory_window(tk.Frame):
         Version = tk.Label(self, text="Version")
         Buy_price = tk.Label(self, text="BuyPrice")
         Sell_price = tk.Label(self, text="SellPrice")
-        In_store = tk.Label(self, text="InStore")
+        In_store = tk.Label(self, text="Amount")
 
         # text place
         Found_book.place(relx=0.2, rely=0.25, relwidth=rel_width, relheight=rel_height, anchor="e")
@@ -128,7 +128,7 @@ class Admin_inventory_window(tk.Frame):
         self.Buy_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Buy_text.pack()
 
-        Instore_label = tk.Label(self, text="InStore", width="15")
+        Instore_label = tk.Label(self, text="Amount", width="15")
         Instore_label.pack()
         self.Instore_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Instore_text.pack()
