@@ -354,8 +354,8 @@ class Admin_inventory_window(tk.Frame):
         # Comment = "Bruh"
 
         print(Translator, Original_title, Origin)
-        Admin_object = Admin()
-        Admin_object.add_book(db,ISBN,Title,Author,Surname, Publisher, Year, Pages, Language, Booktype,
+        Admin_object = Admin(db)
+        Admin_object.add_book(ISBN,Title,Author,Surname, Publisher, Year, Pages, Language, Booktype,
                                   Location, Section, Genre, emp_id, Date, Buy_price,Comment,Translator, Original_title,
                                   Origin, Edition, Amount)
         mycursor = db.cursor()

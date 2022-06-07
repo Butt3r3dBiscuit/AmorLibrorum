@@ -110,6 +110,8 @@ def employee_search(name, surname):
     
 # Admin class query
 class Admin:
+    def __init__(self, db):
+        self.mycursor = db.cursor()
     # inventory search
     def inventory_search_authors_books(self, ISBN=9780593334833):  #
         # returns ISBN, title, author_name, author_surname, publisher, year_published,
@@ -133,13 +135,11 @@ class Admin:
     def add_user(self, mycursor, email, password):
         employee_user_addition(mycursor, email, password)
 
-    def add_book(self, db, ISBN, Title, author_name, author_surname, publisher,
+    def add_book(self, ISBN, Title, author_name, author_surname, publisher,
     published_year, pages, language, book_type, location, section, genre, employee_id, date, 
     Price, status_comment="NULL", translator="NULL", Title_untranslated="NULL", translated_from="NULL", 
     edition="NULL", number_of_copies=1):
         try:
-            print(db)
-            mycursor = db.cursor()
             #queries
             add_book_entries = add_to_Book_entries(ISBN=ISBN, status_comment=status_comment)
             print(add_book_entries)
@@ -159,34 +159,34 @@ class Admin:
             if Price<0:
                 Price*=-1
             #if book not yet in database adds to books, auhtors, if_translated
-            mycursor.execute("select ISBN from books")
-            ISBN_list_fetch = mycursor.fetchall()
+            self.mycursor.execute("select ISBN from books")
+            ISBN_list_fetch = self.mycursor.fetchall()
             ISBN_list = []
             for i in ISBN_list_fetch:
                 for j in i:
                     ISBN_list.append(j)
             if ISBN not in ISBN_list:
                 #adds to books
-                mycursor.execute(add_book)
+                self.mycursor.execute(add_book)
                 # adds to authors
-                mycursor.execute(add_authors)
+                self.mycursor.execute(add_authors)
                 # adds to translated if translated
                 if translator is not None or Title_untranslated is not None or translated_from is not None:
-                    mycursor.execute(add_if_translated)
+                    self.mycursor.execute(add_if_translated)
             #adds to book_entries
             for i in range(number_of_copies):
-                mycursor.execute(add_book_entries)
+                self.mycursor.execute(add_book_entries)
         
             #adds to transactions
-            mycursor.execute(f"select book_id from book_entries where ISBN={ISBN}")
-            book_id_list_fetch = mycursor.fetchall()
+            self.mycursor.execute(f"select book_id from book_entries where ISBN={ISBN}")
+            book_id_list_fetch = self.mycursor.fetchall()
             book_id_list = []
             for i in book_id_list_fetch:
                 for j in i:
                     book_id_list.append(j)
             for i in book_id_list:
                 print(add_to_Transactions(book_id=i, employee_id=employee_id, date=date, Price=Price))
-                mycursor.execute(add_to_Transactions(book_id=i, employee_id=employee_id, date=date, Price=Price))
+                self.mycursor.execute(add_to_Transactions(book_id=i, employee_id=employee_id, date=date, Price=Price))
         except mysql.connector.errors.IntegrityError:
             print(f"Error: 1062 (23000): Duplicate entry '{ISBN}' for key 'books.PRIMARY'")
     
