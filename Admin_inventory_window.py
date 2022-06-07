@@ -7,7 +7,7 @@ from datetime import date
 
 # to be added - other windows
 emp_id = None
-my_cursor = None
+db = None
 
 
 class Admin_inventory_window(tk.Frame):
@@ -321,7 +321,7 @@ class Admin_inventory_window(tk.Frame):
         Comment = self.Comment_text.get()
         Language = self.Language_text.get()
         Buy_price = int(self.Buy_text.get())
-        Amount = self.Amount_text.get() #what is it for?
+        Amount = int(self.Amount_text.get()) #what is it for?
         Publisher = self.Publisher_text.get()
         Year = self.Year_text.get()
         Pages = self.Pages_text.get()
@@ -341,10 +341,11 @@ class Admin_inventory_window(tk.Frame):
         Comment = "Bruh"
 
         print(Translator, Original_title, Origin)
-        print(my_cursor)
         Admin_object = Admin()
-        Admin_object.add_book(my_cursor,ISBN,Title,Author,Surname, Publisher, Year, Pages, Language, Booktype,
+        Admin_object.add_book(db,ISBN,Title,Author,Surname, Publisher, Year, Pages, Language, Booktype,
                                   Location, Section, Genre, emp_id, Date, Buy_price,Comment,Translator, Original_title,
                                   Origin, Edition, Amount)
+        mycursor = db.cursor()
+        mycursor.execute("commit") #change this to save
         print(ISBN, Title, Author, Surname, Edition, Comment, Language, Buy_price)
         print(Publisher,Year,Pages,Booktype, Location, Section, Genre)

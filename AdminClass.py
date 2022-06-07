@@ -133,11 +133,13 @@ class Admin:
     def add_user(self, mycursor, email, password):
         employee_user_addition(mycursor, email, password)
 
-    def add_book(self, mycursor, ISBN, Title, author_name, author_surname, publisher, 
+    def add_book(self, db, ISBN, Title, author_name, author_surname, publisher,
     published_year, pages, language, book_type, location, section, genre, employee_id, date, 
     Price, status_comment="NULL", translator="NULL", Title_untranslated="NULL", translated_from="NULL", 
     edition="NULL", number_of_copies=1):
         try:
+            print(db)
+            mycursor = db.cursor()
             #queries
             add_book_entries = add_to_Book_entries(ISBN=ISBN, status_comment=status_comment)
             print(add_book_entries)
