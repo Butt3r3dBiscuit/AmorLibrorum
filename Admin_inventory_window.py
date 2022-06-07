@@ -1,7 +1,7 @@
 import tkinter as tk
 import Start_window
 import employee_window
-import AdminClass
+from AdminClass import Admin
 from datetime import date
 
 
@@ -342,8 +342,8 @@ class Admin_inventory_window(tk.Frame):
 
         print(Translator, Original_title, Origin)
         print(my_cursor)
-
-        AdminClass.Admin.add_book(self, my_cursor,ISBN,Title,Author,Surname, Publisher, Year, Pages, Language, Booktype,
+        Admin_object = Admin()
+        Admin_object.add_book(my_cursor,ISBN,Title,Author,Surname, Publisher, Year, Pages, Language, Booktype,
                                   Location, Section, Genre, emp_id, Date, Buy_price,Comment,Translator, Original_title,
                                   Origin, Edition, Amount)
         print(ISBN, Title, Author, Surname, Edition, Comment, Language, Buy_price)
