@@ -309,6 +309,13 @@ class Admin_inventory_window(tk.Frame):
         self.Origin_label.destroy()
         self.Translator_label.destroy()
 
+        self.Translator_label = tk.Label(self, text="Translator", width="15")
+        self.Translator_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Untranslated_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Untranslated_label = tk.Label(self, text="Original Title", width="15")
+        self.Origin_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Origin_label = tk.Label(self, text="Origin", width="15")
+
     def open_employee_window(self):
         print("to be added")
 
@@ -335,10 +342,16 @@ class Admin_inventory_window(tk.Frame):
         Date = date.today()
 
         Translator = self.Translator_text.get()
+        if Translator == "":
+            Translator = None
         Original_title = self.Untranslated_text.get()
+        if Original_title == "":
+            Original_title = None
         Origin = self.Origin_text.get()
+        if Origin == "":
+            Origin = None
 
-        Comment = "Bruh"
+        # Comment = "Bruh"
 
         print(Translator, Original_title, Origin)
         Admin_object = Admin()
