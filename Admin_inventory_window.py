@@ -2,14 +2,18 @@ import tkinter as tk
 import Start_window
 import employee_window
 import AdminClass
+from datetime import date
+
 
 # to be added - other windows
 emp_id = None
+my_cursor = None
 
 
 class Admin_inventory_window(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
+
 
         rel_width = 0.1
         rel_height = 0.05
@@ -31,7 +35,7 @@ class Admin_inventory_window(tk.Frame):
         Title = tk.Label(self, text="Title")
         Author = tk.Label(self, text="Author")
         Edition = tk.Label(self, text="Edition")
-        Version = tk.Label(self, text="Version")
+        Comment = tk.Label(self, text="Comment")
         Buy_price = tk.Label(self, text="BuyPrice")
         Sell_price = tk.Label(self, text="SellPrice")
         In_store = tk.Label(self, text="Amount")
@@ -41,7 +45,7 @@ class Admin_inventory_window(tk.Frame):
         Title.place(relx=0.2, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
         Author.place(relx=0.3, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
         Edition.place(relx=0.4, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Version.place(relx=0.5, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
+        Comment.place(relx=0.5, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
         Buy_price.place(relx=0.6, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
         Sell_price.place(relx=0.7, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
         In_store.place(relx=0.8, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
@@ -113,10 +117,10 @@ class Admin_inventory_window(tk.Frame):
         self.Edition_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Edition_text.pack()
 
-        Version_label = tk.Label(self, text="Version", width="15")
-        Version_label.pack()
-        self.Version_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        self.Version_text.pack()
+        Comment_label = tk.Label(self, text="Comment", width="15")
+        Comment_label.pack()
+        self.Comment_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Comment_text.pack()
 
         Language_label = tk.Label(self, text="Language", width="15")
         Language_label.pack()
@@ -130,8 +134,8 @@ class Admin_inventory_window(tk.Frame):
 
         Instore_label = tk.Label(self, text="Amount", width="15")
         Instore_label.pack()
-        self.Instore_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        self.Instore_text.pack()
+        self.Amount_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Amount_text.pack()
 
         Publisher_label = tk.Label(self, text="Publisher", width="15")
         Publisher_label.pack()
@@ -208,15 +212,15 @@ class Admin_inventory_window(tk.Frame):
         Surname_label.place(relx=0.5, rely=0.65, relwidth=rel_width, relheight=rel_height, anchor="e")
         self.Edition_text.place(relx=0.6, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
         Edition_label.place(relx=0.6, rely=0.65, relwidth=rel_width, relheight=rel_height, anchor="e")
-        self.Version_text.place(relx=0.7, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Version_label.place(relx=0.7, rely=0.65, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Comment_text.place(relx=0.7, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
+        Comment_label.place(relx=0.7, rely=0.65, relwidth=rel_width, relheight=rel_height, anchor="e")
         self.Language_text.place(relx=0.8, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
         Language_label.place(relx=0.8, rely=0.65, relwidth=rel_width, relheight=rel_height, anchor="e")
         self.Buy_text.place(relx=0.9, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
         Buy_label.place(relx=0.9, rely=0.65, relwidth=rel_width, relheight=rel_height, anchor="e")
 
         # label and text place 2
-        self.Instore_text.place(relx=0.2, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Amount_text.place(relx=0.2, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
         Instore_label.place(relx=0.2, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
         self.Publisher_text.place(relx=0.3, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
         Publisher_label.place(relx=0.3, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
@@ -314,10 +318,10 @@ class Admin_inventory_window(tk.Frame):
         Author = self.Author_text.get()
         Surname = self.Surname_text.get()
         Edition = self.Edition_text.get()
-        Version = self.Version_text.get()
+        Comment = self.Comment_text.get()
         Language = self.Language_text.get()
-        Buy_price = self.Buy_text.get()
-        Instore = self.Instore_text.get() #what is it for?
+        Buy_price = int(self.Buy_text.get())
+        Amount = self.Amount_text.get() #what is it for?
         Publisher = self.Publisher_text.get()
         Year = self.Year_text.get()
         Pages = self.Pages_text.get()
@@ -327,6 +331,20 @@ class Admin_inventory_window(tk.Frame):
         Location = self.Location_text.get()
         Section = self.Section_text.get()
         Genre = self.Genre_text.get()
-        
-        print(ISBN, Title, Author, Surname, Edition, Version, Language, Buy_price)
-        print(Instore,Publisher,Year,Pages,Booktype, Location, Section, Genre)
+
+        Date = date.today()
+
+        Translator = self.Translator_text.get()
+        Original_title = self.Untranslated_text.get()
+        Origin = self.Origin_text.get()
+
+        Comment = "Bruh"
+
+        print(Translator, Original_title, Origin)
+        print(my_cursor)
+
+        AdminClass.Admin.add_book(self, my_cursor,ISBN,Title,Author,Surname, Publisher, Year, Pages, Language, Booktype,
+                                  Location, Section, Genre, emp_id, Date, Buy_price,Comment,Translator, Original_title,
+                                  Origin, Edition, Amount)
+        print(ISBN, Title, Author, Surname, Edition, Comment, Language, Buy_price)
+        print(Publisher,Year,Pages,Booktype, Location, Section, Genre)
