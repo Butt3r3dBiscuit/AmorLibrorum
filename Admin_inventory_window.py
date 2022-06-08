@@ -78,20 +78,22 @@ class Admin_inventory_window(tk.Frame):
         Log_out.place(relx=0, rely=0, relwidth=rel_width, relheight=rel_height, anchor="nw")
 
         # text and labels
-        Sell_Price_label = tk.Label(self, text="Sell Price", width="15")
-        Sell_Price_label.pack()
-        Sell_Price_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Sell_Price_text.pack()
+        Isbn_label2 = tk.Label(self, text="ISBN", width="15")
+        Isbn_label2.pack()
+        Isbn_text2 = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        Isbn_text2.pack()
 
         Isbn_label3 = tk.Label(self, text="ISBN", width="15")
         Isbn_label3.pack()
         Isbn_text3 = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Isbn_text3.pack()
 
-        Isbn_label2 = tk.Label(self, text="ISBN", width="15")
-        Isbn_label2.pack()
-        Isbn_text2 = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Isbn_text2.pack()
+
+
+        Sell_Price_label = tk.Label(self, text="Sell Price", width="15")
+        Sell_Price_label.pack()
+        Sell_Price_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        Sell_Price_text.pack()
 
         Isbn_label = tk.Label(self, text="ISBN", width="15") #for add book
         Isbn_label.pack()
