@@ -28,7 +28,7 @@ def add_to_Book_entries(ISBN, status_comment):
 
 
 def add_to_Price_exceptions(book_id, newprice, comment):
-    query = f"insert into Price_exceptions values ({book_id}, {newprice}, {comment})"
+    query = f"insert into Price_exceptions values ({book_id}, {newprice}, '{comment}')"
     return query
 
 
