@@ -3,6 +3,7 @@ import Start_window
 import employee_window
 from AdminClass import Admin
 from datetime import date
+from tkinter import messagebox
 
 
 # to be added - other windows
@@ -56,7 +57,7 @@ class Admin_inventory_window(tk.Frame):
             employee_window.employee_window))
         Finance = tk.Button(self, text="Finance")
         Inventory = tk.Button(self, text="Inventory")
-        Save = tk.Button(self, text="Save")
+        Save = tk.Button(self, text="Save", command=self.commit_save)
         Undo = tk.Button(self, text="Undo")
         Add = tk.Button(self, text="Add", command=self.add_book) # for adding
         Search = tk.Button(self, text="Search")
@@ -358,7 +359,22 @@ class Admin_inventory_window(tk.Frame):
         Admin_object.add_book(ISBN,Title,Author,Surname, Publisher, Year, Pages, Language, Booktype,
                                   Location, Section, Genre, emp_id, Date, Buy_price,Comment,Translator, Original_title,
                                   Origin, Edition, Amount)
-        mycursor = db.cursor()
-        mycursor.execute("commit") #change this to save
         print(ISBN, Title, Author, Surname, Edition, Comment, Language, Buy_price)
         print(Publisher,Year,Pages,Booktype, Location, Section, Genre)
+        resp = messagebox.askquestion('askquestion', 'Are you sure you want to save this book?')
+        # messagebox.askquestion("askquestion", "Are you sure?")
+        mycursor = db.cursor()
+        if resp == "yes":
+            mycursor.execute("commit")
+            print("Book has been added\nmake this a label that shows up.")
+        else:
+            mycursor.execute("rollback")
+            print("Book has not been added because of rollback.\ncan also be a popup label.")
+    def commit_save(self):
+        resp = messagebox.askquestion('askquestion', 'Why do we have this, honestly?')
+        # messagebox.askquestion("askquestion", "Are you sure?")
+        # mycursor = db.cursor()
+        # if resp=="yes":
+        #     mycursor.execute("commit")
+        # else:
+        #     mycursor.execute("rollback")
