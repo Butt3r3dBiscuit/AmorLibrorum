@@ -1,7 +1,7 @@
 import tkinter as tk
 import Start_window
 import employee_window
-from AdminClass import Admin
+from AdminClass import Admin, add_to_Price_exceptions
 from datetime import date
 from tkinter import messagebox
 
@@ -62,7 +62,7 @@ class Admin_inventory_window(tk.Frame):
         Add = tk.Button(self, text="Add", command=self.add_book) # for adding
         Search = tk.Button(self, text="Search")
         Search_all = tk.Button(self, text="Search All")
-        Set = tk.Button(self, text="Set")
+        Set = tk.Button(self, text="Set", command=self.set_price_exception)
         Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
 
         # place label
@@ -85,15 +85,25 @@ class Admin_inventory_window(tk.Frame):
 
         Isbn_label3 = tk.Label(self, text="ISBN", width="15")
         Isbn_label3.pack()
-        Isbn_text3 = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Isbn_text3.pack()
+        self.Isbn_text3 = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Isbn_text3.pack()
+
+        BookID_label3 = tk.Label(self, text="Book ID", width="15")
+        BookID_label3.pack()
+        self.BookID_entry3 = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.BookID_entry3.pack()
+
+        Comment_Price_Exc = tk.Label(self, text="Comment", width="15")
+        BookID_label3.pack()
+        self.Comment_price_exc_entry = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Comment_price_exc_entry.pack()
 
 
 
         Sell_Price_label = tk.Label(self, text="Sell Price", width="15")
         Sell_Price_label.pack()
-        Sell_Price_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Sell_Price_text.pack()
+        self.Sell_Price_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Sell_Price_text.pack()
 
         Isbn_label = tk.Label(self, text="ISBN", width="15") #for add book
         Isbn_label.pack()
@@ -261,10 +271,14 @@ class Admin_inventory_window(tk.Frame):
 
         # label and text place 5
         Set.place(relx=0.9, rely=0.55, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Isbn_text3.place(relx=0.2, rely=0.55, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Isbn_text3.place(relx=0.2, rely=0.55, relwidth=rel_width, relheight=rel_height, anchor="e")
         Isbn_label3.place(relx=0.2, rely=0.5, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Sell_Price_text.place(relx=0.3, rely=0.55, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Sell_Price_label.place(relx=0.3, rely=0.5, relwidth=rel_width, relheight=rel_height, anchor="e")
+        BookID_label3.place(relx=0.3, rely=0.5, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.BookID_entry3.place(relx=0.3, rely=0.55, relwidth=rel_width, relheight=rel_height, anchor="e")
+        Comment_Price_Exc.place(relx=0.4, rely=0.5, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Comment_price_exc_entry.place(relx=0.4, rely=0.55, relwidth=rel_width, relheight=rel_height, anchor="e")
+        Sell_Price_label.place(relx=0.5, rely=0.5, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Sell_Price_text.place(relx=0.5, rely=0.55, relwidth=rel_width, relheight=rel_height, anchor="e")
 
     # button functions
 
@@ -380,3 +394,21 @@ class Admin_inventory_window(tk.Frame):
         #     mycursor.execute("commit")
         # else:
         #     mycursor.execute("rollback")
+    def set_price_exception(self):
+        ISBN = self.Isbn_text3.get()
+        Book_ID = int(self.BookID_entry3.get())
+        New_price = int(self.Sell_Price_text.get())
+        Comment = str(self.Comment_price_exc_entry.get())
+        print(Book_ID,New_price, Comment)
+        query = add_to_Price_exceptions(Book_ID,New_price,Comment)
+        print(query)
+        resp = messagebox.askquestion('askquestion', 'Are you sure you want to save this book?')
+        # messagebox.askquestion("askquestion", "Are you sure?")
+        mycursor = db.cursor()
+        if resp == "yes":
+            mycursor.execute(query)
+            mycursor.execute("commit")
+            print("Book has been added\nmake this a label that shows up.")
+        else:
+            # mycursor.execute("rollback")
+            print("Do we even want to use start transaction here?")
