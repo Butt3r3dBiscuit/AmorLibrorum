@@ -402,7 +402,7 @@ class Admin_inventory_window(tk.Frame):
         print(Book_ID,New_price, Comment)
         query = add_to_Price_exceptions(Book_ID,New_price,Comment)
         print(query)
-        resp = messagebox.askquestion('askquestion', 'Are you sure you want to save this book?')
+        resp = messagebox.askquestion('askquestion', f'Are you sure, you want to change price of this book to €{New_price/100}?')
         # messagebox.askquestion("askquestion", "Are you sure?")
         mycursor = db.cursor()
         if resp == "yes":
