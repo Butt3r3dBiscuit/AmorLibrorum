@@ -199,8 +199,19 @@ class Admin:
         return result_fetch
     
     def add_price_exception(self, newprice, ISBN=None, book_id=None, comment=None):
+        #list of book_ids in excpetions
+        self.mycursor.execute(f"select book_id from price_exceptions")
+        book_id_list_exceptions = []
+        book_id_list_exceptions_fetch = self.mycursor.fetchall()
+        for i in book_id_list_exceptions_fetch:
+            for j in i:
+                book_id_list_exceptions.append(j)
+        #adds book_id to excpetions if book not in price_exceptions list
         if book_id!=None and ISBN==None:
-            self.mycursor.execute(add_to_Price_exceptions(newprice=newprice, book_id=book_id, comment=comment))
+            book_id_list_fetch = self.mycursor.fetchall()
+            if book_id not in book_id_list_exceptions:
+                self.mycursor.execute(add_to_Price_exceptions(newprice=newprice, book_id=book_id, comment=comment))
+        #adds book_ids according to ISBN to book excpetions if book_id not in book id exception list
         if book_id==None and ISBN!=None:
             self.mycursor.execute(f"select book_id from book_entries where ISBN={ISBN}")
             book_id_list_fetch = self.mycursor.fetchall()
@@ -209,7 +220,8 @@ class Admin:
                 for j in i:
                     book_id_list.append(j)
             for ID in book_id_list:
-                self.execute(add_to_Price_exceptions(newprice=newprice, book_id=ID, comment=comment))
+                if ID not in book_id_list_exceptions:
+                    self.execute(add_to_Price_exceptions(newprice=newprice, book_id=ID, comment=comment))
 
 
 
@@ -221,10 +233,13 @@ if __name__ == "__main__":
 #call add_book procedure
 #admin.add_book(ISBN=9780590353403, Title="Harry Potter and the Sorcerers Stone", author_name="Joanne", author_surname="Rowling", publisher="Scholastic Inc", published_year=2003, pages="309", language="English (USA)", book_type="Hardcover", location="7", section="7", genre="Fiction", employee_id=2, date="2022-06-02", Price=1000, translator="Joanne Rowling", Title_untranslated="Harry Potter and the Philosophers Stone", translated_from="English", edition=1, number_of_copies=1)
 
+#call add_price_exception
+admin.add_price_exception(newprice=1100, ISBN=None, book_id=15, comment="Malfidus broke it >:(")
+
 #call search records procedure
 print(admin.search_records(ISBN=9780593334833, Employee_id=None, Book_id=None))
 
-db.commit()
+#db.commit()
 
 # ISBN_potter = 9780590353403
 # for x in ISBN_list:
