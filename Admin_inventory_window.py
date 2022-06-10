@@ -58,7 +58,7 @@ class Admin_inventory_window(tk.Frame):
         Finance = tk.Button(self, text="Finance")
         Inventory = tk.Button(self, text="Inventory")
         Save = tk.Button(self, text="Save", command=self.commit_save)
-        Undo = tk.Button(self, text="Undo")
+        Undo = tk.Button(self, text="Undo", command=self.rollback_undo)
         Add = tk.Button(self, text="Add", command=self.add_book) # for adding
         Search = tk.Button(self, text="Search")
         Search_all = tk.Button(self, text="Search All")
@@ -370,30 +370,41 @@ class Admin_inventory_window(tk.Frame):
 
         # Comment = "Bruh"
 
-        print(Translator, Original_title, Origin)
-        Admin_object = Admin(db)
-        Admin_object.add_book(ISBN,Title,Author,Surname, Publisher, Year, Pages, Language, Booktype,
-                                  Location, Section, Genre, emp_id, Date, Buy_price,Comment,Translator, Original_title,
-                                  Origin, Edition, Amount)
-        print(ISBN, Title, Author, Surname, Edition, Comment, Language, Buy_price)
-        print(Publisher,Year,Pages,Booktype, Location, Section, Genre)
+
         resp = messagebox.askquestion('askquestion', 'Are you sure you want to save this book?')
         # messagebox.askquestion("askquestion", "Are you sure?")
         mycursor = db.cursor()
         if resp == "yes":
-            mycursor.execute("commit")
+            print(Translator, Original_title, Origin)
+            Admin_object = Admin(db)
+            try:
+                Admin_object.add_book(ISBN, Title, Author, Surname, Publisher, Year, Pages, Language, Booktype,
+                                      Location, Section, Genre, emp_id, Date, Buy_price, Comment, Translator,
+                                      Original_title,
+                                      Origin, Edition, Amount)
+                self.Booktype_listbox.config(fg="black")
+            except UnboundLocalError:
+                print("Here")
+                self.Booktype_listbox.config(fg="red")
+            print(ISBN, Title, Author, Surname, Edition, Comment, Language, Buy_price)
+            print(Publisher, Year, Pages, Booktype, Location, Section, Genre)
             print("Book has been added\nmake this a label that shows up.")
         else:
-            mycursor.execute("rollback")
-            print("Book has not been added because of rollback.\ncan also be a popup label.")
+            print("Book has not been added.")
     def commit_save(self):
-        resp = messagebox.askquestion('askquestion', 'Why do we have this, honestly?')
-        # messagebox.askquestion("askquestion", "Are you sure?")
-        # mycursor = db.cursor()
-        # if resp=="yes":
-        #     mycursor.execute("commit")
-        # else:
-        #     mycursor.execute("rollback")
+        resp = messagebox.askquestion('askquestion', 'Are you sure you want to commit?')
+        mycursor = db.cursor()
+        if resp=="yes":
+            mycursor.execute("commit")
+        else:
+            print("It doesn't commit")
+    def rollback_undo(self):
+        resp = messagebox.askquestion('askquestion', 'Are you sure you want to lose all of your progress?')
+        mycursor = db.cursor()
+        if resp == "yes":
+            mycursor.execute("rollback")
+        else:
+            print("It donsn't rollback")
     def set_price_exception(self):
         ISBN = self.Isbn_text3.get()
         Book_ID = int(self.BookID_entry3.get())
@@ -407,8 +418,7 @@ class Admin_inventory_window(tk.Frame):
         mycursor = db.cursor()
         if resp == "yes":
             mycursor.execute(query)
-            mycursor.execute("commit")
             print("Book has been added\nmake this a label that shows up.")
         else:
             # mycursor.execute("rollback")
-            print("Do we even want to use start transaction here?")
+            print("Book hasn't been added")
