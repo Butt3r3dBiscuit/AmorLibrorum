@@ -27,7 +27,7 @@ def add_to_Book_entries(ISBN, status_comment):
     return query
 
 
-def add_to_Price_exceptions(book_id, newprice, comment):
+def add_to_Price_exceptions(newprice, book_id=None, comment="NULL"):
     query = f"insert into Price_exceptions values ({book_id}, {newprice}, '{comment}')"
     return query
 
@@ -63,7 +63,7 @@ def func_search_records(ISBN=None, Employee_id=None, Book_id=None):
         query+= f" and c.book_id={Book_id}"
     return query
 
-def num_of_sales(self, start_date=None, end_date=None, Employee_id=None, ISBN=None):
+def num_of_sales(start_date=None, end_date=None, Employee_id=None, ISBN=None):
     #returns number of sales
     query = f"select count(a.book_id) from transactions a, book_entries b" \
             f" where a.book_id=b.book_id and a.price_in_cents>0"
@@ -77,7 +77,7 @@ def num_of_sales(self, start_date=None, end_date=None, Employee_id=None, ISBN=No
         query += f" and a.date<{end_date}"
     return query
 
-def profits(self, ISBN=None, employee_id=None, start_date=None, end_date=None):
+def profits(ISBN=None, employee_id=None, start_date=None, end_date=None):
     #returns profit in cents
     query = f"select sum(a.price_in_cents) from transactions a, book_entries b"
     if ISBN is not None:
@@ -132,7 +132,7 @@ class Admin:
         return query
     
     #procedures
-    def add_user(self, mycursor, email, password):
+    def add_user(self, email, password):
         employee_user_addition(mycursor, email, password)
 
     def add_book(self, ISBN, Title, author_name, author_surname, publisher,
@@ -165,7 +165,8 @@ class Admin:
             for i in ISBN_list_fetch:
                 for j in i:
                     ISBN_list.append(j)
-            if ISBN not in ISBN_list:
+            if str(ISBN) not in ISBN_list:
+                print("oops")
                 #adds to books
                 self.mycursor.execute(add_book)
                 # adds to authors
@@ -190,37 +191,52 @@ class Admin:
         except mysql.connector.errors.IntegrityError:
             print(f"Error: 1062 (23000): Duplicate entry '{ISBN}' for key 'books.PRIMARY'")
     
-    def search_records(self, mycursor, ISBN=None, Employee_id=None, Book_id=None):
+    def search_records(self, ISBN=None, Employee_id=None, Book_id=None):
         search = func_search_records(ISBN=ISBN, Employee_id=Employee_id, Book_id=Book_id)
         print(search)
-        mycursor.execute(search)
-        result_fetch = mycursor.fetchall()
+        self.mycursor.execute(search)
+        result_fetch = self.mycursor.fetchall()
         return result_fetch
+    
+    def add_price_exception(self, newprice, ISBN=None, book_id=None, comment=None):
+        if book_id!=None and ISBN==None:
+            self.mycursor.execute(add_to_Price_exceptions(newprice=newprice, book_id=book_id, comment=comment))
+        if book_id==None and ISBN!=None:
+            self.mycursor.execute(f"select book_id from book_entries where ISBN={ISBN}")
+            book_id_list_fetch = self.mycursor.fetchall()
+            book_id_list = []
+            for i in book_id_list_fetch:
+                for j in i:
+                    book_id_list.append(j)
+            for ID in book_id_list:
+                self.execute(add_to_Price_exceptions(newprice=newprice, book_id=ID, comment=comment))
+
+
 
 if __name__ == "__main__":
-    admin = Admin()
     db = connect.connect_admin("MyN3wP4ssw0rd!*")
+    admin = Admin(db)
     mycursor= db.cursor()
-    mycursor.execute("select ISBN from books")
-    ISBN_list = mycursor.fetchall()
 
-    #call add_book procedure
-    #admin.add_book(mycursor=mycursor, ISBN=9780590353403, Title="Harry Potter and the Sorcerers Stone", author_name="Joanne", author_surname="Rowling", publisher="Scholastic Inc", published_year=2003, pages="309", language="English (USA)", book_type="Hardcover", location="7", section="7", genre="Fiction", employee_id=2, date="2022-06-02", Price=1000, translator="Joanne Rowling", Title_untranslated="Harry Potter and the Philosophers Stone", translated_from="English", edition=1, number_of_copies=1)
+#call add_book procedure
+#admin.add_book(ISBN=9780590353403, Title="Harry Potter and the Sorcerers Stone", author_name="Joanne", author_surname="Rowling", publisher="Scholastic Inc", published_year=2003, pages="309", language="English (USA)", book_type="Hardcover", location="7", section="7", genre="Fiction", employee_id=2, date="2022-06-02", Price=1000, translator="Joanne Rowling", Title_untranslated="Harry Potter and the Philosophers Stone", translated_from="English", edition=1, number_of_copies=1)
 
-    #call search records procedure
-    print(admin.search_records(mycursor=mycursor, ISBN=9780593334833, Employee_id=None, Book_id=None))
+#call search records procedure
+print(admin.search_records(ISBN=9780593334833, Employee_id=None, Book_id=None))
 
-    # ISBN_potter = 9780590353403
-    # for x in ISBN_list:
-    #     if ISBN_potter not in x:
-    #         mycursor.execute("commit;")
+db.commit()
 
-    # def query_to_values(db, query):  # returns a list of values
-    #     mycursor = db.cursor()
-    #     mycursor.execute(query)
-    #     for (x) in mycursor:
-    #         return x
+# ISBN_potter = 9780590353403
+# for x in ISBN_list:
+#     if ISBN_potter not in x:
+#         mycursor.execute("commit;")
+
+# def query_to_values(db, query):  # returns a list of values
+#     mycursor = db.cursor()
+#     mycursor.execute(query)
+#     for (x) in mycursor:
+#         return x
 
 
-    # test = (query_to_values(db, curry))
-    # print(test)
+# test = (query_to_values(db, curry))
+# print(test)
