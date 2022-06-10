@@ -1,7 +1,7 @@
 import tkinter as tk
 import Start_window
 import Employees_sales_tab
-from connect import connect_admin, connect_employee
+from connect import connect_employee
 import Admin_inventory_window
 
 class login_window(tk.Frame):
@@ -48,10 +48,10 @@ class login_window(tk.Frame):
         print("password: ", password)
         # email = "casual@amorlibrorum.boek" #temp
         # password = "YetAn0!herqwertyp4ssword" #temp
-        # email = "frank@amorlibrorum.boek"
-        # password = "An0!herqwertyp4ssword"
-        db = connect_employee(email,password)
-        if db == 1045:
+        email = "frank@amorlibrorum.boek"
+        password = "An0!herqwertyp4ssword"
+        self.db = connect_employee(email,password)
+        if self.db == 1045:
             try:
                 self.error_label.destroy()
                 self.error_label = tk.Label(self, text="User not found!", width="15", fg="red")
@@ -61,9 +61,9 @@ class login_window(tk.Frame):
             # error_label.pack()
             self.error_label.place(relx=0.5, rely=0.15, anchor="n")
         else:
-            my_cursor = db.cursor()
-            my_cursor.execute(f"select position, Employee_ID from employees where email='{email}'")
-            for (x) in my_cursor:
+            self.my_cursor = self.db.cursor()
+            self.my_cursor.execute(f"select position, Employee_ID from employees where email='{email}'")
+            for (x) in self.my_cursor:
                 position = x[0]
                 print("here is position: ", position)
                 self.employee_id = x[1]
@@ -89,6 +89,7 @@ class login_window(tk.Frame):
             except AttributeError:
                 print("label has not yet been created")
             Admin_inventory_window.emp_id = self.employee_id
+            Admin_inventory_window.db = self.db
             print(Admin_inventory_window.emp_id)
             controller.show_frame(Admin_inventory_window.Admin_inventory_window)
     def back_button(self, controller):
