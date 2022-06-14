@@ -19,9 +19,9 @@ class Admin_finance_window(tk.Frame):
         # window.title("Employee Window")
 
         # Buttons
-        Employee = tk.Button(self, text="Employee", bg='red',
+        Employee = tk.Button(self, text="Employee",
                              command=lambda: controller.show_frame(employee_window.employee_window))
-        Finance = tk.Button(self, text="Finance", fg="blue", bg="yellow", highlightbackground="yellow")
+        Finance = tk.Button(self, text="Finance")
         Inventory = tk.Button(self, text="Inventory",
                               command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
         Delete = tk.Button(self, text="Delete")
