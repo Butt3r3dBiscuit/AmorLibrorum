@@ -275,25 +275,10 @@ admin.add_employee(name="Albus", surname="Dumbledore", position="Manager", passw
 #call set margin procedure
 admin.set_margin(margin=1.210)
 
-db.commit()
+#db.commit()
 
 #call search employee procedure
 print(admin.search_employee(name="Albus", surname="Dumbledore"))
 
 #call search records procedure
 print(admin.search_records(ISBN=9780593334833, Employee_id=None, Book_id=None))
-
-# ISBN_potter = 9780590353403
-# for x in ISBN_list:
-#     if ISBN_potter not in x:
-#         mycursor.execute("commit;")
-
-# def query_to_values(db, query):  # returns a list of values
-#     mycursor = db.cursor()
-#     mycursor.execute(query)
-#     for (x) in mycursor:
-#         return x
-
-
-# test = (query_to_values(db, curry))
-# print(test)
