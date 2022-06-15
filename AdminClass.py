@@ -196,7 +196,7 @@ class Admin:
             print(f"Error: 1062 (23000): Duplicate entry '{ISBN}' for key 'books.PRIMARY'")
     
     def search_records(self, ISBN=None, Employee_id=None, Book_id=None):
-        #retrives records
+        #retrieves records
         search = func_search_records(ISBN=ISBN, Employee_id=Employee_id, Book_id=Book_id)
         self.mycursor.execute(search)
         result_fetch = self.mycursor.fetchall()
