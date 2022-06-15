@@ -239,7 +239,7 @@ class Admin:
             for j in i:
                 employee_list.append(j)
         if (name or surname) in employee_list:
-            print("Employee is already in exceptions >:(")
+            print("Employee is already in employees >:(")
         #if employee not in employee_list adds employee
         else:
             print(add_to_employees(Name=name, Surname=surname, position=position, Password=passwd, email=email))
