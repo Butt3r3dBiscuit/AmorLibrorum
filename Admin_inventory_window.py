@@ -1,6 +1,7 @@
 import tkinter as tk
 import Start_window
 import employee_window
+import Admin_finance_window
 from AdminClass import Admin, add_to_Price_exceptions
 from datetime import date
 from tkinter import messagebox
@@ -55,8 +56,8 @@ class Admin_inventory_window(tk.Frame):
         # Buttons
         Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(
             employee_window.employee_window))
-        Finance = tk.Button(self, text="Finance")
-        Inventory = tk.Button(self, text="Inventory")
+        Finance = tk.Button(self, text="Finance", command= lambda: controller.show_frame(Admin_finance_window.Admin_finance_window))
+        Inventory = tk.Button(self, text="Inventory", state="disabled")
         Save = tk.Button(self, text="Save", command=self.commit_save)
         Undo = tk.Button(self, text="Undo", command=self.rollback_undo)
         Add = tk.Button(self, text="Add", command=self.add_book) # for adding

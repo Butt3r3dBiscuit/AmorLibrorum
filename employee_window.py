@@ -1,6 +1,7 @@
 import tkinter as tk
 import Start_window
 import Admin_inventory_window
+import Admin_finance_window
 
 class employee_window(tk.Frame):
     def __init__(self, parent, controller):
@@ -22,10 +23,10 @@ class employee_window(tk.Frame):
         
         
         #Buttons
-        Financial = tk.Button(self, text="Financial")
-        Add_book = tk.Button(self, text="Add Book", command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
-        Sell = tk.Button(self, text="Sell", command=self.test_emp_id)
-        Add_employee = tk.Button(self, text="Add Employee")
+        Employee = tk.Button(self, text="Employee", state="disabled")
+        Finance = tk.Button(self, text="Finance",command=lambda: controller.show_frame(Admin_finance_window.Admin_finance_window))
+        Inventory = tk.Button(self, text="Inventory",
+                              command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
         Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
 
         
@@ -41,11 +42,13 @@ class employee_window(tk.Frame):
         
         
         #Placement Buttons
-        Financial.place(relx=1, relwidth=rel_width, relheight=rel_height, anchor="ne")
-        Add_book.place(relx=0.9, relwidth=rel_width, relheight=rel_height, anchor="ne")
-        Sell.place(relx=0.8, relwidth=rel_width, relheight=rel_height, anchor="ne")
-        Add_employee.place(relx=0.7, relwidth=rel_width, relheight=rel_height, anchor="ne")
+        Employee.place(relx=1, relwidth=rel_width, relheight=rel_height, anchor="ne")
+        Finance.place(relx=0.9, relwidth=rel_width, relheight=rel_height, anchor="ne")
+        Inventory.place(relx=0.8, relwidth=rel_width, relheight=rel_height, anchor="ne")
         Log_out.place(relx=0,rely=0,relwidth=rel_width, relheight=rel_height, anchor="nw")
+
+
+
 
 
         #Placement Text
