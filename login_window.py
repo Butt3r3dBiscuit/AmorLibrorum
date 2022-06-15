@@ -23,9 +23,6 @@ class login_window(tk.Frame):
         back_button.pack()
         back_button.place(x=0,y=0)
 
-        login_button = tk.Button(self, text="Log in", height=2, width=11, command=lambda: self.log_in(controller))
-        login_button.pack()
-        login_button.place(x=200, y=95)
 
         email_label = tk.Label(self, text="Email Adress", width = "15")
         email_label.pack()
@@ -36,6 +33,11 @@ class login_window(tk.Frame):
         password_label.pack()
         self.password_text = tk.Entry(self, width=40, show="*")
         self.password_text.pack()
+
+        login_button = tk.Button(self, text="Log in", height=2, width=11, command=lambda: self.log_in(controller))
+        login_button.bind('<Return>', lambda event: self.log_in(controller))
+        login_button.pack()
+        login_button.place(x=200, y=95)
 
     def log_in(self, controller):
         email = self.email_text.get()
