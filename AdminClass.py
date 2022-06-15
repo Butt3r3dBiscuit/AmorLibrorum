@@ -195,6 +195,8 @@ class Admin:
         except mysql.connector.errors.IntegrityError:
             print(f"Error: 1062 (23000): Duplicate entry '{ISBN}' for key 'books.PRIMARY'")
     
+    #space searchbook
+
     def search_records(self, ISBN=None, Employee_id=None, Book_id=None):
         #retrieves records
         search = func_search_records(ISBN=ISBN, Employee_id=Employee_id, Book_id=Book_id)
@@ -237,7 +239,7 @@ class Admin:
             for j in i:
                 employee_list.append(j)
         if (name or surname) in employee_list:
-            print("Employee already exists >:(")
+            print("Employee is already in exceptions >:(")
         #if employee not in employee_list adds employee
         else:
             print(add_to_employees(Name=name, Surname=surname, position=position, Password=passwd, email=email))
