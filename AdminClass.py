@@ -1,3 +1,4 @@
+from re import L
 import mysql.connector
 import connect
 from user_creation import employee_user_addition
@@ -39,8 +40,8 @@ def add_to_Transactions(book_id, employee_id, date, Price):
 
 
 def add_to_employees(Name, Surname, position, Password, email):
-    query = f"insert into employees(Name, Surname, position, Password, email) values({Name}, {Surname}," \
-            f" {position}, {Password}, {email})"
+    query = f"insert into employees(Name, Surname, position, Password, email) values('{Name}', '{Surname}'," \
+            f" '{position}', '{Password}', '{email}')"
     return query
 
 
@@ -141,6 +142,8 @@ class Admin:
     edition="NULL", number_of_copies=1):
         try:
             #queries
+            print()
+            print("Queries executed add book")
             add_book_entries = add_to_Book_entries(ISBN=ISBN, status_comment=status_comment)
             print(add_book_entries)
 
@@ -188,12 +191,13 @@ class Admin:
             for i in book_id_list:
                 print(add_to_Transactions(book_id=i, employee_id=employee_id, date=date, Price=Price))
                 self.mycursor.execute(add_to_Transactions(book_id=i, employee_id=employee_id, date=date, Price=Price))
+            print()
         except mysql.connector.errors.IntegrityError:
             print(f"Error: 1062 (23000): Duplicate entry '{ISBN}' for key 'books.PRIMARY'")
     
     def search_records(self, ISBN=None, Employee_id=None, Book_id=None):
+        #retrives records
         search = func_search_records(ISBN=ISBN, Employee_id=Employee_id, Book_id=Book_id)
-        print(search)
         self.mycursor.execute(search)
         result_fetch = self.mycursor.fetchall()
         return result_fetch
@@ -222,7 +226,33 @@ class Admin:
             for ID in book_id_list:
                 if ID not in book_id_list_exceptions:
                     self.execute(add_to_Price_exceptions(newprice=newprice, book_id=ID, comment=comment))
+        else:
+            print("Book is already in exceptions >:(")
 
+    def add_employee(self, name, surname, position, passwd, email):
+        #checks if employee in database
+        self.mycursor.execute(employee_search(name, surname))
+        employee_list = []
+        for i in self.mycursor.fetchall():
+            for j in i:
+                employee_list.append(j)
+        if (name or surname) in employee_list:
+            print("Employee already exists >:(")
+        #if employee not in employee_list adds employee
+        else:
+            print(add_to_employees(Name=name, Surname=surname, position=position, Password=passwd, email=email))
+            self.mycursor.execute(add_to_employees(Name=name, Surname=surname, position=position, Password=passwd, email=email))
+    
+    def search_employee(self, name, surname):
+        #retrieves employee datab
+        self.mycursor.execute(employee_search(name=name, surname=surname))
+        return self.mycursor.fetchall()
+    
+    def set_margin(self, margin):
+        #deltes all variables (margin)
+        self.mycursor.execute('delete from variables')
+        #adds new margin
+        self.mycursor.execute(add_to_variables(margin=margin))
 
 
 if __name__ == "__main__":
@@ -230,16 +260,26 @@ if __name__ == "__main__":
     admin = Admin(db)
     mycursor= db.cursor()
 
+
 #call add_book procedure
-#admin.add_book(ISBN=9780590353403, Title="Harry Potter and the Sorcerers Stone", author_name="Joanne", author_surname="Rowling", publisher="Scholastic Inc", published_year=2003, pages="309", language="English (USA)", book_type="Hardcover", location="7", section="7", genre="Fiction", employee_id=2, date="2022-06-02", Price=1000, translator="Joanne Rowling", Title_untranslated="Harry Potter and the Philosophers Stone", translated_from="English", edition=1, number_of_copies=1)
+admin.add_book(ISBN=9780590353403, Title="Harry Potter and the Sorcerers Stone", author_name="Joanne", author_surname="Rowling", publisher="Scholastic Inc", published_year=2003, pages="309", language="English (USA)", book_type="Hardcover", location="7", section="7", genre="Fiction", employee_id=2, date="2022-06-02", Price=1000, translator="Joanne Rowling", Title_untranslated="Harry Potter and the Philosophers Stone", translated_from="English", edition=1, number_of_copies=1)
 
 #call add_price_exception
 admin.add_price_exception(newprice=1100, ISBN=None, book_id=15, comment="Malfidus broke it >:(")
 
+#call add employee to employees procedure
+admin.add_employee(name="Albus", surname="Dumbledore", position="Manager", passwd="EldenWandIsOPAF123:3", email="dumbiegamer@hogwarts.com")
+
+#call set margin procedure
+admin.set_margin(margin=1.210)
+
+db.commit()
+
+#call search employee procedure
+print(admin.search_employee(name="Albus", surname="Dumbledore"))
+
 #call search records procedure
 print(admin.search_records(ISBN=9780593334833, Employee_id=None, Book_id=None))
-
-#db.commit()
 
 # ISBN_potter = 9780590353403
 # for x in ISBN_list:
