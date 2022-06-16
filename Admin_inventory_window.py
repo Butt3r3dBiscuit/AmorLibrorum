@@ -100,7 +100,7 @@ class Admin_inventory_window(tk.Frame):
         self.Sell_Price_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Sell_Price_text.pack()
 
-        Isbn_label = tk.Label(self, text="ISBN", width="15")
+        Isbn_label = tk.Label(self, text="ISBN", width="15") #for add book
         Isbn_label.pack()
         self.Isbn_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         # Isbn_text.pack()
