@@ -255,10 +255,10 @@ class Admin_inventory_window(tk.Frame):
         Add.place(relx=0.9, rely=0.9, relwidth=rel_width, relheight=rel_height, anchor="e")
 
         # label and text place 4
-        Isbn_text2.place(relx=0.2, rely=0.2, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Isbn_label2.place(relx=0.2, rely=0.15, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Search.place(relx=0.8, rely=0.2, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Search_all.place(relx=0.9, rely=0.2, relwidth=rel_width, relheight=rel_height, anchor="e")
+        Isbn_text2.place(relx=0.2, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
+        Isbn_label2.place(relx=0.2, rely=0.15, relwidth=rel_width, height=row_height, anchor="e")
+        Search.place(relx=0.8, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
+        Search_all.place(relx=0.9, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
 
         # label and text place 5
         Set.place(relx=0.9, rely=0.55, relwidth=rel_width, relheight=rel_height, anchor="e")
