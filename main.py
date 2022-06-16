@@ -10,6 +10,7 @@ from Admin_finance_window import Admin_finance_window
 class Handler(tk.Tk):
 
     def __init__(self, *args, **kwargs):
+
         tk.Tk.__init__(self, *args, **kwargs)
         container = tk.Frame(self)
         width = tk.Tk.winfo_screenwidth(self)
@@ -25,7 +26,7 @@ class Handler(tk.Tk):
 
         self.frames = {}
 
-#here we will put names of classes in respective files
+# here we will put names of classes in respective files
 
         for F in (Start_window, login_window, Employee_sales_window, Admin_inventory_window, employee_window, Admin_finance_window):
             print("here", F)
@@ -44,6 +45,7 @@ class Handler(tk.Tk):
 
 if __name__ == '__main__':
     LARGE_FONT = ("Verdana", 12)
+
 
     app = Handler()
     app.mainloop()
