@@ -30,7 +30,7 @@ class login_window(tk.Frame):
         self.email_text = tk.Entry(self, width=40)
         self.email_text.pack()
 
-        password_label = tk.Label(self, text="Password", width = "15")
+        password_label = tk.Label(self, text="Password", width="15")
         password_label.pack()
         self.password_text = tk.Entry(self, width=40, show="*")
         self.password_text.pack()
@@ -43,7 +43,7 @@ class login_window(tk.Frame):
     def log_in(self, controller):
         email = self.email_text.get()
         print("email: ", email)
-        if email=="margje@amorlibrorum.boek":
+        if email == "margje@amorlibrorum.boek":
             print(True)
         else:
             print([email])
@@ -53,8 +53,8 @@ class login_window(tk.Frame):
         # password = "YetAn0!herqwertyp4ssword" #temp
         email = "frank@amorlibrorum.boek"
         password = "An0!herqwertyp4ssword"
-        self.db = connect_employee(email,password)
-        if self.db == 1045:
+        db = connect_employee(email, password)
+        if db == 1045:
             try:
                 self.error_label.destroy()
                 self.error_label = tk.Label(self, text="User not found!", width="15", fg="red")
@@ -78,7 +78,7 @@ class login_window(tk.Frame):
         self.password_text.destroy()
         self.password_text = tk.Entry(self, width=40, show="*")
         self.password_text.pack()
-        if position=="Staff":
+        if position == "Staff":
             try:
                 self.error_label.destroy()
             except AttributeError:
