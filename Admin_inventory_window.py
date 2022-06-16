@@ -163,6 +163,7 @@ class Admin_inventory_window(tk.Frame):
         types = ("Paperback","Hardcover")
         types_var = tk.StringVar(value=types)
 
+        types_var = tk.StringVar(value=types)
         Booktype_label = tk.Label(self, text="Book Type", width="15")
         Booktype_label.pack()
         self.Booktype_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
