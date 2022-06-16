@@ -1,12 +1,11 @@
 import tkinter as tk
 import login_window
+import guest_class as gc
 
 
 class Start_window(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        # tk.self.title("Title?")
-        # tk.Frame(self, "this is Start_window.py")
 
         rel_width = 0.1
         row_height = 20
