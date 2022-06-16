@@ -18,7 +18,9 @@ class Admin_inventory_window(tk.Frame):
 
 
         rel_width = 0.1
-        rel_height = 0.05
+        row_height = 20
+
+        button_font = "Helvetica 18 bold"
         # Window
         # window = Tk()
         # width = window.winfo_screenwidth()
@@ -28,11 +30,10 @@ class Admin_inventory_window(tk.Frame):
         # test push
 
         # text
-        helvetica_font = "Helvetica 18 bold"
-        Add_book = tk.Label(self, text="Add Book: ", font=helvetica_font)
-        Search_book = tk.Label(self, text="Search Book: ", font=helvetica_font)
-        Found_book = tk.Label(self, text="Books Found: ", font=helvetica_font)
-        Set_sellprice = tk.Label(self, text="Set Sellprice: ", font=helvetica_font)
+        Add_book = tk.Label(self, text="Add Book: ", font=button_font)
+        Search_book = tk.Label(self, text="Search Book: ", font=button_font)
+        Found_book = tk.Label(self, text="Books Found: ", font=button_font)
+        Set_sellprice = tk.Label(self, text="Set Sellprice: ", font=button_font)
 
         Title = tk.Label(self, text="Title")
         Author = tk.Label(self, text="Author")
@@ -58,6 +59,7 @@ class Admin_inventory_window(tk.Frame):
             employee_window.employee_window))
         Finance = tk.Button(self, text="Finance", command= lambda: controller.show_frame(Admin_finance_window.Admin_finance_window))
         Inventory = tk.Button(self, text="Inventory", relief="sunken", state="disabled")
+        
         Save = tk.Button(self, text="Save", command=self.commit_save)
         Undo = tk.Button(self, text="Undo", command=self.rollback_undo)
         Add = tk.Button(self, text="Add", command=self.add_book) # for adding
@@ -67,16 +69,16 @@ class Admin_inventory_window(tk.Frame):
         Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
 
         # place label
-        Add_book.place(relx=0.2, rely=0.6, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Search_book.place(relx=0.2, rely=0.1, relwidth=rel_width, relheight=rel_height, anchor="e")
+        Add_book.place(relx=0.2, rely=0.6, relwidth=rel_width, height=row_height, anchor="e")
+        Search_book.place(relx=0.2, rely=0.1, relwidth=rel_width, height=row_height, anchor="e")
 
         # Place Buttons
-        Employee.place(relx=1, relwidth=rel_width, relheight=rel_height, anchor="ne")
-        Finance.place(relx=0.9, relwidth=rel_width, relheight=rel_height, anchor="ne")
-        Inventory.place(relx=0.8, relwidth=rel_width, relheight=rel_height, anchor="ne")
-        Save.place(relx=1, rely=0.975, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Undo.place(relx=0.9, rely=0.975, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Log_out.place(relx=0, rely=0, relwidth=rel_width, relheight=rel_height, anchor="nw")
+        Employee.place(relx=1, relwidth=rel_width, height=row_height, anchor="ne")
+        Finance.place(relx=0.9, relwidth=rel_width, height=row_height, anchor="ne")
+        Inventory.place(relx=0.8, relwidth=rel_width, height=row_height, anchor="ne")
+        Save.place(relx=1, rely=0.975, relwidth=rel_width, height=row_height, anchor="e")
+        Undo.place(relx=0.9, rely=0.975, relwidth=rel_width, height=row_height, anchor="e")
+        Log_out.place(relx=0, rely=0, relwidth=rel_width, height=row_height, anchor="nw")
 
         # text and labels
         Isbn_label2 = tk.Label(self, text="ISBN", width="15")
@@ -146,8 +148,8 @@ class Admin_inventory_window(tk.Frame):
         self.Buy_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Buy_text.pack()
 
-        Instore_label = tk.Label(self, text="Amount", width="15")
-        Instore_label.pack()
+        Amount_label = tk.Label(self, text="Amount", width="15")
+        Amount_label.pack()
         self.Amount_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Amount_text.pack()
 
