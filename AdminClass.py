@@ -206,7 +206,7 @@ class Admin:
         result_fetch = self.mycursor.fetchall()
         return result_fetch
     
-    def add_price_exception(self, newprice=None, ISBN=None, book_id=None, comment=None):
+    def add_price_exception(self, newprice=None, ISBN=None, book_id=None, comment=None):#update by ISBN!
         #list of book_ids in excpetions
         self.mycursor.execute(f"select book_id from price_exceptions")
         book_id_list_exceptions = []
