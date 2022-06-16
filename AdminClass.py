@@ -28,7 +28,9 @@ def add_to_Book_entries(ISBN, status_comment):
     return query
 
 
-def add_to_Price_exceptions(newprice, book_id=None, comment="NULL"):
+def add_to_Price_exceptions(newprice=None, book_id=None, comment="NULL"):
+    if newprice==None:
+        newprice="Null"
     query = f"insert into Price_exceptions values ({book_id}, {newprice}, '{comment}')"
     return query
 
@@ -204,7 +206,7 @@ class Admin:
         result_fetch = self.mycursor.fetchall()
         return result_fetch
     
-    def add_price_exception(self, newprice, ISBN=None, book_id=None, comment=None):
+    def add_price_exception(self, newprice=None, ISBN=None, book_id=None, comment=None):
         #list of book_ids in excpetions
         self.mycursor.execute(f"select book_id from price_exceptions")
         book_id_list_exceptions = []
@@ -266,25 +268,25 @@ if __name__ == "__main__":
     admin = Admin(db)
     mycursor= db.cursor()
 
-# # #call add employee to employees procedure
-# admin.add_employee(name="Albus", surname="Dumbledore", position="Manager", passwd="EldenWandIsOPAF123:3", email="dumbiegamer@hogwarts.com")
+    # # #call add employee to employees procedure
+    # admin.add_employee(name="Albus", surname="Dumbledore", position="Manager", passwd="EldenWandIsOPAF123:3", email="dumbiegamer@hogwarts.com")
 
-# #call add_book procedure
-# admin.add_book(ISBN=9780590353403, Title="Harry Potter and the Sorcerers Stone", author_name="Joanne", author_surname="Rowling", publisher="Scholastic Inc", published_year=2003, pages="309", language="English (USA)", book_type="Hardcover", location="7", section="7", genre="Fiction", employee_id=1, date="2022-06-02", Price=1000, translator="Joanne Rowling", Title_untranslated="Harry Potter and the Philosophers Stone", translated_from="English", edition=1, number_of_copies=3)
-# #mycursor.execute(f"select * from transactions order by Transaction_ID desc limit 1")
+    # #call add_book procedure
+    # admin.add_book(ISBN=9780590353403, Title="Harry Potter and the Sorcerers Stone", author_name="Joanne", author_surname="Rowling", publisher="Scholastic Inc", published_year=2003, pages="309", language="English (USA)", book_type="Hardcover", location="7", section="7", genre="Fiction", employee_id=1, date="2022-06-02", Price=1000, translator="Joanne Rowling", Title_untranslated="Harry Potter and the Philosophers Stone", translated_from="English", edition=1, number_of_copies=3)
+    # #mycursor.execute(f"select * from transactions order by Transaction_ID desc limit 1")
 
-#print(mycursor.fetchall())
+    #print(mycursor.fetchall())
 
-#call add_price_exception
-admin.add_price_exception(newprice=1, ISBN=None, book_id=1, comment="Malfidus broke it >:(")
+    #call add_price_exception
+    #admin.add_price_exception(newprice=10, ISBN=None, book_id=2, comment="Malfidus broke it >:(")
 
-# #call set margin procedure
-# admin.set_margin(margin=1.210)
+    # #call set margin procedure
+    # admin.set_margin(margin=1.210)
 
-# #call search employee procedure
-# print(admin.search_employee(name="Albus", surname="Dumbledore"))
+    # #call search employee procedure
+    # print(admin.search_employee(name="Albus", surname="Dumbledore"))
 
-# #call search records procedure
-# print(admin.search_records(ISBN=9780593334833, Employee_id=None, Book_id=None))
+    # #call search records procedure
+    # print(admin.search_records(ISBN=9780593334833, Employee_id=None, Book_id=None))
 
-db.commit()
+    db.commit()
