@@ -6,12 +6,10 @@ emp_id = None
 class Employee_sales_window(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        rel_width = 0.1
-        rel_height = 0.05
 
-        # window = Tk()
-        # window.geometry("800x400")
-        # window.title("Employee sales tab")
+        rel_width = 0.1
+        row_height = 20
+        button_font = "Helvetica 18 bold"
 
         Search = tk.Button(self, text="Search")
         Search.place(relx=0.4, rely=0.35, relwidth=rel_width, relheight=0.1, anchor="e")
