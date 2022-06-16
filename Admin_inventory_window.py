@@ -335,7 +335,7 @@ class Admin_inventory_window(tk.Frame):
         Author = self.Author_text.get()
         Surname = self.Surname_text.get()
         Edition = self.Edition_text.get()
-        Comment = self.Comment_text.get()
+        Comment = self.Version_text.get()
         Language = self.Language_text.get()
         Buy_price = int(self.Buy_text.get())
         Amount = int(self.Amount_text.get()) #what is it for?
