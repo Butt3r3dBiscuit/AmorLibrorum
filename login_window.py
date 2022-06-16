@@ -30,7 +30,7 @@ class login_window(tk.Frame):
         self.email_text = tk.Entry(self, width=40)
         self.email_text.pack()
 
-        password_label = tk.Label(self, text="Password", width="15")
+        password_label = tk.Label(self, text="Password", width = "15")
         password_label.pack()
         self.password_text = tk.Entry(self, width=40, show="*")
         self.password_text.pack()
@@ -57,10 +57,10 @@ class login_window(tk.Frame):
         if self.db == 1045:
             try:
                 self.error_label.destroy()
-                self.error_label = tk.Label(self, text="User not found!", width="15", fg="red")
+                self.error_label = tk.Label(self, text="User not found!", width = "15", fg = "red")
             except AttributeError:
                 print("label has not yet been created")
-            self.error_label = tk.Label(self, text="User not found!", width = "15", fg="red")
+            self.error_label = tk.Label(self, text="User not found!", width = "15", fg = "red")
             # error_label.pack()
             self.error_label.place(relx=0.5, rely=0.15, anchor="n")
         else:
