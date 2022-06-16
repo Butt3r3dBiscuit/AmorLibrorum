@@ -1,5 +1,6 @@
 DROP USER if exists 'margje@amorlibrorum.boek'@'localhost';
 DROP USER if exists 'frank@amorlibrorum.boek'@'localhost';
+DROP USER if exists 'guest'@'localhost';
 
 CREATE USER 'margje@amorlibrorum.boek'@'localhost' IDENTIFIED BY 'NotAn0therqwer!ypassword';
 FLUSH PRIVILEGES;
@@ -33,6 +34,7 @@ CREATE function price_determination(book_id_given int)
         declare counting_rows int;
         declare return_string varchar(20);
         select count(Book_ID) into counting_rows from Transactions where Book_ID=book_id_given;
+        select new_price_in_cents into price from Price_exceptions where Book_ID=book_id_given;
         if counting_rows=1 THEN
             if price IS NULL THEN
                 select margin into margin_var from variables;
