@@ -37,15 +37,15 @@ class Admin_inventory_window(tk.Frame):
         In_store = tk.Label(self, text="InStore")
 
         # text place
-        Found_book.place(relx=0.2, rely=0.25, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Title.place(relx=0.2, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Author.place(relx=0.3, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Edition.place(relx=0.4, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Comment.place(relx=0.5, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Buy_price.place(relx=0.6, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Sell_price.place(relx=0.7, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
-        In_store.place(relx=0.8, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Set_sellprice.place(relx=0.2, rely=0.45, relwidth=rel_width, relheight=rel_height, anchor="e")
+        Found_book.place(relx=0.2, rely=0.25, relwidth=rel_width, height=row_height, anchor="e")
+        Title.place(relx=0.2, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
+        Author.place(relx=0.3, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
+        Edition.place(relx=0.4, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
+        Version.place(relx=0.5, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
+        Buy_price.place(relx=0.6, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
+        Sell_price.place(relx=0.7, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
+        In_store.place(relx=0.8, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
+        Set_sellprice.place(relx=0.2, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
 
         # Buttons
         Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(
