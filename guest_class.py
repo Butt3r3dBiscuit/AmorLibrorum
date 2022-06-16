@@ -56,6 +56,3 @@ class Guest:
                        "GROUP BY B.ISBN")
         result = cursor.fetchall()
         return result
-
-Test = Guest()
-# print(Test.search(""))
