@@ -307,8 +307,7 @@ class Admin_inventory_window(tk.Frame):
         self.Untranslated_label.place(relx=0.3, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
         self.Origin_text.place(relx=0.4, rely=0.9, relwidth=rel_width, height=row_height, anchor="e")
         self.Origin_label.place(relx=0.4, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
-        # self.Translated_label.place(relx=0.65, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
-        print("hello")
+        # self.Translated_label.place(relx=0.65, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")        print("hello")
         print(emp_id)
 
     def no_button(self):
