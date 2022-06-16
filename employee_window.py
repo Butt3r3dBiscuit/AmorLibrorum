@@ -7,13 +7,10 @@ class employee_window(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
-
         rel_width = 0.1
         rel_height = 0.05
-        
-        
-        
-        #Window
+
+        # Window
         # window = Tk()
         # width= window.winfo_screenwidth()
         # height= window.winfo_screenheight()
@@ -48,10 +45,7 @@ class employee_window(tk.Frame):
         Log_out.place(relx=0,rely=0,relwidth=rel_width, relheight=rel_height, anchor="nw")
 
 
-
-
-
-        #Placement Text
+        # Placement Text
         Book_search.place(relx=0.18, rely=0.15, relwidth=rel_width, relheight=rel_height, anchor="e")
         Title.place(relx=0.2, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
         Author.place(relx=0.35, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
@@ -59,7 +53,7 @@ class employee_window(tk.Frame):
         Version.place(relx=0.65, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
         Language.place(relx=0.8, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
         All.place(relx=0.95, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
-    
+
     def test_emp_id(self):
         print(Admin_inventory_window.emp_id)
         print('this is just to test that we have the emp_id loaded - not sure if we need it here but ye')

@@ -11,7 +11,6 @@ class Admin_inventory_window(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
-
         rel_width = 0.1
         row_height = 20
         # Window
