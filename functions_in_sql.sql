@@ -51,6 +51,7 @@ CREATE function price_determination(book_id_given int)
     RETURN return_string;
 END;
 
+GRANT EXECUTE on FUNCTION `Amorlibrorum`.`price_determination` to 'guest'@'localhost';
 -- drop trigger if exists ISBN_cz;
 
 -- create handler that checks while adding boook to book_entries if the ISBN exists already in the books
