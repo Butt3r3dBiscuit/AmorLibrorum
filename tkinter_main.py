@@ -1,16 +1,16 @@
 from tkinter import *
 
-
 root = Tk()
 root.title("test")
 root.geometry("400x400")
+
 
 class Elder:
     def __init__(self, master):
         myFrame = Frame(master)
         myFrame.pack()
 
-        self.myButton = Button(master, text="Test", command= lambda: self.clicker(master))
+        self.myButton = Button(master, text="Test", command=lambda: self.clicker(master))
         self.myButton.pack(pady=20)
 
     def clicker(self, master):
@@ -18,7 +18,6 @@ class Elder:
         Child(master)
         print("was here")
         master.destroy()
-
 
 
 # class Child(Elder):
