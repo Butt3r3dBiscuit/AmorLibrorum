@@ -28,7 +28,9 @@ def add_to_Book_entries(ISBN, status_comment):
     return query
 
 
-def add_to_Price_exceptions(newprice, book_id=None, comment="NULL"):
+def add_to_Price_exceptions(newprice=None, book_id=None, comment="NULL"):
+    if newprice==None:
+        newprice="Null"
     query = f"insert into Price_exceptions values ({book_id}, {newprice}, '{comment}')"
     return query
 
@@ -140,60 +142,60 @@ class Admin:
     published_year, pages, language, book_type, location, section, genre, employee_id, date, 
     Price, status_comment="NULL", translator="NULL", Title_untranslated="NULL", translated_from="NULL", 
     edition="NULL", number_of_copies=1):
-        try:
-            #queries
-            print()
-            print("Queries executed add book")
-            add_book_entries = add_to_Book_entries(ISBN=ISBN, status_comment=status_comment)
+        #queries
+        print()
+        print("Queries executed add book")
+        add_book_entries = add_to_Book_entries(ISBN=ISBN, status_comment=status_comment)
+        print(add_book_entries)
+
+        add_book = add_to_books(ISBN=ISBN, Title=Title, publisher=publisher, 
+        published_year=published_year, pages=pages, language=language, edition=edition, 
+        book_type=book_type, location=location, section=section, genre=genre)
+        print(add_book)
+
+        add_authors = add_to_authors(ISBN=ISBN, author_name=author_name, author_surname=author_surname)
+        print(add_authors)
+
+        add_if_translated = add_to_if_translated(ISBN, translator, Title_untranslated, translated_from)
+        print(add_if_translated)
+
+        #checks if price is negative
+        if Price<0:
+            Price*=-1
+        #if book not yet in database adds to books, auhtors, if_translated
+        self.mycursor.execute("select ISBN from books")
+        ISBN_list_fetch = self.mycursor.fetchall()
+        ISBN_list = []
+        for i in ISBN_list_fetch:
+            for j in i:
+                ISBN_list.append(j)
+        print(ISBN_list)
+        print(ISBN)
+        if str(ISBN) not in ISBN_list:
+            #adds to books
+            self.mycursor.execute(add_book)
+            # adds to authors
+            self.mycursor.execute(add_authors)
+            # adds to translated if translated
+            if translator is not None or Title_untranslated is not None or translated_from is not None:
+                self.mycursor.execute(add_if_translated)
+        #adds to book_entries
+        for i in range(number_of_copies):
             print(add_book_entries)
-
-            add_book = add_to_books(ISBN=ISBN, Title=Title, publisher=publisher, 
-            published_year=published_year, pages=pages, language=language, edition=edition, 
-            book_type=book_type, location=location, section=section, genre=genre)
-            print(add_book)
-
-            add_authors = add_to_authors(ISBN=ISBN, author_name=author_name, author_surname=author_surname)
-            print(add_authors)
-
-            add_if_translated = add_to_if_translated(ISBN, translator, Title_untranslated, translated_from)
-            print(add_if_translated)
-
-            #checks if price is negative
-            if Price<0:
-                Price*=-1
-            #if book not yet in database adds to books, auhtors, if_translated
-            self.mycursor.execute("select ISBN from books")
-            ISBN_list_fetch = self.mycursor.fetchall()
-            ISBN_list = []
-            for i in ISBN_list_fetch:
-                for j in i:
-                    ISBN_list.append(j)
-            if str(ISBN) not in ISBN_list:
-                print("oops")
-                #adds to books
-                self.mycursor.execute(add_book)
-                # adds to authors
-                self.mycursor.execute(add_authors)
-                # adds to translated if translated
-                if translator is not None or Title_untranslated is not None or translated_from is not None:
-                    self.mycursor.execute(add_if_translated)
-            #adds to book_entries
-            for i in range(number_of_copies):
-                self.mycursor.execute(add_book_entries)
-        
-            #adds to transactions
-            self.mycursor.execute(f"select book_id from book_entries where ISBN={ISBN}")
-            book_id_list_fetch = self.mycursor.fetchall()
-            book_id_list = []
-            for i in book_id_list_fetch:
-                for j in i:
-                    book_id_list.append(j)
-            for i in book_id_list:
-                print(add_to_Transactions(book_id=i, employee_id=employee_id, date=date, Price=Price))
-                self.mycursor.execute(add_to_Transactions(book_id=i, employee_id=employee_id, date=date, Price=Price))
-            print()
-        except mysql.connector.errors.IntegrityError:
-            print(f"Error: 1062 (23000): Duplicate entry '{ISBN}' for key 'books.PRIMARY'")
+            self.mycursor.execute(add_book_entries)
+        #adds to transactions
+        self.mycursor.execute(f"select a.book_id from book_entries a order by book_id desc limit {number_of_copies}")
+        book_id_list_fetch = self.mycursor.fetchall()
+        book_id_list = []
+        for i in book_id_list_fetch:
+            for j in i:
+                book_id_list.append(j)
+        print()
+        print("book_id list: " + str(book_id_list)) 
+        for i in book_id_list:
+            print(add_to_Transactions(book_id=i, employee_id=employee_id, date=date, Price=Price))
+            self.mycursor.execute(add_to_Transactions(book_id=i, employee_id=employee_id, date=date, Price=Price))
+        print()
     
     #space searchbook
 
@@ -204,7 +206,7 @@ class Admin:
         result_fetch = self.mycursor.fetchall()
         return result_fetch
     
-    def add_price_exception(self, newprice, ISBN=None, book_id=None, comment=None):
+    def add_price_exception(self, newprice=None, ISBN=None, book_id=None, comment=None):#update by ISBN!
         #list of book_ids in excpetions
         self.mycursor.execute(f"select book_id from price_exceptions")
         book_id_list_exceptions = []
@@ -213,23 +215,26 @@ class Admin:
             for j in i:
                 book_id_list_exceptions.append(j)
         #adds book_id to excpetions if book not in price_exceptions list
-        if book_id!=None and ISBN==None:
-            book_id_list_fetch = self.mycursor.fetchall()
-            if book_id not in book_id_list_exceptions:
-                self.mycursor.execute(add_to_Price_exceptions(newprice=newprice, book_id=book_id, comment=comment))
-        #adds book_ids according to ISBN to book excpetions if book_id not in book id exception list
-        if book_id==None and ISBN!=None:
-            self.mycursor.execute(f"select book_id from book_entries where ISBN={ISBN}")
-            book_id_list_fetch = self.mycursor.fetchall()
-            book_id_list = []
-            for i in book_id_list_fetch:
-                for j in i:
-                    book_id_list.append(j)
-            for ID in book_id_list:
-                if ID not in book_id_list_exceptions:
-                    self.execute(add_to_Price_exceptions(newprice=newprice, book_id=ID, comment=comment))
-        else:
-            print("Book is already in exceptions >:(")
+        try:
+            if book_id!=None and ISBN==None:
+                book_id_list_fetch = self.mycursor.fetchall()
+                if book_id not in book_id_list_exceptions:
+                    self.mycursor.execute(add_to_Price_exceptions(newprice=newprice, book_id=book_id, comment=comment))
+                else:
+                    self.mycursor.execute(f"update price_exceptions set new_price_in_cents={newprice}, Comment='{comment}' where book_id={book_id}")
+            #adds book_ids according to ISBN to book excpetions if book_id not in book id exception list
+            if book_id==None and ISBN!=None:
+                self.mycursor.execute(f"select book_id from book_entries where ISBN={ISBN}")
+                book_id_list_fetch = self.mycursor.fetchall()
+                book_id_list = []
+                for i in book_id_list_fetch:
+                    for j in i:
+                        book_id_list.append(j)
+                for ID in book_id_list:
+                    if ID not in book_id_list_exceptions:
+                        self.mycursor.execute(add_to_Price_exceptions(newprice=newprice, book_id=ID, comment=comment))
+        except mysql.connector.errors.IntegrityError:
+            print("Book id does not exist in database >:(")
 
     def add_employee(self, name, surname, position, passwd, email):
         #checks if employee in database
@@ -238,12 +243,13 @@ class Admin:
         for i in self.mycursor.fetchall():
             for j in i:
                 employee_list.append(j)
-        if (name or surname) in employee_list:
-            print("Employee is already in employees >:(")
-        #if employee not in employee_list adds employee
-        else:
+        #adds employee if it not record doesnt already exist
+        if (name or surname) not in employee_list:
             print(add_to_employees(Name=name, Surname=surname, position=position, Password=passwd, email=email))
             self.mycursor.execute(add_to_employees(Name=name, Surname=surname, position=position, Password=passwd, email=email))
+        #if employee not in employee_list adds employee
+        else:
+            print("Employee is already in employees >:(")
     
     def search_employee(self, name, surname):
         #retrieves employee datab
@@ -262,23 +268,25 @@ if __name__ == "__main__":
     admin = Admin(db)
     mycursor= db.cursor()
 
+    # # #call add employee to employees procedure
+    # admin.add_employee(name="Albus", surname="Dumbledore", position="Manager", passwd="EldenWandIsOPAF123:3", email="dumbiegamer@hogwarts.com")
 
-#call add_book procedure
-admin.add_book(ISBN=9780590353403, Title="Harry Potter and the Sorcerers Stone", author_name="Joanne", author_surname="Rowling", publisher="Scholastic Inc", published_year=2003, pages="309", language="English (USA)", book_type="Hardcover", location="7", section="7", genre="Fiction", employee_id=2, date="2022-06-02", Price=1000, translator="Joanne Rowling", Title_untranslated="Harry Potter and the Philosophers Stone", translated_from="English", edition=1, number_of_copies=1)
+    # #call add_book procedure
+    # admin.add_book(ISBN=9780590353403, Title="Harry Potter and the Sorcerers Stone", author_name="Joanne", author_surname="Rowling", publisher="Scholastic Inc", published_year=2003, pages="309", language="English (USA)", book_type="Hardcover", location="7", section="7", genre="Fiction", employee_id=1, date="2022-06-02", Price=1000, translator="Joanne Rowling", Title_untranslated="Harry Potter and the Philosophers Stone", translated_from="English", edition=1, number_of_copies=3)
+    # #mycursor.execute(f"select * from transactions order by Transaction_ID desc limit 1")
 
-#call add_price_exception
-admin.add_price_exception(newprice=1100, ISBN=None, book_id=15, comment="Malfidus broke it >:(")
+    #print(mycursor.fetchall())
 
-#call add employee to employees procedure
-admin.add_employee(name="Albus", surname="Dumbledore", position="Manager", passwd="EldenWandIsOPAF123:3", email="dumbiegamer@hogwarts.com")
+    #call add_price_exception
+    #admin.add_price_exception(newprice=10, ISBN=None, book_id=2, comment="Malfidus broke it >:(")
 
-#call set margin procedure
-admin.set_margin(margin=1.210)
+    # #call set margin procedure
+    # admin.set_margin(margin=1.210)
 
-#db.commit()
+    # #call search employee procedure
+    # print(admin.search_employee(name="Albus", surname="Dumbledore"))
 
-#call search employee procedure
-print(admin.search_employee(name="Albus", surname="Dumbledore"))
+    # #call search records procedure
+    # print(admin.search_records(ISBN=9780593334833, Employee_id=None, Book_id=None))
 
-#call search records procedure
-print(admin.search_records(ISBN=9780593334833, Employee_id=None, Book_id=None))
+    db.commit()

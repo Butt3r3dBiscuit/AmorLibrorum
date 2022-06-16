@@ -3,11 +3,7 @@ import mysql.connector
 import os
 
 
-# pip install mysql-connector-python
-
-# import pandas as pd
-
-def reinstall(database_name="AmorLibrorum", sql_script="AmorLibrorum.sql"):
+def reinstall(database_name="AmorLibrorum",sql_script="AmorLibrorum.sql"):
     db = mysql.connector.connect(
         host="localhost",
         user="root",
@@ -34,7 +30,6 @@ def reinstall(database_name="AmorLibrorum", sql_script="AmorLibrorum.sql"):
     mycursor.close()
     db.close()
 
-
 def importing_data(sql_script):
     db = mysql.connector.connect(
         host="localhost",
@@ -53,7 +48,6 @@ def importing_data(sql_script):
     mycursor.close()
     db.close()
 
-
 def importing_functions(sql_script):
     db = mysql.connector.connect(
         host="localhost",
@@ -64,19 +58,16 @@ def importing_functions(sql_script):
     with open(sql_script, 'r') as sql_file:
         result_iterator = mycursor.execute(sql_file.read(), multi=True)
         for res in result_iterator:
-            print(res)
+           print(res)
 
     mycursor.close()
     db.close()
-
-
 # def filling_up(excel_file):
 #     df = pd.read_excel(excel_file)
 
 #     print(df["title"][0])
 
-if __name__ == "__main__":
+if __name__=="__main__":
     reinstall()
     importing_data("testdata.sql")
     importing_functions("functions_in_sql.sql")
-    # filling_up("Amor_librorum.xlsx")
