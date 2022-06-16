@@ -6,8 +6,17 @@ FLUSH PRIVILEGES;
 CREATE USER 'frank@amorlibrorum.boek'@'localhost' IDENTIFIED BY 'An0!herqwertyp4ssword';
 FLUSH PRIVILEGES;
 
+CREATE USER 'guest'@'localhost' IDENTIFIED BY 'TheGu3stP4ssw0rd!*';
+FLUSH PRIVILEGES;
+
 grant all privileges on AmorLibrorum.* to 'margje@amorlibrorum.boek'@'localhost';
 grant all privileges on AmorLibrorum.* to 'frank@amorlibrorum.boek'@'localhost';
+
+GRANT SELECT ON AmorLibrorum.Books TO 'guest'@'localhost';
+GRANT SELECT ON AmorLibrorum.Book_entries TO 'guest'@'localhost';
+GRANT SELECT ON AmorLibrorum.Transactions TO 'guest'@'localhost';
+GRANT SELECT ON AmorLibrorum.Authors TO 'guest'@'localhost';
+GRANT SELECT ON AmorLibrorum.if_translated TO 'guest'@'localhost';
 
 
 
