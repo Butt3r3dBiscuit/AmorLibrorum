@@ -1,11 +1,6 @@
 import tkinter as tk
 import Start_window
 import employee_window
-import Admin_finance_window
-from AdminClass import Admin, add_to_Price_exceptions
-from datetime import date
-from tkinter import messagebox
-
 
 # to be added - other windows
 emp_id = None
@@ -18,7 +13,7 @@ class Admin_inventory_window(tk.Frame):
 
 
         rel_width = 0.1
-        rel_height = 0.05
+        row_height = 20
         # Window
         # window = Tk()
         # width = window.winfo_screenwidth()
@@ -28,19 +23,19 @@ class Admin_inventory_window(tk.Frame):
         # test push
 
         # text
-        helvetica_font = "Helvetica 18 bold"
-        Add_book = tk.Label(self, text="Add Book: ", font=helvetica_font)
-        Search_book = tk.Label(self, text="Search Book: ", font=helvetica_font)
-        Found_book = tk.Label(self, text="Books Found: ", font=helvetica_font)
-        Set_sellprice = tk.Label(self, text="Set Sellprice: ", font=helvetica_font)
+        button_font = "Helvetica 18 bold"
+        Add_book = tk.Label(self, text="Add Book: ", font=button_font)
+        Search_book = tk.Label(self, text="Search Book: ", font=button_font)
+        Found_book = tk.Label(self, text="Books Found: ", font=button_font)
+        Set_sellprice = tk.Label(self, text="Set Sellprice: ", font=button_font)
 
         Title = tk.Label(self, text="Title")
         Author = tk.Label(self, text="Author")
         Edition = tk.Label(self, text="Edition")
-        Comment = tk.Label(self, text="Comment")
+        Version = tk.Label(self, text="Version")
         Buy_price = tk.Label(self, text="BuyPrice")
         Sell_price = tk.Label(self, text="SellPrice")
-        In_store = tk.Label(self, text="Amount")
+        In_store = tk.Label(self, text="InStore")
 
         # text place
         Found_book.place(relx=0.2, rely=0.25, relwidth=rel_width, relheight=rel_height, anchor="e")
@@ -67,22 +62,22 @@ class Admin_inventory_window(tk.Frame):
         Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
 
         # place label
-        Add_book.place(relx=0.2, rely=0.6, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Search_book.place(relx=0.2, rely=0.1, relwidth=rel_width, relheight=rel_height, anchor="e")
+        Add_book.place(relx=0.2, rely=0.6, relwidth=rel_width, height=row_height, anchor="e")
+        Search_book.place(relx=0.2, rely=0.1, relwidth=rel_width, height=row_height, anchor="e")
 
         # Place Buttons
-        Employee.place(relx=1, relwidth=rel_width, relheight=rel_height, anchor="ne")
-        Finance.place(relx=0.9, relwidth=rel_width, relheight=rel_height, anchor="ne")
-        Inventory.place(relx=0.8, relwidth=rel_width, relheight=rel_height, anchor="ne")
-        Save.place(relx=1, rely=0.975, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Undo.place(relx=0.9, rely=0.975, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Log_out.place(relx=0, rely=0, relwidth=rel_width, relheight=rel_height, anchor="nw")
+        Employee.place(relx=1, relwidth=rel_width, height=row_height, anchor="ne")
+        Finance.place(relx=0.9, relwidth=rel_width, height=row_height, anchor="ne")
+        Inventory.place(relx=0.8, relwidth=rel_width, height=row_height, anchor="ne")
+        Save.place(relx=1, rely=0.975, relwidth=rel_width, height=row_height, anchor="e")
+        Undo.place(relx=0.9, rely=0.975, relwidth=rel_width, height=row_height, anchor="e")
+        Log_out.place(relx=0, rely=0, relwidth=rel_width, height=row_height, anchor="nw")
 
         # text and labels
-        Isbn_label2 = tk.Label(self, text="ISBN", width="15")
-        Isbn_label2.pack()
-        Isbn_text2 = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Isbn_text2.pack()
+        Sell_Price_label = tk.Label(self, text="Sell Price", width="15")
+        Sell_Price_label.pack()
+        Sell_Price_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        Sell_Price_text.pack()
 
         Isbn_label3 = tk.Label(self, text="ISBN", width="15")
         Isbn_label3.pack()
@@ -106,7 +101,7 @@ class Admin_inventory_window(tk.Frame):
         self.Sell_Price_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Sell_Price_text.pack()
 
-        Isbn_label = tk.Label(self, text="ISBN", width="15") #for add book
+        Isbn_label = tk.Label(self, text="ISBN", width="15")
         Isbn_label.pack()
         self.Isbn_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         # Isbn_text.pack()
@@ -146,7 +141,7 @@ class Admin_inventory_window(tk.Frame):
         self.Buy_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Buy_text.pack()
 
-        Instore_label = tk.Label(self, text="Amount", width="15")
+        Instore_label = tk.Label(self, text="InStore", width="15")
         Instore_label.pack()
         self.Amount_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Amount_text.pack()
@@ -193,11 +188,11 @@ class Admin_inventory_window(tk.Frame):
         self.Genre_text.pack()
 
         # Buttons show hide
-        self.Translated_label = tk.Label(self, text="Is it translated?", width="15", font=helvetica_font)
-        Yes = tk.Button(self, text='Yes', command=lambda: self.yes_button(rel_width, rel_height))
-        Yes.pack(pady=20)
-        No = tk.Button(self, text='No', command=self.no_button)
-        No.pack()
+        self.Translated_label = tk.Label(self, text="Is it translated?", width="30", font=button_font)
+        translated_yes = tk.Button(self, text='Yes', command=lambda: self.yes_button(rel_width, row_height))
+        translated_yes.pack(pady=20)
+        translated_no = tk.Button(self, text='No', command=self.no_button)
+        translated_no.pack()
 
         # show hide text and labels
         self.Translator_label = tk.Label(self, text="Translator", width="15")
@@ -283,7 +278,7 @@ class Admin_inventory_window(tk.Frame):
 
     # button functions
 
-    def yes_button(self, rel_width, rel_height):
+    def yes_button(self, rel_width, row_height):
         # self.Translated_label.pack()
         # self.Translator_text.pack()
         # self.Untranslated_label.pack()
@@ -306,15 +301,15 @@ class Admin_inventory_window(tk.Frame):
         self.Untranslated_label = tk.Label(self, text="Original Title", width="15")
         self.Origin_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Origin_label = tk.Label(self, text="Origin", width="15")
-        # self.Translated_label = tk.Label(self, text="Is it translated?", width="15", font=helvetica_font)
+        # self.Translated_label = tk.Label(self, text="Is it translated?", width="15", font=button_font)
 
-        self.Translator_label.place(relx=0.2, rely=0.85, relwidth=rel_width, relheight=rel_height, anchor="e")
-        self.Translator_text.place(relx=0.2, rely=0.9, relwidth=rel_width, relheight=rel_height, anchor="e")
-        self.Untranslated_text.place(relx=0.3, rely=0.9, relwidth=rel_width, relheight=rel_height, anchor="e")
-        self.Untranslated_label.place(relx=0.3, rely=0.85, relwidth=rel_width, relheight=rel_height, anchor="e")
-        self.Origin_text.place(relx=0.4, rely=0.9, relwidth=rel_width, relheight=rel_height, anchor="e")
-        self.Origin_label.place(relx=0.4, rely=0.85, relwidth=rel_width, relheight=rel_height, anchor="e")
-        # self.Translated_label.place(relx=0.65, rely=0.85, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Translator_label.place(relx=0.2, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
+        self.Translator_text.place(relx=0.2, rely=0.9, relwidth=rel_width, height=row_height, anchor="e")
+        self.Untranslated_text.place(relx=0.3, rely=0.9, relwidth=rel_width, height=row_height, anchor="e")
+        self.Untranslated_label.place(relx=0.3, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
+        self.Origin_text.place(relx=0.4, rely=0.9, relwidth=rel_width, height=row_height, anchor="e")
+        self.Origin_label.place(relx=0.4, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
+        # self.Translated_label.place(relx=0.65, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
         print("hello")
         print(emp_id)
 
