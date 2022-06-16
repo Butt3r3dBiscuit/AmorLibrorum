@@ -174,10 +174,8 @@ class Admin_inventory_window(tk.Frame):
         types_var = tk.StringVar(value=types)
         Booktype_label = tk.Label(self, text="Book Type", width="15")
         Booktype_label.pack()
-        # self.Booktype_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        self.Booktype_listbox = tk.Listbox(self,listvariable=types_var)
-        self.Booktype_listbox.pack()
-        # self.Booktype_text.pack()
+        self.Booktype_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Booktype_text.pack()
 
         Location_label = tk.Label(self, text="Location", width="15")
         Location_label.pack()
@@ -195,11 +193,11 @@ class Admin_inventory_window(tk.Frame):
         self.Genre_text.pack()
 
         # Buttons show hide
-        self.Translated_label = tk.Label(self, text="Is it translated?", width="15", font=helvetica_font)
-        Yes = tk.Button(self, text='Yes', command=lambda: self.yes_button(rel_width, rel_height))
-        Yes.pack(pady=20)
-        No = tk.Button(self, text='No', command=self.no_button)
-        No.pack()
+        self.Translated_label = tk.Label(self, text="Is it translated?", width="30", font=button_font)
+        translated_yes = tk.Button(self, text='Yes', command=lambda: self.yes_button(rel_width, row_height))
+        translated_yes.pack(pady=20)
+        translated_no = tk.Button(self, text='No', command=self.no_button)
+        translated_no.pack()
 
         # show hide text and labels
         self.Translator_label = tk.Label(self, text="Translator", width="15")
