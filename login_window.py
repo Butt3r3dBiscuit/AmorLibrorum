@@ -4,9 +4,10 @@ import Employees_sales_tab
 from connect import connect_employee
 import Admin_inventory_window
 
+
 class login_window(tk.Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self,parent)
+        tk.Frame.__init__(self, parent)
 
         # root = tk.Tk
         print(Admin_inventory_window.emp_id)
@@ -21,7 +22,7 @@ class login_window(tk.Frame):
         back_button = tk.Button(self, text="Return home",height=2, width=11,
                                 command= lambda: self.back_button(controller))
         back_button.pack()
-        back_button.place(x=0,y=0)
+        back_button.place(x=0, y=0)
 
 
         email_label = tk.Label(self, text="Email Adress", width = "15")
@@ -85,7 +86,7 @@ class login_window(tk.Frame):
             Employees_sales_tab.emp_id = self.employee_id
             print(Employees_sales_tab.emp_id)
             controller.show_frame(Employees_sales_tab.Employee_sales_window)
-        elif position=="Manager":
+        elif position == "Manager":
             try:
                 self.error_label.destroy()
             except AttributeError:
@@ -94,6 +95,7 @@ class login_window(tk.Frame):
             Admin_inventory_window.db = self.db
             print(Admin_inventory_window.emp_id)
             controller.show_frame(Admin_inventory_window.Admin_inventory_window)
+
     def back_button(self, controller):
         try:
             self.error_label.destroy()
@@ -104,8 +106,6 @@ class login_window(tk.Frame):
         self.password_text.pack()
 
         controller.show_frame(Start_window.Start_window)
-
-
 
         '''
          except Exception as e:
