@@ -232,7 +232,7 @@ class Admin:
                         book_id_list.append(j)
                 for ID in book_id_list:
                     if ID not in book_id_list_exceptions:
-                        self.execute(add_to_Price_exceptions(newprice=newprice, book_id=ID, comment=comment))
+                        self.mycursor.execute(add_to_Price_exceptions(newprice=newprice, book_id=ID, comment=comment))
         except mysql.connector.errors.IntegrityError:
             print("Book id does not exist in database >:(")
 
