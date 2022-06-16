@@ -1,8 +1,8 @@
+import os
 import mysql.connector
 import reinstall_DB
 
-
-def log_in(database_name="AmorLibrorum"):  # log into the database
+def log_in(database_name="AmorLibrorum"): #log into the database
     try:
         db = mysql.connector.connect(
             host="localhost",
@@ -26,9 +26,8 @@ def log_in(database_name="AmorLibrorum"):  # log into the database
         log_in()
         '''
 
-
 def user_intergration(my_cursor):
-    # here we are going to build the database's core
+    #here we are going to build the database's core
     try:
         my_cursor.execute("CREATE USER 'user'@'localhost' IDENTIFIED BY 'Password123_'")
         my_cursor.execute("FLUSH PRIVILEGES;")
@@ -51,7 +50,15 @@ if __name__ == "__main__":
 
     user_intergration(mycursor)
 
-    # here we could reference the starting app ig
+    #here we could reference the starting app ig
 
     # mycursor.execute("DROP USER 'user'@'localhost';")
     # test
+    
+
+
+
+
+
+
+
