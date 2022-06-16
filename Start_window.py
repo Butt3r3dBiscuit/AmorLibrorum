@@ -1,5 +1,7 @@
 import tkinter as tk
 import login_window
+import guest_class as gc
+
 
 class Start_window(tk.Frame):
     def __init__(self, parent, controller):
@@ -48,10 +50,33 @@ class Start_window(tk.Frame):
         Sell_price.place(relx=0.8, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
         In_store.place(relx=0.9, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
 
-        Book_text = tk.Text(self, height=1, width=300, borderwidth=1, relief="groove")
-        Book_text.pack()
-        Book_text.place(relx=0.5, rely=0.4, relwidth=0.4, relheight=0.1, anchor="e")
+        self.Book_text = tk.Entry(self, width=300, borderwidth=1, relief="groove")
+        self.Book_text.pack()
+        self.Book_text.place(relx=0.5, rely=0.4, relwidth=0.4, relheight=0.1, anchor="e")
 
-        Search = tk.Button(self, text="Search")
-        Search.place(relx=0.8, rely=0.4, relwidth=rel_width, relheight=0.1, anchor="e")
+        books = []
+        books_var = tk.StringVar(value=books)
+        self.Books_found = tk.Listbox(self, listvariable=books_var, selectmode="extended")
+        self.Books_found.place(relx=0.03, rely=0.45, relwidth=0.85, relheight=0.5)
+
+        Search = tk.Button(self, text="Search", command=self.search)
+        Search.place(relx=0.8, rely=0.2, relwidth=rel_width, relheight=0.1, anchor="e")
+
+    def search(self):
+        a = self.Book_text.get()
+        print(f"({a})")
+        Booksearch = gc.Guest()
+        b = Booksearch.search(a)
+        print(b)
+        m = len(b)
+        books = []
+        for i in range(m):
+            books.append(str(b[i]))
+        print(books)
+        books_var = tk.StringVar(value=books)
+        self.Books_found.config(listvariable=books_var)
+
+
+
+# h.place(relx=0.8, rely=0.4, relwidth=rel_width, relheight=0.1, anchor="e")
 
