@@ -4,7 +4,7 @@ import employee_window
 import Admin_finance_window
 from AdminClass import Admin, add_to_Price_exceptions
 from datetime import date
-from tkinter import messagebox
+from tkinter import OptionMenu, messagebox
 
 
 # to be added - other windows
@@ -162,13 +162,20 @@ class Admin_inventory_window(tk.Frame):
         self.Pages_text.pack()
 
         # Booktype_label = tk.Label(self, text="Book Type", width="15")
-        types = ("Paperback","Hardcover")
+        # types = ("Paperback","Hardcover")
 
-        types_var = tk.StringVar(value=types)
+        # types_var = tk.StringVar(value=types)
         Booktype_label = tk.Label(self, text="Book Type", width="15")
         Booktype_label.pack()
-        self.Booktype_listbox = tk.Listbox(self,listvariable=types_var)
-        self.Booktype_listbox.pack()
+        
+        clicked = tk.StringVar()
+        clicked.set("Hardcopy")
+
+        self.drop = tk.OptionMenu(self, clicked, "Hardcopy", "Paperback")
+        self.drop.pack()
+
+        # self.Booktype_listbox = tk.Listbox(self, listvariable=types_var)
+        # self.Booktype_listbox.pack()
 
         Location_label = tk.Label(self, text="Location", width="15")
         Location_label.pack()
@@ -235,7 +242,7 @@ class Admin_inventory_window(tk.Frame):
         Year_label.place(relx=0.4, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
         self.Pages_text.place(relx=0.5, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
         Pages_label.place(relx=0.5, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
-        self.Booktype_listbox.place(relx=0.6, rely=0.8, relwidth=rel_width, height=row_height*0.85, anchor="e")
+        self.drop.place(relx=0.6, rely=0.8, relwidth=rel_width, height=row_height*0.85, anchor="e")
         # self.Booktype_text.place(relx=0.6, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
         Booktype_label.place(relx=0.6, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
         self.Location_text.place(relx=0.7, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
@@ -337,9 +344,9 @@ class Admin_inventory_window(tk.Frame):
         Publisher = self.Publisher_text.get()
         Year = self.Year_text.get()
         Pages = self.Pages_text.get()
-        for i in self.Booktype_listbox.curselection():
-            Booktype = (self.Booktype_listbox.get(i))
-        # Booktype = self.Booktype_listbox.get()
+        # for i in self.Booktype_listbox.curselection():
+        #     Booktype = (self.Booktype_listbox.get(i))
+        # # Booktype = self.Booktype_listbox.get()
         Location = self.Location_text.get()
         Section = self.Section_text.get()
         Genre = self.Genre_text.get()
@@ -362,23 +369,23 @@ class Admin_inventory_window(tk.Frame):
         resp = messagebox.askquestion('askquestion', 'Are you sure you want to save this book?')
         # messagebox.askquestion("askquestion", "Are you sure?")
         mycursor = db.cursor()
-        if resp == "yes":
-            print(Translator, Original_title, Origin)
-            Admin_object = Admin(db)
-            try:
-                Admin_object.add_book(ISBN, Title, Author, Surname, Publisher, Year, Pages, Language, Booktype,
-                                      Location, Section, Genre, emp_id, Date, Buy_price, Comment, Translator,
-                                      Original_title,
-                                      Origin, Edition, Amount)
-                self.Booktype_listbox.config(fg="black")
-            except UnboundLocalError:
-                print("Here")
-                self.Booktype_listbox.config(fg="red")
-            print(ISBN, Title, Author, Surname, Edition, Comment, Language, Buy_price)
-            print(Publisher, Year, Pages, Booktype, Location, Section, Genre)
-            print("Book has been added\nmake this a label that shows up.")
-        else:
-            print("Book has not been added.")
+        # if resp == "yes":
+        #     print(Translator, Original_title, Origin)
+        #     Admin_object = Admin(db)
+        #     try:
+        #         Admin_object.add_book(ISBN, Title, Author, Surname, Publisher, Year, Pages, Language, Booktype,
+        #                               Location, Section, Genre, emp_id, Date, Buy_price, Comment, Translator,
+        #                               Original_title,
+        #                               Origin, Edition, Amount)
+        #         self.Booktype_listbox.config(fg="black")
+        #     except UnboundLocalError:
+        #         print("Here")
+        #         self.Booktype_listbox.config(fg="red")
+        #     print(ISBN, Title, Author, Surname, Edition, Comment, Language, Buy_price)
+        #     print(Publisher, Year, Pages, Booktype, Location, Section, Genre)
+        #     print("Book has been added\nmake this a label that shows up.")
+        # else:
+        #     print("Book has not been added.")
     def commit_save(self):
         resp = messagebox.askquestion('askquestion', 'Are you sure you want to commit?')
         mycursor = db.cursor()
