@@ -408,11 +408,16 @@ class Admin_inventory_window(tk.Frame):
             print("It donsn't rollback")
     def set_price_exception(self):
         ISBN = self.Isbn_text3.get()
-        Book_ID = int(self.BookID_entry3.get())
+        if ISBN == "":
+            ISBN = None
+        Book_ID = self.BookID_entry3.get()
+        if Book_ID == "":
+            Book_ID = None
         New_price = int(self.Sell_Price_text.get())
         Comment = str(self.Comment_price_exc_entry.get())
         print(Book_ID,New_price, Comment)
-        query = add_to_Price_exceptions(Book_ID,New_price,Comment)
+        Admin_object = Admin(db)
+        query = Admin_object.add_price_exception(newprice=New_price,ISBN=ISBN,book_id=Book_ID,comment=Comment)
         print(query)
         resp = messagebox.askquestion('askquestion', f'Are you sure, you want to change price of this book to €{New_price/100}?')
         # messagebox.askquestion("askquestion", "Are you sure?")
