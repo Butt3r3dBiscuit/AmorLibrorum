@@ -1,6 +1,4 @@
 from tkinter import *
-
-
 class Child():
     def __init__(self, master):
         new_window = Tk()
@@ -15,6 +13,5 @@ class Child():
         from tkinter_main import Elder
         print(1)
         Elder(master)
-
 
 print("Ok")

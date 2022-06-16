@@ -1,6 +1,5 @@
 import tkinter as tk
 import sep_page_one
-
 LARGE_FONT = ("Verdana", 12)
 
 
