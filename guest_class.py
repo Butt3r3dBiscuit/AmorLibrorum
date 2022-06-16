@@ -43,7 +43,7 @@ class Guest:
                          f"OR A.AUTHOR_SURNAME LIKE '{search}%') " \
                          f"AND {cor_sub}) "
 
-        cursor.execute("SELECT B.TITLE, A.AUTHOR_NAME, A.AUTHOR_SURNAME, B.LANGUAGE, B.GENRE, B.LOCATION, B.EDITION, B.BOOK_TYPE, T.PRICE_IN_CENTS, COUNT(BE.BOOK_ID) " \
+        cursor.execute("SELECT B.TITLE, A.AUTHOR_NAME, A.AUTHOR_SURNAME, B.LANGUAGE, B.GENRE, B.LOCATION, B.EDITION, B.BOOK_TYPE, T.PRICE_IN_CENTS, COUNT(BE.BOOK_ID) " 
                        "FROM BOOKS B LEFT JOIN AUTHORS A " 
                        "ON B.ISBN=A.ISBN " 
                        "LEFT JOIN BOOK_ENTRIES BE " 
