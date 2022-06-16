@@ -77,5 +77,5 @@ class Start_window(tk.Frame):
 
 # h.place(relx=0.8, rely=0.4, relwidth=rel_width, height=0.1, anchor="e")
 
-        Search = tk.Button(self, text="Search")
-        Search.place(relx=0.8, rely=0.4, relwidth=rel_width, height=row_height, anchor="e")
+        # Search = tk.Button(self, text="Search") #todo
+        # Search.place(relx=0.8, rely=0.4, relwidth=rel_width, height=row_height, anchor="e") #todo
