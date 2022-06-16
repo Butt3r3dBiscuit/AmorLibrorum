@@ -6,7 +6,7 @@ window.geometry("400x200")
 
 
 def Click():
-    messagebox.askquestion("askquestion", "Are you sure?")
+    messagebox.askquestion("Confirmation", "Are you sure?")
 
 
 button = Button(window, text="Click Me", command=Click)
