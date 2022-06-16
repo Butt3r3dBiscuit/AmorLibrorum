@@ -410,9 +410,12 @@ class Admin_inventory_window(tk.Frame):
         ISBN = self.Isbn_text3.get()
         if ISBN == "":
             ISBN = None
-        Book_ID = int(self.BookID_entry3.get())
+        Book_ID = self.BookID_entry3.get()
         if Book_ID == "":
             Book_ID = None
+        else:
+            Book_ID = int(Book_ID)
+
         New_price = int(self.Sell_Price_text.get())
         Comment = str(self.Comment_price_exc_entry.get())
         print(Book_ID,New_price, Comment)
