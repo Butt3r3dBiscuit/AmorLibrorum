@@ -159,16 +159,13 @@ class Admin_inventory_window(tk.Frame):
         self.Pages_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Pages_text.pack()
 
-        # Booktype_label = tk.Label(self, text="Book Type", width="15")
         types = ("Paperback","Hardcover")
-
         types_var = tk.StringVar(value=types)
+
         Booktype_label = tk.Label(self, text="Book Type", width="15")
         Booktype_label.pack()
-        # self.Booktype_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        self.Booktype_listbox = tk.Listbox(self,listvariable=types_var)
-        self.Booktype_listbox.pack()
-        # self.Booktype_text.pack()
+        self.Booktype_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Booktype_text.pack()
 
         Location_label = tk.Label(self, text="Location", width="15")
         Location_label.pack()
@@ -219,8 +216,8 @@ class Admin_inventory_window(tk.Frame):
         Surname_label.place(relx=0.5, rely=0.65, relwidth=rel_width, relheight=rel_height, anchor="e")
         self.Edition_text.place(relx=0.6, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
         Edition_label.place(relx=0.6, rely=0.65, relwidth=rel_width, relheight=rel_height, anchor="e")
-        self.Comment_text.place(relx=0.7, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Comment_label.place(relx=0.7, rely=0.65, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Version_text.place(relx=0.7, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
+        Version_label.place(relx=0.7, rely=0.65, relwidth=rel_width, relheight=rel_height, anchor="e")
         self.Language_text.place(relx=0.8, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
         Language_label.place(relx=0.8, rely=0.65, relwidth=rel_width, relheight=rel_height, anchor="e")
         self.Buy_text.place(relx=0.9, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
@@ -228,7 +225,7 @@ class Admin_inventory_window(tk.Frame):
 
         # label and text place 2
         self.Amount_text.place(relx=0.2, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Instore_label.place(relx=0.2, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
+        Amount_label.place(relx=0.2, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
         self.Publisher_text.place(relx=0.3, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
         Publisher_label.place(relx=0.3, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
         self.Year_text.place(relx=0.4, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
