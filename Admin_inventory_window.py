@@ -19,6 +19,8 @@ class Admin_inventory_window(tk.Frame):
 
         rel_width = 0.1
         row_height = 20
+
+        button_font = "Helvetica 18 bold"
         # Window
         # window = Tk()
         # width = window.winfo_screenwidth()
@@ -28,7 +30,6 @@ class Admin_inventory_window(tk.Frame):
         # test push
 
         # text
-        button_font = "Helvetica 18 bold"
         Add_book = tk.Label(self, text="Add Book: ", font=button_font)
         Search_book = tk.Label(self, text="Search Book: ", font=button_font)
         Found_book = tk.Label(self, text="Books Found: ", font=button_font)
