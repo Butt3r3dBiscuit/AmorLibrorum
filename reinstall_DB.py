@@ -2,9 +2,6 @@
 import mysql.connector
 import os
 
-# pip install mysql-connector-python
-
-# import pandas as pd
 
 def reinstall(database_name="AmorLibrorum",sql_script="AmorLibrorum.sql"):
     db = mysql.connector.connect(
@@ -74,10 +71,3 @@ if __name__=="__main__":
     reinstall()
     importing_data("testdata.sql")
     importing_functions("functions_in_sql.sql")
-    # filling_up("Amor_librorum.xlsx")
-
-
-'''
-next we will add there the insertion of values from excel sheet
-which would probably be defined in another function idk yet
-'''

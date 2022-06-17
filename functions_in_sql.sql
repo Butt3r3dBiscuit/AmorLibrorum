@@ -1,13 +1,23 @@
 DROP USER if exists 'margje@amorlibrorum.boek'@'localhost';
 DROP USER if exists 'frank@amorlibrorum.boek'@'localhost';
+DROP USER if exists 'guest'@'localhost';
 
 CREATE USER 'margje@amorlibrorum.boek'@'localhost' IDENTIFIED BY 'NotAn0therqwer!ypassword';
 FLUSH PRIVILEGES;
 CREATE USER 'frank@amorlibrorum.boek'@'localhost' IDENTIFIED BY 'An0!herqwertyp4ssword';
 FLUSH PRIVILEGES;
 
+CREATE USER 'guest'@'localhost' IDENTIFIED BY 'TheGu3stP4ssw0rd!*';
+FLUSH PRIVILEGES;
+
 grant all privileges on AmorLibrorum.* to 'margje@amorlibrorum.boek'@'localhost';
 grant all privileges on AmorLibrorum.* to 'frank@amorlibrorum.boek'@'localhost';
+
+GRANT SELECT ON AmorLibrorum.Books TO 'guest'@'localhost';
+GRANT SELECT ON AmorLibrorum.Book_entries TO 'guest'@'localhost';
+GRANT SELECT ON AmorLibrorum.Transactions TO 'guest'@'localhost';
+GRANT SELECT ON AmorLibrorum.Authors TO 'guest'@'localhost';
+GRANT SELECT ON AmorLibrorum.if_translated TO 'guest'@'localhost';
 
 
 
@@ -24,6 +34,7 @@ CREATE function price_determination(book_id_given int)
         declare counting_rows int;
         declare return_string varchar(20);
         select count(Book_ID) into counting_rows from Transactions where Book_ID=book_id_given;
+        select new_price_in_cents into price from Price_exceptions where Book_ID=book_id_given;
         if counting_rows=1 THEN
             if price IS NULL THEN
                 select margin into margin_var from variables;
@@ -40,6 +51,7 @@ CREATE function price_determination(book_id_given int)
     RETURN return_string;
 END;
 
+GRANT EXECUTE on FUNCTION `Amorlibrorum`.`price_determination` to 'guest'@'localhost';
 -- drop trigger if exists ISBN_cz;
 
 -- create handler that checks while adding boook to book_entries if the ISBN exists already in the books
