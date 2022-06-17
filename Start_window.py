@@ -10,13 +10,8 @@ class Start_window(tk.Frame):
         rel_width = 0.1
         row_height = 20
 
-        # tk.title("Book search")
 
-        # window = Tk()
-        # window.geometry("800x400")
-        # window.title("start Window")
-
-        Login = tk.Button(self, text="Log in", height=2, width=11, command=lambda: controller.show_frame(
+        Login = tk.Button(self, text="Log in", height=5, width=11, command=lambda: controller.show_frame(
             login_window.login_window))
         Login.place(relx=1, anchor='ne')
 
