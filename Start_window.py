@@ -49,15 +49,15 @@ class Start_window(tk.Frame):
 
         self.Book_text = tk.Entry(self, width=300, borderwidth=1, relief="groove")
         self.Book_text.pack()
-        self.Book_text.place(relx=0.5, rely=0.4, relwidth=0.4, height=0.1, anchor="e")
+        self.Book_text.place(relx=0.5, rely=0.4, relwidth=0.4, height=20, anchor="e")
 
         books = []
         books_var = tk.StringVar(value=books)
         self.Books_found = tk.Listbox(self, listvariable=books_var, selectmode="extended")
-        self.Books_found.place(relx=0.03, rely=0.45, relwidth=0.85, height=0.5)
+        self.Books_found.place(relx=0.03, rely=0.45, relwidth=0.85, height=500)
 
         Search = tk.Button(self, text="Search", command=self.search)
-        Search.place(relx=0.8, rely=0.2, relwidth=rel_width, height=0.1, anchor="e")
+        Search.place(relx=0.8, rely=0.2, relwidth=rel_width, height=50, anchor="e")
 
     def search(self):
         a = self.Book_text.get()
