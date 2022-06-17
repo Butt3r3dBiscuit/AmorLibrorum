@@ -1,24 +1,23 @@
 import tkinter as tk
 from tkinter import ttk
 import Start_window
+# import Admin_inventory_window
 import Admin_employee_window
 import Admin_finance_window
 from AdminClass import Admin, add_to_Price_exceptions
 from datetime import date
 from tkinter import OptionMenu, messagebox
 
-
 # to be added - other windows
 emp_id = None
 db = None
-
 
 class Admin_inventory_window(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
-
         rel_width = 0.1
+        # rel_height = 0.05
         row_height = 20
 
         button_font = "Helvetica 18 bold"
@@ -27,7 +26,7 @@ class Admin_inventory_window(tk.Frame):
 
         # Tabs
         Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
-        
+
         Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(Admin_employee_window.Admin_employee_window))
         Finance = tk.Button(self, text="Finance", command= lambda: controller.show_frame(Admin_finance_window.Admin_finance_window))
         Inventory = tk.Button(self, text="Inventory", relief="sunken", state="disabled")
