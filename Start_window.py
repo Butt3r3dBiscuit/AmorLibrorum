@@ -18,70 +18,68 @@ class Start_window(tk.Frame):
         # window.title("start Window")
 
         search_results = ttk.Treeview(self)
-        rest = "Title", "Author", "Surname", "Edition", "Comment", "Language", "Publisher", "Year", "Pages", "Book Type", "Location", "Section", "Genre", "Translator", "Original Title", "Original Title", "Origin"
-        search_results['columns'] = ("ISBN", "Title", "Author",
-                                     "Edition", "Comment", "Language", "Publisher",
-                                     "Year", "Pages", "Book Type", "Location",
-                                     "Section", "Genre", "Translator",
-                                     "Original Title", "Origin", "Price", "Amount")
+        # rest = "Title", "Author", "Surname", "Edition", "Comment", "Language", "Publisher", "Year", "Pages", "Book Type", "Location", "Section", "Genre", "Translator", "Original Title", "Original Title", "Origin"
+        search_results['columns'] = ("Title [Original title]", "Author [Translator]",
+                                     "Edition", "Language","Genre", "Publisher",
+                                     "Book Type","Year", "Pages", "Place",
+
+                                     # "Translator","Original Title", "Origin",
+                                     "Price", "Amount")
 
         search_results.column("#0", width=20)
-        search_results.column("ISBN", anchor="center", width=120)
-        search_results.column("Title", anchor="center", width=120)
-        search_results.column("Author", anchor="center", width=120)
-        search_results.column("Edition", anchor="center", width=120)
-        search_results.column("Comment", anchor="center", width=120)
-        search_results.column("Language", anchor="center", width=120)
-        search_results.column("Publisher", anchor="center", width=120)
-        search_results.column("Year", anchor="center", width=120)
-        search_results.column("Pages", anchor="center", width=120)
-        search_results.column("Book Type", anchor="center", width=120)
-        search_results.column("Location", anchor="center", width=120)
-        search_results.column("Section", anchor="center", width=120)
-        search_results.column("Genre", anchor="center", width=120)
-        search_results.column("Translator", anchor="center", width=120)
-        search_results.column("Original Title", anchor="center", width=120)
-        search_results.column("Origin", anchor="center", width=120)
-        search_results.column("Price", anchor="center", width=120)
-        search_results.column("Amount", anchor="center", width=120)
+        # search_results.column("ISBN", anchor="center", width=120)
+        search_results.column("Title [Original title]", anchor="w", width=200)
+        search_results.column("Author [Translator]", anchor="w", width=100)
+        search_results.column("Edition", anchor="w", width=100)
+        # search_results.column("Comment", anchor="w", width=100)
+        search_results.column("Language", anchor="w", width=100)
+        search_results.column("Genre", anchor="w", width=100)
+        search_results.column("Publisher", anchor="w", width=100)
+        search_results.column("Book Type", anchor="w", width=100)
+        search_results.column("Year", anchor="center", width=50)
+        search_results.column("Pages", anchor="center", width=50)
+        search_results.column("Place", anchor="center", width=50)
+        # search_results.column("Section", anchor="center", width=100)
+        # search_results.column("Translator", anchor="center", width=100)
+        # search_results.column("Original Title", anchor="center", width=100)
+        # search_results.column("Origin", anchor="center", width=100)
+        search_results.column("Price", anchor="center", width=50)
+        search_results.column("Amount", anchor="center", width=50)
 
         search_results.heading("#0", text="", anchor="center")
-        search_results.heading("ISBN",text="ISBN",  anchor="center")
-        search_results.heading("Title", text="Title",  anchor="center")
-        search_results.heading("Author", text="Author",  anchor="center")
+        # search_results.heading("ISBN",text="ISBN",  anchor="center")
+        search_results.heading("Title [Original title]", text="Title [Original title]",  anchor="center")
+        search_results.heading("Author [Translator]", text="Author [Translator]",  anchor="center")
         search_results.heading("Edition", text="Edition",  anchor="center")
-        search_results.heading("Comment",text="Comment",  anchor="center")
+        # search_results.heading("Comment",text="Comment",  anchor="center")
         search_results.heading("Language", text="Language",  anchor="center")
+        search_results.heading("Genre", text="Genre",  anchor="center")
         search_results.heading("Publisher",text="Publisher",  anchor="center")
+        search_results.heading("Book Type",text="Book Type",  anchor="center")
         search_results.heading("Year",text="Year",  anchor="center")
         search_results.heading("Pages",text="Pages",  anchor="center")
-        search_results.heading("Book Type",text="Book Type",  anchor="center")
-        search_results.heading("Location",text="Location",  anchor="center")
-        search_results.heading("Section",text="Section",  anchor="center")
-        search_results.heading("Genre", text="Genre",  anchor="center")
-        search_results.heading("Translator",text="Translator",  anchor="center")
-        search_results.heading("Original Title", text="Original Title",  anchor="center")
-        search_results.heading("Origin", text="Origin",  anchor="center")
+        search_results.heading("Place",text="Place",  anchor="center")
+        # search_results.heading("Section",text="Section",  anchor="center")
+        # search_results.heading("Translator",text="Translator",  anchor="center")
+        # search_results.heading("Original Title", text="Original Title",  anchor="center")
+        # search_results.heading("Origin", text="Origin",  anchor="center")
         search_results.heading("Price",text="Price",  anchor="center")
         search_results.heading("Amount",text="Amount",  anchor="center")
 
         search_results.place(relx=0.025, rely=0.45, relwidth=0.95, relheight=0.5)
 
-        search_results.insert(parent='', index='end', iid=0, values=("9780593334833", "Book Lovers","Emily Henry",
-                                                                     "NULL", "NULL","English", "Berkley", "2022",
-                                                                     "400", "paperback", "17", "18",
-                                                                     "Sisters Fiction, Romantic Comedy",
-                                                                     "No entry", "No entry", "Origin", "1479","2"))
-        search_results.insert(parent='0', index='end', iid=1, values=("9780593334833", "Book Lovers", "Emily Henry",
-                                                                     "NULL", "NULL", "English", "Berkley", "2022",
-                                                                     "400", "paperback", "17", "18",
-                                                                     "Sisters Fiction, Romantic Comedy",
-                                                                     "No entry", "No entry", "Origin", "1479", "1"))
-        search_results.insert(parent='0', index='end', iid=2, values=("9780593334833", "Book Lovers", "Emily Henry",
-                                                                     "NULL", "NULL", "English", "Berkley", "2022",
-                                                                     "400", "paperback", "17", "18",
-                                                                     "Sisters Fiction, Romantic Comedy",
-                                                                     "No entry", "No entry", "Origin", "1579", "1"))
+        search_results.insert(parent='', index='end', iid=0, values=("Book Lovers","Emily Henry",
+                                                                     "NULL", "English","Sisters Fiction, Romantic Comedy", "Berkley","paperback",
+                                                                     "2022", "400",  "17-18",
+                                                                     "1479","2"))
+        search_results.insert(parent='0', index='end', iid=1, values=("Book Lovers","Emily Henry",
+                                                                     "NULL", "English","Sisters Fiction, Romantic Comedy", "Berkley","paperback",
+                                                                     "2022", "400",  "17-18",
+                                                                     "1479", "1"))
+        search_results.insert(parent='0', index='end', iid=2, values=("Book Lovers","Emily Henry",
+                                                                     "NULL", "English","Sisters Fiction, Romantic Comedy", "Berkley","paperback",
+                                                                     "2022", "400",  "17-18",
+                                                                     "1479", "1"))
 
 
 
