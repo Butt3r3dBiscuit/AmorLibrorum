@@ -25,25 +25,17 @@ class Guest:
         else:
             cor_sub = f"{cor_sub}" \
                       "AND ((BO.ISBN IN (SELECT ISBN FROM BOOKS " \
-                      f"WHERE TITLE LIKE '%{search}' " \
-                      f"OR TITLE LIKE '{search}%') " \
+                      f"WHERE TITLE LIKE '%{search}%') " \
                       "OR BO.ISBN IN (SELECT ISBN FROM IF_TRANSLATED " \
-                      f"WHERE TITLE_UNTRANSLATED LIKE '%{search}' " \
-                      f"OR TITLE_UNTRANSLATED LIKE '{search}%'))) " \
+                      f"WHERE TITLE_UNTRANSLATED LIKE '%{search}%'))) " \
                       "OR (BO.ISBN IN (SELECT ISBN FROM AUTHORS " \
-                      f"WHERE AUTHOR_NAME LIKE '%{search}' " \
-                      f"OR AUTHOR_NAME LIKE '{search}%')) " \
+                      f"WHERE AUTHOR_NAME LIKE '%{search}%')) " \
                       "OR (BO.ISBN IN (SELECT ISBN FROM AUTHORS " \
-                      f"WHERE AUTHOR_SURNAME LIKE '%{search}' " \
-                      f"OR AUTHOR_SURNAME LIKE '{search}%')) "
-            conditions = f"WHERE (B.TITLE LIKE '%{search}' " \
-                         f"OR B.TITLE LIKE '{search}%' " \
-                         f"OR IT.TITLE_UNTRANSLATED LIKE '%{search}' " \
-                         f"OR IT.TITLE_UNTRANSLATED LIKE '{search}%') " \
-                         f"OR (A.AUTHOR_NAME LIKE '%{search}' " \
-                         f"OR A.AUTHOR_NAME LIKE '{search}%') " \
-                         f"OR (A.AUTHOR_SURNAME LIKE '%{search}' " \
-                         f"OR A.AUTHOR_SURNAME LIKE '{search}%') " \
+                      f"WHERE AUTHOR_SURNAME LIKE '%{search}%')) "
+            conditions = f"WHERE B.TITLE LIKE '%{search}%' " \
+                         f"OR IT.TITLE_UNTRANSLATED LIKE '%{search}%' " \
+                         f"OR A.AUTHOR_NAME LIKE '%{search}%' " \
+                         f"OR A.AUTHOR_SURNAME LIKE '%{search}%' " \
                          f"AND {cor_sub})) "
 
         cursor.execute("SET sql_mode = ''")
