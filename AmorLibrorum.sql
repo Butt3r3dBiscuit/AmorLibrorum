@@ -56,7 +56,7 @@ CREATE TABLE `Transactions` (
   `Transaction_ID` int NOT NULL AUTO_INCREMENT,
   `Book_ID` int NOT NULL,
   `Employee_ID` int NOT NULL,
-  `Date` DATE NOT NULL,
+  `Trans_Date` DATE NOT NULL,
   `Price_in_cents` int NOT NULL,
   PRIMARY KEY (`Transaction_ID`),
   FOREIGN KEY (`Employee_ID`) REFERENCES `Employees`(`Employee_ID`),
