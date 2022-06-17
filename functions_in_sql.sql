@@ -46,7 +46,7 @@ CREATE function price_determination(book_id_given int)
                 set return_string = concat(price);
             end if;
         elseif counting_rows=2 THEN
-            set return_string= 'already sold lol';
+            set return_string= 'already sold';
         end if;
     RETURN return_string;
 END;
