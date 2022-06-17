@@ -19,4 +19,5 @@ my_tree.heading("#0", text"Label", anchor=W)
 my_tree.heading("Name", text"Name", anchor=W)
 
 
+
 root.mainloop()
