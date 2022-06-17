@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 import Start_window
 import employee_window
 import Admin_finance_window
@@ -28,23 +29,96 @@ class Admin_inventory_window(tk.Frame):
         Found_book = tk.Label(self, text="Books Found: ", font=button_font)
         Set_sellprice = tk.Label(self, text="Set Sellprice: ", font=button_font)
 
-        Title = tk.Label(self, text="Title")
-        Author = tk.Label(self, text="Author")
-        Edition = tk.Label(self, text="Edition")
-        Comment = tk.Label(self, text="Comment")
-        Buy_price = tk.Label(self, text="BuyPrice")
-        Sell_price = tk.Label(self, text="SellPrice")
-        In_store = tk.Label(self, text="Amount")
+        search_results = ttk.Treeview(self)
+        # rest = "Title", "Author", "Surname", "Edition", "Comment", "Language", "Publisher", "Year", "Pages", "Book Type", "Location", "Section", "Genre", "Translator", "Original Title", "Original Title", "Origin"
+        search_results['columns'] = ("ISBN","Comment", "Title [Original title]", "Author [Translator]",
+                                     "Edition", "Language", "Genre", "Publisher",
+                                     "Book Type", "Year", "Pages", "Place",
 
-        # text place
-        Found_book.place(relx=0.2, rely=0.25, relwidth=rel_width, height=row_height, anchor="e")
-        Title.place(relx=0.2, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
-        Author.place(relx=0.3, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
-        Edition.place(relx=0.4, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
-        Comment.place(relx=0.5, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
-        Buy_price.place(relx=0.6, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
-        Sell_price.place(relx=0.7, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
-        In_store.place(relx=0.8, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
+                                     # "Translator","Original Title", "Origin",
+                                     "Price", "Amount")
+
+        search_results.column("#0", width=20, stretch=False)
+        search_results.column("ISBN", anchor="w", width=110, minwidth=50)
+        search_results.column("Comment", anchor="w", width=100, minwidth=50)
+        search_results.column("Title [Original title]", anchor="w", width=200, minwidth=100)
+        search_results.column("Author [Translator]", anchor="w", width=100, minwidth=50)
+        search_results.column("Edition", anchor="w", width=100, minwidth=50)
+        # search_results.column("Comment", anchor="w", width=100)
+        search_results.column("Language", anchor="w", width=100, minwidth=50)
+        search_results.column("Genre", anchor="w", width=100, minwidth=50)
+        search_results.column("Publisher", anchor="w", width=100, minwidth=50)
+        search_results.column("Book Type", anchor="w", width=100, minwidth=50)
+        search_results.column("Year", anchor="center", width=50, minwidth=25, stretch=False)
+        search_results.column("Pages", anchor="center", width=50, minwidth=25, stretch=False)
+        search_results.column("Place", anchor="center", width=50, minwidth=25, stretch=False)
+        # search_results.column("Section", anchor="center", width=100)
+        # search_results.column("Translator", anchor="center", width=100)
+        # search_results.column("Original Title", anchor="center", width=100)
+        # search_results.column("Origin", anchor="center", width=100)
+        search_results.column("Price", anchor="center", width=50, minwidth=25, stretch=False)
+        search_results.column("Amount", anchor="center", width=50, minwidth=25, stretch=False)
+
+        search_results.heading("#0", text="", anchor="center")
+        search_results.heading("ISBN",text="ISBN",  anchor="center")
+        search_results.heading("Comment",text="Comment",  anchor="center")
+        search_results.heading("Title [Original title]", text="Title [Original title]", anchor="center")
+        search_results.heading("Author [Translator]", text="Author [Translator]", anchor="center")
+        search_results.heading("Edition", text="Edition", anchor="center")
+        # search_results.heading("Comment",text="Comment",  anchor="center")
+        search_results.heading("Language", text="Language", anchor="center")
+        search_results.heading("Genre", text="Genre", anchor="center")
+        search_results.heading("Publisher", text="Publisher", anchor="center")
+        search_results.heading("Book Type", text="Book Type", anchor="center")
+        search_results.heading("Year", text="Year", anchor="center")
+        search_results.heading("Pages", text="Pages", anchor="center")
+        search_results.heading("Place", text="Place", anchor="center")
+        # search_results.heading("Section",text="Section",  anchor="center")
+        # search_results.heading("Translator",text="Translator",  anchor="center")
+        # search_results.heading("Original Title", text="Original Title",  anchor="center")
+        # search_results.heading("Origin", text="Origin",  anchor="center")
+        search_results.heading("Price", text="Price", anchor="center")
+        search_results.heading("Amount", text="Amount", anchor="center")
+
+        search_results.place(relx=0.025, rely=0.25, relwidth=0.95, relheight=0.15)
+
+        search_results.insert(parent='', index='end', iid=0, values=("9780593334833","Book overview","Book Lovers", "Emily Henry",
+                                                                     "NULL", "English",
+                                                                     "Sisters Fiction, Romantic Comedy", "Berkley",
+                                                                     "paperback",
+                                                                     "2022", "400", "17-18",
+                                                                     "1479", "2"))
+        search_results.insert(parent='0', index='end', iid=1, values=("9780593334833","Discount due to damaged cover","Book Lovers", "Emily Henry",
+                                                                     "NULL", "English",
+                                                                     "Sisters Fiction, Romantic Comedy", "Berkley",
+                                                                     "paperback",
+                                                                     "2022", "400", "17-18",
+                                                                      "1479", "1"))
+        search_results.insert(parent='0', index='end', iid=2, values=("9780593334833","No comment","Book Lovers", "Emily Henry",
+                                                                     "NULL", "English",
+                                                                     "Sisters Fiction, Romantic Comedy", "Berkley",
+                                                                     "paperback",
+                                                                     "2022", "400", "17-18",
+                                                                      "1479", "1"))
+
+
+        # Title = tk.Label(self, text="Title")
+        # Author = tk.Label(self, text="Author")
+        # Edition = tk.Label(self, text="Edition")
+        # Comment = tk.Label(self, text="Comment")
+        # Buy_price = tk.Label(self, text="BuyPrice")
+        # Sell_price = tk.Label(self, text="SellPrice")
+        # In_store = tk.Label(self, text="Amount")
+        #
+        # # text place
+        # Found_book.place(relx=0.2, rely=0.25, relwidth=rel_width, height=row_height, anchor="e")
+        # Title.place(relx=0.2, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
+        # Author.place(relx=0.3, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
+        # Edition.place(relx=0.4, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
+        # Comment.place(relx=0.5, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
+        # Buy_price.place(relx=0.6, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
+        # Sell_price.place(relx=0.7, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
+        # In_store.place(relx=0.8, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
         Set_sellprice.place(relx=0.2, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
 
         # Buttons
@@ -56,8 +130,8 @@ class Admin_inventory_window(tk.Frame):
         Save = tk.Button(self, text="Save", command=self.commit_save)
         Undo = tk.Button(self, text="Undo", command=self.rollback_undo)
         Add = tk.Button(self, text="Add", command=self.add_book) # for adding
-        Search = tk.Button(self, text="Search")
-        Search_all = tk.Button(self, text="Search All")
+        # Search = tk.Button(self, text="Search")
+        # Search_all = tk.Button(self, text="Search All")
         Set = tk.Button(self, text="Set", command=self.set_price_exception)
         Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
 
@@ -261,8 +335,8 @@ class Admin_inventory_window(tk.Frame):
         # label and text place 4
         Isbn_text2.place(relx=0.2, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
         Isbn_label2.place(relx=0.2, rely=0.15, relwidth=rel_width, height=row_height, anchor="e")
-        Search.place(relx=0.8, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
-        Search_all.place(relx=0.9, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
+        # Search.place(relx=0.8, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
+        # Search_all.place(relx=0.9, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
 
         # label and text place 5
         Set.place(relx=0.9, rely=0.55, relwidth=rel_width, height=row_height, anchor="e")
