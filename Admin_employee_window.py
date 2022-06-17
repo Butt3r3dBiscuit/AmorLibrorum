@@ -3,34 +3,26 @@ import Start_window
 import Admin_inventory_window
 import Admin_finance_window
 
+
 class Admin_employee_window(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
-
         rel_width = 0.1
         rel_height = 0.05
-        
-        
-        
-        #Window
-        # window = Tk()
-        # width= window.winfo_screenwidth()
-        # height= window.winfo_screenheight()
-        # window.geometry("%dx%d" % (width, height))
-        # window.title("Employee Window")
-        
-        
-        
-        #Buttons
-        Employee = tk.Button(self, text="Employee", state="disabled")
-        Finance = tk.Button(self, text="Finance",command=lambda: controller.show_frame(Admin_finance_window.Admin_finance_window))
-        Inventory = tk.Button(self, text="Inventory",
-                              command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
+
+        button_font = "Helvetica 18 bold"
+
+
+        # Tabs
         Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
 
-        
-        
+        Employee = tk.Button(self, text="Employee", relief="sunken", state="disabled")
+        Finance = tk.Button(self, text="Finance", command=lambda: controller.show_frame(Admin_finance_window.Admin_finance_window))
+        Inventory = tk.Button(self, text="Inventory", command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
+
+        # Buttons
+
         #Text
         Book_search = tk.Label(self, text="Book Search")
         Title = tk.LabelFrame(self, text="Title")
