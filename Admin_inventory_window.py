@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import Start_window
-import employee_window
+import Admin_employee_window
 import Admin_finance_window
 from AdminClass import Admin, add_to_Price_exceptions
 from datetime import date
@@ -123,7 +123,7 @@ class Admin_inventory_window(tk.Frame):
 
         # Buttons
         Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(
-            employee_window.employee_window))
+            Admin_employee_window.Admin_employee_window))
         Finance = tk.Button(self, text="Finance", command= lambda: controller.show_frame(Admin_finance_window.Admin_finance_window))
         Inventory = tk.Button(self, text="Inventory", relief="sunken", state="disabled")
         

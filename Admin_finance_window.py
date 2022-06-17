@@ -1,7 +1,7 @@
 import tkinter as tk
 import Start_window
 import Admin_inventory_window
-import employee_window
+import Admin_employee_window
 
 
 class Admin_finance_window(tk.Frame):
@@ -16,7 +16,7 @@ class Admin_finance_window(tk.Frame):
 
         # Buttons
         Employee = tk.Button(self, text="Employee",
-                             command=lambda: controller.show_frame(employee_window.employee_window))
+                             command=lambda: controller.show_frame(Admin_employee_window.Admin_employee_window))
         Finance = tk.Button(self, text="Finance", relief="sunken", state="disabled")
         Inventory = tk.Button(self, text="Inventory",
                               command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
