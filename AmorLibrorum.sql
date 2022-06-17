@@ -24,7 +24,7 @@ CREATE TABLE `Book_entries` (
 CREATE TABLE `Price_exceptions` (
   `Book_ID` int NOT NULL,
   `new_price_in_cents` int,
-  `Comment` varchar(30),
+  `Comment` varchar(100),
   FOREIGN KEY (`Book_ID`) REFERENCES `Book_entries`(`Book_ID`)
 );
 
