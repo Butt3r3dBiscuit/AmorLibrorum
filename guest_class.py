@@ -44,7 +44,7 @@ class Guest:
                          f"OR A.AUTHOR_NAME LIKE '{search}%') " \
                          f"OR (A.AUTHOR_SURNAME LIKE '%{search}' " \
                          f"OR A.AUTHOR_SURNAME LIKE '{search}%') " \
-                         f"AND {cor_sub}) "
+                         f"AND {cor_sub})) "
 
         cursor.execute("SET sql_mode = ''")
 
