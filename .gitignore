@@ -4,3 +4,4 @@ random.py
 **/__pycache__/connect.cpython-39.pyc
 *.pyc
 __pycache__/
+**/__pycache__/
