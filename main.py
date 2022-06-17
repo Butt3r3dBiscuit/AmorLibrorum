@@ -18,6 +18,8 @@ class Handler(tk.Tk):
         tk.Tk.geometry(self, f"{width}x{height}")
         tk.Tk.title(self, "Amor Librorum – your favourite book shop")
         tk.Tk.minsize(self, 800, 400)
+        print(width)
+        print(height)
 
         container.pack(side="top", fill="both", expand=True)
 

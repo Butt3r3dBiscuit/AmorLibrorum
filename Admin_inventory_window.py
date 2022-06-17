@@ -4,7 +4,7 @@ import employee_window
 import Admin_finance_window
 from AdminClass import Admin, add_to_Price_exceptions
 from datetime import date
-from tkinter import messagebox
+from tkinter import OptionMenu, messagebox
 
 
 # to be added - other windows
@@ -21,13 +21,6 @@ class Admin_inventory_window(tk.Frame):
         row_height = 20
 
         button_font = "Helvetica 18 bold"
-        # Window
-        # window = Tk()
-        # width = window.winfo_screenwidth()
-        # height = window.winfo_screenheight()
-        # window.geometry("%dx%d" % (width, height))
-        # window.title("Inventory Window")
-        # test push
 
         # text
         Add_book = tk.Label(self, text="Add Book: ", font=button_font)
@@ -38,7 +31,7 @@ class Admin_inventory_window(tk.Frame):
         Title = tk.Label(self, text="Title")
         Author = tk.Label(self, text="Author")
         Edition = tk.Label(self, text="Edition")
-        Version = tk.Label(self, text="Version")
+        Comment = tk.Label(self, text="Comment")
         Buy_price = tk.Label(self, text="BuyPrice")
         Sell_price = tk.Label(self, text="SellPrice")
         In_store = tk.Label(self, text="Amount")
@@ -48,7 +41,7 @@ class Admin_inventory_window(tk.Frame):
         Title.place(relx=0.2, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
         Author.place(relx=0.3, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
         Edition.place(relx=0.4, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
-        Version.place(relx=0.5, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
+        Comment.place(relx=0.5, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
         Buy_price.place(relx=0.6, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
         Sell_price.place(relx=0.7, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
         In_store.place(relx=0.8, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
@@ -81,10 +74,10 @@ class Admin_inventory_window(tk.Frame):
         Log_out.place(relx=0, rely=0, relwidth=rel_width, height=row_height, anchor="nw")
 
         # text and labels
-        Sell_Price_label = tk.Label(self, text="Sell Price", width="15")
-        Sell_Price_label.pack()
-        Sell_Price_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Sell_Price_text.pack()
+        Isbn_label2 = tk.Label(self, text="ISBN", width="15")
+        Isbn_label2.pack()
+        Isbn_text2 = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        Isbn_text2.pack()
 
         Isbn_label3 = tk.Label(self, text="ISBN", width="15")
         Isbn_label3.pack()
@@ -133,10 +126,10 @@ class Admin_inventory_window(tk.Frame):
         self.Edition_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Edition_text.pack()
 
-        Version_label = tk.Label(self, text="Version", width="15")
-        Version_label.pack()
-        self.Version_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        self.Version_text.pack()
+        Comment_label = tk.Label(self, text="Comment", width="15")
+        Comment_label.pack()
+        self.Comment_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Comment_text.pack()
 
         Language_label = tk.Label(self, text="Language", width="15")
         Language_label.pack()
@@ -169,13 +162,20 @@ class Admin_inventory_window(tk.Frame):
         self.Pages_text.pack()
 
         # Booktype_label = tk.Label(self, text="Book Type", width="15")
-        types = ("Paperback","Hardcover")
+        # types = ("Paperback","Hardcover")
 
-        types_var = tk.StringVar(value=types)
+        # types_var = tk.StringVar(value=types)
         Booktype_label = tk.Label(self, text="Book Type", width="15")
         Booktype_label.pack()
-        self.Booktype_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        self.Booktype_text.pack()
+        
+        clicked = tk.StringVar()
+        clicked.set("Hardcopy")
+
+        self.drop = tk.OptionMenu(self, clicked, "Hardcopy", "Paperback")
+        self.drop.pack()
+
+        # self.Booktype_listbox = tk.Listbox(self, listvariable=types_var)
+        # self.Booktype_listbox.pack()
 
         Location_label = tk.Label(self, text="Location", width="15")
         Location_label.pack()
@@ -216,41 +216,41 @@ class Admin_inventory_window(tk.Frame):
         # self.Origin_text.pack()
 
         # label and text place 1
-        self.Isbn_text.place(relx=0.2, rely=0.7, relwidth=rel_width, relheight=row_height, anchor="e")
-        Isbn_label.place(relx=0.2, rely=0.65, relwidth=rel_width, relheight=row_height, anchor="e")
-        self.Title_text.place(relx=0.3, rely=0.7, relwidth=rel_width, relheight=row_height, anchor="e")
-        Title_label.place(relx=0.3, rely=0.65, relwidth=rel_width, relheight=row_height, anchor="e")
-        self.Author_text.place(relx=0.4, rely=0.7, relwidth=rel_width, relheight=row_height, anchor="e")
-        Author_label.place(relx=0.4, rely=0.65, relwidth=rel_width, relheight=row_height, anchor="e")
-        self.Surname_text.place(relx=0.5, rely=0.7, relwidth=rel_width, relheight=row_height, anchor="e")
-        Surname_label.place(relx=0.5, rely=0.65, relwidth=rel_width, relheight=row_height, anchor="e")
-        self.Edition_text.place(relx=0.6, rely=0.7, relwidth=rel_width, relheight=row_height, anchor="e")
-        Edition_label.place(relx=0.6, rely=0.65, relwidth=rel_width, relheight=row_height, anchor="e")
-        self.Version_text.place(relx=0.7, rely=0.7, relwidth=rel_width, relheight=row_height, anchor="e")
-        Version_label.place(relx=0.7, rely=0.65, relwidth=rel_width, relheight=row_height, anchor="e")
-        self.Language_text.place(relx=0.8, rely=0.7, relwidth=rel_width, relheight=row_height, anchor="e")
-        Language_label.place(relx=0.8, rely=0.65, relwidth=rel_width, relheight=row_height, anchor="e")
-        self.Buy_text.place(relx=0.9, rely=0.7, relwidth=rel_width, relheight=row_height, anchor="e")
-        Buy_label.place(relx=0.9, rely=0.65, relwidth=rel_width, relheight=row_height, anchor="e")
+        self.Isbn_text.place(relx=0.2, rely=0.7, relwidth=rel_width, height=row_height, anchor="e")
+        Isbn_label.place(relx=0.2, rely=0.65, relwidth=rel_width, height=row_height, anchor="e")
+        self.Title_text.place(relx=0.3, rely=0.7, relwidth=rel_width, height=row_height, anchor="e")
+        Title_label.place(relx=0.3, rely=0.65, relwidth=rel_width, height=row_height, anchor="e")
+        self.Author_text.place(relx=0.4, rely=0.7, relwidth=rel_width, height=row_height, anchor="e")
+        Author_label.place(relx=0.4, rely=0.65, relwidth=rel_width, height=row_height, anchor="e")
+        self.Surname_text.place(relx=0.5, rely=0.7, relwidth=rel_width, height=row_height, anchor="e")
+        Surname_label.place(relx=0.5, rely=0.65, relwidth=rel_width, height=row_height, anchor="e")
+        self.Edition_text.place(relx=0.6, rely=0.7, relwidth=rel_width, height=row_height, anchor="e")
+        Edition_label.place(relx=0.6, rely=0.65, relwidth=rel_width, height=row_height, anchor="e")
+        self.Comment_text.place(relx=0.7, rely=0.7, relwidth=rel_width, height=row_height, anchor="e")
+        Comment_label.place(relx=0.7, rely=0.65, relwidth=rel_width, height=row_height, anchor="e")
+        self.Language_text.place(relx=0.8, rely=0.7, relwidth=rel_width, height=row_height, anchor="e")
+        Language_label.place(relx=0.8, rely=0.65, relwidth=rel_width, height=row_height, anchor="e")
+        self.Buy_text.place(relx=0.9, rely=0.7, relwidth=rel_width, height=row_height, anchor="e")
+        Buy_label.place(relx=0.9, rely=0.65, relwidth=rel_width, height=row_height, anchor="e")
 
         # label and text place 2
-        self.Amount_text.place(relx=0.2, rely=0.8, relwidth=rel_width, relheight=row_height, anchor="e")
-        Amount_label.place(relx=0.2, rely=0.75, relwidth=rel_width, relheight=row_height, anchor="e")
-        self.Publisher_text.place(relx=0.3, rely=0.8, relwidth=rel_width, relheight=row_height, anchor="e")
-        Publisher_label.place(relx=0.3, rely=0.75, relwidth=rel_width, relheight=row_height, anchor="e")
-        self.Year_text.place(relx=0.4, rely=0.8, relwidth=rel_width, relheight=row_height, anchor="e")
-        Year_label.place(relx=0.4, rely=0.75, relwidth=rel_width, relheight=row_height, anchor="e")
-        self.Pages_text.place(relx=0.5, rely=0.8, relwidth=rel_width, relheight=row_height, anchor="e")
-        Pages_label.place(relx=0.5, rely=0.75, relwidth=rel_width, relheight=row_height, anchor="e")
-        self.Booktype_listbox.place(relx=0.6, rely=0.8, relwidth=rel_width, relheight=row_height*0.85, anchor="e")
-        # self.Booktype_text.place(relx=0.6, rely=0.8, relwidth=rel_width, relheight=row_height, anchor="e")
-        Booktype_label.place(relx=0.6, rely=0.75, relwidth=rel_width, relheight=row_height, anchor="e")
-        self.Location_text.place(relx=0.7, rely=0.8, relwidth=rel_width, relheight=row_height, anchor="e")
-        Location_label.place(relx=0.7, rely=0.75, relwidth=rel_width, relheight=row_height, anchor="e")
-        self.Section_text.place(relx=0.8, rely=0.8, relwidth=rel_width, relheight=row_height, anchor="e")
-        Section_label.place(relx=0.8, rely=0.75, relwidth=rel_width, relheight=row_height, anchor="e")
-        self.Genre_text.place(relx=0.9, rely=0.8, relwidth=rel_width, relheight=row_height, anchor="e")
-        Genre_label.place(relx=0.9, rely=0.75, relwidth=rel_width, relheight=row_height, anchor="e")
+        self.Amount_text.place(relx=0.2, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
+        Amount_label.place(relx=0.2, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
+        self.Publisher_text.place(relx=0.3, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
+        Publisher_label.place(relx=0.3, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
+        self.Year_text.place(relx=0.4, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
+        Year_label.place(relx=0.4, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
+        self.Pages_text.place(relx=0.5, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
+        Pages_label.place(relx=0.5, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
+        self.drop.place(relx=0.6, rely=0.8, relwidth=rel_width, height=row_height*0.85, anchor="e")
+        # self.Booktype_text.place(relx=0.6, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
+        Booktype_label.place(relx=0.6, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
+        self.Location_text.place(relx=0.7, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
+        Location_label.place(relx=0.7, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
+        self.Section_text.place(relx=0.8, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
+        Section_label.place(relx=0.8, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
+        self.Genre_text.place(relx=0.9, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
+        Genre_label.place(relx=0.9, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
 
         # label and text place 3
         self.Translated_label.place(relx=0.65, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
@@ -259,21 +259,21 @@ class Admin_inventory_window(tk.Frame):
         Add.place(relx=0.9, rely=0.9, relwidth=rel_width, height=row_height, anchor="e")
 
         # label and text place 4
-        # Isbn_text2.place(relx=0.2, rely=0.2, relwidth=rel_width, height=row_height, anchor="e") #todo
-        # Isbn_label2.place(relx=0.2, rely=0.15, relwidth=rel_width, height=row_height, anchor="e") #todo       Search.place(relx=0.8, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
+        Isbn_text2.place(relx=0.2, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
+        Isbn_label2.place(relx=0.2, rely=0.15, relwidth=rel_width, height=row_height, anchor="e")
         Search.place(relx=0.8, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
         Search_all.place(relx=0.9, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
 
         # label and text place 5
-        Set.place(relx=0.9, rely=0.55, relwidth=rel_width, relheight=row_height, anchor="e")
-        self.Isbn_text3.place(relx=0.2, rely=0.55, relwidth=rel_width, relheight=row_height, anchor="e")
-        Isbn_label3.place(relx=0.2, rely=0.5, relwidth=rel_width, relheight=row_height, anchor="e")
-        BookID_label3.place(relx=0.3, rely=0.5, relwidth=rel_width, relheight=row_height, anchor="e")
-        self.BookID_entry3.place(relx=0.3, rely=0.55, relwidth=rel_width, relheight=row_height, anchor="e")
-        Comment_Price_Exc.place(relx=0.4, rely=0.5, relwidth=rel_width, relheight=row_height, anchor="e")
-        self.Comment_price_exc_entry.place(relx=0.4, rely=0.55, relwidth=rel_width, relheight=row_height, anchor="e")
-        Sell_Price_label.place(relx=0.5, rely=0.5, relwidth=rel_width, relheight=row_height, anchor="e")
-        self.Sell_Price_text.place(relx=0.5, rely=0.55, relwidth=rel_width, relheight=row_height, anchor="e")
+        Set.place(relx=0.9, rely=0.55, relwidth=rel_width, height=row_height, anchor="e")
+        self.Isbn_text3.place(relx=0.2, rely=0.55, relwidth=rel_width, height=row_height, anchor="e")
+        Isbn_label3.place(relx=0.2, rely=0.5, relwidth=rel_width, height=row_height, anchor="e")
+        BookID_label3.place(relx=0.3, rely=0.5, relwidth=rel_width, height=row_height, anchor="e")
+        self.BookID_entry3.place(relx=0.3, rely=0.55, relwidth=rel_width, height=row_height, anchor="e")
+        Comment_Price_Exc.place(relx=0.4, rely=0.5, relwidth=rel_width, height=row_height, anchor="e")
+        self.Comment_price_exc_entry.place(relx=0.4, rely=0.55, relwidth=rel_width, height=row_height, anchor="e")
+        Sell_Price_label.place(relx=0.5, rely=0.5, relwidth=rel_width, height=row_height, anchor="e")
+        self.Sell_Price_text.place(relx=0.5, rely=0.55, relwidth=rel_width, height=row_height, anchor="e")
 
     # button functions
 
@@ -308,7 +308,8 @@ class Admin_inventory_window(tk.Frame):
         self.Untranslated_label.place(relx=0.3, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
         self.Origin_text.place(relx=0.4, rely=0.9, relwidth=rel_width, height=row_height, anchor="e")
         self.Origin_label.place(relx=0.4, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
-        # self.Translated_label.place(relx=0.65, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")        print("hello")
+        # self.Translated_label.place(relx=0.65, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
+        print("hello")
         print(emp_id)
 
     def no_button(self):
@@ -336,16 +337,16 @@ class Admin_inventory_window(tk.Frame):
         Author = self.Author_text.get()
         Surname = self.Surname_text.get()
         Edition = self.Edition_text.get()
-        Comment = self.Version_text.get()
+        Comment = self.Comment_text.get()
         Language = self.Language_text.get()
         Buy_price = int(self.Buy_text.get())
         Amount = int(self.Amount_text.get()) #what is it for?
         Publisher = self.Publisher_text.get()
         Year = self.Year_text.get()
         Pages = self.Pages_text.get()
-        for i in self.Booktype_listbox.curselection():
-            Booktype = (self.Booktype_listbox.get(i))
-        # Booktype = self.Booktype_listbox.get()
+        # for i in self.Booktype_listbox.curselection():
+        #     Booktype = (self.Booktype_listbox.get(i))
+        # # Booktype = self.Booktype_listbox.get()
         Location = self.Location_text.get()
         Section = self.Section_text.get()
         Genre = self.Genre_text.get()
@@ -368,23 +369,23 @@ class Admin_inventory_window(tk.Frame):
         resp = messagebox.askquestion('askquestion', 'Are you sure you want to save this book?')
         # messagebox.askquestion("askquestion", "Are you sure?")
         mycursor = db.cursor()
-        if resp == "yes":
-            print(Translator, Original_title, Origin)
-            Admin_object = Admin(db)
-            try:
-                Admin_object.add_book(ISBN, Title, Author, Surname, Publisher, Year, Pages, Language, Booktype,
-                                      Location, Section, Genre, emp_id, Date, Buy_price, Comment, Translator,
-                                      Original_title,
-                                      Origin, Edition, Amount)
-                self.Booktype_listbox.config(fg="black")
-            except UnboundLocalError:
-                print("Here")
-                self.Booktype_listbox.config(fg="red")
-            print(ISBN, Title, Author, Surname, Edition, Comment, Language, Buy_price)
-            print(Publisher, Year, Pages, Booktype, Location, Section, Genre)
-            print("Book has been added\nmake this a label that shows up.")
-        else:
-            print("Book has not been added.")
+        # if resp == "yes":
+        #     print(Translator, Original_title, Origin)
+        #     Admin_object = Admin(db)
+        #     try:
+        #         Admin_object.add_book(ISBN, Title, Author, Surname, Publisher, Year, Pages, Language, Booktype,
+        #                               Location, Section, Genre, emp_id, Date, Buy_price, Comment, Translator,
+        #                               Original_title,
+        #                               Origin, Edition, Amount)
+        #         self.Booktype_listbox.config(fg="black")
+        #     except UnboundLocalError:
+        #         print("Here")
+        #         self.Booktype_listbox.config(fg="red")
+        #     print(ISBN, Title, Author, Surname, Edition, Comment, Language, Buy_price)
+        #     print(Publisher, Year, Pages, Booktype, Location, Section, Genre)
+        #     print("Book has been added\nmake this a label that shows up.")
+        # else:
+        #     print("Book has not been added.")
     def commit_save(self):
         resp = messagebox.askquestion('askquestion', 'Are you sure you want to commit?')
         mycursor = db.cursor()
