@@ -22,6 +22,13 @@ class Admin_inventory_window(tk.Frame):
 
         button_font = "Helvetica 18 bold"
 
+
+        # Buttons
+        Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(employee_window.employee_window))
+        Finance = tk.Button(self, text="Finance", command= lambda: controller.show_frame(Admin_finance_window.Admin_finance_window))
+        Inventory = tk.Button(self, text="Inventory", relief="sunken", state="disabled")
+
+
         # text
         Add_book = tk.Label(self, text="Add Book: ", font=button_font)
         Search_book = tk.Label(self, text="Search Book: ", font=button_font)
@@ -47,12 +54,7 @@ class Admin_inventory_window(tk.Frame):
         In_store.place(relx=0.8, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
         Set_sellprice.place(relx=0.2, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
 
-        # Buttons
-        Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(
-            employee_window.employee_window))
-        Finance = tk.Button(self, text="Finance", command= lambda: controller.show_frame(Admin_finance_window.Admin_finance_window))
-        Inventory = tk.Button(self, text="Inventory", relief="sunken", state="disabled")
-        
+                
         Save = tk.Button(self, text="Save", command=self.commit_save)
         Undo = tk.Button(self, text="Undo", command=self.rollback_undo)
         Add = tk.Button(self, text="Add", command=self.add_book) # for adding

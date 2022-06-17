@@ -11,17 +11,13 @@ class Admin_finance_window(tk.Frame):
         rel_width = 0.1
         rel_height = 0.05
 
-        # Window
-        # window = Tk()
-        # width= window.winfo_screenwidth()
-        # height= window.winfo_screenheight()
-        # window.geometry("%dx%d" % (width, height))
-        # window.title("Employee Window")
+        button_font = "Helvetica 18 bold"
+
 
         # Buttons
         Employee = tk.Button(self, text="Employee",
                              command=lambda: controller.show_frame(employee_window.employee_window))
-        Finance = tk.Button(self, text="Finance", state="disabled")
+        Finance = tk.Button(self, text="Finance", relief="sunken", state="disabled")
         Inventory = tk.Button(self, text="Inventory",
                               command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
         Delete = tk.Button(self, text="Delete")
