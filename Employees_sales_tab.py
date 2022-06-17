@@ -1,10 +1,5 @@
 import tkinter as tk
 import Start_window
-# from login_window import login_window
-# from Employees_sales_tab import Employee_sales_window
-# from Admin_inventory_window import Admin_inventory_window
-# from employee_window import employee_window
-# from Admin_finance_window import Admin_finance_window
 
 emp_id = None
 
