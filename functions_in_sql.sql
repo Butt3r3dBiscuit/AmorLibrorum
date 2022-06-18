@@ -47,7 +47,50 @@ END;
 
 GRANT EXECUTE on FUNCTION `Amorlibrorum`.`price_determination` to 'guest'@'localhost';
 -- drop trigger if exists ISBN_cz;
-
 -- create handler that checks while adding boook to book_entries if the ISBN exists already in the books
 -- create trigger ISBN_cz before insert on Book_entries
 --    for each row
+
+-- Transaction procedures and trigger
+DROP TRIGGER IF EXISTS before_sold;
+CREATE TRIGGER before_sold
+BEFORE INSERT
+ON transactions FOR EACH ROW
+BEGIN
+    DECLARE boughtcount INT;
+    DEClARE soldcount INT;
+    DECLARE message_text varchar(255);
+
+    SELECT COUNT(*) 
+    INTO boughtcount
+    FROM transactions WHERE Price_in_cents<0 and book_id=NEW.book_id;
+    
+    SELECT COUNT(*) 
+    INTO soldcount
+    FROM transactions WHERE Price_in_cents>=0 and book_id=NEW.book_id;
+
+    IF (boughtcount<=soldcount) AND (NEW.Price_in_cents>0) THEN
+        signal sqlstate '45000' SET message_text = 'Book cannot be sold more times than it is bought >:(';
+    END IF; 
+END;
+
+DROP PROCEDURE IF EXISTS sell;
+CREATE PROCEDURE sell(ID varchar(13), emp_id INT)
+BEGIN
+	DECLARE t_date date;
+	DECLARE Price int;
+	SET Price = (select price_determination(ID));
+	SET t_date = (select current_date);
+	INSERT INTO transactions(Book_ID, Employee_ID, Trans_Date, Price_in_cents) values (ID, emp_id, t_date, Price);
+END;
+
+DROP PROCEDURE IF EXISTS return_booK;
+CREATE PROCEDURE return_book(ID varchar(13), emp_id INT)
+BEGIN
+	DECLARE t_date date;
+	DECLARE Price int;
+	SET Price = -1*(select price_in_cents from transactions where transaction_id=(select max(transaction_id) from transactions where book_id=ID));
+	SET t_date = (select current_date);
+	INSERT INTO transactions(Book_ID, Employee_ID, Trans_Date, Price_in_cents) values (ID, emp_id, t_date, Price);
+END;
+
