@@ -35,7 +35,7 @@ CREATE function price_determination(book_id_given int)
         declare return_string varchar(20);
         select count(Book_ID) into counting_rows from Transactions where Book_ID=book_id_given;
         select new_price_in_cents into price from Price_exceptions where Book_ID=book_id_given;
-        if counting_rows=1 THEN
+        if (counting_rows%2)=1 THEN
             if price IS NULL THEN
                 select margin into margin_var from variables;
                 select Price_in_cents into buying_price from Transactions where Book_ID=book_id_given;
@@ -45,7 +45,7 @@ CREATE function price_determination(book_id_given int)
                 select new_price_in_cents into price from Price_exceptions where Book_ID=book_id_given;
                 set return_string = concat(price);
             end if;
-        elseif counting_rows=2 THEN
+        elseif (counting_rows%2)=2 THEN
             set return_string= 'already sold';
         end if;
     RETURN return_string;
