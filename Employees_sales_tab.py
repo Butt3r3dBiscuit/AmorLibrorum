@@ -1,8 +1,9 @@
 import tkinter as tk
 import Start_window
 from tkinter import ttk
-
+from book_search import book_search
 emp_id = None
+db = None
 
 class Employee_sales_window(tk.Frame):
     def __init__(self, parent, controller):
@@ -14,7 +15,7 @@ class Employee_sales_window(tk.Frame):
 # window.geometry("800x400")
 # window.title("Employee sales tab")
 
-        Search = tk.Button(self, text="Search")
+        Search = tk.Button(self, text="Search", command=self.search)
         Search.place(relx=0.4, rely=0.35, relwidth=rel_width, relheight=0.1, anchor="e")
 
         Sell = tk.Button(self, text="Sell")
@@ -26,9 +27,9 @@ class Employee_sales_window(tk.Frame):
 
         Book_label = tk.Label(self, text="Book ID", width = "15")
         Book_label.pack()
-        Book_text = tk.Text(self, borderwidth=1, relief="groove")
-        Book_text.pack()
-        Book_text.place(relx=0.3, rely=0.35, relwidth=0.2, relheight=0.1, anchor="e")
+        self.Book_text = tk.Entry(self, borderwidth=1, relief="groove")
+        self.Book_text.pack()
+        self.Book_text.place(relx=0.3, rely=0.35, relwidth=0.2, relheight=0.1, anchor="e")
         Book_label.place(relx=0.2, rely=0.25, relwidth=rel_width, relheight=rel_height, anchor="e")
 
 
@@ -110,27 +111,64 @@ class Employee_sales_window(tk.Frame):
 
         self.search_results.place(relx=0.025, rely=0.55, relwidth=0.95, relheight=0.25)
 
-        self.search_results.insert(parent='', index='end', iid=0,
-                              values=("9780593334833", "Book overview", "Book Lovers", "Emily Henry",
-                                      "NULL", "English",
-                                      "Sisters Fiction, Romantic Comedy", "Berkley",
-                                      "paperback",
-                                      "2022", "400", "17-18",
-                                      "1479", "2"))
-        self.search_results.insert(parent='0', index='end', iid=1,
-                              values=("9780593334833", "Discount due to damaged cover", "Book Lovers", "Emily Henry",
-                                      "NULL", "English",
-                                      "Sisters Fiction, Romantic Comedy", "Berkley",
-                                      "paperback",
-                                      "2022", "400", "17-18",
-                                      "1479", "1"))
-        self.search_results.insert(parent='0', index='end', iid=2,
-                              values=("9780593334833", "No comment", "Book Lovers", "Emily Henry",
-                                      "NULL", "English",
-                                      "Sisters Fiction, Romantic Comedy", "Berkley",
-                                      "paperback",
-                                      "2022", "400", "17-18",
-                                      "1479", "1"))
+        # self.search_results.insert(parent='', index='end', iid=0,
+        #                       values=("9780593334833", "Book overview", "Book Lovers", "Emily Henry",
+        #                               "NULL", "English",
+        #                               "Sisters Fiction, Romantic Comedy", "Berkley",
+        #                               "paperback",
+        #                               "2022", "400", "17-18",
+        #                               "1479", "2"))
+        # self.search_results.insert(parent='0', index='end', iid=1,
+        #                       values=("9780593334833", "Discount due to damaged cover", "Book Lovers", "Emily Henry",
+        #                               "NULL", "English",
+        #                               "Sisters Fiction, Romantic Comedy", "Berkley",
+        #                               "paperback",
+        #                               "2022", "400", "17-18",
+        #                               "1479", "1"))
+        # self.search_results.insert(parent='0', index='end', iid=2,
+        #                       values=("9780593334833", "No comment", "Book Lovers", "Emily Henry",
+        #                               "NULL", "English",
+        #                               "Sisters Fiction, Romantic Comedy", "Berkley",
+        #                               "paperback",
+        #                               "2022", "400", "17-18",
+        #                               "1479", "1"))
 
         # window.mainloop()
-
+    def search(self):
+        for record in self.search_results.get_children():
+            self.search_results.delete(record)
+        Book_ID_input = self.Book_text.get()
+        b = book_search(book_id=Book_ID_input,db=db)
+        print(b)
+        m = len(b)
+        count = 0
+        parent_id = ''
+        for i in range(m):
+            if i > 0 and b[i - 1][0] != b[i][0]:
+                parent = ''
+                parent_id = str(count)
+            else:
+                parent = parent_id
+            n = len(b[i])
+            values = []
+            for j in range(n - 1):
+                if j == 0 or j == 6:
+                    if b[i][j + 2] != None:
+                        values.append(f"{b[i][j + 1]} [{b[i][j + 2]}]")
+                    else:
+                        values.append(b[i][j + 1])
+                elif j == 2:
+                    if b[i][j + 3] != None:
+                        values.append(f"{b[i][j + 1]} {b[i][j + 2]} [{b[i][j + 3]}]")
+                    else:
+                        values.append(f"{b[i][j + 1]} {b[i][j + 2]}")
+                elif j == 13:
+                    values.append(f"{b[i][j + 1]}-{b[i][j + 2]}")
+                elif j not in (1, 3, 4, 7, 14):
+                    if b[i][j + 1] != None:
+                        values.append(b[i][j + 1])
+                    else:
+                        values.append('')
+            print(values)
+            self.search_results.insert(parent=parent, index='end', iid=str(count), values=values)
+            count += 1
