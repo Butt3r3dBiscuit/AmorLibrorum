@@ -57,9 +57,9 @@ class Employee_sales_window(tk.Frame):
         # Sell_price.place(relx=0.8, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
         # In_store.place(relx=0.9, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
 
-        search_results = ttk.Treeview(self)
+        self.search_results = ttk.Treeview(self)
         # rest = "Title", "Author", "Surname", "Edition", "Comment", "Language", "Publisher", "Year", "Pages", "Book Type", "Location", "Section", "Genre", "Translator", "Original Title", "Original Title", "Origin"
-        search_results['columns'] = ("ISBN", "Comment", "Title [Original title]", "Author [Translator]",
+        self.search_results['columns'] = ("ISBN", "Comment", "Title [Original title]", "Author [Translator]",
                                      "Edition", "Language", "Genre", "Publisher",
                                      "Book Type", "Year", "Pages", "Place",
 

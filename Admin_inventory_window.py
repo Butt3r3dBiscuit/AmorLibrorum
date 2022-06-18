@@ -29,9 +29,9 @@ class Admin_inventory_window(tk.Frame):
         Found_book = tk.Label(self, text="Books Found: ", font=button_font)
         Set_sellprice = tk.Label(self, text="Set Sellprice: ", font=button_font)
 
-        search_results = ttk.Treeview(self)
+        self.search_results = ttk.Treeview(self)
         # rest = "Title", "Author", "Surname", "Edition", "Comment", "Language", "Publisher", "Year", "Pages", "Book Type", "Location", "Section", "Genre", "Translator", "Original Title", "Original Title", "Origin"
-        search_results['columns'] = ("ISBN","Comment", "Title [Original title]", "Author [Translator]",
+        self.search_results['columns'] = ("ISBN","Comment", "Title [Original title]", "Author [Translator]",
                                      "Edition", "Language", "Genre", "Publisher",
                                      "Book Type", "Year", "Pages", "Place",
 
