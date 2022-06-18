@@ -35,13 +35,10 @@ CREATE function price_determination(book_id_given int)
         select new_price_in_cents into price from Price_exceptions where Book_ID=book_id_given;
         if price IS NULL THEN
             select margin into margin_var from variables;
-            
-            drop table if exists temp_table;
-            create table temp_table
-            as select Transaction_ID, price_in_cents as temp_table from transactions where book_id=book_id_given;
-            select price_in_cents into buying_price from temp_table where transaction_id=(select min(transaction_id) from temp_table);
-            drop table temp_table;
 
+            select price_in_cents into buying_price from transactions where book_id=book_id_given 
+            and transaction_id=(select min(transaction_id) from transactions where book_id=book_id_given);
+            
             set price = -buying_price * margin_var;
         end if;
         set return_string = concat(price);
