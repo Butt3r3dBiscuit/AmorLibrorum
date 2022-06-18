@@ -22,5 +22,8 @@ if __name__ == "__main__":
     mycursor= db.cursor()
 
     emp.sell(21, 2)
+    emp.return_book(21, 1)
+    emp.sell(21, 2)
+    emp.return_book(21, 1)
     db.commit()
     db.close()
