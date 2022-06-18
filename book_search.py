@@ -1,14 +1,15 @@
-import mysql.connector
+# import mysql.connector
+#
+# db = mysql.connector.connect(
+#     host="localhost",
+#     user="root",
+#     passwd="MyN3wP4ssw0rd!*",
+#     database="AmorLibrorum")
+# mycursor = db.cursor()
+#
 
-db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="MyN3wP4ssw0rd!*",
-    database="AmorLibrorum")
-mycursor = db.cursor()
-
-
-def book_search(book_id):
+def book_search(book_id, db):
+    mycursor = db.cursor()
     mycursor.execute("SELECT PE.NEW_PRICE_IN_CENTS "
                      "FROM BOOK_ENTRIES BE "
                      "INNER JOIN "
