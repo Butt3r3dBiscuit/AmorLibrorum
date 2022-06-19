@@ -1,7 +1,10 @@
 import tkinter as tk
 import Start_window
 import Admin_inventory_window
-import employee_window
+import Admin_employee_window
+
+
+
 
 
 class Admin_finance_window(tk.Frame):
@@ -14,14 +17,22 @@ class Admin_finance_window(tk.Frame):
         button_font = "Helvetica 18 bold"
 
 
-        # Buttons
-        Employee = tk.Button(self, text="Employee",
-                             command=lambda: controller.show_frame(employee_window.employee_window))
-        Finance = tk.Button(self, text="Finance", relief="sunken", state="disabled")
-        Inventory = tk.Button(self, text="Inventory",
-                              command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
-        Delete = tk.Button(self, text="Delete")
+
+
+
+
+
+
+
+
+
+        
+        # Tabs
         Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
+
+        Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(Admin_employee_window.Admin_employee_window))
+        Finance = tk.Button(self, text="Finance", relief="sunken", state="disabled")
+        Inventory = tk.Button(self, text="Inventory", command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
 
         # text
         Search_records = tk.Label(self, text="Search records: ", font='Helvetica 18 bold')
@@ -42,7 +53,7 @@ class Admin_finance_window(tk.Frame):
         Employee.place(relx=1, relwidth=rel_width, relheight=rel_height, anchor="ne")
         Finance.place(relx=0.9, relwidth=rel_width, relheight=rel_height, anchor="ne")
         Inventory.place(relx=0.8, relwidth=rel_width, relheight=rel_height, anchor="ne")
-        Delete.place(relx=0.2, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
+        # Delete.place(relx=0.2, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
         Log_out.place(relx=0, rely=0, relwidth=rel_width, relheight=rel_height, anchor="nw")
 
         Search_records_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")

@@ -1,25 +1,23 @@
 import tkinter as tk
 from tkinter import ttk
 import Start_window
-# import Admin_inventory_window
 import Admin_employee_window
 import Admin_finance_window
 from AdminClass import Admin, add_to_Price_exceptions
 from datetime import date
 from tkinter import OptionMenu, messagebox
 
-
-# to be added - other windows
 emp_id = None
 db = None
+
 
 
 class Admin_inventory_window(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
-
         rel_width = 0.1
+        # rel_height = 0.05
         row_height = 20
 
         button_font = "Helvetica 18 bold"
@@ -40,9 +38,9 @@ class Admin_inventory_window(tk.Frame):
         Found_book = tk.Label(self, text="Books Found: ", font=button_font)
         Set_sellprice = tk.Label(self, text="Set Sellprice: ", font=button_font)
 
-        search_results = ttk.Treeview(self)
+        self.search_results = ttk.Treeview(self)
         # rest = "Title", "Author", "Surname", "Edition", "Comment", "Language", "Publisher", "Year", "Pages", "Book Type", "Location", "Section", "Genre", "Translator", "Original Title", "Original Title", "Origin"
-        search_results['columns'] = ("ISBN","Comment", "Title [Original title]", "Author [Translator]",
+        self.search_results['columns'] = ("ISBN","Comment", "Title [Original title]", "Author [Translator]",
                                      "Edition", "Language", "Genre", "Publisher",
                                      "Book Type", "Year", "Pages", "Place",
 
