@@ -20,8 +20,7 @@ class login_window(tk.Frame):
         # root.geometry('300x150')
         # root.title('Log in')
         # root.resizable(False, False)
-        back_button = tk.Button(self, text="Return home", height=2, width=11,
-                                command= lambda: self.back_button(controller))
+        back_button = tk.Button(self, text="Return home", height=2, width=11, command= lambda: self.back_button(controller))
         back_button.pack()
         back_button.place(x=0, y=0)
 
@@ -50,10 +49,10 @@ class login_window(tk.Frame):
             print([email])
         password = self.password_text.get()
         print("password: ", password)
-        # email = "casual@amorlibrorum.boek" #temp
-        # password = "YetAn0!herqwertyp4ssword" #temp
-        email = "frank@amorlibrorum.boek"
-        password = "An0!herqwertyp4ssword"
+        email = "casual@amorlibrorum.boek" #temp
+        password = "YetAn0!herqwertyp4ssword" #temp
+        # email = "frank@amorlibrorum.boek" #temp
+        # password = "An0!herqwertyp4ssword" #temp
         self.db = connect_employee(email, password)
         if self.db == 1045:
             try:
