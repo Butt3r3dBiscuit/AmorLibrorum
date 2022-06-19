@@ -1,5 +1,5 @@
 import tkinter as tk
-# from tkinter import ttk
+from tkinter import ttk
 import Start_window
 import Admin_inventory_window
 # import Admin_employee_window
