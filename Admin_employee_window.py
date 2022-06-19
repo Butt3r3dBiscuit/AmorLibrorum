@@ -3,6 +3,7 @@ from tkinter import ttk
 import Start_window
 import Admin_inventory_window
 import Admin_finance_window
+import Admin_sales_window
 import user_creation
 from AdminClass import add_to_employees
 from AdminClass import Admin
@@ -32,12 +33,16 @@ class Admin_employee_window(tk.Frame):
                             command=lambda: self.finance(controller))
         Inventory = tk.Button(self, text="Inventory",
                               command=lambda: self.inventory(controller))
+        Book_sell = tk.Button(self, text="Sell book",
+                              command= lambda: controller.show_frame(Admin_sales_window.Admin_sales_tab))
 
         # Tabs Placement
         Log_out.place(relx=0, rely=0, relwidth=rel_width, height=button_height, anchor="nw")
         Employee.place(relx=1, relwidth=rel_width, height=button_height, anchor="ne")
         Finance.place(relx=0.9, relwidth=rel_width, height=button_height, anchor="ne")
         Inventory.place(relx=0.8, relwidth=rel_width, height=button_height, anchor="ne")
+        Book_sell.place(relx=0.7, relwidth=rel_width, height=button_height, anchor="ne")
+
 
         # first row - Big label definition - Add Employee
         Add_employee_label = tk.Label(self, text="Add Employee:", font=button_font)

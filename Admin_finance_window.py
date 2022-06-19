@@ -4,6 +4,7 @@ import AdminClass
 import Start_window
 import Admin_inventory_window
 import Admin_employee_window
+import Admin_sales_window
 from tkinter import ttk
 
 
@@ -30,6 +31,8 @@ class Admin_finance_window(tk.Frame):
         Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(Admin_employee_window.Admin_employee_window))
         Finance = tk.Button(self, text="Finance", relief="sunken", state="disabled")
         Inventory = tk.Button(self, text="Inventory", command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
+        Book_sell = tk.Button(self, text="Sell book", command= lambda: controller.show_frame(Admin_sales_window.Admin_sales_tab))
+
 
         Search_records_button = tk.Button(self, text="Search", command=self.transaction_search)
         # Tabs Placement
@@ -38,6 +41,8 @@ class Admin_finance_window(tk.Frame):
         Employee.place(relx=1, relwidth=rel_width, height=button_height, anchor="ne")
         Finance.place(relx=0.9, relwidth=rel_width, height=button_height, anchor="ne")
         Inventory.place(relx=0.8, relwidth=rel_width, height=button_height, anchor="ne")
+        Book_sell.place(relx=0.7, relwidth=rel_width, height=button_height, anchor="ne")
+
 
         Delete = tk.Button(self, text="Delete", command=self.deletion)
         Set_margin_Button = tk.Button(self, text="Set", command=self.set_margin_func)

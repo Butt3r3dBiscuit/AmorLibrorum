@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
+
+import Admin_sales_window
 import Start_window
 import Admin_employee_window
 import Admin_finance_window
@@ -28,6 +30,7 @@ class Admin_inventory_window(tk.Frame):
         Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(Admin_employee_window.Admin_employee_window))
         Finance = tk.Button(self, text="Finance", command= lambda: controller.show_frame(Admin_finance_window.Admin_finance_window))
         Inventory = tk.Button(self, text="Inventory", relief="sunken", state="disabled")
+        Book_sell = tk.Button(self, text="Sell book", command= lambda: controller.show_frame(Admin_sales_window.Admin_sales_tab))
 
 
         # text
@@ -106,6 +109,7 @@ class Admin_inventory_window(tk.Frame):
         Employee.place(relx=1, relwidth=rel_width, height=button_height, anchor="ne")
         Finance.place(relx=0.9, relwidth=rel_width, height=button_height, anchor="ne")
         Inventory.place(relx=0.8, relwidth=rel_width, height=button_height, anchor="ne")
+        Book_sell.place(relx=0.7, relwidth=rel_width, height=button_height, anchor="ne")
         Log_out.place(relx=0, rely=0, relwidth=rel_width, height=button_height, anchor="nw")
 
         Search_book_button.place(relx=0.3, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
@@ -199,7 +203,7 @@ class Admin_inventory_window(tk.Frame):
 
         Booktype_label = tk.Label(self, text="Book Type", width="15")
         Booktype_label.pack()
-        
+
         self.clicked = tk.StringVar()
         self.clicked.set("Hardcover")
 

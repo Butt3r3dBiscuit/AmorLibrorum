@@ -5,6 +5,7 @@ from Employees_sales_tab import Employee_sales_window
 from Admin_inventory_window import Admin_inventory_window
 from Admin_employee_window import Admin_employee_window
 from Admin_finance_window import Admin_finance_window
+from Admin_sales_window import Admin_sales_tab
 
 class Handler(tk.Tk):
     def __init__(self, *args, **kwargs):
@@ -28,7 +29,7 @@ class Handler(tk.Tk):
 
 # here we will put names of classes in respective files
 
-        for F in (Start_window, login_window, Employee_sales_window, Admin_inventory_window, Admin_employee_window, Admin_finance_window):
+        for F in (Start_window, login_window, Employee_sales_window, Admin_inventory_window, Admin_employee_window, Admin_finance_window, Admin_sales_tab):
             print("here", F)
             frame = F(container, self)
 
