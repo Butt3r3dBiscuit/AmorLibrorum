@@ -105,11 +105,11 @@ class Employee_sales_window(tk.Frame):
         self.search_results.place(relx=0.025, rely=0.55, relwidth=0.95, relheight=0.25)
 
 
-    def search(self):
+        def search(self):
         for record in self.search_results.get_children():
             self.search_results.delete(record)
-        Book_ID_input = self.enter_your_book_id_here_pls.get()
-        b = book_search(input=Book_ID_input,db=db,type=0)
+        Book_ID_input = self.Book_text.get()
+        b = book_search(book_id=Book_ID_input,db=db)
         m = len(b)
         count = 0
         parent = ''
@@ -136,4 +136,4 @@ class Employee_sales_window(tk.Frame):
                         values.append('')
             self.search_results.insert(parent=parent, index='end', iid=str(count), values=values)
             count += 1
-            print(values)
+
