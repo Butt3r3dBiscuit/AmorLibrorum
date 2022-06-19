@@ -1,6 +1,12 @@
 import tkinter as tk
 from tkinter import ttk
 import Start_window
+# import Admin_inventory_window
+# import Admin_employee_window
+# import Admin_finance_window
+# from AdminClass import Admin, add_to_Price_exceptions
+# from datetime import date
+# from tkinter import OptionMenu, messagebox
 from book_search import book_search
 
 emp_id = None
@@ -16,12 +22,13 @@ class Employee_sales_window(tk.Frame):
         button_height = 45
         text_height = 20
         title_height = 30
+        button_font = "Helvetica 18 bold"
 
         Search = tk.Button(self, text="Search", command=self.search)
         Search.place(relx=0.4, rely=0.35, relwidth=rel_width, height=45, anchor="e")
 
         Sell = tk.Button(self, text="Sell")
-        Sell.place(relx=1, rely=0.9, relwidth=rel_width, relheight=0.1, anchor="e")
+        Sell.place(relx=1, rely=0.9, relwidth=rel_width, height=45, anchor="e")
 
         Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
         Log_out.place(relx=1, rely=0, relwidth=rel_width, height=45, anchor="ne")
@@ -29,19 +36,19 @@ class Employee_sales_window(tk.Frame):
 
         Book_label = tk.Label(self, text="Book ID", width="15")
         Book_label.place(relx=0.2, rely=0.25, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Book_label.pack()
+        # Book_label.pack()
 
         self.enter_your_book_id_here_pls = tk.Entry(self, borderwidth=1, relief="groove")
-        self.enter_your_book_id_here_pls.place(relx=0.3, rely=0.35, relwidth=0.2, relheight=0.1, anchor="e")
-        self.enter_your_book_id_here_pls.pack()
+        self.enter_your_book_id_here_pls.place(relx=0.3, rely=0.35, relwidth=0.2, height=45, anchor="e")
+        # self.enter_your_book_id_here_pls.pack()
 
 
-        Book_search = tk.Label(self, text="Book search: ", font='Helvetica 18 bold')
-        Found = tk.Label(self, text="Found: ", font='Helvetica 18 bold')
+        Book_search = tk.Label(self, text="Book search: ", font=button_font)
+        Found = tk.Label(self, text="Found: ", font=button_font)
 
 
-        Book_search.place(relx=0.25, rely=0.1, relwidth=0.2, relheight=rel_height, anchor="e")
-        Found.place(relx=0.2, rely=0.5, relwidth=0.2, relheight=rel_height, anchor="e")
+        Book_search.place(relx=0.25, rely=0.1, relwidth=rel_width*2, relheight=rel_height, anchor="e")
+        Found.place(relx=0.2, rely=0.5, relwidth=rel_width*2, relheight=rel_height, anchor="e")
         
 
         self.search_results = ttk.Treeview(self)
