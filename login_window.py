@@ -39,7 +39,7 @@ class login_window(tk.Frame):
         login_button = tk.Button(self, text="Log in", height=2, width=11, command=lambda: self.log_in(controller))
         login_button.bind('<Return>', lambda event: self.log_in(controller))
         login_button.pack()
-        login_button.place(x=200, y=95)
+        login_button.place(relx=0.5, y=95)
 
     def log_in(self, controller):
         email = self.email_text.get()

@@ -1,21 +1,23 @@
 import tkinter as tk
-import Start_window
 from tkinter import ttk
+import Start_window
 from book_search import book_search
+
 emp_id = None
 db = None
 
 class Employee_sales_window(tk.Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self,parent)
+        tk.Frame.__init__(self, parent)
+
         rel_width = 0.1
         rel_height = 0.05
+        row_height = 20
+        button_height = 45
+        text_height = 20
+        title_height = 30
 
-# window = Tk()
-# window.geometry("800x400")
-# window.title("Employee sales tab")
-
-        Search = tk.Button(self, text="Search", command=self.search)
+        Search = tk.Button(self, text="Search")
         Search.place(relx=0.4, rely=0.35, relwidth=rel_width, relheight=0.1, anchor="e")
 
         Sell = tk.Button(self, text="Sell")
@@ -25,7 +27,7 @@ class Employee_sales_window(tk.Frame):
                             command=lambda: controller.show_frame(Start_window.Start_window))
         Log_out.place(relx=1, rely=0, relwidth=rel_width,relheight=0.1, anchor="ne")
 
-        Book_label = tk.Label(self, text="Book ID", width = "15")
+        Book_label = tk.Label(self, text="Book ID", width="15")
         Book_label.pack()
         self.Book_text = tk.Entry(self, borderwidth=1, relief="groove")
         self.Book_text.pack()
