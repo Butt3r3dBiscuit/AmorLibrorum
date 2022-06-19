@@ -101,3 +101,34 @@ BEGIN
 	INSERT INTO transactions(Book_ID, Employee_ID, Trans_Date, Price_in_cents) values (ID, emp_id, t_date, Price);
 END;
 
+-- determines wether a book has been sold
+CREATE FUNCTION sold(ID varchar(13))
+RETURNS smallint
+DETERMINISTIC
+BEGIN
+    DECLARE boughtcount INT;
+    DEClARE soldcount INT;
+    DECLARE bool smallint;
+
+    SELECT COUNT(*) 
+    INTO boughtcount
+    FROM transactions WHERE Price_in_cents<0 and book_id=ID;
+
+    SELECT COUNT(*) 
+    INTO soldcount
+    FROM transactions WHERE Price_in_cents>=0 and book_id=ID;
+
+    SET bool = 1;
+    IF boughtcount>soldcount THEN
+        SET bool = 0;
+    END IF;
+RETURN bool;
+END;
+
+-- deletes sold book records in transactions older than 5 years
+CREATE PROCEDURE clean(ID varchar(13), emp_id INT)
+BEGIN
+	DECLARE t_date date;
+	SET t_date = (select current_date);
+    DELETE FROM TRANSACTIONS WHERE Trans_Date<=t_date AND sold(book_id)=1;
+END;
