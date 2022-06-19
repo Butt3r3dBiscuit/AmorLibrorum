@@ -1,6 +1,6 @@
 DELIMITER &&
 
-CREATE PROCEDURE clean(ID varchar(13), emp_id INT)
+CREATE PROCEDURE clean()
 BEGIN
 	DECLARE t_date date;
 	SET t_date = (select current_date);
