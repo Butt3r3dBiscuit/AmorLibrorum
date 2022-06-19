@@ -120,7 +120,7 @@ class Admin_employee_window(tk.Frame):
         self.New_password_entry.place(relx=0.315, rely=0.65, relwidth=rel_width, height=row_height, anchor="e")
 
         # third row - Button definition and place
-        New_password_save = tk.Button(self, text="Change")
+        New_password_save = tk.Button(self, text="Change", command=self.change_password)
         New_password_save.place(relx=0.515, rely=0.65, relwidth=rel_width, height=row_height, anchor="e")
 
         # fourth row - Big label definition - Dismission
@@ -218,6 +218,8 @@ class Admin_employee_window(tk.Frame):
             query = add_to_employees(Name=first_name, Surname=last_name, position="Manager",email=email)
             mycursor = db.cursor()
             mycursor.execute(query)
+            mycursor.execute(f"grant create user on *.* to '{email}'@'localhost' with grant option")
+            mycursor.execute(f"grant reload on *.* to '{email}'@'localhost' with grant option")
             mycursor.execute("commit")
 
     def add_employee(self):
@@ -264,7 +266,13 @@ class Admin_employee_window(tk.Frame):
 
 
     def change_password(self):
-        pass
+        Email = f"`{self.New_password_email_entry.get()}`@`localhost`"
+        New_password = self.New_password_entry.get()
+        mycursor = db.cursor()
+        print(Email)
+        mycursor.execute(f"ALTER USER {Email} IDENTIFIED BY '{New_password}'")
+        mycursor.execute("commit")
+
 
     def user_dismiss(self):
         pass

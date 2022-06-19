@@ -114,7 +114,8 @@ class Admin_inventory_window(tk.Frame):
         Finance.place(relx=0.9, relwidth=rel_width, height=button_height, anchor="ne")
         Inventory.place(relx=0.8, relwidth=rel_width, height=button_height, anchor="ne")
         Log_out.place(relx=0, rely=0, relwidth=rel_width, height=button_height, anchor="nw")
-        
+
+        Search_book_button.place(relx=0.3, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
         Save.place(relx=1, rely=0.975, relwidth=rel_width, height=row_height, anchor="e")
         Undo.place(relx=0.9, rely=0.975, relwidth=rel_width, height=row_height, anchor="e")
 
@@ -442,3 +443,34 @@ class Admin_inventory_window(tk.Frame):
             print("Book has been added\nmake this a label that shows up.")
         else:
             print("Book hasn't been added")
+    def search(self):
+        for record in self.search_results.get_children():
+            self.search_results.delete(record)
+        Book_ID_input = self.Isbn_text2.get()
+        b = book_search(input=Book_ID_input,db=db,type=1)
+        m = len(b)
+        count = 0
+        parent = ''
+        for i in range(m):
+            n = len(b[i])
+            values = []
+            for j in range(n):
+                if j == 2 or j == 8:
+                    if b[i][j + 1] != None:
+                        values.append(f"{b[i][j]} [{b[i][j + 1]}]")
+                    else:
+                        values.append(b[i][j])
+                elif j == 4:
+                    if b[i][j + 2] != None:
+                        values.append(f"{b[i][j]} {b[i][j + 1]} [{b[i][j + 2]}]")
+                    else:
+                        values.append(f"{b[i][j]} {b[i][j + 1]}")
+                elif j == 15:
+                    values.append(f"{b[i][j]}-{b[i][j + 1]}")
+                elif j not in (3, 5, 6, 9, 16):
+                    if b[i][j] != None:
+                        values.append(b[i][j])
+                    else:
+                        values.append('')
+            self.search_results.insert(parent=parent, index='end', iid=str(count), values=values)
+            count += 1
