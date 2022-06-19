@@ -27,7 +27,7 @@ class login_window(tk.Frame):
         self.password_text.pack()
 
         login_button = tk.Button(self, text="Log in", height=2, width=11, command=lambda: self.log_in(controller))
-        login_button.bind('<Return>', lambda event: self.log_in(controller))
+        login_button.bind('<Return>', lambda event: self.log_in(controller)) # this line makes it so that you can "click" on Log in button via Return key on keyboard
         login_button.pack()
         login_button.place(relx=0.5, y=95)
 

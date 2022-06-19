@@ -12,26 +12,11 @@ class Guest:
 
     def search(self, search=""):
         conditions = ""
-        cor_sub = "BE.BOOK_ID IN (SELECT BOEN.BOOK_ID " \
-                                 "FROM BOOK_ENTRIES BOEN, TRANSACTIONS TRA, BOOKS BO " \
-                                 "WHERE TRA.BOOK_ID=BOEN.BOOK_ID "
-        if search == "":
-            conditions = f"WHERE {cor_sub}) "
-        else:
-            cor_sub = f"{cor_sub}" \
-                      "AND ((BO.ISBN IN (SELECT ISBN FROM BOOKS " \
-                      f"WHERE TITLE LIKE '%{search}%') " \
-                      "OR BO.ISBN IN (SELECT ISBN FROM IF_TRANSLATED " \
-                      f"WHERE TITLE_UNTRANSLATED LIKE '%{search}%'))) " \
-                      "OR (BO.ISBN IN (SELECT ISBN FROM AUTHORS " \
-                      f"WHERE AUTHOR_NAME LIKE '%{search}%')) " \
-                      "OR (BO.ISBN IN (SELECT ISBN FROM AUTHORS " \
-                      f"WHERE AUTHOR_SURNAME LIKE '%{search}%')) "
+        if search != "":
             conditions = f"WHERE B.TITLE LIKE '%{search}%' " \
                          f"OR IT.TITLE_UNTRANSLATED LIKE '%{search}%' " \
                          f"OR A.AUTHOR_NAME LIKE '%{search}%' " \
-                         f"OR A.AUTHOR_SURNAME LIKE '%{search}%' " \
-                         f"AND {cor_sub}) "
+                         f"OR A.AUTHOR_SURNAME LIKE '%{search}%' "
 
         cursor.execute("SET sql_mode = ''")
 

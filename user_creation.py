@@ -1,7 +1,27 @@
 import connect
 
+def admin_user_addition(my_cursor, username, password):
+    try:
+        my_cursor.execute(f"CREATE USER '{username}'@'localhost' IDENTIFIED BY '{password}'")
+
+        my_cursor.execute("FLUSH PRIVILEGES;")
+
+        my_cursor.execute(f"grant all privileges on AmorLibrorum.* to '{username}'@'localhost';")
+
+    except Exception as e:
+        if e.errno == 1819:
+            # this error cathes if passsword doesn't satisfy the policy requirements
+            print("make a pop up out of this:")
+            print("Your password does not satisfy the current policy requirements")
+
+        if e.errno == 1396:
+            # this error cathes if user already exists
+            print('here')
+            my_cursor.execute(f"DROP USER '{username}'@'localhost';")
+            return admin_user_addition(my_cursor, username, password)
+        print(e)
+
 def employee_user_addition(my_cursor,username,password):
-    #here we are going to build the database's core
     try:
         my_cursor.execute(f"CREATE USER '{username}'@'localhost' IDENTIFIED BY '{password}'")
 
@@ -46,5 +66,6 @@ if __name__=="__main__":
     my_cursor = db.cursor()
     ## test add user
     employee_user_addition(my_cursor,"casual@amorlibrorum.boek","YetAn0!herqwertyp4ssword")
+    admin_user_addition(my_cursor, "mytestADmin", "YetAn0!herqwertyp4ssword")
 
 #for dropping

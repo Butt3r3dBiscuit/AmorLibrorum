@@ -1,6 +1,12 @@
 import tkinter as tk
 from tkinter import ttk
 import Start_window
+# import Admin_inventory_window
+# import Admin_employee_window
+# import Admin_finance_window
+# from AdminClass import Admin, add_to_Price_exceptions
+# from datetime import date
+# from tkinter import OptionMenu, messagebox
 from book_search import book_search
 
 emp_id = None
@@ -16,49 +22,34 @@ class Employee_sales_window(tk.Frame):
         button_height = 45
         text_height = 20
         title_height = 30
+        button_font = "Helvetica 18 bold"
 
-        Search = tk.Button(self, text="Search")
-        Search.place(relx=0.4, rely=0.35, relwidth=rel_width, relheight=0.1, anchor="e")
+        Search = tk.Button(self, text="Search", command=self.search)
+        Search.place(relx=0.4, rely=0.35, relwidth=rel_width, height=45, anchor="e")
 
         Sell = tk.Button(self, text="Sell")
-        Sell.place(relx=1, rely=0.9, relwidth=rel_width, relheight=0.1, anchor="e")
+        Sell.place(relx=1, rely=0.9, relwidth=rel_width, height=45, anchor="e")
 
-        Log_out = tk.Button(self, text="Log out",
-                            command=lambda: controller.show_frame(Start_window.Start_window))
-        Log_out.place(relx=1, rely=0, relwidth=rel_width,relheight=0.1, anchor="ne")
+        Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
+        Log_out.place(relx=0, rely=0, relwidth=rel_width, height=45, anchor="nw")
+
 
         Book_label = tk.Label(self, text="Book ID", width="15")
-        Book_label.pack()
-        self.Book_text = tk.Entry(self, borderwidth=1, relief="groove")
-        self.Book_text.pack()
-        self.Book_text.place(relx=0.3, rely=0.35, relwidth=0.2, relheight=0.1, anchor="e")
         Book_label.place(relx=0.2, rely=0.25, relwidth=rel_width, relheight=rel_height, anchor="e")
+        # Book_label.pack()
+
+        self.enter_your_book_id_here_pls = tk.Entry(self, borderwidth=1, relief="groove")
+        self.enter_your_book_id_here_pls.place(relx=0.3, rely=0.35, relwidth=0.2, height=45, anchor="e")
+        # self.enter_your_book_id_here_pls.pack()
 
 
-        Book_search = tk.Label(self, text="Book search: ", font='Helvetica 18 bold')
-        Found = tk.Label(self, text="Found: ", font='Helvetica 18 bold')
-        # Title = tk.Label(self, text="Title")
-        # Author = tk.Label(self, text="Author")
-        # Edition = tk.Label(self, text="Edition")
-        # Version = tk.Label(self, text="Version")
-        # Location = tk.Label(self, text="Location")
-        # Section = tk.Label(self, text="Section")
-        # Language = tk.Label(self, text="Language")
-        # Sell_price = tk.Label(self, text="SellPrice")
-        # In_store = tk.Label(self, text="InStore")
+        Book_search = tk.Label(self, text="Book search: ", font=button_font)
+        Found = tk.Label(self, text="Found: ", font=button_font)
 
 
-        Book_search.place(relx=0.25, rely=0.1, relwidth=0.2, relheight=rel_height, anchor="e")
-        Found.place(relx=0.2, rely=0.5, relwidth=0.2, relheight=rel_height, anchor="e")
-        # Title.place(relx=0.1, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
-        # Author.place(relx=0.2, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
-        # Edition.place(relx=0.3, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
-        # Version.place(relx=0.4, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
-        # Location.place(relx=0.5, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
-        # Section.place(relx=0.6, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
-        # Language.place(relx=0.7, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
-        # Sell_price.place(relx=0.8, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
-        # In_store.place(relx=0.9, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
+        Book_search.place(relx=0.25, rely=0.1, relwidth=rel_width*2, relheight=rel_height, anchor="e")
+        Found.place(relx=0.2, rely=0.5, relwidth=rel_width*2, relheight=rel_height, anchor="e")
+        
 
         self.search_results = ttk.Treeview(self)
         # rest = "Title", "Author", "Surname", "Edition", "Comment", "Language", "Publisher", "Year", "Pages", "Book Type", "Location", "Section", "Genre", "Translator", "Original Title", "Original Title", "Origin"
@@ -113,64 +104,36 @@ class Employee_sales_window(tk.Frame):
 
         self.search_results.place(relx=0.025, rely=0.55, relwidth=0.95, relheight=0.25)
 
-        # self.search_results.insert(parent='', index='end', iid=0,
-        #                       values=("9780593334833", "Book overview", "Book Lovers", "Emily Henry",
-        #                               "NULL", "English",
-        #                               "Sisters Fiction, Romantic Comedy", "Berkley",
-        #                               "paperback",
-        #                               "2022", "400", "17-18",
-        #                               "1479", "2"))
-        # self.search_results.insert(parent='0', index='end', iid=1,
-        #                       values=("9780593334833", "Discount due to damaged cover", "Book Lovers", "Emily Henry",
-        #                               "NULL", "English",
-        #                               "Sisters Fiction, Romantic Comedy", "Berkley",
-        #                               "paperback",
-        #                               "2022", "400", "17-18",
-        #                               "1479", "1"))
-        # self.search_results.insert(parent='0', index='end', iid=2,
-        #                       values=("9780593334833", "No comment", "Book Lovers", "Emily Henry",
-        #                               "NULL", "English",
-        #                               "Sisters Fiction, Romantic Comedy", "Berkley",
-        #                               "paperback",
-        #                               "2022", "400", "17-18",
-        #                               "1479", "1"))
 
-        # window.mainloop()
     def search(self):
         for record in self.search_results.get_children():
             self.search_results.delete(record)
-        Book_ID_input = self.Book_text.get()
-        b = book_search(book_id=Book_ID_input,db=db)
-        print(b)
+        Book_ID_input = self.enter_your_book_id_here_pls.get()
+        b = book_search(book_id=Book_ID_input, db=db)
         m = len(b)
         count = 0
-        parent_id = ''
+        parent = ''
         for i in range(m):
-            if i > 0 and b[i - 1][0] != b[i][0]:
-                parent = ''
-                parent_id = str(count)
-            else:
-                parent = parent_id
             n = len(b[i])
             values = []
-            for j in range(n - 1):
-                if j == 0 or j == 6:
-                    if b[i][j + 2] != None:
-                        values.append(f"{b[i][j + 1]} [{b[i][j + 2]}]")
-                    else:
-                        values.append(b[i][j + 1])
-                elif j == 2:
-                    if b[i][j + 3] != None:
-                        values.append(f"{b[i][j + 1]} {b[i][j + 2]} [{b[i][j + 3]}]")
-                    else:
-                        values.append(f"{b[i][j + 1]} {b[i][j + 2]}")
-                elif j == 13:
-                    values.append(f"{b[i][j + 1]}-{b[i][j + 2]}")
-                elif j not in (1, 3, 4, 7, 14):
+            for j in range(n):
+                if j == 2 or j == 8:
                     if b[i][j + 1] != None:
-                        values.append(b[i][j + 1])
+                        values.append(f"{b[i][j]} [{b[i][j + 1]}]")
+                    else:
+                        values.append(b[i][j])
+                elif j == 4:
+                    if b[i][j + 2] != None:
+                        values.append(f"{b[i][j]} {b[i][j + 1]} [{b[i][j + 2]}]")
+                    else:
+                        values.append(f"{b[i][j]} {b[i][j + 1]}")
+                elif j == 15:
+                    values.append(f"{b[i][j]}-{b[i][j + 1]}")
+                elif j not in (3, 5, 6, 9, 16):
+                    if b[i][j] != None:
+                        values.append(b[i][j])
                     else:
                         values.append('')
-            print(values)
             self.search_results.insert(parent=parent, index='end', iid=str(count), values=values)
             count += 1
+            print(values)
