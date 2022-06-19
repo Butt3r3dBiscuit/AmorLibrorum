@@ -1,4 +1,6 @@
 import tkinter as tk
+
+import AdminClass
 import Start_window
 import Admin_inventory_window
 import Admin_employee_window
@@ -37,8 +39,7 @@ class Admin_finance_window(tk.Frame):
         Finance.place(relx=0.9, relwidth=rel_width, height=button_height, anchor="ne")
         Inventory.place(relx=0.8, relwidth=rel_width, height=button_height, anchor="ne")
 
-
-        Delete = tk.Button(self, text="Delete", command=self.get_margin)
+        Delete = tk.Button(self, text="Delete", command=self.deletion)
         Set_margin_Button = tk.Button(self, text="Set", command=self.set_margin_func)
         Profit_margin_calc = tk.Button(self, text="Show margin", command=self.get_margin)
         Search_records_button.place(relx=0.3, rely=0.15)
@@ -124,6 +125,11 @@ class Admin_finance_window(tk.Frame):
         mycursor.execute("select margin from variables;")
         for x in mycursor:
             self.string_variable.set(str(x[0]))
+    def deletion(self):
+        Admin_object = AdminClass.Admin(db)
+        Admin_object.clean()
+        print("here")
+
 
     def transaction_search(self):
         for record in self.search_results.get_children():
