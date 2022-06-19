@@ -157,33 +157,25 @@ class Admin_employee_window(tk.Frame):
         Dismiss_email.place(relx=0.215, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
 
         Dismiss_button = tk.Button(self, text="Dismiss")
-        Dismiss_button.place(relx=0.415, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
-        # #Placement Text
-        # Book_search.place(relx=0.18, rely=0.15, relwidth=rel_width, relheight=rol_height, anchor="e")
-        # Title.place(relx=0.2, rely=0.3, relwidth=rel_width, relheight=rol_height, anchor="e")
-        # Author.place(relx=0.35, rely=0.3, relwidth=rel_width, relheight=rol_height, anchor="e")
-        # Editor.place(relx=0.3, rely=0.3, relwidth=rel_width, relheight=rol_height, anchor="e")
-        # Version.place(relx=0.65, rely=0.3, relwidth=rel_width, relheight=rol_height, anchor="e")
-        # Language.place(relx=0.8, rely=0.3, relwidth=rel_width, relheight=rol_height, anchor="e")
-        # All.place(relx=0.95, rely=0.3, relwidth=rel_width, relheight=rol_height, anchor="e")
-'''
-        self.search_results = ttk.Treeview(self)
-        # rest = "Title", "Author", "Surname", "Edition", "Comment", "Language", "Publisher", "Year", "Pages", "Book Type", "Location", "Section", "Genre", "Translator", "Original Title", "Original Title", "Origin"
-        self.search_results['columns'] = ("First ", "Comment", "Title [Original title]", "Author [Translator]",
-                                          "Edition", "Language", "Genre", "Publisher",
-                                          "Book Type", "Year", "Pages", "Place",
+        Dismiss_button.place(relx=0.515, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
 
-                                          # "Translator","Original Title", "Origin",
-                                          "Price", "Amount")
+
+        self.search_results = ttk.Treeview(self)
+        self.search_results['columns'] = ("First Name", "Last Name", "Email")
 
         self.search_results.column("#0", width=20, stretch=False)
-        self.search_results.column("ISBN", anchor="w", width=110, minwidth=50)
-        self.search_results.column("Comment", anchor="w", width=100, minwidth=50)
-        self.search_results.column("Title [Original title]", anchor="w", width=200, minwidth=100)
-        self.search_results.column("Author [Translator]", anchor="w", width=100, minwidth=50)
+        self.search_results.column("First Name", anchor="w", width=110, minwidth=50)
+        self.search_results.column("Last Name", anchor="w", width=100, minwidth=50)
+        self.search_results.column("Email", anchor="w", width=200, minwidth=100)
+
+        self.search_results.heading("#0", text="", anchor="center")
+        self.search_results.heading("First Name", text="First name", anchor="center")
+        self.search_results.heading("Last Name", text="Last name", anchor="center")
+        self.search_results.heading("Email", text="Email", anchor="center")
+
+        self.search_results.place(relx=0.615, rely=0.45, relheight=0.4)
 
     def test_emp_id(self):
         print(Admin_inventory_window.emp_id)
         print('this is just to test that we have the emp_id loaded - not sure if we need it here but ye')
         print("we could make it so that in one of the corners there would be sth like logged as:")
-'''
