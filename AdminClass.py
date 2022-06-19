@@ -329,6 +329,16 @@ class Admin:
             "ORDER BY B.ISBN, PRICE_DETERMINATION(BE.BOOK_ID)")
         result = self.mycursor.fetchall()
         return result
+    #sell procedure
+    def sell(self, book_id, employee_id):
+        arg=(book_id, employee_id)
+        self.mycursor.callproc("sell", arg)
+    #return  book procedure
+    def return_book(self, book_id, employee_id):
+        arg=(book_id, employee_id)
+        self.mycursor.callproc("return_book", arg)
+
+
 if __name__ == "__main__":
     db = connect.connect_admin("MyN3wP4ssw0rd!*")
     admin = Admin(db)
