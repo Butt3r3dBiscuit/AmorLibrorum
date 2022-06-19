@@ -10,7 +10,7 @@ class Guest:
     def __init__(self):
         pass
 
-        def search(self, search, type):
+    def search(self, search, type):
         conditions = ""
         or_isbn = ""
         if type != 0:
