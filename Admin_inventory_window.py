@@ -449,3 +449,34 @@ class Admin_inventory_window(tk.Frame):
             print("Book has been added\nmake this a label that shows up.")
         else:
             print("Book hasn't been added")
+    def search(self):
+        for record in self.search_results.get_children():
+            self.search_results.delete(record)
+        Book_ID_input = self.Isbn_text2.get()
+        b = book_search(input=Book_ID_input,db=db,type=1)
+        m = len(b)
+        count = 0
+        parent = ''
+        for i in range(m):
+            n = len(b[i])
+            values = []
+            for j in range(n):
+                if j == 2 or j == 8:
+                    if b[i][j + 1] != None:
+                        values.append(f"{b[i][j]} [{b[i][j + 1]}]")
+                    else:
+                        values.append(b[i][j])
+                elif j == 4:
+                    if b[i][j + 2] != None:
+                        values.append(f"{b[i][j]} {b[i][j + 1]} [{b[i][j + 2]}]")
+                    else:
+                        values.append(f"{b[i][j]} {b[i][j + 1]}")
+                elif j == 15:
+                    values.append(f"{b[i][j]}-{b[i][j + 1]}")
+                elif j not in (3, 5, 6, 9, 16):
+                    if b[i][j] != None:
+                        values.append(b[i][j])
+                    else:
+                        values.append('')
+            self.search_results.insert(parent=parent, index='end', iid=str(count), values=values)
+            count += 1
