@@ -64,12 +64,25 @@ class Admin_finance_window(tk.Frame):
         self.search_results = ttk.Treeview(self)
         self.search_results['columns'] = ("TID", "BID", "EID", "Transdate", "Price")
 
+
         self.search_results.column("#0", width=20, stretch=False)
         self.search_results.column("TID", anchor="w", width=110, minwidth=50)
         self.search_results.column("BID", anchor="w", width=110, minwidth=50)
         self.search_results.column("EID", anchor="w", width=110, minwidth=50)
         self.search_results.column("Transdate", anchor="w", width=110, minwidth=50)
         self.search_results.column("Price", anchor="w", width=110, minwidth=50)
+
+        self.search_results.heading("#0", text="", anchor="center")
+        self.search_results.heading("TID", text="Transaction ID", anchor="center")
+        self.search_results.heading("BID", text="Book ID", anchor="center")
+        self.search_results.heading("EID", text="Employee ID", anchor="center")
+        self.search_results.heading("Transdate", text="Date", anchor="center")
+        self.search_results.heading("Price", text="Price", anchor="center")
+
+        self.search_results.place(relx=0.025, rely=0.25, relwidth=0.95, relheight=0.15)
+
+
+
 
 
 
