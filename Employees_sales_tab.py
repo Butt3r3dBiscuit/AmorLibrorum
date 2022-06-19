@@ -31,7 +31,7 @@ class Employee_sales_window(tk.Frame):
         Sell.place(relx=1, rely=0.9, relwidth=rel_width, height=45, anchor="e")
 
         Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
-        Log_out.place(relx=1, rely=0, relwidth=rel_width, height=45, anchor="ne")
+        Log_out.place(relx=0, rely=0, relwidth=rel_width, height=45, anchor="nw")
 
 
         Book_label = tk.Label(self, text="Book ID", width="15")
