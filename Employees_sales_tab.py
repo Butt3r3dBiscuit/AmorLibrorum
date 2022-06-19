@@ -1,6 +1,5 @@
 import tkinter as tk
 import Start_window
-from book_search import book_search
 
 emp_id = None
 db = None
@@ -10,7 +9,6 @@ class Employee_sales_window(tk.Frame):
         tk.Frame.__init__(self, parent)
 
         rel_width = 0.1
-        rel_height = 0.05
         row_height = 20
         button_height = 45
         text_height = 20
@@ -59,7 +57,7 @@ class Employee_sales_window(tk.Frame):
         # Sell_price.place(relx=0.8, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
         # In_store.place(relx=0.9, rely=0.7, relwidth=rel_width, relheight=rel_height, anchor="e")
 
-        self.search_results = tk.Treeview(self)
+        self.search_results = ttk.Treeview(self)
         # rest = "Title", "Author", "Surname", "Edition", "Comment", "Language", "Publisher", "Year", "Pages", "Book Type", "Location", "Section", "Genre", "Translator", "Original Title", "Original Title", "Origin"
         self.search_results['columns'] = ("ISBN", "Comment", "Title [Original title]", "Author [Translator]",
                                      "Edition", "Language", "Genre", "Publisher",

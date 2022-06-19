@@ -130,7 +130,7 @@ class Admin_inventory_window(tk.Frame):
 
         # Buttons
         Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(
-            Admin_employee_window.Admin_employee_window))
+            employee_window.employee_window))
         Finance = tk.Button(self, text="Finance", command= lambda: controller.show_frame(Admin_finance_window.Admin_finance_window))
         Inventory = tk.Button(self, text="Inventory", relief="sunken", state="disabled")
         
