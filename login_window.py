@@ -43,8 +43,8 @@ class login_window(tk.Frame):
         print("password: ", password)
         # email = "casual@amorlibrorum.boek" #temp
         # password = "YetAn0!herqwertyp4ssword" #temp
-        email = "frank@amorlibrorum.boek"
-        password = "An0!herqwertyp4ssword"
+        # email = "frank@amorlibrorum.boek"
+        # password = "An0!herqwertyp4ssword"
         # email = "sjlksofj"
         # password = "Lfjkl9213410!(@*"
         self.db = connect_employee(email, password)
