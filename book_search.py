@@ -1,12 +1,4 @@
-# import mysql.connector
-#
-# db = mysql.connector.connect(
-#     host="localhost",
-#     user="root",
-#     passwd="MyN3wP4ssw0rd!*",
-#     database="AmorLibrorum")
-# mycursor = db.cursor()
-#
+import mysql.connector
 
 def book_search(book_id, db):
     mycursor = db.cursor()

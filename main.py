@@ -1,5 +1,4 @@
 import tkinter as tk
-# here we will put names of files
 from Start_window import Start_window
 from login_window import login_window
 from Employees_sales_tab import Employee_sales_window
@@ -8,7 +7,6 @@ from Admin_employee_window import Admin_employee_window
 from Admin_finance_window import Admin_finance_window
 
 class Handler(tk.Tk):
-
     def __init__(self, *args, **kwargs):
 
         tk.Tk.__init__(self, *args, **kwargs)
@@ -20,7 +18,7 @@ class Handler(tk.Tk):
         tk.Tk.minsize(self, 800, 400)
         print(width)
         print(height)
-
+        
         container.pack(side="top", fill="both", expand=True)
 
         container.grid_rowconfigure(0, weight=1)

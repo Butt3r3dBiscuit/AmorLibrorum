@@ -7,21 +7,34 @@ from AdminClass import Admin, add_to_Price_exceptions
 from datetime import date
 from tkinter import OptionMenu, messagebox
 
-
-# to be added - other windows
 emp_id = None
 db = None
+
 
 
 class Admin_inventory_window(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
-
         rel_width = 0.1
+        # rel_height = 0.05
         row_height = 20
-
+        rel_width = 0.1
+        rel_height = 0.05
+        button_height = 45
+        text_height = 20
+        title_height = 30
         button_font = "Helvetica 18 bold"
+
+
+
+        # Tabs
+        Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
+
+        Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(Admin_employee_window.Admin_employee_window))
+        Finance = tk.Button(self, text="Finance", command= lambda: controller.show_frame(Admin_finance_window.Admin_finance_window))
+        Inventory = tk.Button(self, text="Inventory", relief="sunken", state="disabled")
+
 
         # text
         Add_book = tk.Label(self, text="Add Book: ", font=button_font)
@@ -121,12 +134,7 @@ class Admin_inventory_window(tk.Frame):
         # In_store.place(relx=0.8, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
         Set_sellprice.place(relx=0.2, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
 
-        # Buttons
-        Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(
-            Admin_employee_window.Admin_employee_window))
-        Finance = tk.Button(self, text="Finance", command= lambda: controller.show_frame(Admin_finance_window.Admin_finance_window))
-        Inventory = tk.Button(self, text="Inventory", relief="sunken", state="disabled")
-        
+                
         Save = tk.Button(self, text="Save", command=self.commit_save)
         Undo = tk.Button(self, text="Undo", command=self.rollback_undo)
         Add = tk.Button(self, text="Add", command=self.add_book) # for adding
@@ -140,12 +148,13 @@ class Admin_inventory_window(tk.Frame):
         Search_book.place(relx=0.2, rely=0.1, relwidth=rel_width, height=row_height, anchor="e")
 
         # Place Buttons
-        Employee.place(relx=1, relwidth=rel_width, height=row_height, anchor="ne")
-        Finance.place(relx=0.9, relwidth=rel_width, height=row_height, anchor="ne")
-        Inventory.place(relx=0.8, relwidth=rel_width, height=row_height, anchor="ne")
+        Employee.place(relx=1, relwidth=rel_width, height=button_height, anchor="ne")
+        Finance.place(relx=0.9, relwidth=rel_width, height=button_height, anchor="ne")
+        Inventory.place(relx=0.8, relwidth=rel_width, height=button_height, anchor="ne")
+        Log_out.place(relx=0, rely=0, relwidth=rel_width, height=button_height, anchor="nw")
+        
         Save.place(relx=1, rely=0.975, relwidth=rel_width, height=row_height, anchor="e")
         Undo.place(relx=0.9, rely=0.975, relwidth=rel_width, height=row_height, anchor="e")
-        Log_out.place(relx=0, rely=0, relwidth=rel_width, height=row_height, anchor="nw")
 
         # text and labels
         Isbn_label2 = tk.Label(self, text="ISBN", width="15")
@@ -468,12 +477,12 @@ class Admin_inventory_window(tk.Frame):
         else:
             print("It doesn't commit")
     def rollback_undo(self):
-        resp = messagebox.askquestion('askquestion', 'Are you sure you want to lose all of your progress?')
+        resp = messagebox.askquestion('Confirmation', 'This will delete your progress. Do you want to continue?')
         mycursor = db.cursor()
         if resp == "yes":
             mycursor.execute("rollback")
         else:
-            print("It donsn't rollback")
+            print("It doesn't rollback")
     def set_price_exception(self):
         ISBN = self.Isbn_text3.get()
         if ISBN == "":
