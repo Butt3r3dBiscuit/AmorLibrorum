@@ -126,7 +126,7 @@ RETURN bool;
 END;
 
 -- deletes sold book records in transactions older than 5 years
-CREATE PROCEDURE cleann()
+CREATE PROCEDURE clean()
 BEGIN
 	DECLARE t_date date;
 	DECLARE d_date date;
