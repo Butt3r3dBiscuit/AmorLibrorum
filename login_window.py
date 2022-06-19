@@ -4,12 +4,13 @@ import Employees_sales_tab
 from connect import connect_employee
 import Admin_inventory_window
 import Admin_finance_window
+import Admin_employee_window
 
 
 class login_window(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        
+
         print(Admin_inventory_window.emp_id)
 
         back_button = tk.Button(self, text="Return home", height=2, width=11, command= lambda: self.back_button(controller))
@@ -42,8 +43,10 @@ class login_window(tk.Frame):
         print("password: ", password)
         # email = "casual@amorlibrorum.boek" #temp
         # password = "YetAn0!herqwertyp4ssword" #temp
-        email = "frank@amorlibrorum.boek" #temp
-        password = "An0!herqwertyp4ssword" #temp
+        email = "frank@amorlibrorum.boek"
+        password = "An0!herqwertyp4ssword"
+        # email = "sjlksofj"
+        # password = "Lfjkl9213410!(@*"
         self.db = connect_employee(email, password)
         if self.db == 1045:
             try:
@@ -87,6 +90,7 @@ class login_window(tk.Frame):
             Admin_inventory_window.db = self.db
             Admin_finance_window.emp_id = self.employee_id
             Admin_finance_window.db = self.db
+            Admin_employee_window.db = self.db
             print(Admin_inventory_window.emp_id)
             controller.show_frame(Admin_inventory_window.Admin_inventory_window)
 
