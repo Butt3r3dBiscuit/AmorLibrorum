@@ -8,12 +8,7 @@ db = mysql.connector.connect(
 mycursor = db.cursor()
 #
 
-def book_search(input, db, type):
-    conditions = ""
-    if type == 0:
-        conditions = f"WHERE BE.BOOK_ID={input} "
-    elif input != "":
-        conditions = f"WHERE B.ISBN={input} "
+def book_search(book_id, db):
     mycursor.execute("SET sql_mode = ''")
     mycursor.execute(
         "SELECT B.ISBN, PE.COMMENT, B.TITLE, IT.TITLE_UNTRANSLATED, A.AUTHOR_NAME, A.AUTHOR_SURNAME, IT.TRANSLATOR, B.EDITION, B.LANGUAGE, IT.TRANSLATED_FROM, B.GENRE, B.PUBLISHER, B.BOOK_TYPE, B.YEAR_PUBLISHED, B.PAGES, B.LOCATION, B.SECTION, PRICE_DETERMINATION(BE.BOOK_ID), COUNT(BE.BOOK_ID) "
@@ -27,7 +22,7 @@ def book_search(input, db, type):
         "ON IT.ISBN=B.ISBN "
         "LEFT JOIN PRICE_EXCEPTIONS PE "
         "ON PE.BOOK_ID=BE.BOOK_ID "
-        f"{conditions}"
+        f"WHERE BE.BOOK_ID={book_id} "
         "AND PRICE_DETERMINATION(BE.BOOK_ID)>0 "
         "GROUP BY B.ISBN, PRICE_DETERMINATION(BE.BOOK_ID) "
         "ORDER BY B.ISBN, PRICE_DETERMINATION(BE.BOOK_ID)")
