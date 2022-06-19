@@ -456,8 +456,13 @@ class Admin_inventory_window(tk.Frame):
         b = book_search(input=Book_ID_input,db=db,type=1)
         m = len(b)
         count = 0
-        parent = ''
+        parent_id = ''
         for i in range(m):
+            if i>0 and b[i-1][0] != b[i][0]:
+                parent = ''
+                parent_id = str(count)
+            else:
+                parent = parent_id
             n = len(b[i])
             values = []
             for j in range(n):
