@@ -98,7 +98,7 @@ class Admin_inventory_window(tk.Frame):
 
         Set_sellprice.place(relx=0.2, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
 
-                
+        Search_book_button = tk.Button(self, text="Search")
         Save = tk.Button(self, text="Save", command=self.commit_save)
         Undo = tk.Button(self, text="Undo", command=self.rollback_undo)
         Add = tk.Button(self, text="Add", command=self.add_book) # for adding
@@ -114,7 +114,8 @@ class Admin_inventory_window(tk.Frame):
         Finance.place(relx=0.9, relwidth=rel_width, height=button_height, anchor="ne")
         Inventory.place(relx=0.8, relwidth=rel_width, height=button_height, anchor="ne")
         Log_out.place(relx=0, rely=0, relwidth=rel_width, height=button_height, anchor="nw")
-        
+
+        Search_book_button.place(relx=0.3, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
         Save.place(relx=1, rely=0.975, relwidth=rel_width, height=row_height, anchor="e")
         Undo.place(relx=0.9, rely=0.975, relwidth=rel_width, height=row_height, anchor="e")
 
