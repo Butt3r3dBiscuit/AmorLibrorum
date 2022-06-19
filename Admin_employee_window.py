@@ -335,5 +335,24 @@ class Admin_employee_window(tk.Frame):
         except AttributeError:
             pass
 
+    def employee_search(self):
+        for record in self.search_results.get_children():
+            self.search_results.delete(record)
+        search_input = self.First_name_search_entry.get()
+        a = Admin(db)
+        b = a.emp_search(search=search_input)
+        m = len(b)
+        count=0
+        parent=''
+        for i in range(m):
+            n = len(b[i])
+            values = []
+            for j in range(n):
+                if b[i][j] != None:
+                    values.append(b[i][j])
+                else:
+                    values.append('')
+            self.search_results.insert(parent=parent, index='end', iid=str(count), values=values)
+            count += 1
 
 
