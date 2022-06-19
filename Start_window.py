@@ -137,9 +137,9 @@ class Start_window(tk.Frame):
     def search(self):
         for record in self.search_results.get_children():
             self.search_results.delete(record)
-        a = self.Book_text.get()
+        search_input = self.Book_text.get()
         Booksearch = gc.Guest()
-        b = Booksearch.search(a)
+        b = Booksearch.search(search=search_input, type=0)
         m = len(b)
         count=0
         parent_id=''
