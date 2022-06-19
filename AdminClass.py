@@ -115,6 +115,7 @@ def employee_search(name, surname):
 # Admin class query
 class Admin:
     def __init__(self, db):
+        self.db = db
         self.mycursor = db.cursor()
     # inventory search
     def inventory_search_authors_books(self, ISBN=9780593334833):  #
@@ -275,6 +276,7 @@ class Admin:
         return result
     def clean(self):
         self.mycursor.callproc("clean")
+        self.db.commit()
 
     def search(self, search):
         conditions = ""
