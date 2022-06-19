@@ -2,6 +2,7 @@ import tkinter as tk
 import Start_window
 import Admin_inventory_window
 import Admin_employee_window
+from tkinter import ttk
 # import Admin_finance_window
 # from AdminClass import Admin, add_to_Price_exceptions
 # from datetime import date
@@ -16,7 +17,6 @@ db = None
 class Admin_finance_window(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-
         rel_width = 0.1
         rel_height = 0.05
 
@@ -58,13 +58,21 @@ class Admin_finance_window(tk.Frame):
         self.string_variable.set("Pending")
         Search_records = tk.Label(self, text="Search records: ", font=button_font)
         Found_books = tk.Label(self, text="Found transactions: ", font=button_font)
-        Title = tk.Label(self, text="Title")
-        Author = tk.Label(self, text="Author")
-        Edition = tk.Label(self, text="Edition")
-        Version = tk.Label(self, text="Version")
-        Buy_price = tk.Label(self, text="BuyPrice")
-        Sold_price = tk.Label(self, text="SoldPrice")
-        Number_of_sales = tk.Label(self, text="NumberOfSales")
+
+        # transid bookid empid transdate price
+
+        self.search_results = ttk.Treeview(self)
+        self.search_results['columns'] = ("TID", "BID", "EID", "Transdate", "Price")
+
+        self.search_results.column("#0", width=20, stretch=False)
+        self.search_results.column("TID", anchor="w", width=110, minwidth=50)
+        self.search_results.column("BID", anchor="w", width=110, minwidth=50)
+        self.search_results.column("EID", anchor="w", width=110, minwidth=50)
+        self.search_results.column("Transdate", anchor="w", width=110, minwidth=50)
+        self.search_results.column("Price", anchor="w", width=110, minwidth=50)
+
+
+
         Profit_margin = tk.Label(self, text="Profit Margin: ", font=button_font)
         Sold_min_buy = tk.Label(self, textvariable=self.string_variable)
         Set_margin = tk.Label(self, text="Set Margin To: ", font=button_font)
@@ -86,14 +94,8 @@ class Admin_finance_window(tk.Frame):
 
         # placement Text
         Search_records.place(relx=0.2, rely=0.1, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Found_books.place(relx=0.27, rely=0.3, relwidth=rel_width*2, relheight=rel_height, anchor="e")
-        Title.place(relx=0.2, rely=0.35, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Author.place(relx=0.3, rely=0.35, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Edition.place(relx=0.4, rely=0.35, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Version.place(relx=0.5, rely=0.35, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Buy_price.place(relx=0.6, rely=0.35, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Sold_price.place(relx=0.7, rely=0.35, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Number_of_sales.place(relx=0.8, rely=0.35, relwidth=rel_width, relheight=rel_height, anchor="e")
+        Found_books.place(relx=0.27, rely=0.22, relwidth=rel_width*2, relheight=rel_height, anchor="e")
+
         Profit_margin.place(relx=0.2, rely=0.5, relwidth=rel_width, relheight=rel_height, anchor="e")
         Sold_min_buy.place(relx=0.4, rely=0.5, relwidth=0.1, relheight=rel_height, anchor="e")
         Set_margin.place(relx=0.6, rely=0.5, relwidth=rel_width, relheight=rel_height, anchor="e")
@@ -119,4 +121,5 @@ class Admin_finance_window(tk.Frame):
         mycursor.execute("select margin from variables;")
         for x in mycursor:
             self.string_variable.set(str(x[0]))
+
 
