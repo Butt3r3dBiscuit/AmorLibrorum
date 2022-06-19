@@ -13,23 +13,36 @@ class login_window(tk.Frame):
         print(Admin_inventory_window.emp_id)
 
         back_button = tk.Button(self, text="Return home", height=2, width=11, command= lambda: self.back_button(controller))
-        back_button.pack()
         back_button.place(x=0, y=0)
 
         email_label = tk.Label(self, text="Email Adress", width = "15")
-        email_label.pack()
+        email_label.grid(row=0, column=1, sticky=tk.N)
         self.email_text = tk.Entry(self, width=40)
-        self.email_text.pack()
+        self.email_text.grid(row=1, column=1, sticky=tk.S+tk.N)
 
         password_label = tk.Label(self, text="Password", width = "15")
-        password_label.pack()
+        password_label.grid(row=2, column=1, sticky=tk.S+tk.N)
         self.password_text = tk.Entry(self, width=40, show="*")
-        self.password_text.pack()
+        self.password_text.grid(row=3, column=1, sticky=tk.S+tk.N)
 
-        login_button = tk.Button(self, text="Log in", height=2, width=11, command=lambda: self.log_in(controller))
+        login_button = tk.Button(self, text="Log in", height=2, width=20, command=lambda: self.log_in(controller))
         login_button.bind('<Return>', lambda event: self.log_in(controller)) # this line makes it so that you can "click" on Log in button via Return key on keyboard
-        login_button.pack()
-        login_button.place(relx=0.5, y=95)
+        login_button.grid(row=5, column=1, sticky=tk.N)
+
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=4)
+        self.columnconfigure(2, weight=1)
+        self.columnconfigure(3, weight=1)
+
+
+        self.rowconfigure(0, weight=1) #reset button
+        self.rowconfigure(1, weight=2) #  empty one
+        self.rowconfigure(2, weight=1) #healthy lung button
+        self.rowconfigure(3, weight=1) #smoker lung button
+        self.rowconfigure(4, weight=2) #  empty one
+        self.rowconfigure(5, weight=1) #breathing button
+        self.rowconfigure(6, weight=1) #stop breathing
+        # self.rowconfigure(7, weight=20) #  empty one
 
     def log_in(self, controller):
         email = self.email_text.get()
@@ -52,7 +65,7 @@ class login_window(tk.Frame):
             except AttributeError:
                 print("label has not yet been created")
             self.error_label = tk.Label(self, text="User not found!", width = "15", fg = "red")
-            # error_label.pack()
+            # error_label.grid(row=0, column=1, sticky=tk.S)
             self.error_label.place(relx=0.5, rely=0.15, anchor="n")
         else:
             self.my_cursor = self.db.cursor()
@@ -64,12 +77,12 @@ class login_window(tk.Frame):
                 print("here is the id: ", self.employee_id)
             self.new_window(position,controller)
             # success_label = tk.Label(self, text=f"User found! Position {position}", width="30", fg="green")
-            # success_label.pack()
+            # success_label.grid(row=0, column=1, sticky=tk.S)
 
     def new_window(self,position, controller):
         self.password_text.destroy()
         self.password_text = tk.Entry(self, width=40, show="*")
-        self.password_text.pack()
+        self.password_text.grid(row=0, column=1, sticky=tk.S)
         if position == "Staff":
             try:
                 self.error_label.destroy()
@@ -97,7 +110,7 @@ class login_window(tk.Frame):
             print("label has not yet been created")
         self.password_text.destroy()
         self.password_text = tk.Entry(self, width=40, show="*")
-        self.password_text.pack()
+        self.password_text.grid(row=0, column=1, sticky=tk.S)
 
         controller.show_frame(Start_window.Start_window)
 

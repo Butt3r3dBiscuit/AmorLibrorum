@@ -212,8 +212,8 @@ class Admin_inventory_window(tk.Frame):
         clicked = tk.StringVar()
         clicked.set("Hardcopy")
 
-        self.drop = tk.OptionMenu(self, clicked, "Hardcopy", "Paperback")
-        self.drop.pack()
+        self.Booktype = tk.OptionMenu(self, self.clicked, "Hardcover", "Paperback")
+        self.Booktype.pack()
 
         Location_label = tk.Label(self, text="Location", width="15")
         Location_label.pack()
@@ -274,7 +274,7 @@ class Admin_inventory_window(tk.Frame):
         Year_label.place(relx=0.4, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
         self.Pages_text.place(relx=0.5, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
         Pages_label.place(relx=0.5, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
-        self.drop.place(relx=0.6, rely=0.8, relwidth=rel_width, height=row_height*0.85, anchor="e")
+        self.Booktype.place(relx=0.6, rely=0.8, relwidth=rel_width, height=row_height*0.85, anchor="e")
         Booktype_label.place(relx=0.6, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
         self.Location_text.place(relx=0.7, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
         Location_label.place(relx=0.7, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
@@ -365,9 +365,7 @@ class Admin_inventory_window(tk.Frame):
         Publisher = self.Publisher_text.get()
         Year = self.Year_text.get()
         Pages = self.Pages_text.get()
-        # for i in self.Booktype_listbox.curselection():
-        #     Booktype = (self.Booktype_listbox.get(i))
-        # # Booktype = self.Booktype_listbox.get()
+        Booktype = self.clicked.get()
         Location = self.Location_text.get()
         Section = self.Section_text.get()
         Genre = self.Genre_text.get()
