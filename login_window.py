@@ -12,7 +12,7 @@ class login_window(tk.Frame):
         
         print(Admin_inventory_window.emp_id)
 
-                                command= lambda: self.back_button(controller))
+        back_button = tk.Button(self, text="Return home", height=2, width=11, command= lambda: self.back_button(controller))
         back_button.pack()
         back_button.place(x=0, y=0)
 
