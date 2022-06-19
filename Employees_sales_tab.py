@@ -144,31 +144,26 @@ class Employee_sales_window(tk.Frame):
         print(b)
         m = len(b)
         count = 0
-        parent_id = ''
+        parent = ''
         for i in range(m):
-            if i > 0 and b[i - 1][0] != b[i][0]:
-                parent = ''
-                parent_id = str(count)
-            else:
-                parent = parent_id
             n = len(b[i])
             values = []
-            for j in range(n - 1):
-                if j == 0 or j == 6:
-                    if b[i][j + 2] != None:
-                        values.append(f"{b[i][j + 1]} [{b[i][j + 2]}]")
-                    else:
-                        values.append(b[i][j + 1])
-                elif j == 2:
-                    if b[i][j + 3] != None:
-                        values.append(f"{b[i][j + 1]} {b[i][j + 2]} [{b[i][j + 3]}]")
-                    else:
-                        values.append(f"{b[i][j + 1]} {b[i][j + 2]}")
-                elif j == 13:
-                    values.append(f"{b[i][j + 1]}-{b[i][j + 2]}")
-                elif j not in (1, 3, 4, 7, 14):
+            for j in range(n):
+                if j == 2 or j == 8:
                     if b[i][j + 1] != None:
-                        values.append(b[i][j + 1])
+                        values.append(f"{b[i][j]} [{b[i][j + 1]}]")
+                    else:
+                        values.append(b[i][j])
+                elif j == 4:
+                    if b[i][j + 2] != None:
+                        values.append(f"{b[i][j]} {b[i][j + 1]} [{b[i][j + 2]}]")
+                    else:
+                        values.append(f"{b[i][j]} {b[i][j + 1]}")
+                elif j == 15:
+                    values.append(f"{b[i][j]}-{b[i][j + 1]}")
+                elif j not in (3, 5, 6, 9, 16):
+                    if b[i][j] != None:
+                        values.append(b[i][j])
                     else:
                         values.append('')
             print(values)
