@@ -45,63 +45,63 @@ class Admin_inventory_window(tk.Frame):
                                      # "Translator","Original Title", "Origin",
                                      "Price", "Amount")
 
-        search_results.column("#0", width=20, stretch=False)
-        search_results.column("ISBN", anchor="w", width=110, minwidth=50)
-        search_results.column("Comment", anchor="w", width=100, minwidth=50)
-        search_results.column("Title [Original title]", anchor="w", width=200, minwidth=100)
-        search_results.column("Author [Translator]", anchor="w", width=100, minwidth=50)
-        search_results.column("Edition", anchor="w", width=100, minwidth=50)
-        # search_results.column("Comment", anchor="w", width=100)
-        search_results.column("Language", anchor="w", width=100, minwidth=50)
-        search_results.column("Genre", anchor="w", width=100, minwidth=50)
-        search_results.column("Publisher", anchor="w", width=100, minwidth=50)
-        search_results.column("Book Type", anchor="w", width=100, minwidth=50)
-        search_results.column("Year", anchor="center", width=50, minwidth=25, stretch=False)
-        search_results.column("Pages", anchor="center", width=50, minwidth=25, stretch=False)
-        search_results.column("Place", anchor="center", width=50, minwidth=25, stretch=False)
-        # search_results.column("Section", anchor="center", width=100)
-        # search_results.column("Translator", anchor="center", width=100)
-        # search_results.column("Original Title", anchor="center", width=100)
-        # search_results.column("Origin", anchor="center", width=100)
-        search_results.column("Price", anchor="center", width=50, minwidth=25, stretch=False)
-        search_results.column("Amount", anchor="center", width=50, minwidth=25, stretch=False)
+        self.search_results.column("#0", width=20, stretch=False)
+        self.search_results.column("ISBN", anchor="w", width=110, minwidth=50)
+        self.search_results.column("Comment", anchor="w", width=100, minwidth=50)
+        self.search_results.column("Title [Original title]", anchor="w", width=200, minwidth=100)
+        self.search_results.column("Author [Translator]", anchor="w", width=100, minwidth=50)
+        self.search_results.column("Edition", anchor="w", width=100, minwidth=50)
+        # self.search_results.column("Comment", anchor="w", width=100)
+        self.search_results.column("Language", anchor="w", width=100, minwidth=50)
+        self.search_results.column("Genre", anchor="w", width=100, minwidth=50)
+        self.search_results.column("Publisher", anchor="w", width=100, minwidth=50)
+        self.search_results.column("Book Type", anchor="w", width=100, minwidth=50)
+        self.search_results.column("Year", anchor="center", width=50, minwidth=25, stretch=False)
+        self.search_results.column("Pages", anchor="center", width=50, minwidth=25, stretch=False)
+        self.search_results.column("Place", anchor="center", width=50, minwidth=25, stretch=False)
+        # self.search_results.column("Section", anchor="center", width=100)
+        # self.search_results.column("Translator", anchor="center", width=100)
+        # self.search_results.column("Original Title", anchor="center", width=100)
+        # self.search_results.column("Origin", anchor="center", width=100)
+        self.search_results.column("Price", anchor="center", width=50, minwidth=25, stretch=False)
+        self.search_results.column("Amount", anchor="center", width=50, minwidth=25, stretch=False)
 
-        search_results.heading("#0", text="", anchor="center")
-        search_results.heading("ISBN",text="ISBN",  anchor="center")
-        search_results.heading("Comment",text="Comment",  anchor="center")
-        search_results.heading("Title [Original title]", text="Title [Original title]", anchor="center")
-        search_results.heading("Author [Translator]", text="Author [Translator]", anchor="center")
-        search_results.heading("Edition", text="Edition", anchor="center")
-        # search_results.heading("Comment",text="Comment",  anchor="center")
-        search_results.heading("Language", text="Language", anchor="center")
-        search_results.heading("Genre", text="Genre", anchor="center")
-        search_results.heading("Publisher", text="Publisher", anchor="center")
-        search_results.heading("Book Type", text="Book Type", anchor="center")
-        search_results.heading("Year", text="Year", anchor="center")
-        search_results.heading("Pages", text="Pages", anchor="center")
-        search_results.heading("Place", text="Place", anchor="center")
-        # search_results.heading("Section",text="Section",  anchor="center")
-        # search_results.heading("Translator",text="Translator",  anchor="center")
-        # search_results.heading("Original Title", text="Original Title",  anchor="center")
-        # search_results.heading("Origin", text="Origin",  anchor="center")
-        search_results.heading("Price", text="Price", anchor="center")
-        search_results.heading("Amount", text="Amount", anchor="center")
+        self.search_results.heading("#0", text="", anchor="center")
+        self.search_results.heading("ISBN",text="ISBN",  anchor="center")
+        self.search_results.heading("Comment",text="Comment",  anchor="center")
+        self.search_results.heading("Title [Original title]", text="Title [Original title]", anchor="center")
+        self.search_results.heading("Author [Translator]", text="Author [Translator]", anchor="center")
+        self.search_results.heading("Edition", text="Edition", anchor="center")
+        # self.search_results.heading("Comment",text="Comment",  anchor="center")
+        self.search_results.heading("Language", text="Language", anchor="center")
+        self.search_results.heading("Genre", text="Genre", anchor="center")
+        self.search_results.heading("Publisher", text="Publisher", anchor="center")
+        self.search_results.heading("Book Type", text="Book Type", anchor="center")
+        self.search_results.heading("Year", text="Year", anchor="center")
+        self.search_results.heading("Pages", text="Pages", anchor="center")
+        self.search_results.heading("Place", text="Place", anchor="center")
+        # self.search_results.heading("Section",text="Section",  anchor="center")
+        # self.search_results.heading("Translator",text="Translator",  anchor="center")
+        # self.search_results.heading("Original Title", text="Original Title",  anchor="center")
+        # self.search_results.heading("Origin", text="Origin",  anchor="center")
+        self.search_results.heading("Price", text="Price", anchor="center")
+        self.search_results.heading("Amount", text="Amount", anchor="center")
 
-        search_results.place(relx=0.025, rely=0.25, relwidth=0.95, relheight=0.15)
+        self.search_results.place(relx=0.025, rely=0.25, relwidth=0.95, relheight=0.15)
 
-        search_results.insert(parent='', index='end', iid=0, values=("9780593334833","Book overview","Book Lovers", "Emily Henry",
+        self.search_results.insert(parent='', index='end', iid=0, values=("9780593334833","Book overview","Book Lovers", "Emily Henry",
                                                                      "NULL", "English",
                                                                      "Sisters Fiction, Romantic Comedy", "Berkley",
                                                                      "paperback",
                                                                      "2022", "400", "17-18",
                                                                      "1479", "2"))
-        search_results.insert(parent='0', index='end', iid=1, values=("9780593334833","Discount due to damaged cover","Book Lovers", "Emily Henry",
+        self.search_results.insert(parent='0', index='end', iid=1, values=("9780593334833","Discount due to damaged cover","Book Lovers", "Emily Henry",
                                                                      "NULL", "English",
                                                                      "Sisters Fiction, Romantic Comedy", "Berkley",
                                                                      "paperback",
                                                                      "2022", "400", "17-18",
                                                                       "1479", "1"))
-        search_results.insert(parent='0', index='end', iid=2, values=("9780593334833","No comment","Book Lovers", "Emily Henry",
+        self.search_results.insert(parent='0', index='end', iid=2, values=("9780593334833","No comment","Book Lovers", "Emily Henry",
                                                                      "NULL", "English",
                                                                      "Sisters Fiction, Romantic Comedy", "Berkley",
                                                                      "paperback",
@@ -129,6 +129,10 @@ class Admin_inventory_window(tk.Frame):
         Set_sellprice.place(relx=0.2, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
 
         # Buttons
+        Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(
+            employee_window.employee_window))
+        Finance = tk.Button(self, text="Finance", command= lambda: controller.show_frame(Admin_finance_window.Admin_finance_window))
+        Inventory = tk.Button(self, text="Inventory", relief="sunken", state="disabled")
         
         Save = tk.Button(self, text="Save", command=self.commit_save)
         Undo = tk.Button(self, text="Undo", command=self.rollback_undo)

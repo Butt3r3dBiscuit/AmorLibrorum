@@ -21,7 +21,7 @@ def employee_user_addition(my_cursor,username,password):
 
         my_cursor.execute(f"GRANT SELECT ON AmorLibrorum.variables TO '{username}'@'localhost'")
 
-        my_cursor.execute(f"GRANT SELECT (position, email) ON AmorLibrorum.Employees TO '{username}'@'localhost'")
+        my_cursor.execute(f"GRANT SELECT (position, email, Employee_ID) ON AmorLibrorum.Employees TO '{username}'@'localhost'")
 
         my_cursor.execute(f"GRANT EXECUTE on FUNCTION `Amorlibrorum`.`price_determination` to '{username}'@'localhost'")
 

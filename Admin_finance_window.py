@@ -11,6 +11,8 @@ import Admin_employee_window
 
 
 
+db = None
+emp_id = None
 
 class Admin_finance_window(tk.Frame):
     def __init__(self, parent, controller):
@@ -55,14 +57,15 @@ class Admin_finance_window(tk.Frame):
         Inventory.place(relx=0.8, relwidth=rel_width, relheight=rel_height, anchor="ne")
         Delete.place(relx=0.2, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
         Log_out.place(relx=0, rely=0, relwidth=rel_width, relheight=rel_height, anchor="nw")
+        Set_margin_Button.place(relx=0.8, rely=0.5,relwidth=rel_width, relheight=rel_height, anchor="e")
 
         Search_records_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Search_records_text.pack()
         Search_records_text.place(relx=0.3, rely=0.15, relwidth=0.2, relheight=rel_height, anchor="e")
 
-        Margin_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Margin_text.pack()
-        Margin_text.place(relx=0.7, rely=0.5, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Margin_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Margin_text.pack()
+        self.Margin_text.place(relx=0.7, rely=0.5, relwidth=rel_width, relheight=rel_height, anchor="e")
 
         # placement Text
         Search_records.place(relx=0.2, rely=0.1, relwidth=rel_width, relheight=rel_height, anchor="e")
@@ -78,3 +81,17 @@ class Admin_finance_window(tk.Frame):
         Sold_min_buy.place(relx=0.3, rely=0.55, relwidth=0.2, relheight=rel_height, anchor="e")
         Set_margin.place(relx=0.6, rely=0.5, relwidth=rel_width, relheight=rel_height, anchor="e")
         Delete_text.place(relx=0.375, rely=0.7, relwidth=0.3, relheight=rel_height, anchor="e")
+
+    def set_margin_func(self):
+
+        new_margin = self.Margin_text.get()
+        try:
+            new_margin = float(new_margin)
+            new_margin = round(new_margin,3)
+            my_cursor = db.cursor()
+            my_cursor.execute(f"update variables set margin={new_margin}")
+            my_cursor.execute("commit")
+        except Exception as e:
+            print(e)
+            print("we could make this red?")
+        print(new_margin)
