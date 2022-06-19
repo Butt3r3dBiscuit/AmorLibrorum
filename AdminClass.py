@@ -2,6 +2,7 @@ from re import L
 import mysql.connector
 import connect
 from user_creation import employee_user_addition
+import math
 
 
 # insert queries
@@ -142,6 +143,7 @@ class Admin:
     published_year, pages, language, book_type, location, section, genre, employee_id, date, 
     Price, status_comment="NULL", translator="NULL", Title_untranslated="NULL", translated_from="NULL", 
     edition="NULL", number_of_copies=1):
+        
         #queries
         print()
         print("Queries executed add book")
@@ -160,8 +162,8 @@ class Admin:
         print(add_if_translated)
 
         #checks if price is negative
-        if Price<0:
-            Price*=-1
+        Price = -math.sqrt(Price**2)
+        
         #if book not yet in database adds to books, auhtors, if_translated
         self.mycursor.execute("select ISBN from books")
         ISBN_list_fetch = self.mycursor.fetchall()
@@ -283,7 +285,7 @@ if __name__ == "__main__":
     # admin.add_employee(name="Albus", surname="Dumbledore", position="Manager", passwd="EldenWandIsOPAF123:3", email="dumbiegamer@hogwarts.com")
 
     # #call add_book procedure
-    #admin.add_book(ISBN=9780590353403, Title="Harry Potter and the Sorcerers Stone", author_name="Joanne", author_surname="Rowling", publisher="Scholastic Inc", published_year=2003, pages="309", language="English (USA)", book_type="Hardcover", location="7", section="7", genre="Fiction", employee_id=1, date="2022-06-02", Price=1000, translator="Joanne Rowling", Title_untranslated="Harry Potter and the Philosophers Stone", translated_from="English", edition=1, number_of_copies=3)
+    admin.add_book(ISBN=9780590353403, Title="Harry Potter and the Sorcerers Stone", author_name="Joanne", author_surname="Rowling", publisher="Scholastic Inc", published_year=2003, pages="309", language="English (USA)", book_type="Hardcover", location="7", section="7", genre="Fiction", employee_id=1, date="2022-06-02", Price=1000, translator="Joanne Rowling", Title_untranslated="Harry Potter and the Philosophers Stone", translated_from="English", edition=1, number_of_copies=3)
     # #mycursor.execute(f"select * from transactions order by Transaction_ID desc limit 1")
 
     #print(mycursor.fetchall())
