@@ -15,7 +15,7 @@ class Admin_finance_window(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
-        rel_height = 0.05
+        
         rel_width = 0.1
         row_height = 20
         button_height = 45
