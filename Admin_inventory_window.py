@@ -388,25 +388,25 @@ class Admin_inventory_window(tk.Frame):
 
 
         resp = messagebox.askquestion('Confirmation', 'Are you sure you want to save this book?')
-        # messagebox.askquestion("askquestion", "Are you sure?")
+        messagebox.askquestion("Confirmation", "Are you sure?")
         mycursor = db.cursor()
-        # if resp == "yes":
-        #     print(Translator, Original_title, Origin)
-        #     Admin_object = Admin(db)
-        #     try:
-        #         Admin_object.add_book(ISBN, Title, Author, Surname, Publisher, Year, Pages, Language, Booktype,
-        #                               Location, Section, Genre, emp_id, Date, Buy_price, Comment, Translator,
-        #                               Original_title,
-        #                               Origin, Edition, Amount)
-        #         self.Booktype_listbox.config(fg="black")
-        #     except UnboundLocalError:
-        #         print("Here")
-        #         self.Booktype_listbox.config(fg="red")
-        #     print(ISBN, Title, Author, Surname, Edition, Comment, Language, Buy_price)
-        #     print(Publisher, Year, Pages, Booktype, Location, Section, Genre)
-        #     print("Book has been added\nmake this a label that shows up.")
-        # else:
-        #     print("Book has not been added.")
+        if resp == "yes":
+            print(Translator, Original_title, Origin)
+            Admin_object = Admin(db)
+            try:
+                Admin_object.add_book(ISBN, Title, Author, Surname, Publisher, Year, Pages, Language, Booktype,
+                                      Location, Section, Genre, emp_id, Date, Buy_price, Comment, Translator,
+                                      Original_title,
+                                      Origin, Edition, Amount)
+                self.Booktype_listbox.config(fg="black")
+            except UnboundLocalError:
+                print("Here")
+                self.Booktype_listbox.config(fg="red")
+            print(ISBN, Title, Author, Surname, Edition, Comment, Language, Buy_price)
+            print(Publisher, Year, Pages, Booktype, Location, Section, Genre)
+            print("Book has been added\nmake this a label that shows up.")
+        else:
+            print("Book has not been added.")
     def commit_save(self):
         resp = messagebox.askquestion('Confirmation', 'Are you sure you want to commit?')
         mycursor = db.cursor()
