@@ -449,11 +449,12 @@ class Admin_inventory_window(tk.Frame):
             print("Book has been added\nmake this a label that shows up.")
         else:
             print("Book hasn't been added")
-    def search(self):
+        def search(self):
         for record in self.search_results.get_children():
             self.search_results.delete(record)
-        Book_ID_input = self.Isbn_text2.get()
-        b = book_search(input=Book_ID_input,db=db,type=1)
+        search_input = self.Isbn_text2.get()
+        Booksearch = gc.Guest()
+        b = Booksearch.search(search=search_input, type=1)
         m = len(b)
         count = 0
         parent_id = ''
