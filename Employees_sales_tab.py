@@ -141,7 +141,6 @@ class Employee_sales_window(tk.Frame):
             self.search_results.delete(record)
         Book_ID_input = self.Book_text.get()
         b = book_search(book_id=Book_ID_input,db=db)
-        print(b)
         m = len(b)
         count = 0
         parent = ''
@@ -166,6 +165,5 @@ class Employee_sales_window(tk.Frame):
                         values.append(b[i][j])
                     else:
                         values.append('')
-            print(values)
             self.search_results.insert(parent=parent, index='end', iid=str(count), values=values)
             count += 1
