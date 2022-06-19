@@ -9,16 +9,16 @@ my_tree = ttk.Treeview(root)
 my_tree['columns']= ("ISBN", "Title","Price") #author too Ig
 
 #columns
-my_tree.column("#0", width=20)
+my_tree.column("#0", width=0, stretch=NO)
 my_tree.column("ISBN", anchor=CENTER, width=120)
 my_tree.column("Title", anchor=CENTER, width=80)
-my_tree.column("Price", anchor=E, width=120)
+my_tree.column("Price", anchor=W, width=120)
 
 #heading
-my_tree.heading("#0", text="", anchor=CENTER)
-my_tree.heading("ISBN", text="ISBN", anchor=CENTER)
+my_tree.heading("#0", text="", anchor=W)
+my_tree.heading("ISBN", text="ISBN", anchor=W)
 my_tree.heading("Title", text="Title", anchor=CENTER)
-my_tree.heading("Price", text="Price", anchor=CENTER)
+my_tree.heading("Price", text="Price", anchor=W)
 
 # data = [
 #  ('Book Lovers', 'Emily', 'Henry', 'English', 'Sisters Fiction, Romantic Comedy', 17, None, 'paperback', -1222, 1),
