@@ -76,7 +76,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `transactions` WRITE;
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
-INSERT INTO `transactions` VALUES (1, 1, 1, "2017-06-15", -1081);
+INSERT INTO `transactions` VALUES (1, 1, 1, "2007-06-15", -1081);
 INSERT INTO `transactions` VALUES (2, 2, 1, "2017-06-15", -1081);
 INSERT INTO `transactions` VALUES (3, 3, 1, "2017-06-15", -1081);
 INSERT INTO `transactions` VALUES (4, 4, 1, "2017-06-15", -1081);
@@ -98,6 +98,8 @@ INSERT INTO `transactions` VALUES (19, 19, 2, "2017-06-16", -2499);
 INSERT INTO `transactions` VALUES (20, 20, 2, "2017-06-16", -2499);
 INSERT INTO `transactions` VALUES (21, 21, 2, "2021-05-05", -739);
 INSERT INTO `transactions` VALUES (22, 20, 1, "2021-05-06", 2499);
+INSERT INTO `transactions` VALUES (23, 1, 1, "2016-06-15", 1081);
+
 
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 UNLOCK TABLES;
