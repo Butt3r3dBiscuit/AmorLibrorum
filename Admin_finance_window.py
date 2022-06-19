@@ -8,11 +8,9 @@ import Admin_employee_window
 # from datetime import date
 # from tkinter import OptionMenu, messagebox
 
-
-
-
 db = None
 emp_id = None
+
 
 class Admin_finance_window(tk.Frame):
     def __init__(self, parent, controller):
