@@ -56,7 +56,7 @@ class Admin_employee_window(tk.Frame):
         Log_out.place(relx=0, rely=0, relwidth=rel_width, height=row_height, anchor="nw")
 
 
-        #
+        #first row
         First_name_label3 = tk.Label(self, text="First name", width="15")
         First_name_label3.pack()
         self.First_name__text3 = tk.Entry(self, width=30, borderwidth=1, relief="groove")
@@ -86,8 +86,13 @@ class Admin_employee_window(tk.Frame):
         Password_label.place(relx=0.515, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
         self.Password_entry.place(relx=0.515, rely=0.25, relwidth=rel_width, height=row_height, anchor="e")
 
+        # Add_employee_button = tk.Button(self, text="Add as staff")
+        # Add_manager_button = tk.Button(self, text="Add as manager")
+        #
+        # Add_employee_button.place
 
 
+        #second row
         First_name_label_search = tk.Label(self, text="First name", width="15")
         First_name_label_search.pack()
         self.First_name_entry_search = tk.Entry(self, width=30, borderwidth=1, relief="groove")
