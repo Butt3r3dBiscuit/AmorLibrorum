@@ -85,17 +85,17 @@ class Admin_employee_window(tk.Frame):
         Search_employee_label.place(relx=0.1, rely=0.3, relwidth=0.15, height=title_height, anchor="nw")
 
         # second row - All labels and their respective entries
-        First_name_search = tk.Label(self, text="First name", width="15")
+        # First_name_search = tk.Label(self, text="First name", width="15")
         self.First_name_search_entry = tk.Entry(self, width=30, borderwidth=1, relief="groove")
 
-        Last_name_search_label = tk.Label(self, text="Last name", width="15")
-        self.Last_name_search_entry = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        # Last_name_search_label = tk.Label(self, text="Last name", width="15")
+        # self.Last_name_search_entry = tk.Entry(self, width=30, borderwidth=1, relief="groove")
 
         # second row - Placing of all labels and their respective entries
         self.First_name_search_entry.place(relx=0.215, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
-        First_name_search.place(relx=0.215, rely=0.4, relwidth=rel_width, height=row_height, anchor="e")
-        Last_name_search_label.place(relx=0.315, rely=0.4, relwidth=rel_width, height=row_height, anchor="e")
-        self.Last_name_search_entry.place(relx=0.315, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
+        # First_name_search.place(relx=0.215, rely=0.4, relwidth=rel_width, height=row_height, anchor="e")
+        # Last_name_search_label.place(relx=0.315, rely=0.4, relwidth=rel_width, height=row_height, anchor="e")
+        # self.Last_name_search_entry.place(relx=0.315, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
 
         # second row - Button definition and place
         New_password_save = tk.Button(self, text="Search")
@@ -136,7 +136,7 @@ class Admin_employee_window(tk.Frame):
         Dismiss_email.place(relx=0.215, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
 
         # fourth row - Button definition and place
-        Dismiss_button = tk.Button(self, text="Dismiss")
+        Dismiss_button = tk.Button(self, text="Dismiss", command=self.user_dismiss)
         Dismiss_button.place(relx=0.515, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
 
         # treeview definition (Object which holds the information about employees)
@@ -261,27 +261,79 @@ class Admin_employee_window(tk.Frame):
             self.confirmation_label.place(relx=0.62, rely=0.25, anchor="e")
             query = add_to_employees(Name=first_name, Surname=last_name, position="Staff",email=email)
             mycursor = db.cursor()
-            mycursor.execute(query)
-            mycursor.execute("commit")
+            try:
+                mycursor.execute(query)
+                mycursor.execute("commit")
+            except Exception as e:
+                print(e)
 
 
     def change_password(self):
+        self.clean_up()
         Email = f"`{self.New_password_email_entry.get()}`@`localhost`"
         New_password = self.New_password_entry.get()
         mycursor = db.cursor()
         print(Email)
-        mycursor.execute(f"ALTER USER {Email} IDENTIFIED BY '{New_password}'")
-        mycursor.execute("commit")
+        try:
+            mycursor.execute(f"ALTER USER {Email} IDENTIFIED BY '{New_password}'")
+            mycursor.execute("commit")
+            self.confirmation_label_password_change = tk.Label(self, text="Changed", width="15", fg="green")
+            self.confirmation_label_password_change.place(relx=0.42, rely=0.65, anchor="e")
+
+        except Exception as e:
+            if e.errno == 1819:
+                # this error catches if passsword doesn't satisfy the policy requirements
+                self.error_label_password_change = tk.Label(
+                    self,
+                    text="Password is too weak,\n"
+                         "please use at least\n"
+                         "1 capital letter\n"
+                         "1 lowercase letter\n"
+                         "1 number\n"
+                         "1 special character", width="15", fg="red")
+                self.error_label_password_change.place(relx=0.42, rely=0.605, anchor="e")
+
+                print("Your password does not satisfy the current policy requirements")
 
 
     def user_dismiss(self):
-        pass
+        self.clean_up()
+        Email = f"`{self.Dismiss_email_entry.get()}`@`localhost`"
+        mycursor = db.cursor()
+        try:
+            mycursor.execute(f"drop user {Email}")
+            mycursor.execute("commit")
+            self.confirmation_label_password_change = tk.Label(self, text="Dismissed", width="15", fg="green")
+            self.confirmation_label_password_change.place(relx=0.415, rely=0.85, anchor="e")
+
+        except Exception as e:
+            if e.errno == 1396:
+                self.error_label_dismiss = tk.Label(self, text="No user", width="15", fg="red")
+                self.error_label_dismiss.place(relx=0.415, rely=0.85, anchor="e")
+
     def clean_up(self):
         try:
             self.error_label.destroy()
-            self.confirmation_label.destroy()
-            # more to be added
         except AttributeError:
-            return "labels have not been created"
+            pass
+        try:
+            self.confirmation_label.destroy()
+        except AttributeError:
+            pass
+
+        try:
+            self.error_label_password_change.destroy()
+        except AttributeError:
+            pass
+        try:
+            self.confirmation_label_password_change.destroy()
+        except AttributeError:
+            pass
+
+        try:
+            self.error_label_dismiss.destroy()
+        except AttributeError:
+            pass
+
 
 
