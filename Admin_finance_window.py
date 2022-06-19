@@ -41,6 +41,7 @@ class Admin_finance_window(tk.Frame):
         Finance = tk.Button(self, text="Finance", relief="sunken", state="disabled")
         Inventory = tk.Button(self, text="Inventory", command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
 
+        Search_records_button = tk.Button(self, text="Search")
         # Tabs Placement
         Log_out.place(relx=0, rely=0, relwidth=rel_width, height=button_height, anchor="nw")
 
@@ -52,6 +53,7 @@ class Admin_finance_window(tk.Frame):
         Delete = tk.Button(self, text="Delete", command=self.get_margin)
         Set_margin_Button = tk.Button(self, text="Set", command=self.set_margin_func)
         Profit_margin_calc = tk.Button(self, text="Show margin", command=self.get_margin)
+        Search_records_button.place(relx=0.3, rely=0.15)
 
         # text
         self.string_variable = tk.StringVar()  # Create the variable
@@ -103,7 +105,7 @@ class Admin_finance_window(tk.Frame):
 
         self.Margin_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Margin_text.pack()
-        self.Margin_text.place(relx=0.7, rely=0.5, relwidth=rel_width, relheight=rel_height, anchor="e")
+        self.Margin_text.place(relx=0.7, rely=0.5, relwidth=rel_width, height=row_height, anchor="e")
 
         # placement Text
         Search_records.place(relx=0.2, rely=0.1, relwidth=rel_width, relheight=rel_height, anchor="e")
