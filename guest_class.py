@@ -13,15 +13,10 @@ class Guest:
     def search(self, search=""):
         conditions = ""
         cor_sub = "BE.BOOK_ID IN (SELECT BOEN.BOOK_ID " \
-                              "FROM BOOK_ENTRIES BOEN, TRANSACTIONS TRA " \
-                              "WHERE TRA.BOOK_ID=BOEN.BOOK_ID " \
-                              "AND TRA.PRICE_IN_CENTS=(SELECT MIN(TR.PRICE_IN_CENTS) " \
-                                                      "FROM TRANSACTIONS TR, BOOK_ENTRIES BEN, BOOKS BO " \
-                                                      "WHERE TR.BOOK_ID=BEN.BOOK_ID " \
-                                                      "AND BEN.ISBN=BO.ISBN " \
-                                                      "AND BO.ISBN=B.ISBN "
+                                 "FROM BOOK_ENTRIES BOEN, TRANSACTIONS TRA, BOOKS BO " \
+                                 "WHERE TRA.BOOK_ID=BOEN.BOOK_ID "
         if search == "":
-            conditions = f"WHERE {cor_sub})) "
+            conditions = f"WHERE {cor_sub}) "
         else:
             cor_sub = f"{cor_sub}" \
                       "AND ((BO.ISBN IN (SELECT ISBN FROM BOOKS " \
@@ -36,7 +31,7 @@ class Guest:
                          f"OR IT.TITLE_UNTRANSLATED LIKE '%{search}%' " \
                          f"OR A.AUTHOR_NAME LIKE '%{search}%' " \
                          f"OR A.AUTHOR_SURNAME LIKE '%{search}%' " \
-                         f"AND {cor_sub})) "
+                         f"AND {cor_sub}) "
 
         cursor.execute("SET sql_mode = ''")
 
@@ -51,6 +46,7 @@ class Guest:
                        "ON IT.ISBN=B.ISBN " 
                        f"{conditions} "
                        "AND PRICE_DETERMINATION(BE.BOOK_ID)>0 "
-                       "GROUP BY B.ISBN, PRICE_DETERMINATION(BE.BOOK_ID)")
+                       "GROUP BY B.ISBN, PRICE_DETERMINATION(BE.BOOK_ID) "
+                       "ORDER BY B.ISBN, PRICE_DETERMINATION(BE.BOOK_ID)")
         result = cursor.fetchall()
         return result
