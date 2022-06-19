@@ -57,6 +57,7 @@ def employee_user_addition(db,username,password):
             #this error cathes if passsword doesn't satisfy the policy requirements
             print("make a pop up out of this:")
             print("Your password does not satisfy the current policy requirements")
+            return e
 
         if e.errno==1396:
             #this error cathes if user already exists
