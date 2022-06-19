@@ -434,8 +434,8 @@ class Admin_inventory_window(tk.Frame):
                 for record in self.search_results.get_children():
                     self.search_results.delete(record)
                 search_input = self.Isbn_text2.get()
-                Booksearch = gc.Guest()
-                b = Booksearch.search(search=search_input, search_type=1)
+                Booksearch = Admin(db)
+                b = Booksearch.search(search=search_input)
                 m = len(b)
                 count = 0
                 parent_id = ''

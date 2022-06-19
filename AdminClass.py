@@ -274,6 +274,33 @@ class Admin:
     def clean(self):
         self.mycursor.callproc("clean")
 
+    def search(self, search):
+        conditions = ""
+        or_isbn = ""
+        if search != "":
+            conditions = f"WHERE B.TITLE LIKE '%{search}%' " \
+                         f"OR IT.TITLE_UNTRANSLATED LIKE '%{search}%' " \
+                         f"OR A.AUTHOR_NAME LIKE '%{search}%' " \
+                         f"OR A.AUTHOR_SURNAME LIKE '%{search}%' " \
+                         f"{or_isbn}"
+        self.mycursor.execute("SET sql_mode = ''")
+
+        self.mycursor.execute(
+            "SELECT B.ISBN, B.TITLE, IT.TITLE_UNTRANSLATED, A.AUTHOR_NAME, A.AUTHOR_SURNAME, IT.TRANSLATOR, B.EDITION, B.LANGUAGE, IT.TRANSLATED_FROM, B.GENRE, B.PUBLISHER, B.BOOK_TYPE, B.YEAR_PUBLISHED, B.PAGES, B.LOCATION, B.SECTION, PRICE_DETERMINATION(BE.BOOK_ID), COUNT(BE.BOOK_ID) "
+            "FROM BOOKS B LEFT JOIN AUTHORS A "
+            "ON B.ISBN=A.ISBN "
+            "LEFT JOIN BOOK_ENTRIES BE "
+            "ON B.ISBN=BE.ISBN "
+            "LEFT JOIN TRANSACTIONS T "
+            "ON BE.BOOK_ID=T.BOOK_ID "
+            "LEFT JOIN IF_TRANSLATED IT "
+            "ON IT.ISBN=B.ISBN "
+            f"{conditions} "
+            "AND PRICE_DETERMINATION(BE.BOOK_ID)>0 "
+            "GROUP BY B.ISBN, PRICE_DETERMINATION(BE.BOOK_ID) "
+            "ORDER BY B.ISBN, PRICE_DETERMINATION(BE.BOOK_ID)")
+        result = self.mycursor.fetchall()
+        return result
 if __name__ == "__main__":
     db = connect.connect_admin("MyN3wP4ssw0rd!*")
     admin = Admin(db)
