@@ -18,7 +18,7 @@ class Handler(tk.Tk):
         tk.Tk.minsize(self, 800, 400)
         print(width)
         print(height)
-
+        
         container.pack(side="top", fill="both", expand=True)
 
         container.grid_rowconfigure(0, weight=1)

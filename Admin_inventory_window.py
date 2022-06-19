@@ -19,7 +19,11 @@ class Admin_inventory_window(tk.Frame):
         rel_width = 0.1
         # rel_height = 0.05
         row_height = 20
-
+        rel_width = 0.1
+        rel_height = 0.05
+        button_height = 45
+        text_height = 20
+        title_height = 30
         button_font = "Helvetica 18 bold"
 
 
@@ -144,12 +148,13 @@ class Admin_inventory_window(tk.Frame):
         Search_book.place(relx=0.2, rely=0.1, relwidth=rel_width, height=row_height, anchor="e")
 
         # Place Buttons
-        Employee.place(relx=1, relwidth=rel_width, height=row_height, anchor="ne")
-        Finance.place(relx=0.9, relwidth=rel_width, height=row_height, anchor="ne")
-        Inventory.place(relx=0.8, relwidth=rel_width, height=row_height, anchor="ne")
+        Employee.place(relx=1, relwidth=rel_width, height=button_height, anchor="ne")
+        Finance.place(relx=0.9, relwidth=rel_width, height=button_height, anchor="ne")
+        Inventory.place(relx=0.8, relwidth=rel_width, height=button_height, anchor="ne")
+        Log_out.place(relx=0, rely=0, relwidth=rel_width, height=button_height, anchor="nw")
+        
         Save.place(relx=1, rely=0.975, relwidth=rel_width, height=row_height, anchor="e")
         Undo.place(relx=0.9, rely=0.975, relwidth=rel_width, height=row_height, anchor="e")
-        Log_out.place(relx=0, rely=0, relwidth=rel_width, height=row_height, anchor="nw")
 
         # text and labels
         Isbn_label2 = tk.Label(self, text="ISBN", width="15")
@@ -472,12 +477,12 @@ class Admin_inventory_window(tk.Frame):
         else:
             print("It doesn't commit")
     def rollback_undo(self):
-        resp = messagebox.askquestion('askquestion', 'Are you sure you want to lose all of your progress?')
+        resp = messagebox.askquestion('Confirmation', 'This will delete your progress. Do you want to continue?')
         mycursor = db.cursor()
         if resp == "yes":
             mycursor.execute("rollback")
         else:
-            print("It donsn't rollback")
+            print("It doesn't rollback")
     def set_price_exception(self):
         ISBN = self.Isbn_text3.get()
         if ISBN == "":
