@@ -7,7 +7,7 @@ import Admin_finance_window
 from AdminClass import Admin, add_to_Price_exceptions
 from datetime import date
 from tkinter import OptionMenu, messagebox
-# from book_search import book_search
+from book_search import book_search
 
 emp_id = None
 db = None
@@ -122,8 +122,8 @@ class Admin_inventory_window(tk.Frame):
         # text and labels
         Isbn_label2 = tk.Label(self, text="ISBN", width="15")
         Isbn_label2.pack()
-        Isbn_text2 = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Isbn_text2.pack()
+        self.Isbn_text2 = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Isbn_text2.pack()
 
         Isbn_label3 = tk.Label(self, text="ISBN", width="15")
         Isbn_label3.pack()
@@ -291,7 +291,7 @@ class Admin_inventory_window(tk.Frame):
         Add.place(relx=0.9, rely=0.9, relwidth=rel_width, height=row_height, anchor="e")
 
         # label and text place 4
-        Isbn_text2.place(relx=0.2, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
+        self.Isbn_text2.place(relx=0.2, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
         Isbn_label2.place(relx=0.2, rely=0.15, relwidth=rel_width, height=row_height, anchor="e")
 
         # label and text place 5
