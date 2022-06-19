@@ -139,7 +139,7 @@ class Start_window(tk.Frame):
             self.search_results.delete(record)
         search_input = self.Book_text.get()
         Booksearch = gc.Guest()
-        b = Booksearch.search(search=search_input, type=0)
+        b = Booksearch.search(search=search_input)
         m = len(b)
         count=0
         parent_id=''
