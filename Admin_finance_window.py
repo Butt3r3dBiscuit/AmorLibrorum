@@ -3,32 +3,20 @@ import Start_window
 import Admin_inventory_window
 import Admin_employee_window
 from tkinter import ttk
-# import Admin_finance_window
-# from AdminClass import Admin, add_to_Price_exceptions
-# from datetime import date
-# from tkinter import OptionMenu, messagebox
-# from book_search import book_search
+
 
 emp_id = None
 db = None
- # Set the value of the variable
 
 
 class Admin_finance_window(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        rel_width = 0.1
-        rel_height = 0.05
 
-        button_font = "Helvetica 18 bold"
-        rel_width = 0.1
         rel_height = 0.05
-        # row_height = 20
         rel_width = 0.1
         row_height = 20
         button_height = 45
-        text_height = 20
-        title_height = 30
 
 
         button_font = "Helvetica 18 bold"

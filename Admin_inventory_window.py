@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
 import Start_window
-# import Admin_inventory_window
 import Admin_employee_window
 import Admin_finance_window
 from AdminClass import Admin, add_to_Price_exceptions
@@ -18,20 +17,15 @@ class Admin_inventory_window(tk.Frame):
         tk.Frame.__init__(self, parent)
 
         rel_width = 0.1
-        # rel_height = 0.05
         row_height = 20
         rel_width = 0.1
-        rel_height = 0.05
         button_height = 45
-        text_height = 20
-        title_height = 30
         button_font = "Helvetica 18 bold"
 
 
 
         # Tabs
         Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
-
         Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(Admin_employee_window.Admin_employee_window))
         Finance = tk.Button(self, text="Finance", command= lambda: controller.show_frame(Admin_finance_window.Admin_finance_window))
         Inventory = tk.Button(self, text="Inventory", relief="sunken", state="disabled")
@@ -104,7 +98,6 @@ class Admin_inventory_window(tk.Frame):
         Undo = tk.Button(self, text="Undo", command=self.rollback_undo)
         Add = tk.Button(self, text="Add", command=self.add_book) # for adding
         Set = tk.Button(self, text="Set", command=self.set_price_exception)
-        Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
 
         # place label
         Add_book.place(relx=0.2, rely=0.6, relwidth=rel_width, height=row_height, anchor="e")
@@ -121,8 +114,6 @@ class Admin_inventory_window(tk.Frame):
         Undo.place(relx=0.9, rely=0.975, relwidth=rel_width, height=row_height, anchor="e")
 
         # text and labels
-        Isbn_label2 = tk.Label(self, text="ISBN", width="15")
-        Isbn_label2.pack()
         self.Isbn_text2 = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Isbn_text2.pack()
 
@@ -151,7 +142,6 @@ class Admin_inventory_window(tk.Frame):
         Isbn_label = tk.Label(self, text="ISBN", width="15") #for add book
         Isbn_label.pack()
         self.Isbn_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        # Isbn_text.pack()
 
         Title_label = tk.Label(self, text="Title", width="15")
         Title_label.pack()
@@ -293,7 +283,6 @@ class Admin_inventory_window(tk.Frame):
 
         # label and text place 4
         self.Isbn_text2.place(relx=0.2, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
-        Isbn_label2.place(relx=0.2, rely=0.15, relwidth=rel_width, height=row_height, anchor="e")
 
         # label and text place 5
         Set.place(relx=0.9, rely=0.55, relwidth=rel_width, height=row_height, anchor="e")
@@ -309,12 +298,6 @@ class Admin_inventory_window(tk.Frame):
     # button functions
 
     def yes_button(self, rel_width, row_height):
-        # self.Translated_label.pack()
-        # self.Translator_text.pack()
-        # self.Untranslated_label.pack()
-        # self.Untranslated_text.pack()
-        # self.Origin_text.pack()
-        # self.Origin_label.pack()
         try:
             self.Translator_text.destroy()
             self.Untranslated_label.destroy()
@@ -331,7 +314,6 @@ class Admin_inventory_window(tk.Frame):
         self.Untranslated_label = tk.Label(self, text="Original Title", width="15")
         self.Origin_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Origin_label = tk.Label(self, text="Origin", width="15")
-        # self.Translated_label = tk.Label(self, text="Is it translated?", width="15", font=button_font)
 
         self.Translator_label.place(relx=0.2, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
         self.Translator_text.place(relx=0.2, rely=0.9, relwidth=rel_width, height=row_height, anchor="e")
@@ -369,7 +351,7 @@ class Admin_inventory_window(tk.Frame):
         Comment = self.Comment_text.get()
         Language = self.Language_text.get()
         Buy_price = int(self.Buy_text.get())
-        Amount = int(self.Amount_text.get()) #what is it for?
+        Amount = int(self.Amount_text.get())
         Publisher = self.Publisher_text.get()
         Year = self.Year_text.get()
         Pages = self.Pages_text.get()
@@ -390,12 +372,10 @@ class Admin_inventory_window(tk.Frame):
         if Origin == "":
             Origin = None
 
-        # Comment = "Bruh"
 
 
         resp = messagebox.askquestion('askquestion', 'Are you sure you want to save this book?')
-        # messagebox.askquestion("askquestion", "Are you sure?")
-        mycursor = db.cursor()
+        # mycursor = db.cursor()
         if resp == "yes":
             print(Translator, Original_title, Origin)
             Admin_object = Admin(db)
