@@ -39,8 +39,8 @@ class Admin_inventory_window(tk.Frame):
         # text
         Add_book = tk.Label(self, text="Add Book: ", font=button_font)
         Search_book = tk.Label(self, text="Search Book: ", font=button_font)
-        Found_book = tk.Label(self, text="Books Found: ", font=button_font)
-        Set_sellprice = tk.Label(self, text="Set Sellprice: ", font=button_font)
+        Found_book = tk.Label(self, text="Results: ", font=button_font)
+        Set_sellprice = tk.Label(self, text="Set new sell price: ", font=button_font)
 
         self.search_results = ttk.Treeview(self)
         # rest = "Title", "Author", "Surname", "Edition", "Comment", "Language", "Publisher", "Year", "Pages", "Book Type", "Location", "Section", "Genre", "Translator", "Original Title", "Original Title", "Origin"
@@ -115,23 +115,6 @@ class Admin_inventory_window(tk.Frame):
                                                                       "1479", "1"))
 
 
-        # Title = tk.Label(self, text="Title")
-        # Author = tk.Label(self, text="Author")
-        # Edition = tk.Label(self, text="Edition")
-        # Comment = tk.Label(self, text="Comment")
-        # Buy_price = tk.Label(self, text="BuyPrice")
-        # Sell_price = tk.Label(self, text="SellPrice")
-        # In_store = tk.Label(self, text="Amount")
-        #
-        # # text place
-        # Found_book.place(relx=0.2, rely=0.25, relwidth=rel_width, height=row_height, anchor="e")
-        # Title.place(relx=0.2, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
-        # Author.place(relx=0.3, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
-        # Edition.place(relx=0.4, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
-        # Comment.place(relx=0.5, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
-        # Buy_price.place(relx=0.6, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
-        # Sell_price.place(relx=0.7, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
-        # In_store.place(relx=0.8, rely=0.3, relwidth=rel_width, height=row_height, anchor="e")
         Set_sellprice.place(relx=0.2, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
 
                 
