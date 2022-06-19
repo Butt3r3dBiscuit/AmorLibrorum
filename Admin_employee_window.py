@@ -87,31 +87,67 @@ class Admin_employee_window(tk.Frame):
         Password_label.place(relx=0.515, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
         self.Password_entry.place(relx=0.515, rely=0.25, relwidth=rel_width, height=row_height, anchor="e")
 
-        Add_employee_button = tk.Button(self, text="Add as STAFF")
+        New_password_save = tk.Button(self, text="Add as STAFF")
         Add_manager_button = tk.Button(self, text="Add as MANAGER")
 
-        Add_employee_button.place(relx=0.715, rely=0.25, relwidth=rel_width, height=row_height, anchor="e")
+        New_password_save.place(relx=0.715, rely=0.25, relwidth=rel_width, height=row_height, anchor="e")
         Add_manager_button.place(relx=0.815, rely=0.25, relwidth=rel_width, height=row_height, anchor="e")
 
         #second row
-        First_name_label_search = tk.Label(self, text="First name", width="15")
-        First_name_label_search.pack()
-        self.First_name_entry_search = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        self.First_name_entry_search.pack()
+        New_password_email = tk.Label(self, text="First name", width="15")
+        New_password_email.pack()
+        self.New_password_email_entry = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.New_password_email_entry.pack()
 
-        Last_name_label_search = tk.Label(self, text="Last name", width="15")
-        Last_name_label_search.pack()
-        self.Last_name_entry_search = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        self.Last_name_entry_search.pack()
+        New_password_label = tk.Label(self, text="Last name", width="15")
+        New_password_label.pack()
+        self.New_password_entry = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.New_password_entry.pack()
 
-        self.First_name_entry_search.place(relx=0.215, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
-        First_name_label_search.place(relx=0.215, rely=0.4, relwidth=rel_width, height=row_height, anchor="e")
-        Last_name_label_search.place(relx=0.315, rely=0.4, relwidth=rel_width, height=row_height, anchor="e")
-        self.Last_name_entry_search.place(relx=0.315, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
+        self.New_password_email_entry.place(relx=0.215, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
+        New_password_email.place(relx=0.215, rely=0.4, relwidth=rel_width, height=row_height, anchor="e")
+        New_password_label.place(relx=0.315, rely=0.4, relwidth=rel_width, height=row_height, anchor="e")
+        self.New_password_entry.place(relx=0.315, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
 
-        Add_employee_button = tk.Button(self, text="Search")
-        Add_employee_button.place(relx=0.515, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
+        New_password_save = tk.Button(self, text="Search")
+        New_password_save.place(relx=0.515, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
 
+        #third row - changing passwords
+        New_password_label = tk.Label(self, text="Change password:", font=button_font)
+        New_password_label.place(relx=0.1, rely=0.55, relwidth=0.15, height=row_height, anchor="w")
+
+
+
+        New_password_email = tk.Label(self, text="Email", width="15")
+        New_password_email.pack()
+        self.New_password_email_entry = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.New_password_email_entry.pack()
+
+        New_password_label = tk.Label(self, text="New Password", width="15")
+        New_password_label.pack()
+        self.New_password_entry = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.New_password_entry.pack()
+
+        self.New_password_email_entry.place(relx=0.215, rely=0.65, relwidth=rel_width, height=row_height, anchor="e")
+        New_password_email.place(relx=0.215, rely=0.6, relwidth=rel_width, height=row_height, anchor="e")
+        New_password_label.place(relx=0.315, rely=0.6, relwidth=rel_width, height=row_height, anchor="e")
+        self.New_password_entry.place(relx=0.315, rely=0.65, relwidth=rel_width, height=row_height, anchor="e")
+
+        New_password_save = tk.Button(self, text="Change")
+        New_password_save.place(relx=0.515, rely=0.65, relwidth=rel_width, height=row_height, anchor="e")
+
+        #fourth row dismission
+        User_dismiss = tk.Label(self, text="User dismiss:", font=button_font)
+        User_dismiss.place(relx=0.1, rely=0.75, relwidth=0.15, height=row_height, anchor="w")
+
+        Dismiss_email = tk.Label(self, text="Email", width="15")
+        Dismiss_email.pack()
+        self.Dismiss_email_entry = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Dismiss_email_entry.place(relx=0.215, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
+        Dismiss_email.place(relx=0.215, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
+
+        Dismiss_button = tk.Button(self, text="Dismiss")
+        Dismiss_button.place(relx=0.415, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
         # #Placement Text
         # Book_search.place(relx=0.18, rely=0.15, relwidth=rel_width, relheight=rol_height, anchor="e")
         # Title.place(relx=0.2, rely=0.3, relwidth=rel_width, relheight=rol_height, anchor="e")
