@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 import Start_window
 import Admin_inventory_window
 import Admin_finance_window
@@ -86,11 +87,11 @@ class Admin_employee_window(tk.Frame):
         Password_label.place(relx=0.515, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
         self.Password_entry.place(relx=0.515, rely=0.25, relwidth=rel_width, height=row_height, anchor="e")
 
-        # Add_employee_button = tk.Button(self, text="Add as staff")
-        # Add_manager_button = tk.Button(self, text="Add as manager")
-        #
-        # Add_employee_button.place
+        Add_employee_button = tk.Button(self, text="Add as STAFF")
+        Add_manager_button = tk.Button(self, text="Add as MANAGER")
 
+        Add_employee_button.place(relx=0.715, rely=0.25, relwidth=rel_width, height=row_height, anchor="e")
+        Add_manager_button.place(relx=0.815, rely=0.25, relwidth=rel_width, height=row_height, anchor="e")
 
         #second row
         First_name_label_search = tk.Label(self, text="First name", width="15")
@@ -108,6 +109,9 @@ class Admin_employee_window(tk.Frame):
         Last_name_label_search.place(relx=0.315, rely=0.4, relwidth=rel_width, height=row_height, anchor="e")
         self.Last_name_entry_search.place(relx=0.315, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
 
+        Add_employee_button = tk.Button(self, text="Search")
+        Add_employee_button.place(relx=0.515, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
+
         # #Placement Text
         # Book_search.place(relx=0.18, rely=0.15, relwidth=rel_width, relheight=rol_height, anchor="e")
         # Title.place(relx=0.2, rely=0.3, relwidth=rel_width, relheight=rol_height, anchor="e")
@@ -116,8 +120,24 @@ class Admin_employee_window(tk.Frame):
         # Version.place(relx=0.65, rely=0.3, relwidth=rel_width, relheight=rol_height, anchor="e")
         # Language.place(relx=0.8, rely=0.3, relwidth=rel_width, relheight=rol_height, anchor="e")
         # All.place(relx=0.95, rely=0.3, relwidth=rel_width, relheight=rol_height, anchor="e")
-    
+'''
+        self.search_results = ttk.Treeview(self)
+        # rest = "Title", "Author", "Surname", "Edition", "Comment", "Language", "Publisher", "Year", "Pages", "Book Type", "Location", "Section", "Genre", "Translator", "Original Title", "Original Title", "Origin"
+        self.search_results['columns'] = ("First ", "Comment", "Title [Original title]", "Author [Translator]",
+                                          "Edition", "Language", "Genre", "Publisher",
+                                          "Book Type", "Year", "Pages", "Place",
+
+                                          # "Translator","Original Title", "Origin",
+                                          "Price", "Amount")
+
+        self.search_results.column("#0", width=20, stretch=False)
+        self.search_results.column("ISBN", anchor="w", width=110, minwidth=50)
+        self.search_results.column("Comment", anchor="w", width=100, minwidth=50)
+        self.search_results.column("Title [Original title]", anchor="w", width=200, minwidth=100)
+        self.search_results.column("Author [Translator]", anchor="w", width=100, minwidth=50)
+
     def test_emp_id(self):
         print(Admin_inventory_window.emp_id)
         print('this is just to test that we have the emp_id loaded - not sure if we need it here but ye')
         print("we could make it so that in one of the corners there would be sth like logged as:")
+'''
