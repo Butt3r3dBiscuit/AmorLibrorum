@@ -1,7 +1,12 @@
 import tkinter as tk
+# from tkinter import ttk
 import Start_window
 import Admin_inventory_window
 import Admin_employee_window
+# import Admin_finance_window
+# from AdminClass import Admin, add_to_Price_exceptions
+# from datetime import date
+# from tkinter import OptionMenu, messagebox
 
 
 
