@@ -95,25 +95,6 @@ class Admin_inventory_window(tk.Frame):
 
         self.search_results.place(relx=0.025, rely=0.25, relwidth=0.95, relheight=0.15)
 
-        self.search_results.insert(parent='', index='end', iid=0, values=("9780593334833","Book overview","Book Lovers", "Emily Henry",
-                                                                     "NULL", "English",
-                                                                     "Sisters Fiction, Romantic Comedy", "Berkley",
-                                                                     "paperback",
-                                                                     "2022", "400", "17-18",
-                                                                     "1479", "2"))
-        self.search_results.insert(parent='0', index='end', iid=1, values=("9780593334833","Discount due to damaged cover","Book Lovers", "Emily Henry",
-                                                                     "NULL", "English",
-                                                                     "Sisters Fiction, Romantic Comedy", "Berkley",
-                                                                     "paperback",
-                                                                     "2022", "400", "17-18",
-                                                                      "1479", "1"))
-        self.search_results.insert(parent='0', index='end', iid=2, values=("9780593334833","No comment","Book Lovers", "Emily Henry",
-                                                                     "NULL", "English",
-                                                                     "Sisters Fiction, Romantic Comedy", "Berkley",
-                                                                     "paperback",
-                                                                     "2022", "400", "17-18",
-                                                                      "1479", "1"))
-
 
         Set_sellprice.place(relx=0.2, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
 
@@ -121,8 +102,6 @@ class Admin_inventory_window(tk.Frame):
         Save = tk.Button(self, text="Save", command=self.commit_save)
         Undo = tk.Button(self, text="Undo", command=self.rollback_undo)
         Add = tk.Button(self, text="Add", command=self.add_book) # for adding
-        # Search = tk.Button(self, text="Search")
-        # Search_all = tk.Button(self, text="Search All")
         Set = tk.Button(self, text="Set", command=self.set_price_exception)
         Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
 
@@ -227,10 +206,6 @@ class Admin_inventory_window(tk.Frame):
         self.Pages_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Pages_text.pack()
 
-        # Booktype_label = tk.Label(self, text="Book Type", width="15")
-        # types = ("Paperback","Hardcover")
-
-        # types_var = tk.StringVar(value=types)
         Booktype_label = tk.Label(self, text="Book Type", width="15")
         Booktype_label.pack()
         
@@ -239,9 +214,6 @@ class Admin_inventory_window(tk.Frame):
 
         self.drop = tk.OptionMenu(self, clicked, "Hardcopy", "Paperback")
         self.drop.pack()
-
-        # self.Booktype_listbox = tk.Listbox(self, listvariable=types_var)
-        # self.Booktype_listbox.pack()
 
         Location_label = tk.Label(self, text="Location", width="15")
         Location_label.pack()
@@ -267,19 +239,13 @@ class Admin_inventory_window(tk.Frame):
 
         # show hide text and labels
         self.Translator_label = tk.Label(self, text="Translator", width="15")
-        # self.Translator_label.pack()
         self.Translator_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        # self.Translator_text.pack()
 
         self.Untranslated_label = tk.Label(self, text="Original Title", width="15")
-        # self.Untranslated_label.pack() WTF
         self.Untranslated_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        # self.Untranslated_text.pack()
 
         self.Origin_label = tk.Label(self, text="Origin", width="15")
-        # self.Origin_label.pack()
         self.Origin_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        # self.Origin_text.pack()
 
         # label and text place 1
         self.Isbn_text.place(relx=0.2, rely=0.7, relwidth=rel_width, height=row_height, anchor="e")
@@ -309,7 +275,6 @@ class Admin_inventory_window(tk.Frame):
         self.Pages_text.place(relx=0.5, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
         Pages_label.place(relx=0.5, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
         self.drop.place(relx=0.6, rely=0.8, relwidth=rel_width, height=row_height*0.85, anchor="e")
-        # self.Booktype_text.place(relx=0.6, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
         Booktype_label.place(relx=0.6, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
         self.Location_text.place(relx=0.7, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
         Location_label.place(relx=0.7, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
@@ -327,8 +292,6 @@ class Admin_inventory_window(tk.Frame):
         # label and text place 4
         Isbn_text2.place(relx=0.2, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
         Isbn_label2.place(relx=0.2, rely=0.15, relwidth=rel_width, height=row_height, anchor="e")
-        # Search.place(relx=0.8, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
-        # Search_all.place(relx=0.9, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
 
         # label and text place 5
         Set.place(relx=0.9, rely=0.55, relwidth=rel_width, height=row_height, anchor="e")
@@ -344,12 +307,6 @@ class Admin_inventory_window(tk.Frame):
     # button functions
 
     def yes_button(self, rel_width, row_height):
-        # self.Translated_label.pack()
-        # self.Translator_text.pack()
-        # self.Untranslated_label.pack()
-        # self.Untranslated_text.pack()
-        # self.Origin_text.pack()
-        # self.Origin_label.pack()
         try:
             self.Translator_text.destroy()
             self.Untranslated_label.destroy()
@@ -374,12 +331,10 @@ class Admin_inventory_window(tk.Frame):
         self.Untranslated_label.place(relx=0.3, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
         self.Origin_text.place(relx=0.4, rely=0.9, relwidth=rel_width, height=row_height, anchor="e")
         self.Origin_label.place(relx=0.4, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
-        # self.Translated_label.place(relx=0.65, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
         print("hello")
         print(emp_id)
 
     def no_button(self):
-        # self.Translated_label.destroy()
         self.Translator_text.destroy()
         self.Untranslated_label.destroy()
         self.Untranslated_text.destroy()
@@ -482,12 +437,10 @@ class Admin_inventory_window(tk.Frame):
         Admin_object = Admin(db)
         query = Admin_object.add_price_exception(newprice=New_price,ISBN=ISBN,book_id=Book_ID,comment=Comment)
         print(query)
-        resp = messagebox.askquestion('askquestion', f'Are you sure, you want to change price of this book to €{New_price/100}?')
-        # messagebox.askquestion("askquestion", "Are you sure?")
+        resp = messagebox.askquestion('Confirmation', f'Are you sure, you want to change price of this book to {New_price/100}€ ?')
         mycursor = db.cursor()
         if resp == "yes":
             mycursor.execute(query)
             print("Book has been added\nmake this a label that shows up.")
         else:
-            # mycursor.execute("rollback")
             print("Book hasn't been added")
