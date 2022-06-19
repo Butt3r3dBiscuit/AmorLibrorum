@@ -32,7 +32,7 @@ class Admin_employee_window(tk.Frame):
 
         button_font = "Helvetica 18 bold"
 
-        Set_sellprice = tk.Label(self, text="Set Sellprice: ", font=button_font)
+        Set_sellprice = tk.Label(self, text="Search Employee: ", font=button_font)
         Set_sellprice.place(relx=0.2, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
 
         
