@@ -131,6 +131,6 @@ BEGIN
 	DECLARE t_date date;
 	DECLARE d_date date;
 	SET t_date = (select current_date);
-	SET d_date = DATEADD(year, -5, t_date);
+	SET d_date = DATE_ADD(t_date, INTERVAL -5 year);;
     DELETE FROM TRANSACTIONS WHERE Trans_Date<=d_date AND sold(book_id)=1;
 END;
