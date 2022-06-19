@@ -106,34 +106,33 @@ class Employee_sales_window(tk.Frame):
 
 
         def search(self):
-        for record in self.search_results.get_children():
-            self.search_results.delete(record)
-        Book_ID_input = self.Book_text.get()
-        b = book_search(book_id=Book_ID_input,db=db)
-        m = len(b)
-        count = 0
-        parent = ''
-        for i in range(m):
-            n = len(b[i])
-            values = []
-            for j in range(n):
-                if j == 2 or j == 8:
-                    if b[i][j + 1] != None:
-                        values.append(f"{b[i][j]} [{b[i][j + 1]}]")
-                    else:
-                        values.append(b[i][j])
-                elif j == 4:
-                    if b[i][j + 2] != None:
-                        values.append(f"{b[i][j]} {b[i][j + 1]} [{b[i][j + 2]}]")
-                    else:
-                        values.append(f"{b[i][j]} {b[i][j + 1]}")
-                elif j == 15:
-                    values.append(f"{b[i][j]}-{b[i][j + 1]}")
-                elif j not in (3, 5, 6, 9, 16):
-                    if b[i][j] != None:
-                        values.append(b[i][j])
-                    else:
-                        values.append('')
-            self.search_results.insert(parent=parent, index='end', iid=str(count), values=values)
-            count += 1
-
+            for record in self.search_results.get_children():
+                self.search_results.delete(record)
+            Book_ID_input = self.Book_text.get()
+            b = book_search(book_id=Book_ID_input,db=db)
+            m = len(b)
+            count = 0
+            parent = ''
+            for i in range(m):
+                n = len(b[i])
+                values = []
+                for j in range(n):
+                    if j == 2 or j == 8:
+                        if b[i][j + 1] != None:
+                            values.append(f"{b[i][j]} [{b[i][j + 1]}]")
+                        else:
+                            values.append(b[i][j])
+                    elif j == 4:
+                        if b[i][j + 2] != None:
+                            values.append(f"{b[i][j]} {b[i][j + 1]} [{b[i][j + 2]}]")
+                        else:
+                            values.append(f"{b[i][j]} {b[i][j + 1]}")
+                    elif j == 15:
+                        values.append(f"{b[i][j]}-{b[i][j + 1]}")
+                    elif j not in (3, 5, 6, 9, 16):
+                        if b[i][j] != None:
+                            values.append(b[i][j])
+                        else:
+                            values.append('')
+                self.search_results.insert(parent=parent, index='end', iid=str(count), values=values)
+                count += 1
