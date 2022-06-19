@@ -109,7 +109,7 @@ class Employee_sales_window(tk.Frame):
         for record in self.search_results.get_children():
             self.search_results.delete(record)
         Book_ID_input = self.enter_your_book_id_here_pls.get()
-        b = book_search(book_id=Book_ID_input, db=db)
+        b = book_search(input=Book_ID_input,db=db,type=0)
         m = len(b)
         count = 0
         parent = ''
