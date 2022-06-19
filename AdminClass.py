@@ -271,6 +271,8 @@ class Admin:
                              f"OR EMAIL LIKE '%{search}%' ")
         result = self.mycursor.fetchall()
         return result
+    def clean(self):
+        self.mycursor.callproc("clean")
 
 if __name__ == "__main__":
     db = connect.connect_admin("MyN3wP4ssw0rd!*")
@@ -281,7 +283,7 @@ if __name__ == "__main__":
     # admin.add_employee(name="Albus", surname="Dumbledore", position="Manager", passwd="EldenWandIsOPAF123:3", email="dumbiegamer@hogwarts.com")
 
     # #call add_book procedure
-    admin.add_book(ISBN=9780590353403, Title="Harry Potter and the Sorcerers Stone", author_name="Joanne", author_surname="Rowling", publisher="Scholastic Inc", published_year=2003, pages="309", language="English (USA)", book_type="Hardcover", location="7", section="7", genre="Fiction", employee_id=1, date="2022-06-02", Price=1000, translator="Joanne Rowling", Title_untranslated="Harry Potter and the Philosophers Stone", translated_from="English", edition=1, number_of_copies=3)
+    #admin.add_book(ISBN=9780590353403, Title="Harry Potter and the Sorcerers Stone", author_name="Joanne", author_surname="Rowling", publisher="Scholastic Inc", published_year=2003, pages="309", language="English (USA)", book_type="Hardcover", location="7", section="7", genre="Fiction", employee_id=1, date="2022-06-02", Price=1000, translator="Joanne Rowling", Title_untranslated="Harry Potter and the Philosophers Stone", translated_from="English", edition=1, number_of_copies=3)
     # #mycursor.execute(f"select * from transactions order by Transaction_ID desc limit 1")
 
     #print(mycursor.fetchall())
@@ -297,5 +299,8 @@ if __name__ == "__main__":
 
     # #call search records procedure
     # print(admin.search_records(ISBN=9780593334833, Employee_id=None, Book_id=None))
+
+    #call clean
+    admin.clean()
 
     db.commit()
