@@ -212,8 +212,8 @@ class Admin_inventory_window(tk.Frame):
         self.clicked = tk.StringVar()
         self.clicked.set("Hardcover")
 
-        self.drop = tk.OptionMenu(self, self.clicked, "Hardcover", "Paperback")
-        self.drop.pack()
+        self.Booktype = tk.OptionMenu(self, self.clicked, "Hardcover", "Paperback")
+        self.Booktype.pack()
 
         Location_label = tk.Label(self, text="Location", width="15")
         Location_label.pack()
@@ -274,7 +274,7 @@ class Admin_inventory_window(tk.Frame):
         Year_label.place(relx=0.4, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
         self.Pages_text.place(relx=0.5, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
         Pages_label.place(relx=0.5, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
-        self.drop.place(relx=0.6, rely=0.8, relwidth=rel_width, height=row_height*0.85, anchor="e")
+        self.Booktype.place(relx=0.6, rely=0.8, relwidth=rel_width, height=row_height*0.85, anchor="e")
         Booktype_label.place(relx=0.6, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
         self.Location_text.place(relx=0.7, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
         Location_label.place(relx=0.7, rely=0.75, relwidth=rel_width, height=row_height, anchor="e")
@@ -371,7 +371,7 @@ class Admin_inventory_window(tk.Frame):
         Publisher = self.Publisher_text.get()
         Year = self.Year_text.get()
         Pages = self.Pages_text.get()
-        drop = self.clicked.get()
+        Booktype = self.clicked.get()
         Location = self.Location_text.get()
         Section = self.Section_text.get()
         Genre = self.Genre_text.get()
@@ -398,7 +398,7 @@ class Admin_inventory_window(tk.Frame):
             print(Translator, Original_title, Origin)
             Admin_object = Admin(db)
             try:
-                Admin_object.add_book(ISBN, Title, Author, Surname, Publisher, Year, Pages, Language, drop,
+                Admin_object.add_book(ISBN, Title, Author, Surname, Publisher, Year, Pages, Language, Booktype,
                                       Location, Section, Genre, emp_id, Date, Buy_price, Comment, Translator,
                                       Original_title,
                                       Origin, Edition, Amount)
