@@ -99,7 +99,7 @@ class Start_window(tk.Frame):
         # In_store = tk.Label(self, text="InStore")
 
 
-        Book_search.place(relx=0.2, rely=0.2, relwidth=0.2, height=45, anchor="e")
+        Book_search.place(relx=0.2, rely=0.2, relwidth=0.2, height=row_height, anchor="e")
         # Found.place(relx=0.2, rely=0.6, relwidth=0.2, relheight=rel_height, anchor="e")
         # Title.place(relx=0.1, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
         # Author.place(relx=0.2, rely=0.8, relwidth=rel_width, relheight=rel_height, anchor="e")
@@ -113,7 +113,7 @@ class Start_window(tk.Frame):
 
         self.Book_text = tk.Entry(self, width=300, borderwidth=1, relief="groove")
         self.Book_text.pack()
-        self.Book_text.place(relx=0.5, rely=0.4, relwidth=0.4, height=45, anchor="e")
+        self.Book_text.place(relx=0.5, rely=0.4, relwidth=0.1, height=row_height, anchor="e")
 
         # books = []
         # books_var = tk.StringVar(value=books)
@@ -128,7 +128,7 @@ class Start_window(tk.Frame):
 
 
         Search = tk.Button(self, text="Search", command=self.search)
-        Search.place(relx=0.8, rely=0.2, relwidth=rel_width, height=45, anchor="e")
+        Search.place(relx=0.8, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
 
 
 
@@ -139,7 +139,7 @@ class Start_window(tk.Frame):
             self.search_results.delete(record)
         search_input = self.Book_text.get()
         Booksearch = gc.Guest()
-        b = Booksearch.search(search=search_input, type=0)
+        b = Booksearch.search(search=search_input)
         m = len(b)
         count=0
         parent_id=''
