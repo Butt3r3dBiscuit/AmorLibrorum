@@ -276,13 +276,11 @@ class Admin:
 
     def search(self, search):
         conditions = ""
-        or_isbn = ""
-        if search != "":
-            conditions = f"WHERE B.TITLE LIKE '%{search}%' " \
+        conditions = f"WHERE B.TITLE LIKE '%{search}%' " \
                          f"OR IT.TITLE_UNTRANSLATED LIKE '%{search}%' " \
                          f"OR A.AUTHOR_NAME LIKE '%{search}%' " \
                          f"OR A.AUTHOR_SURNAME LIKE '%{search}%' " \
-                         f"{or_isbn}"
+                         f"OR B.ISBN LIKE '%{search}%'"
         self.mycursor.execute("SET sql_mode = ''")
 
         self.mycursor.execute(
