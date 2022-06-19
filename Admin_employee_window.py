@@ -23,7 +23,7 @@ class Admin_employee_window(tk.Frame):
         row_height = 20
         button_height = 45
         text_height = 20
-        title_height = 30
+        title_height = 60
 
 
         button_font = "Helvetica 18 bold"
@@ -49,8 +49,8 @@ class Admin_employee_window(tk.Frame):
         Add_employee_label = tk.Label(self, text="Add Employee:", font=button_font)
         Search_employee_label = tk.Label(self, text="Search Employee:", font=button_font)
 
-        Add_employee_label.place(relx=0.09, rely=0.15, relwidth=0.15, height=row_height, anchor="w")
-        Search_employee_label.place(relx=0.1, rely=0.35, relwidth=0.15, height=row_height, anchor="w")
+        Add_employee_label.place(relx=0.09, rely=0.1, relwidth=0.15, height=title_height, anchor="nw")
+        Search_employee_label.place(relx=0.1, rely=0.3, relwidth=0.15, height=title_height, anchor="nw")
         
 
 
@@ -111,7 +111,7 @@ class Admin_employee_window(tk.Frame):
 
         #third row - changing passwords
         New_password_label = tk.Label(self, text="Change password:", font=button_font)
-        New_password_label.place(relx=0.1, rely=0.55, relwidth=0.15, height=row_height, anchor="w")
+        New_password_label.place(relx=0.1, rely=0.5, relwidth=0.15, height=title_height, anchor="nw")
 
 
 
@@ -135,7 +135,7 @@ class Admin_employee_window(tk.Frame):
 
         #fourth row dismission
         User_dismiss = tk.Label(self, text="User dismiss:", font=button_font)
-        User_dismiss.place(relx=0.1, rely=0.75, relwidth=0.15, height=row_height, anchor="w")
+        User_dismiss.place(relx=0.1, rely=0.75, relwidth=0.15, height=title_height, anchor="w")
 
         Dismiss_email = tk.Label(self, text="Email", width="15")
         Dismiss_email.pack()
