@@ -57,7 +57,7 @@ class Admin_finance_window(tk.Frame):
         Inventory.place(relx=0.8, relwidth=rel_width, relheight=rel_height, anchor="ne")
         Delete.place(relx=0.2, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
         Log_out.place(relx=0, rely=0, relwidth=rel_width, relheight=rel_height, anchor="nw")
-        Set_margin_Button.place(relx=0.8, rely=0.5,relwidth=rel_width, relheight=rel_height, anchor="e")
+        Set_margin.place(relx=0.8, rely=0.5,relwidth=rel_width, relheight=rel_height, anchor="e")
 
         Search_records_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Search_records_text.pack()
