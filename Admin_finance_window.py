@@ -125,4 +125,22 @@ class Admin_finance_window(tk.Frame):
         for x in mycursor:
             self.string_variable.set(str(x[0]))
 
-
+    def transaction_search(self):
+        for record in self.search_results.get_children():
+            self.search_results.delete(record)
+        search_input = self.Search_records_text.get()
+        a = Admin(db)
+        b = a.search_transactions(search=search_input)
+        m = len(b)
+        count=0
+        parent=''
+        for i in range(m):
+            n = len(b[i])
+            values = []
+            for j in range(n):
+                if b[i][j] != None:
+                    values.append(b[i][j])
+                else:
+                    values.append('')
+            self.search_results.insert(parent=parent, index='end', iid=str(count), values=values)
+            count += 1
