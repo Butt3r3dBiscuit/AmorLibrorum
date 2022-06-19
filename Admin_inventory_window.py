@@ -387,7 +387,7 @@ class Admin_inventory_window(tk.Frame):
         # Comment = "Bruh"
 
 
-        resp = messagebox.askquestion('askquestion', 'Are you sure you want to save this book?')
+        resp = messagebox.askquestion('Confirmation', 'Are you sure you want to save this book?')
         # messagebox.askquestion("askquestion", "Are you sure?")
         mycursor = db.cursor()
         # if resp == "yes":
@@ -408,14 +408,14 @@ class Admin_inventory_window(tk.Frame):
         # else:
         #     print("Book has not been added.")
     def commit_save(self):
-        resp = messagebox.askquestion('askquestion', 'Are you sure you want to commit?')
+        resp = messagebox.askquestion('Confirmation', 'Are you sure you want to commit?')
         mycursor = db.cursor()
         if resp=="yes":
             mycursor.execute("commit")
         else:
             print("It doesn't commit")
     def rollback_undo(self):
-        resp = messagebox.askquestion('Confirmation', 'This will delete your progress. Do you want to continue?')
+        resp = messagebox.askquestion('Confirmation', 'This will rollback your transaction progress. Do you want to continue?')
         mycursor = db.cursor()
         if resp == "yes":
             mycursor.execute("rollback")
