@@ -33,8 +33,6 @@ class Admin_finance_window(tk.Frame):
         Inventory = tk.Button(self, text="Inventory", command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
         Book_sell = tk.Button(self, text="Sell book", command= lambda: controller.show_frame(Admin_sales_window.Admin_sales_tab))
 
-
-        Search_records_button = tk.Button(self, text="Search", command=self.transaction_search)
         # Tabs Placement
         Log_out.place(relx=0, rely=0, relwidth=rel_width, height=button_height, anchor="nw")
 
@@ -47,6 +45,8 @@ class Admin_finance_window(tk.Frame):
         Delete = tk.Button(self, text="Delete", command=self.deletion)
         Set_margin_Button = tk.Button(self, text="Set", command=self.set_margin_func)
         Profit_margin_calc = tk.Button(self, text="Show margin", command=self.get_margin)
+        Search_records_button = tk.Button(self, text="Search", command=self.transaction_search)
+        
         Search_records_button.place(relx=0.3, rely=0.15)
 
         # text
