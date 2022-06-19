@@ -3,7 +3,7 @@ import Start_window
 import Admin_inventory_window
 import Admin_finance_window
 
-class employee_window(tk.Frame):
+class Admin_employee_window(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 

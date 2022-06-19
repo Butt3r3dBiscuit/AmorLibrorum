@@ -4,7 +4,7 @@ from Start_window import Start_window
 from login_window import login_window
 from Employees_sales_tab import Employee_sales_window
 from Admin_inventory_window import Admin_inventory_window
-from employee_window import employee_window
+from Admin_employee_window import Admin_employee_window
 from Admin_finance_window import Admin_finance_window
 
 class Handler(tk.Tk):
@@ -30,7 +30,7 @@ class Handler(tk.Tk):
 
 # here we will put names of classes in respective files
 
-        for F in (Start_window, login_window, Employee_sales_window, Admin_inventory_window, employee_window, Admin_finance_window):
+        for F in (Start_window, login_window, Employee_sales_window, Admin_inventory_window, Admin_employee_window, Admin_finance_window):
             print("here", F)
             frame = F(container, self)
 
