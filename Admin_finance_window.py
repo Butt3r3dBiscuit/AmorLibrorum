@@ -1,5 +1,5 @@
 import tkinter as tk
-
+from AdminClass import Admin
 import AdminClass
 import Start_window
 import Admin_inventory_window
@@ -31,7 +31,7 @@ class Admin_finance_window(tk.Frame):
         Finance = tk.Button(self, text="Finance", relief="sunken", state="disabled")
         Inventory = tk.Button(self, text="Inventory", command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
 
-        Search_records_button = tk.Button(self, text="Search")
+        Search_records_button = tk.Button(self, text="Search", command=self.transaction_search)
         # Tabs Placement
         Log_out.place(relx=0, rely=0, relwidth=rel_width, height=button_height, anchor="nw")
 
@@ -88,9 +88,9 @@ class Admin_finance_window(tk.Frame):
         Set_margin_Button.place(relx=0.8, rely=0.5,relwidth=rel_width, relheight=rel_height, anchor="e")
         Profit_margin_calc.place(relx=0.3, rely=0.5,relwidth=rel_width, relheight=rel_height, anchor="e")
 
-        Search_records_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Search_records_text.pack()
-        Search_records_text.place(relx=0.3, rely=0.15, relwidth=0.2, relheight=rel_height, anchor="e")
+        self.Search_records_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Search_records_text.pack()
+        self.Search_records_text.place(relx=0.3, rely=0.15, relwidth=0.2, relheight=rel_height, anchor="e")
 
         self.Margin_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Margin_text.pack()
