@@ -160,3 +160,16 @@ class Admin_employee_window(tk.Frame):
         print(Admin_inventory_window.emp_id)
         print('this is just to test that we have the emp_id loaded - not sure if we need it here but ye')
         print("we could make it so that in one of the corners there would be sth like logged as:")
+
+    def add_manager(self):
+        pass
+
+    def add_employee(self):
+        pass
+
+    def change_password(self):
+        pass
+
+    def user_dismiss(self):
+        pass
+
