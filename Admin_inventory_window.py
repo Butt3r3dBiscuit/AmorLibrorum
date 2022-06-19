@@ -8,6 +8,7 @@ from AdminClass import Admin, add_to_Price_exceptions
 from datetime import date
 from tkinter import OptionMenu, messagebox
 from book_search import book_search
+import guest_class as gc
 
 emp_id = None
 db = None
