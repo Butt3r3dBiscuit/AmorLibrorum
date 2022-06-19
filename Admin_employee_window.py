@@ -6,6 +6,7 @@ import Admin_inventory_window
 import Admin_finance_window
 import user_creation
 from AdminClass import add_to_employees
+from AdminClass import Admin
 
 
 # from AdminClass import Admin, add_to_Price_exceptions
@@ -98,8 +99,8 @@ class Admin_employee_window(tk.Frame):
         # self.Last_name_search_entry.place(relx=0.315, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
 
         # second row - Button definition and place
-        New_password_save = tk.Button(self, text="Search")
-        New_password_save.place(relx=0.515, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
+        Search_button = tk.Button(self, text="Search", command=self.employee_search)
+        Search_button.place(relx=0.515, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
 
         # third row - Big label definition - Changing passwords
         New_password_label = tk.Label(self, text="Change password:", font=button_font)
