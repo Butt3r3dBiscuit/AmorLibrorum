@@ -384,10 +384,10 @@ class Admin_inventory_window(tk.Frame):
                                       Location, Section, Genre, emp_id, Date, Buy_price, Comment, Translator,
                                       Original_title,
                                       Origin, Edition, Amount)
-                self.Booktype_listbox.config(fg="black")
+                self.Booktype.config(fg="black")
             except UnboundLocalError:
                 print("Here")
-                self.Booktype_listbox.config(fg="red")
+                self.Booktype.config(fg="red")
             print(ISBN, Title, Author, Surname, Edition, Comment, Language, Buy_price)
             print(Publisher, Year, Pages, Booktype, Location, Section, Genre)
             print("Book has been added\nmake this a label that shows up.")
