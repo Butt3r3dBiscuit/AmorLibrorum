@@ -10,10 +10,15 @@ class Guest:
     def __init__(self):
         pass
 
-    def search(self, search, type):
+    def search(self, search, search_type):
         conditions = ""
         or_isbn = ""
-        if type != 0:
+        comment1= ""
+        comment2= ""
+        if search_type != 0:
+            comment1 = "PE.COMMENT, "
+            comment2 = "LEFT JOIN PRICE_EXCEPTIONS PE " \
+                       "ON PE.BOOK_ID=BE.BOOK_ID "
             or_isbn = f"OR B.ISBN LIKE '%{search}%'"
         if search != "":
             conditions = f"WHERE B.TITLE LIKE '%{search}%' " \
@@ -23,7 +28,7 @@ class Guest:
                          f"{or_isbn}"
         cursor.execute("SET sql_mode = ''")
 
-        cursor.execute("SELECT B.ISBN, B.TITLE, IT.TITLE_UNTRANSLATED, A.AUTHOR_NAME, A.AUTHOR_SURNAME, IT.TRANSLATOR, B.EDITION, B.LANGUAGE, IT.TRANSLATED_FROM, B.GENRE, B.PUBLISHER, B.BOOK_TYPE, B.YEAR_PUBLISHED, B.PAGES, B.LOCATION, B.SECTION, PRICE_DETERMINATION(BE.BOOK_ID), COUNT(BE.BOOK_ID) "
+        cursor.execute(f"SELECT B.ISBN, {comment1} B.TITLE, IT.TITLE_UNTRANSLATED, A.AUTHOR_NAME, A.AUTHOR_SURNAME, IT.TRANSLATOR, B.EDITION, B.LANGUAGE, IT.TRANSLATED_FROM, B.GENRE, B.PUBLISHER, B.BOOK_TYPE, B.YEAR_PUBLISHED, B.PAGES, B.LOCATION, B.SECTION, PRICE_DETERMINATION(BE.BOOK_ID), COUNT(BE.BOOK_ID) "
                        "FROM BOOKS B LEFT JOIN AUTHORS A " 
                        "ON B.ISBN=A.ISBN " 
                        "LEFT JOIN BOOK_ENTRIES BE " 
@@ -31,7 +36,8 @@ class Guest:
                        "LEFT JOIN TRANSACTIONS T "
                        "ON BE.BOOK_ID=T.BOOK_ID " 
                        "LEFT JOIN IF_TRANSLATED IT " 
-                       "ON IT.ISBN=B.ISBN " 
+                       "ON IT.ISBN=B.ISBN "
+                       f"{comment2} " 
                        f"{conditions} "
                        "AND PRICE_DETERMINATION(BE.BOOK_ID)>0 "
                        "GROUP BY B.ISBN, PRICE_DETERMINATION(BE.BOOK_ID) "
