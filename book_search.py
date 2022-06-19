@@ -9,9 +9,10 @@ mycursor = db.cursor()
 #
 
 def book_search(input, db, type):
+    conditions = ""
     if type == 0:
         conditions = f"WHERE BE.BOOK_ID={input} "
-    else:
+    elif input != "":
         conditions = f"WHERE B.ISBN={input} "
     mycursor.execute("SET sql_mode = ''")
     mycursor.execute(
