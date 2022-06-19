@@ -38,8 +38,8 @@ class Employee_sales_window(tk.Frame):
         Book_label.place(relx=0.2, rely=0.25, relwidth=rel_width, relheight=rel_height, anchor="e")
         # Book_label.pack()
 
-        self.enter_your_book_id_here_pls = tk.Entry(self, borderwidth=1, relief="groove")
-        self.enter_your_book_id_here_pls.place(relx=0.3, rely=0.35, relwidth=0.2, height=45, anchor="e")
+        self.Book_text = tk.Entry(self, borderwidth=1, relief="groove")
+        self.Book_text.place(relx=0.3, rely=0.35, relwidth=0.2, height=45, anchor="e")
         # self.enter_your_book_id_here_pls.pack()
 
 
@@ -105,34 +105,34 @@ class Employee_sales_window(tk.Frame):
         self.search_results.place(relx=0.025, rely=0.55, relwidth=0.95, relheight=0.25)
 
 
-        def search(self):
-            for record in self.search_results.get_children():
-                self.search_results.delete(record)
-            Book_ID_input = self.Book_text.get()
-            b = book_search(book_id=Book_ID_input,db=db)
-            m = len(b)
-            count = 0
-            parent = ''
-            for i in range(m):
-                n = len(b[i])
-                values = []
-                for j in range(n):
-                    if j == 2 or j == 8:
-                        if b[i][j + 1] != None:
-                            values.append(f"{b[i][j]} [{b[i][j + 1]}]")
-                        else:
-                            values.append(b[i][j])
-                    elif j == 4:
-                        if b[i][j + 2] != None:
-                            values.append(f"{b[i][j]} {b[i][j + 1]} [{b[i][j + 2]}]")
-                        else:
-                            values.append(f"{b[i][j]} {b[i][j + 1]}")
-                    elif j == 15:
-                        values.append(f"{b[i][j]}-{b[i][j + 1]}")
-                    elif j not in (3, 5, 6, 9, 16):
-                        if b[i][j] != None:
-                            values.append(b[i][j])
-                        else:
-                            values.append('')
-                self.search_results.insert(parent=parent, index='end', iid=str(count), values=values)
-                count += 1
+    def search(self):
+        for record in self.search_results.get_children():
+            self.search_results.delete(record)
+        Book_ID_input = self.Book_text.get()
+        b = book_search(book_id=Book_ID_input,db=db)
+        m = len(b)
+        count = 0
+        parent = ''
+        for i in range(m):
+            n = len(b[i])
+            values = []
+            for j in range(n):
+                if j == 2 or j == 8:
+                    if b[i][j + 1] != None:
+                        values.append(f"{b[i][j]} [{b[i][j + 1]}]")
+                    else:
+                        values.append(b[i][j])
+                elif j == 4:
+                    if b[i][j + 2] != None:
+                        values.append(f"{b[i][j]} {b[i][j + 1]} [{b[i][j + 2]}]")
+                    else:
+                        values.append(f"{b[i][j]} {b[i][j + 1]}")
+                elif j == 15:
+                    values.append(f"{b[i][j]}-{b[i][j + 1]}")
+                elif j not in (3, 5, 6, 9, 16):
+                    if b[i][j] != None:
+                        values.append(b[i][j])
+                    else:
+                        values.append('')
+            self.search_results.insert(parent=parent, index='end', iid=str(count), values=values)
+            count += 1
