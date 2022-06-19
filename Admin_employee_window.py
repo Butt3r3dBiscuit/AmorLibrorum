@@ -9,7 +9,7 @@ class Admin_employee_window(tk.Frame):
 
 
         rel_width = 0.1
-        rel_height = 0.05
+        row_height = 20
         
         
         
@@ -29,36 +29,40 @@ class Admin_employee_window(tk.Frame):
                               command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
         Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
 
-        
+
+        button_font = "Helvetica 18 bold"
+
+        Set_sellprice = tk.Label(self, text="Set Sellprice: ", font=button_font)
+        Set_sellprice.place(relx=0.2, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
+
         
         #Text
-        Book_search = tk.Label(self, text="Book Search")
-        Title = tk.LabelFrame(self, text="Title")
-        Author = tk.LabelFrame(self, text="Author")
-        Editor = tk.LabelFrame(self, text="Editor")
-        Version = tk.LabelFrame(self, text="Version")
-        Language = tk.LabelFrame(self, text="Language")
-        All = tk.LabelFrame(self, text="All")
-        
+        # Book_search = tk.Label(self, text="Book Search")
+        # Title = tk.LabelFrame(self, text="Title")
+        # Author = tk.LabelFrame(self, text="Author")
+        # Editor = tk.LabelFrame(self, text="Editor")
+        # Version = tk.LabelFrame(self, text="Version")
+        # Language = tk.LabelFrame(self, text="Language")
+        # All = tk.LabelFrame(self, text="All")
+        #
         
         #Placement Buttons
-        Employee.place(relx=1, relwidth=rel_width, relheight=rel_height, anchor="ne")
-        Finance.place(relx=0.9, relwidth=rel_width, relheight=rel_height, anchor="ne")
-        Inventory.place(relx=0.8, relwidth=rel_width, relheight=rel_height, anchor="ne")
-        Log_out.place(relx=0,rely=0,relwidth=rel_width, relheight=rel_height, anchor="nw")
+        Employee.place(relx=1, relwidth=rel_width, height=row_height, anchor="ne")
+        Finance.place(relx=0.9, relwidth=rel_width, height=row_height, anchor="ne")
+        Inventory.place(relx=0.8, relwidth=rel_width, height=row_height, anchor="ne")
+        Log_out.place(relx=0, rely=0, relwidth=rel_width, height=row_height, anchor="nw")
 
 
 
 
-
-        #Placement Text
-        Book_search.place(relx=0.18, rely=0.15, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Title.place(relx=0.2, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Author.place(relx=0.35, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Editor.place(relx=0.5, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Version.place(relx=0.65, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Language.place(relx=0.8, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
-        All.place(relx=0.95, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
+        # #Placement Text
+        # Book_search.place(relx=0.18, rely=0.15, relwidth=rel_width, relheight=rol_height, anchor="e")
+        # Title.place(relx=0.2, rely=0.3, relwidth=rel_width, relheight=rol_height, anchor="e")
+        # Author.place(relx=0.35, rely=0.3, relwidth=rel_width, relheight=rol_height, anchor="e")
+        # Editor.place(relx=0.5, rely=0.3, relwidth=rel_width, relheight=rol_height, anchor="e")
+        # Version.place(relx=0.65, rely=0.3, relwidth=rel_width, relheight=rol_height, anchor="e")
+        # Language.place(relx=0.8, rely=0.3, relwidth=rel_width, relheight=rol_height, anchor="e")
+        # All.place(relx=0.95, rely=0.3, relwidth=rel_width, relheight=rol_height, anchor="e")
     
     def test_emp_id(self):
         print(Admin_inventory_window.emp_id)
