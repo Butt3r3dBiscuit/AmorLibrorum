@@ -261,7 +261,16 @@ class Admin:
         self.mycursor.execute('delete from variables')
         #adds new margin
         self.mycursor.execute(add_to_variables(margin=margin))
-
+    def emp_search(self, search):
+        self.mycursor.execute("SET sql_mode = ''")
+        self.mycursor.execute("SELECT EMPLOYEE_ID, NAME, SURNAME, EMAIL "
+                              "FROM EMPLOYEES "
+                             f"WHERE EMPLOYEE_ID LIKE '%{search}%' "
+                             f"OR NAME LIKE '%{search}%' "
+                             f"OR SURNAME LIKE '%{search}%' "
+                             f"OR EMAIL LIKE '%{search}%' ")
+        result = self.mycursor.fetchall()
+        return result
 
 if __name__ == "__main__":
     db = connect.connect_admin("MyN3wP4ssw0rd!*")
