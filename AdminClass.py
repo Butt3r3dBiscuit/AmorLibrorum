@@ -41,9 +41,9 @@ def add_to_Transactions(book_id, employee_id, date, Price):
     return query
 
 
-def add_to_employees(Name, Surname, position, Password, email):
-    query = f"insert into employees(Name, Surname, position, Password, email) values('{Name}', '{Surname}'," \
-            f" '{position}', '{Password}', '{email}')"
+def add_to_employees(Name, Surname, position, email):
+    query = f"insert into employees(Name, Surname, position, email) values('{Name}', '{Surname}'," \
+            f" '{position}', '{email}')"
     return query
 
 
