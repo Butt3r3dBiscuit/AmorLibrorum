@@ -88,7 +88,7 @@ class Admin_employee_window(tk.Frame):
         Last_name_search_label = tk.Label(self, text="Last name", width="15")
         self.Last_name_search_entry = tk.Entry(self, width=30, borderwidth=1, relief="groove")
 
-        # first row - Placing of all labels and their respective entries
+        # second row - Placing of all labels and their respective entries
         self.First_name_search_entry.place(relx=0.215, rely=0.45, relwidth=rel_width, height=row_height, anchor="e")
         First_name_search.place(relx=0.215, rely=0.4, relwidth=rel_width, height=row_height, anchor="e")
         Last_name_search_label.place(relx=0.315, rely=0.4, relwidth=rel_width, height=row_height, anchor="e")
@@ -103,46 +103,57 @@ class Admin_employee_window(tk.Frame):
         # third row - Big label placement
         New_password_label.place(relx=0.1, rely=0.5, relwidth=0.15, height=title_height, anchor="nw")
 
+        # third row - All labels and their respective entries
         New_password_email = tk.Label(self, text="Email", width="15")
         self.New_password_email_entry = tk.Entry(self, width=30, borderwidth=1, relief="groove")
 
         New_password_label = tk.Label(self, text="New Password", width="15")
         self.New_password_entry = tk.Entry(self, width=30, borderwidth=1, relief="groove", show="*")
 
+        # third row - Placing of all labels and their respective entries
         self.New_password_email_entry.place(relx=0.215, rely=0.65, relwidth=rel_width, height=row_height, anchor="e")
         New_password_email.place(relx=0.215, rely=0.6, relwidth=rel_width, height=row_height, anchor="e")
         New_password_label.place(relx=0.315, rely=0.6, relwidth=rel_width, height=row_height, anchor="e")
         self.New_password_entry.place(relx=0.315, rely=0.65, relwidth=rel_width, height=row_height, anchor="e")
 
+        # third row - Button definition and place
         New_password_save = tk.Button(self, text="Change")
         New_password_save.place(relx=0.515, rely=0.65, relwidth=rel_width, height=row_height, anchor="e")
 
-        # fourth row dismission
+        # fourth row - Big label definition - Dismission
         User_dismiss = tk.Label(self, text="User dismiss:", font=button_font)
+        # fourth row - Big label placement
         User_dismiss.place(relx=0.1, rely=0.75, relwidth=0.15, height=title_height, anchor="w")
 
+        # fourth row - Label and its respective entry
         Dismiss_email = tk.Label(self, text="Email", width="15")
-        Dismiss_email.pack()
         self.Dismiss_email_entry = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        # fourth row - Placing of label and its respective entry
         self.Dismiss_email_entry.place(relx=0.215, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
         Dismiss_email.place(relx=0.215, rely=0.8, relwidth=rel_width, height=row_height, anchor="e")
 
+        # fourth row - Button definition and place
         Dismiss_button = tk.Button(self, text="Dismiss")
         Dismiss_button.place(relx=0.515, rely=0.85, relwidth=rel_width, height=row_height, anchor="e")
 
+        # treeview definition (Object which holds the information about employees)
         self.search_results = ttk.Treeview(self)
+        # defining columns of treeview
         self.search_results['columns'] = ("First Name", "Last Name", "Email")
 
+        # definition of columns of the treeview
         self.search_results.column("#0", width=20, stretch=False)
         self.search_results.column("First Name", anchor="w", width=110, minwidth=50)
         self.search_results.column("Last Name", anchor="w", width=100, minwidth=50)
         self.search_results.column("Email", anchor="w", width=200, minwidth=100)
 
+        # definition of headings of the treeview
         self.search_results.heading("#0", text="", anchor="center")
         self.search_results.heading("First Name", text="First name", anchor="center")
         self.search_results.heading("Last Name", text="Last name", anchor="center")
         self.search_results.heading("Email", text="Email", anchor="center")
 
+        # placing of treeview
         self.search_results.place(relx=0.615, rely=0.45, relheight=0.4)
 
     def test_emp_id(self):
