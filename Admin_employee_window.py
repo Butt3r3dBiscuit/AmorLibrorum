@@ -136,7 +136,7 @@ class Admin_employee_window(tk.Frame):
         self.search_results.column("Title [Original title]", anchor="w", width=200, minwidth=100)
         self.search_results.column("Author [Translator]", anchor="w", width=100, minwidth=50)
 '''
-    def test_emp_id(self):
-        print(Admin_inventory_window.emp_id)
-        print('this is just to test that we have the emp_id loaded - not sure if we need it here but ye')
-        print("we could make it so that in one of the corners there would be sth like logged as:")
+        def test_emp_id(self):
+            print(Admin_inventory_window.emp_id)
+            print('this is just to test that we have the emp_id loaded - not sure if we need it here but ye')
+            print("we could make it so that in one of the corners there would be sth like logged as:")
