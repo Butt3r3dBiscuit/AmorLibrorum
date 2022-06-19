@@ -209,10 +209,10 @@ class Admin_inventory_window(tk.Frame):
         Booktype_label = tk.Label(self, text="Book Type", width="15")
         Booktype_label.pack()
         
-        clicked = tk.StringVar()
-        clicked.set("Hardcopy")
+        self.clicked = tk.StringVar()
+        self.clicked.set("Hardcover")
 
-        self.drop = tk.OptionMenu(self, clicked, "Hardcopy", "Paperback")
+        self.drop = tk.OptionMenu(self, self.clicked, "Hardcover", "Paperback")
         self.drop.pack()
 
         Location_label = tk.Label(self, text="Location", width="15")
@@ -307,6 +307,12 @@ class Admin_inventory_window(tk.Frame):
     # button functions
 
     def yes_button(self, rel_width, row_height):
+        # self.Translated_label.pack()
+        # self.Translator_text.pack()
+        # self.Untranslated_label.pack()
+        # self.Untranslated_text.pack()
+        # self.Origin_text.pack()
+        # self.Origin_label.pack()
         try:
             self.Translator_text.destroy()
             self.Untranslated_label.destroy()
@@ -365,9 +371,7 @@ class Admin_inventory_window(tk.Frame):
         Publisher = self.Publisher_text.get()
         Year = self.Year_text.get()
         Pages = self.Pages_text.get()
-        # for i in self.Booktype_listbox.curselection():
-        #     Booktype = (self.Booktype_listbox.get(i))
-        # # Booktype = self.Booktype_listbox.get()
+        drop = self.clicked.get()
         Location = self.Location_text.get()
         Section = self.Section_text.get()
         Genre = self.Genre_text.get()
@@ -390,23 +394,23 @@ class Admin_inventory_window(tk.Frame):
         resp = messagebox.askquestion('askquestion', 'Are you sure you want to save this book?')
         # messagebox.askquestion("askquestion", "Are you sure?")
         mycursor = db.cursor()
-        # if resp == "yes":
-        #     print(Translator, Original_title, Origin)
-        #     Admin_object = Admin(db)
-        #     try:
-        #         Admin_object.add_book(ISBN, Title, Author, Surname, Publisher, Year, Pages, Language, Booktype,
-        #                               Location, Section, Genre, emp_id, Date, Buy_price, Comment, Translator,
-        #                               Original_title,
-        #                               Origin, Edition, Amount)
-        #         self.Booktype_listbox.config(fg="black")
-        #     except UnboundLocalError:
-        #         print("Here")
-        #         self.Booktype_listbox.config(fg="red")
-        #     print(ISBN, Title, Author, Surname, Edition, Comment, Language, Buy_price)
-        #     print(Publisher, Year, Pages, Booktype, Location, Section, Genre)
-        #     print("Book has been added\nmake this a label that shows up.")
-        # else:
-        #     print("Book has not been added.")
+        if resp == "yes":
+            print(Translator, Original_title, Origin)
+            Admin_object = Admin(db)
+            try:
+                Admin_object.add_book(ISBN, Title, Author, Surname, Publisher, Year, Pages, Language, drop,
+                                      Location, Section, Genre, emp_id, Date, Buy_price, Comment, Translator,
+                                      Original_title,
+                                      Origin, Edition, Amount)
+                self.Booktype_listbox.config(fg="black")
+            except UnboundLocalError:
+                print("Here")
+                self.Booktype_listbox.config(fg="red")
+            print(ISBN, Title, Author, Surname, Edition, Comment, Language, Buy_price)
+            print(Publisher, Year, Pages, Booktype, Location, Section, Genre)
+            print("Book has been added\nmake this a label that shows up.")
+        else:
+            print("Book has not been added.")
     def commit_save(self):
         resp = messagebox.askquestion('askquestion', 'Are you sure you want to commit?')
         mycursor = db.cursor()
