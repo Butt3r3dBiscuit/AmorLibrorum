@@ -1,10 +1,13 @@
 import tkinter as tk
+
+import Admin_sales_window
 import Start_window
 import Employees_sales_tab
 from connect import connect_employee
 import Admin_inventory_window
 import Admin_finance_window
 import Admin_employee_window
+import AdminClass
 
 
 class login_window(tk.Frame):
@@ -90,8 +93,9 @@ class login_window(tk.Frame):
             Admin_finance_window.emp_id = self.employee_id
             Admin_finance_window.db = self.db
             Admin_employee_window.db = self.db
+            AdminClass.db = self.db
             print(Admin_inventory_window.emp_id)
-            controller.show_frame(Admin_inventory_window.Admin_inventory_window)
+            controller.show_frame(Admin_sales_window.Admin_sales_tab)
 
     def back_button(self, controller):
         try:
