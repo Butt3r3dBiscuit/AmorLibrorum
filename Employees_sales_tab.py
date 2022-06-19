@@ -17,7 +17,7 @@ class Employee_sales_window(tk.Frame):
         text_height = 20
         title_height = 30
 
-        Search = tk.Button(self, text="Search")
+        Search = tk.Button(self, text="Search",command=self.search)
         Search.place(relx=0.4, rely=0.35, relwidth=rel_width, relheight=0.1, anchor="e")
 
         Sell = tk.Button(self, text="Sell")
