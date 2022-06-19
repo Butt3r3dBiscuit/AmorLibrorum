@@ -6,7 +6,7 @@ CREATE TABLE `Books` (
   `pages` int NOT NULL,
   `language` varchar(30) NOT NULL,
   `edition` int,
-  `book_type` ENUM("paperback","hardcover"),
+  `book_type` ENUM("Paperback","Hardcover"),
   `location` varchar(2) NOT NULL,
   `section` int NOT NULL,
   `Genre` varchar(50),

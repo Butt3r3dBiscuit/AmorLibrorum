@@ -7,10 +7,10 @@ import Admin_employee_window
 # from AdminClass import Admin, add_to_Price_exceptions
 # from datetime import date
 # from tkinter import OptionMenu, messagebox
+# from book_search import book_search
 
-db = None
 emp_id = None
-
+db = None
 
 class Admin_finance_window(tk.Frame):
     def __init__(self, parent, controller):
