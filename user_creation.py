@@ -1,6 +1,7 @@
 import connect
 
-def admin_user_addition(my_cursor, username, password):
+def admin_user_addition(db, username, password):
+    my_cursor = db.cursor()
     try:
         my_cursor.execute(f"CREATE USER '{username}'@'localhost' IDENTIFIED BY '{password}'")
 
@@ -10,9 +11,10 @@ def admin_user_addition(my_cursor, username, password):
 
     except Exception as e:
         if e.errno == 1819:
-            # this error cathes if passsword doesn't satisfy the policy requirements
+            # this error catches if passsword doesn't satisfy the policy requirements
             print("make a pop up out of this:")
             print("Your password does not satisfy the current policy requirements")
+            return e
 
         if e.errno == 1396:
             # this error cathes if user already exists
@@ -21,7 +23,9 @@ def admin_user_addition(my_cursor, username, password):
             return admin_user_addition(my_cursor, username, password)
         print(e)
 
-def employee_user_addition(my_cursor,username,password):
+def employee_user_addition(db,username,password):
+    my_cursor = db.cursor()
+
     try:
         my_cursor.execute(f"CREATE USER '{username}'@'localhost' IDENTIFIED BY '{password}'")
 
