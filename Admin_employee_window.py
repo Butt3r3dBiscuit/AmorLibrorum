@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk
+# from tkinter import ttk
 import Start_window
 import Admin_inventory_window
 # import Admin_employee_window
@@ -28,6 +28,7 @@ class Admin_employee_window(tk.Frame):
 
         button_font = "Helvetica 18 bold"
 
+
         # Tabs
         Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
 
@@ -51,11 +52,6 @@ class Admin_employee_window(tk.Frame):
         Add_employee_label.place(relx=0.09, rely=0.15, relwidth=0.15, height=row_height, anchor="w")
         Search_employee_label.place(relx=0.1, rely=0.35, relwidth=0.15, height=row_height, anchor="w")
         
-        #Placement Buttons
-        Employee.place(relx=1, relwidth=rel_width, height=row_height, anchor="ne")
-        Finance.place(relx=0.9, relwidth=rel_width, height=row_height, anchor="ne")
-        Inventory.place(relx=0.8, relwidth=rel_width, height=row_height, anchor="ne")
-        Log_out.place(relx=0, rely=0, relwidth=rel_width, height=row_height, anchor="nw")
 
 
         #first row
