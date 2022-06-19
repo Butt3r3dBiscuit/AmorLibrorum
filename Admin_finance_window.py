@@ -10,6 +10,8 @@ import Admin_employee_window
 
 emp_id = None
 db = None
+ # Set the value of the variable
+
 
 class Admin_finance_window(tk.Frame):
     def __init__(self, parent, controller):
@@ -46,18 +48,16 @@ class Admin_finance_window(tk.Frame):
         Finance.place(relx=0.9, relwidth=rel_width, height=button_height, anchor="ne")
         Inventory.place(relx=0.8, relwidth=rel_width, height=button_height, anchor="ne")
 
-        # Buttons
-        Employee = tk.Button(self, text="Employee",
-                             command=lambda: controller.show_frame(employee_window.employee_window))
-        Finance = tk.Button(self, text="Finance", state="disabled")
-        Inventory = tk.Button(self, text="Inventory",
-                              command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
-        Delete = tk.Button(self, text="Delete")
+
+        Delete = tk.Button(self, text="Delete", command=self.get_margin)
         Set_margin_Button = tk.Button(self, text="Set", command=self.set_margin_func)
+        Profit_margin_calc = tk.Button(self, text="Show margin", command=self.get_margin)
 
         # text
+        self.string_variable = tk.StringVar()  # Create the variable
+        self.string_variable.set("Pending")
         Search_records = tk.Label(self, text="Search records: ", font=button_font)
-        Found_books = tk.Label(self, text="Found Books: ", font=button_font)
+        Found_books = tk.Label(self, text="Found transactions: ", font=button_font)
         Title = tk.Label(self, text="Title")
         Author = tk.Label(self, text="Author")
         Edition = tk.Label(self, text="Edition")
@@ -66,17 +66,15 @@ class Admin_finance_window(tk.Frame):
         Sold_price = tk.Label(self, text="SoldPrice")
         Number_of_sales = tk.Label(self, text="NumberOfSales")
         Profit_margin = tk.Label(self, text="Profit Margin: ", font=button_font)
-        Sold_min_buy = tk.Label(self, text="(SoldPrice - BuyPrice)/BuyPrice")
+        Sold_min_buy = tk.Label(self, textvariable=self.string_variable)
         Set_margin = tk.Label(self, text="Set Margin To: ", font=button_font)
         Delete_text = tk.Label(self, text="Delete Sell Records Older Than 5 Years: ", font=button_font)
 
         # Placement Buttons
-        Employee.place(relx=1, relwidth=rel_width, relheight=rel_height, anchor="ne")
-        Finance.place(relx=0.9, relwidth=rel_width, relheight=rel_height, anchor="ne")
-        Inventory.place(relx=0.8, relwidth=rel_width, relheight=rel_height, anchor="ne")
+
         Delete.place(relx=0.2, rely=0.75, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Log_out.place(relx=0, rely=0, relwidth=rel_width, relheight=rel_height, anchor="nw")
         Set_margin_Button.place(relx=0.8, rely=0.5,relwidth=rel_width, relheight=rel_height, anchor="e")
+        Profit_margin_calc.place(relx=0.3, rely=0.5,relwidth=rel_width, relheight=rel_height, anchor="e")
 
         Search_records_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         Search_records_text.pack()
@@ -88,7 +86,7 @@ class Admin_finance_window(tk.Frame):
 
         # placement Text
         Search_records.place(relx=0.2, rely=0.1, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Found_books.place(relx=0.2, rely=0.3, relwidth=rel_width, relheight=rel_height, anchor="e")
+        Found_books.place(relx=0.27, rely=0.3, relwidth=rel_width*2, relheight=rel_height, anchor="e")
         Title.place(relx=0.2, rely=0.35, relwidth=rel_width, relheight=rel_height, anchor="e")
         Author.place(relx=0.3, rely=0.35, relwidth=rel_width, relheight=rel_height, anchor="e")
         Edition.place(relx=0.4, rely=0.35, relwidth=rel_width, relheight=rel_height, anchor="e")
@@ -97,7 +95,7 @@ class Admin_finance_window(tk.Frame):
         Sold_price.place(relx=0.7, rely=0.35, relwidth=rel_width, relheight=rel_height, anchor="e")
         Number_of_sales.place(relx=0.8, rely=0.35, relwidth=rel_width, relheight=rel_height, anchor="e")
         Profit_margin.place(relx=0.2, rely=0.5, relwidth=rel_width, relheight=rel_height, anchor="e")
-        Sold_min_buy.place(relx=0.3, rely=0.55, relwidth=0.2, relheight=rel_height, anchor="e")
+        Sold_min_buy.place(relx=0.4, rely=0.5, relwidth=0.1, relheight=rel_height, anchor="e")
         Set_margin.place(relx=0.6, rely=0.5, relwidth=rel_width, relheight=rel_height, anchor="e")
         Delete_text.place(relx=0.375, rely=0.7, relwidth=0.3, relheight=rel_height, anchor="e")
 
@@ -110,7 +108,15 @@ class Admin_finance_window(tk.Frame):
             my_cursor = db.cursor()
             my_cursor.execute(f"update variables set margin={new_margin}")
             my_cursor.execute("commit")
+            self.get_margin()
         except Exception as e:
             print(e)
             print("we could make this red?")
         print(new_margin)
+
+    def get_margin(self):
+        mycursor = db.cursor()
+        mycursor.execute("select margin from variables;")
+        for x in mycursor:
+            self.string_variable.set(str(x[0]))
+
