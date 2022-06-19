@@ -13,6 +13,13 @@ FLUSH PRIVILEGES;
 grant all privileges on AmorLibrorum.* to 'margje@amorlibrorum.boek'@'localhost';
 grant all privileges on AmorLibrorum.* to 'frank@amorlibrorum.boek'@'localhost';
 
+grant create user on *.* to 'margje@amorlibrorum.boek'@'localhost' with grant option;
+grant create user on *.* to 'frank@amorlibrorum.boek'@'localhost' with grant option;
+
+grant reload on *.* to 'frank@amorlibrorum.boek'@'localhost' with grant option;
+grant reload on *.* to 'margje@amorlibrorum.boek'@'localhost' with grant option;
+
+
 GRANT SELECT ON AmorLibrorum.Books TO 'guest'@'localhost';
 GRANT SELECT ON AmorLibrorum.Book_entries TO 'guest'@'localhost';
 GRANT SELECT ON AmorLibrorum.Transactions TO 'guest'@'localhost';

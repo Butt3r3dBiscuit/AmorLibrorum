@@ -209,8 +209,8 @@ class Admin_inventory_window(tk.Frame):
         Booktype_label = tk.Label(self, text="Book Type", width="15")
         Booktype_label.pack()
         
-        clicked = tk.StringVar()
-        clicked.set("Hardcopy")
+        self.clicked = tk.StringVar()
+        self.clicked.set("Hardcover")
 
         self.Booktype = tk.OptionMenu(self, self.clicked, "Hardcover", "Paperback")
         self.Booktype.pack()

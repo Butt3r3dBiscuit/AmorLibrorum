@@ -47,7 +47,6 @@ CREATE TABLE `Employees` (
   `Name` varchar(50) NOT NULL,
   `Surname` varchar(50) NOT NULL,
   `position` ENUM("Staff","Manager") NOT NULL,
-  `Password` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   PRIMARY KEY (`Employee_ID`)
 );

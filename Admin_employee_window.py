@@ -4,12 +4,14 @@ import Start_window
 import Admin_inventory_window
 # import Admin_employee_window
 import Admin_finance_window
+import user_creation
+from AdminClass import add_to_employees
 
 
 # from AdminClass import Admin, add_to_Price_exceptions
 # from datetime import date
 # from tkinter import OptionMenu, messagebox
-# from book_search import book_search
+db = None
 
 
 # class in which the frame runs
@@ -29,12 +31,12 @@ class Admin_employee_window(tk.Frame):
         button_font = "Helvetica 18 bold"
 
         # Tabs
-        Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
+        Log_out = tk.Button(self, text="Log out", command=lambda: self.log_out(controller))
         Employee = tk.Button(self, text="Employee", relief="sunken", state="disabled")
         Finance = tk.Button(self, text="Finance",
-                            command=lambda: controller.show_frame(Admin_finance_window.Admin_finance_window))
+                            command=lambda: self.finance(controller))
         Inventory = tk.Button(self, text="Inventory",
-                              command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
+                              command=lambda: self.inventory(controller))
 
         # Tabs Placement
         Log_out.place(relx=0, rely=0, relwidth=rel_width, height=button_height, anchor="nw")
@@ -48,7 +50,7 @@ class Admin_employee_window(tk.Frame):
         Add_employee_label.place(relx=0.09, rely=0.1, relwidth=0.15, height=title_height, anchor="nw")
         # first row - All labels and their respective entries
         First_name_label3 = tk.Label(self, text="First name", width="15")
-        self.First_name__text3 = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.First_name__entry3 = tk.Entry(self, width=30, borderwidth=1, relief="groove")
 
         Last_name_label3 = tk.Label(self, text="Last name", width="15")
         self.Last_name_entry3 = tk.Entry(self, width=30, borderwidth=1, relief="groove")
@@ -60,7 +62,7 @@ class Admin_employee_window(tk.Frame):
         self.Password_entry = tk.Entry(self, width=30, borderwidth=1, relief="groove", show="*")
 
         # first row - Placing of all labels and their respective entries
-        self.First_name__text3.place(relx=0.215, rely=0.25, relwidth=rel_width, height=row_height, anchor="e")
+        self.First_name__entry3.place(relx=0.215, rely=0.25, relwidth=rel_width, height=row_height, anchor="e")
         First_name_label3.place(relx=0.215, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
         Last_name_label3.place(relx=0.315, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
         self.Last_name_entry3.place(relx=0.315, rely=0.25, relwidth=rel_width, height=row_height, anchor="e")
@@ -70,8 +72,8 @@ class Admin_employee_window(tk.Frame):
         self.Password_entry.place(relx=0.515, rely=0.25, relwidth=rel_width, height=row_height, anchor="e")
 
         # first row - Buttons definition
-        New_password_save = tk.Button(self, text="Add as STAFF")
-        Add_manager_button = tk.Button(self, text="Add as MANAGER")
+        New_password_save = tk.Button(self, text="Add as STAFF", command=self.add_employee)
+        Add_manager_button = tk.Button(self, text="Add as MANAGER", command=self.add_manager)
 
         # first row - Buttons placing
         New_password_save.place(relx=0.715, rely=0.25, relwidth=rel_width, height=row_height, anchor="e")
@@ -140,16 +142,18 @@ class Admin_employee_window(tk.Frame):
         # treeview definition (Object which holds the information about employees)
         self.search_results = ttk.Treeview(self)
         # defining columns of treeview
-        self.search_results['columns'] = ("First Name", "Last Name", "Email")
+        self.search_results['columns'] = ("Employee ID", "First Name", "Last Name", "Email")
 
         # definition of columns of the treeview
         self.search_results.column("#0", width=20, stretch=False)
+        self.search_results.column("Employee ID", anchor="w", width=20, minwidth=15)
         self.search_results.column("First Name", anchor="w", width=110, minwidth=50)
         self.search_results.column("Last Name", anchor="w", width=100, minwidth=50)
         self.search_results.column("Email", anchor="w", width=200, minwidth=100)
 
         # definition of headings of the treeview
         self.search_results.heading("#0", text="", anchor="center")
+        self.search_results.heading("Employee ID", text="ID", anchor="center")
         self.search_results.heading("First Name", text="First name", anchor="center")
         self.search_results.heading("Last Name", text="Last name", anchor="center")
         self.search_results.heading("Email", text="Email", anchor="center")
@@ -162,15 +166,114 @@ class Admin_employee_window(tk.Frame):
         print('this is just to test that we have the emp_id loaded - not sure if we need it here but ye')
         print("we could make it so that in one of the corners there would be sth like logged as:")
 
+    def finance(self, controller):
+        controller.show_frame(Admin_finance_window.Admin_finance_window)
+        self.clean_up()
+
+    def inventory(self, controller):
+        controller.show_frame(Admin_inventory_window.Admin_inventory_window)
+        self.clean_up()
+
+    def log_out(self, controller):
+        controller.show_frame(Start_window.Start_window)
+        self.clean_up()
+
     def add_manager(self):
-        pass
+        first_name = self.First_name__entry3.get()
+        last_name = self.Last_name_entry3.get()
+        email = self.Email_entry.get()
+        password = self.Password_entry.get()
+        print(first_name, last_name, email,password)
+        addition = user_creation.admin_user_addition(db=db, username=email, password=password)
+        if addition is not None:
+            try:
+                self.error_label.destroy()
+                self.error_label = tk.Label(
+                    self,
+                    text="Password is too weak,\n"
+                         "please use at least\n"
+                         "1 capital letter\n"
+                         "1 lowercase letter\n"
+                         "1 number\n"
+                         "1 special character", width = "15", fg = "red")
+            except AttributeError:
+                print("label has not yet been created")
+            self.error_label = tk.Label(
+                    self,
+                    text="Password is too weak,\n"
+                         "please use at least\n"
+                         "1 capital letter\n"
+                         "1 lowercase letter\n"
+                         "1 number\n"
+                         "1 special character", width = "15", fg = "red")
+            # error_label.pack()
+            self.error_label.place(relx=0.615, rely=0.205, anchor="e")
+        else:
+            try:
+                self.error_label.destroy()
+            except AttributeError:
+                print("label has not yet been created")
+            self.confirmation_label = tk.Label(self, text="Manager added", width="15", fg="green")
+            self.confirmation_label.place(relx=0.62, rely=0.25, anchor="e")
+            query = add_to_employees(Name=first_name, Surname=last_name, position="Manager",email=email)
+            mycursor = db.cursor()
+            mycursor.execute(query)
+            mycursor.execute("commit")
 
     def add_employee(self):
-        pass
+        first_name = self.First_name__entry3.get()
+        last_name = self.Last_name_entry3.get()
+        email = self.Email_entry.get()
+        password = self.Password_entry.get()
+        print(first_name, last_name, email, password)
+        addition = user_creation.employee_user_addition(db=db, username=email, password=password)
+        if addition is not None:
+            try:
+                self.error_label.destroy()
+                self.error_label = tk.Label(
+                    self,
+                    text="Password is too weak,\n"
+                         "please use at least\n"
+                         "1 capital letter\n"
+                         "1 lowercase letter\n"
+                         "1 number\n"
+                         "1 special character", width="15", fg="red")
+            except AttributeError:
+                print("label has not yet been created")
+            self.error_label = tk.Label(
+                self,
+                text="Password is too weak,\n"
+                     "please use at least\n"
+                     "1 capital letter\n"
+                     "1 lowercase letter\n"
+                     "1 number\n"
+                     "1 special character", width="15", fg="red")
+            # error_label.pack()
+            self.error_label.place(relx=0.615, rely=0.205, anchor="e")
+        else:
+            try:
+                self.error_label.destroy()
+            except AttributeError:
+                print("label has not yet been created")
+            self.confirmation_label = tk.Label(self, text="Employee added", width="15", fg="green")
+            self.confirmation_label.place(relx=0.62, rely=0.25, anchor="e")
+            query = add_to_employees(Name=first_name, Surname=last_name, position="Staff",email=email)
+            mycursor = db.cursor()
+            mycursor.execute(query)
+            mycursor.execute("commit")
+
 
     def change_password(self):
         pass
 
     def user_dismiss(self):
         pass
+    def clean_up(self):
+        try:
+            self.error_label.destroy()
+            self.confirmation_label.destroy()
+            # more to be added
+        except AttributeError:
+            return "labels have not been created"
+
 

@@ -4,12 +4,13 @@ import Employees_sales_tab
 from connect import connect_employee
 import Admin_inventory_window
 import Admin_finance_window
+import Admin_employee_window
 
 
 class login_window(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        
+
         print(Admin_inventory_window.emp_id)
 
         back_button = tk.Button(self, text="Return home", height=2, width=11, command= lambda: self.back_button(controller))
@@ -25,24 +26,8 @@ class login_window(tk.Frame):
         self.password_text = tk.Entry(self, width=40, show="*")
         self.password_text.grid(row=3, column=1, sticky=tk.S+tk.N)
 
-        login_button = tk.Button(self, text="Log in", height=2, width=20, command=lambda: self.log_in(controller))
+        login_button = tk.Button(self, text="Log in", height=2, width=11, command=lambda: self.log_in(controller))
         login_button.bind('<Return>', lambda event: self.log_in(controller)) # this line makes it so that you can "click" on Log in button via Return key on keyboard
-        login_button.grid(row=5, column=1, sticky=tk.N)
-
-        self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=4)
-        self.columnconfigure(2, weight=1)
-        self.columnconfigure(3, weight=1)
-
-
-        self.rowconfigure(0, weight=1) #reset button
-        self.rowconfigure(1, weight=2) #  empty one
-        self.rowconfigure(2, weight=1) #healthy lung button
-        self.rowconfigure(3, weight=1) #smoker lung button
-        self.rowconfigure(4, weight=2) #  empty one
-        self.rowconfigure(5, weight=1) #breathing button
-        self.rowconfigure(6, weight=1) #stop breathing
-        # self.rowconfigure(7, weight=20) #  empty one
 
     def log_in(self, controller):
         email = self.email_text.get()
@@ -55,8 +40,10 @@ class login_window(tk.Frame):
         print("password: ", password)
         # email = "casual@amorlibrorum.boek" #temp
         # password = "YetAn0!herqwertyp4ssword" #temp
-        email = "frank@amorlibrorum.boek" #temp
-        password = "An0!herqwertyp4ssword" #temp
+        email = "frank@amorlibrorum.boek"
+        password = "An0!herqwertyp4ssword"
+        # email = "sjlksofj"
+        # password = "Lfjkl9213410!(@*"
         self.db = connect_employee(email, password)
         if self.db == 1045:
             try:
@@ -100,6 +87,7 @@ class login_window(tk.Frame):
             Admin_inventory_window.db = self.db
             Admin_finance_window.emp_id = self.employee_id
             Admin_finance_window.db = self.db
+            Admin_employee_window.db = self.db
             print(Admin_inventory_window.emp_id)
             controller.show_frame(Admin_inventory_window.Admin_inventory_window)
 
