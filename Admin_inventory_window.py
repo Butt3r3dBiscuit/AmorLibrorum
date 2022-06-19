@@ -18,7 +18,6 @@ class Admin_inventory_window(tk.Frame):
 
         rel_width = 0.1
         row_height = 20
-        rel_width = 0.1
         button_height = 45
         button_font = "Helvetica 18 bold"
 

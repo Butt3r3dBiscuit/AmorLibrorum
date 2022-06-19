@@ -1,4 +1,6 @@
 import tkinter as tk
+from AdminClass import Admin
+import AdminClass
 import Start_window
 import Admin_inventory_window
 import Admin_employee_window
@@ -29,7 +31,7 @@ class Admin_finance_window(tk.Frame):
         Finance = tk.Button(self, text="Finance", relief="sunken", state="disabled")
         Inventory = tk.Button(self, text="Inventory", command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
 
-        Search_records_button = tk.Button(self, text="Search")
+        Search_records_button = tk.Button(self, text="Search", command=self.transaction_search)
         # Tabs Placement
         Log_out.place(relx=0, rely=0, relwidth=rel_width, height=button_height, anchor="nw")
 
@@ -37,8 +39,7 @@ class Admin_finance_window(tk.Frame):
         Finance.place(relx=0.9, relwidth=rel_width, height=button_height, anchor="ne")
         Inventory.place(relx=0.8, relwidth=rel_width, height=button_height, anchor="ne")
 
-
-        Delete = tk.Button(self, text="Delete", command=self.get_margin)
+        Delete = tk.Button(self, text="Delete", command=self.deletion)
         Set_margin_Button = tk.Button(self, text="Set", command=self.set_margin_func)
         Profit_margin_calc = tk.Button(self, text="Show margin", command=self.get_margin)
         Search_records_button.place(relx=0.3, rely=0.15)
@@ -87,9 +88,9 @@ class Admin_finance_window(tk.Frame):
         Set_margin_Button.place(relx=0.8, rely=0.5,relwidth=rel_width, relheight=rel_height, anchor="e")
         Profit_margin_calc.place(relx=0.3, rely=0.5,relwidth=rel_width, relheight=rel_height, anchor="e")
 
-        Search_records_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
-        Search_records_text.pack()
-        Search_records_text.place(relx=0.3, rely=0.15, relwidth=0.2, relheight=rel_height, anchor="e")
+        self.Search_records_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
+        self.Search_records_text.pack()
+        self.Search_records_text.place(relx=0.3, rely=0.15, relwidth=0.2, relheight=rel_height, anchor="e")
 
         self.Margin_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Margin_text.pack()
@@ -124,5 +125,28 @@ class Admin_finance_window(tk.Frame):
         mycursor.execute("select margin from variables;")
         for x in mycursor:
             self.string_variable.set(str(x[0]))
+    def deletion(self):
+        Admin_object = AdminClass.Admin(db)
+        Admin_object.clean()
+        print("here")
 
 
+    def transaction_search(self):
+        for record in self.search_results.get_children():
+            self.search_results.delete(record)
+        search_input = self.Search_records_text.get()
+        a = Admin(db)
+        b = a.search_transactions(search=search_input)
+        m = len(b)
+        count=0
+        parent=''
+        for i in range(m):
+            n = len(b[i])
+            values = []
+            for j in range(n):
+                if b[i][j] != None:
+                    values.append(b[i][j])
+                else:
+                    values.append('')
+            self.search_results.insert(parent=parent, index='end', iid=str(count), values=values)
+            count += 1

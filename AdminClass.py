@@ -274,6 +274,30 @@ class Admin:
                              f"OR EMAIL LIKE '%{search}%' ")
         result = self.mycursor.fetchall()
         return result
+    def search_transactions(self, search):
+        date = ""
+        price = ""
+        conditions=""
+        if search != "":
+            if search == "sold":
+                conditions = "WHERE PRICE_IN_CENTS>0"
+            elif search == "bought":
+                conditions = "WHERE PRICE_IN_CENTS<0"
+            else:
+                price = f"OR PRICE_IN_CENTS = {int(search)} "
+        elif search.count('-') == 2:
+            date = f"OR DATE = '{search}' "
+        if search != 'sold' and search != 'bought':
+            conditions = f"WHERE TRANSACTION_ID LIKE '%{search}%' " \
+                         f"OR BOOK_ID LIKE '%{search}%' " \
+                         f"OR EMPLOYEE_ID LIKE '%{search}%' " \
+                         f"{date} " \
+                         f"{price}"
+
+        self.mycursor.execute("SELECT * FROM TRANSACTIONS "
+                             f"{conditions}")
+        result = self.mycursor.fetchall()
+        return result
     def clean(self):
         self.mycursor.callproc("clean")
         self.db.commit()
