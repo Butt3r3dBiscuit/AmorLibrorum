@@ -4,9 +4,7 @@ import Start_window
 import Admin_inventory_window
 import Admin_employee_window
 import Admin_finance_window
-from AdminClass import Admin, add_to_Price_exceptions
-# from datetime import date
-# from tkinter import OptionMenu, messagebox
+from AdminClass import Admin
 from book_search import book_search
 
 emp_id = None
@@ -18,10 +16,7 @@ class Admin_sales_tab(tk.Frame):
 
         rel_width = 0.1
         rel_height = 0.05
-        row_height = 20
         button_height = 45
-        text_height = 20
-        title_height = 30
 
         button_font = "Helvetica 18 bold"
 
@@ -56,11 +51,9 @@ class Admin_sales_tab(tk.Frame):
 
         Book_label = tk.Label(self, text="Book ID", width="15")
         Book_label.place(relx=0.2, rely=0.25, relwidth=rel_width, relheight=rel_height, anchor="e")
-        # Book_label.pack()
 
         self.Book_text = tk.Entry(self, borderwidth=1, relief="groove")
         self.Book_text.place(relx=0.3, rely=0.35, relwidth=0.2, height=45, anchor="e")
-        # self.enter_your_book_id_here_pls.pack()
 
 
         Book_search = tk.Label(self, text="Book search: ", font=button_font)
@@ -72,12 +65,9 @@ class Admin_sales_tab(tk.Frame):
         
 
         self.search_results = ttk.Treeview(self)
-        # rest = "Title", "Author", "Surname", "Edition", "Comment", "Language", "Publisher", "Year", "Pages", "Book Type", "Location", "Section", "Genre", "Translator", "Original Title", "Original Title", "Origin"
         self.search_results['columns'] = ("ISBN", "Comment", "Title [Original title]", "Author [Translator]",
                                      "Edition", "Language", "Genre", "Publisher",
                                      "Book Type", "Year", "Pages", "Place",
-
-                                     # "Translator","Original Title", "Origin",
                                      "Price", "Amount")
 
         self.search_results.column("#0", width=20, stretch=False)
@@ -86,7 +76,6 @@ class Admin_sales_tab(tk.Frame):
         self.search_results.column("Title [Original title]", anchor="w", width=200, minwidth=100)
         self.search_results.column("Author [Translator]", anchor="w", width=100, minwidth=50)
         self.search_results.column("Edition", anchor="w", width=100, minwidth=50)
-        # self.search_results.column("Comment", anchor="w", width=100)
         self.search_results.column("Language", anchor="w", width=100, minwidth=50)
         self.search_results.column("Genre", anchor="w", width=100, minwidth=50)
         self.search_results.column("Publisher", anchor="w", width=100, minwidth=50)
@@ -94,10 +83,6 @@ class Admin_sales_tab(tk.Frame):
         self.search_results.column("Year", anchor="center", width=50, minwidth=25, stretch=False)
         self.search_results.column("Pages", anchor="center", width=50, minwidth=25, stretch=False)
         self.search_results.column("Place", anchor="center", width=50, minwidth=25, stretch=False)
-        # self.search_results.column("Section", anchor="center", width=100)
-        # self.search_results.column("Translator", anchor="center", width=100)
-        # self.search_results.column("Original Title", anchor="center", width=100)
-        # self.search_results.column("Origin", anchor="center", width=100)
         self.search_results.column("Price", anchor="center", width=50, minwidth=25, stretch=False)
         self.search_results.column("Amount", anchor="center", width=50, minwidth=25, stretch=False)
 
@@ -107,7 +92,6 @@ class Admin_sales_tab(tk.Frame):
         self.search_results.heading("Title [Original title]", text="Title [Original title]", anchor="center")
         self.search_results.heading("Author [Translator]", text="Author [Translator]", anchor="center")
         self.search_results.heading("Edition", text="Edition", anchor="center")
-        # self.search_results.heading("Comment",text="Comment",  anchor="center")
         self.search_results.heading("Language", text="Language", anchor="center")
         self.search_results.heading("Genre", text="Genre", anchor="center")
         self.search_results.heading("Publisher", text="Publisher", anchor="center")
@@ -115,10 +99,6 @@ class Admin_sales_tab(tk.Frame):
         self.search_results.heading("Year", text="Year", anchor="center")
         self.search_results.heading("Pages", text="Pages", anchor="center")
         self.search_results.heading("Place", text="Place", anchor="center")
-        # self.search_results.heading("Section",text="Section",  anchor="center")
-        # self.search_results.heading("Translator",text="Translator",  anchor="center")
-        # self.search_results.heading("Original Title", text="Original Title",  anchor="center")
-        # self.search_results.heading("Origin", text="Origin",  anchor="center")
         self.search_results.heading("Price", text="Price", anchor="center")
         self.search_results.heading("Amount", text="Amount", anchor="center")
 
