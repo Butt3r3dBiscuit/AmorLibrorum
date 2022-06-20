@@ -54,7 +54,6 @@ class Admin_finance_window(tk.Frame):
         Found_books = tk.Label(self, text="Found transactions: ", font=button_font)
 
         # transid bookid empid transdate price
-
         self.search_results = ttk.Treeview(self)
         self.search_results['columns'] = ("TID", "BID", "EID", "Transdate", "Price")
 
@@ -105,6 +104,7 @@ class Admin_finance_window(tk.Frame):
         Delete_text.place(relx=0.375, rely=0.7, relwidth=0.3, relheight=rel_height, anchor="e")
 
 
+    # Functions
     def set_margin_func(self):
         new_margin = self.Margin_text.get()
         try:
@@ -124,12 +124,12 @@ class Admin_finance_window(tk.Frame):
         mycursor.execute("select margin from variables;")
         for x in mycursor:
             self.string_variable.set(str(x[0]))
+        
     def deletion(self):
         Admin_object = AdminClass.Admin(db)
         Admin_object.clean()
         self.confirmation_label_password_change = tk.Label(self, text="Deleted", width="15", fg="green")
         self.confirmation_label_password_change.place(relx=0.315, rely=0.75, anchor="e")
-
 
     def transaction_search(self):
         for record in self.search_results.get_children():
@@ -157,18 +157,21 @@ class Admin_finance_window(tk.Frame):
             self.confirmation_label_password_change.destroy()
         except AttributeError:
             pass
+
     def inventory(self, controller):
         controller.show_frame(Admin_inventory_window.Admin_inventory_window)
         try:
             self.confirmation_label_password_change.destroy()
         except AttributeError:
             pass
+
     def employee(self, controller):
         controller.show_frame(Admin_employee_window.Admin_employee_window)
         try:
             self.confirmation_label_password_change.destroy()
         except AttributeError:
             pass
+
     def admin_sales(self, controller):
         controller.show_frame(Admin_sales_window.Admin_sales_tab)
         try:
