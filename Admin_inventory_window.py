@@ -32,6 +32,14 @@ class Admin_inventory_window(tk.Frame):
         Inventory = tk.Button(self, text="Inventory", relief="sunken", state="disabled")
         Book_sell = tk.Button(self, text="Sell book", command= lambda: controller.show_frame(Admin_sales_window.Admin_sales_tab))
 
+        # Tabs Placement
+        Log_out.place(relx=0, rely=0, relwidth=rel_width, height=button_height, anchor="nw")
+        
+        Employee.place(relx=1, relwidth=rel_width, height=button_height, anchor="ne")
+        Finance.place(relx=0.9, relwidth=rel_width, height=button_height, anchor="ne")
+        Inventory.place(relx=0.8, relwidth=rel_width, height=button_height, anchor="ne")
+        Book_sell.place(relx=0.7, relwidth=rel_width, height=button_height, anchor="ne")
+        
 
         # text
         Add_book = tk.Label(self, text="Add Book: ", font=button_font)
@@ -103,13 +111,6 @@ class Admin_inventory_window(tk.Frame):
         # place label
         Add_book.place(relx=0.2, rely=0.6, relwidth=rel_width, height=row_height, anchor="e")
         Search_book.place(relx=0.2, rely=0.1, relwidth=rel_width, height=row_height, anchor="e")
-
-        # Place Buttons
-        Employee.place(relx=1, relwidth=rel_width, height=button_height, anchor="ne")
-        Finance.place(relx=0.9, relwidth=rel_width, height=button_height, anchor="ne")
-        Inventory.place(relx=0.8, relwidth=rel_width, height=button_height, anchor="ne")
-        Book_sell.place(relx=0.7, relwidth=rel_width, height=button_height, anchor="ne")
-        Log_out.place(relx=0, rely=0, relwidth=rel_width, height=button_height, anchor="nw")
 
         Search_book_button.place(relx=0.3, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
         Save.place(relx=1, rely=0.975, relwidth=rel_width, height=row_height, anchor="e")
@@ -283,7 +284,7 @@ class Admin_inventory_window(tk.Frame):
         translated_no.place(relx=0.7, rely=0.9, relwidth=rel_width, height=row_height, anchor="e")
         Add.place(relx=0.9, rely=0.9, relwidth=rel_width, height=row_height, anchor="e")
 
-        # label and text place 4
+        # this one is for book search
         self.Isbn_text2.place(relx=0.2, rely=0.2, relwidth=rel_width, height=row_height, anchor="e")
 
         # label and text place 5

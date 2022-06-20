@@ -45,7 +45,7 @@ class Admin_finance_window(tk.Frame):
         Profit_margin_calc = tk.Button(self, text="Show margin", command=self.get_margin)
         Search_records_button = tk.Button(self, text="Search", command=self.transaction_search)
         
-        Search_records_button.place(relx=0.3, rely=0.15)
+        Search_records_button.place(relx=0.3, rely=0.15, relwidth=rel_width, height=row_height, anchor="e")
 
         # text
         self.string_variable = tk.StringVar()  # Create the variable
