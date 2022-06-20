@@ -14,7 +14,7 @@ def admin_user_addition(db, username, password):
         if e.errno == 1819:
             return e
 
-        # this error cathes if user already exists
+        # this error catches if user already exists
         if e.errno == 1396:
             my_cursor.execute(f"DROP USER '{username}'@'localhost';")
             return admin_user_addition(db, username, password)
