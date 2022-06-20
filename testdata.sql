@@ -76,7 +76,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `transactions` WRITE;
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
-INSERT INTO `transactions` VALUES (1, 1, 1, "2007-06-15", -1081);
+INSERT INTO `transactions` VALUES (1, 1, 1, "2016-06-15", -1081);
 INSERT INTO `transactions` VALUES (2, 2, 1, "2017-06-15", -1081);
 INSERT INTO `transactions` VALUES (3, 3, 1, "2017-06-15", -1081);
 INSERT INTO `transactions` VALUES (4, 4, 1, "2017-06-15", -1081);
@@ -118,8 +118,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `Price_exceptions` WRITE;
 /*!40000 ALTER TABLE `Price_exceptions` DISABLE KEYS */;
-INSERT INTO `Price_exceptions` VALUES (1, 850, "Book was damaged by a customer");
--- INSERT INTO `Price_exceptions` VALUES (20, 900, "test");
+INSERT INTO `Price_exceptions` VALUES (2, 850, "Book was damaged by a customer");
 
 /*!40000 ALTER TABLE `Price_exceptions` ENABLE KEYS */;
 UNLOCK TABLES;
