@@ -38,8 +38,8 @@ class login_window(tk.Frame):
 
         # email = "casual@amorlibrorum.boek" #employee
         # password = "YetAn0!herqwertyp4ssword" #employee
-        email = "frank@amorlibrorum.boek"
-        password = "An0!herqwertyp4ssword"
+        # email = "frank@amorlibrorum.boek"
+        # password = "An0!herqwertyp4ssword"
 
         self.db = connect_employee(email, password)
         if self.db == 1045:
