@@ -149,29 +149,42 @@ class Admin_sales_tab(tk.Frame):
 
     def log_out(self, controller):
         controller.show_frame(Start_window.Start_window)
-        try:
-            self.error_label.destroy()
-        except AttributeError:
-            pass
+        self.clean_up()
     def finance(self, controller):
         controller.show_frame(Admin_finance_window.Admin_finance_window)
-        try:
-            self.error_label.destroy()
-        except AttributeError:
-            pass
+        self.clean_up()
     def inventory(self, controller):
         controller.show_frame(Admin_inventory_window.Admin_inventory_window)
-        try:
-            self.error_label.destroy()
-        except AttributeError:
-            pass
+        self.clean_up()
     def employee(self, controller):
         controller.show_frame(Admin_employee_window.Admin_employee_window)
+        self.clean_up()
+
+    def clean_up(self):
         try:
             self.error_label.destroy()
         except AttributeError:
             pass
+        try:
+            self.error_label_sell_pos.destroy()
+        except AttributeError:
+            pass
+        try:
+            self.error_label_sell_neg.destroy()
+        except AttributeError:
+            pass
+
+
     def sell(self):
         book_id = self.Book_text.get()
-        Admin_object = Admin(db)
-        Admin_object.sell(book_id=book_id,employee_id=emp_id)
+        try:
+            Admin_object = Admin(db)
+            Admin_object.sell(book_id=book_id, employee_id=emp_id)
+            self.error_label_sell_pos = tk.Label(
+                self, text="Book sold", width="15", fg="green")
+            self.error_label_sell_pos.place(relx=0.4, rely=0.335)
+        except Exception as e:
+            if e.errno == 1644:
+                self.error_label_sell_neg = tk.Label(
+                    self, text="Book already sold", width="15", fg="red")
+                self.error_label_sell_neg.place(relx=0.4, rely=0.335)
