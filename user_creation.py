@@ -10,7 +10,7 @@ def admin_user_addition(db, username, password):
         my_cursor.execute(f"grant all privileges on AmorLibrorum.* to '{username}'@'localhost';")
 
     except Exception as e:
-        # this error catches if passsword doesn't satisfy the policy requirements
+        # this error catches if password doesn't satisfy the policy requirements
         if e.errno == 1819:
             return e
 
