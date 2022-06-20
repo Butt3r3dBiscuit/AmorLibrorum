@@ -48,9 +48,6 @@ def employee_user_addition(db,username,password):
         my_cursor.execute(f"GRANT EXECUTE ON PROCEDURE `Amorlibrorum`.`sell` to '{username}'@'localhost'")
 
 
-
-        print("user has been added")
-
     except Exception as e:
         if e.errno==1819:
             #this error cathes if passsword doesn't satisfy the policy requirements
