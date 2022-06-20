@@ -8,7 +8,6 @@ from AdminClass import Admin, add_to_Price_exceptions
 from datetime import date
 from tkinter import OptionMenu, messagebox
 from book_search import book_search
-import guest_class as gc
 
 emp_id = None
 db = None
@@ -47,12 +46,9 @@ class Admin_inventory_window(tk.Frame):
         Set_sellprice = tk.Label(self, text="Set new sell price: ", font=button_font)
 
         self.search_results = ttk.Treeview(self)
-        # rest = "Title", "Author", "Surname", "Edition", "Comment", "Language", "Publisher", "Year", "Pages", "Book Type", "Location", "Section", "Genre", "Translator", "Original Title", "Original Title", "Origin"
         self.search_results['columns'] = ("ISBN","Comment", "Title [Original title]", "Author [Translator]",
                                      "Edition", "Language", "Genre", "Publisher",
                                      "Book Type", "Year", "Pages", "Place",
-
-                                     # "Translator","Original Title", "Origin",
                                      "Price", "Amount")
 
         self.search_results.column("#0", width=20, stretch=False)
@@ -61,7 +57,6 @@ class Admin_inventory_window(tk.Frame):
         self.search_results.column("Title [Original title]", anchor="w", width=200, minwidth=100)
         self.search_results.column("Author [Translator]", anchor="w", width=100, minwidth=50)
         self.search_results.column("Edition", anchor="w", width=100, minwidth=50)
-        # self.search_results.column("Comment", anchor="w", width=100)
         self.search_results.column("Language", anchor="w", width=100, minwidth=50)
         self.search_results.column("Genre", anchor="w", width=100, minwidth=50)
         self.search_results.column("Publisher", anchor="w", width=100, minwidth=50)
@@ -69,10 +64,6 @@ class Admin_inventory_window(tk.Frame):
         self.search_results.column("Year", anchor="center", width=50, minwidth=25, stretch=False)
         self.search_results.column("Pages", anchor="center", width=50, minwidth=25, stretch=False)
         self.search_results.column("Place", anchor="center", width=50, minwidth=25, stretch=False)
-        # self.search_results.column("Section", anchor="center", width=100)
-        # self.search_results.column("Translator", anchor="center", width=100)
-        # self.search_results.column("Original Title", anchor="center", width=100)
-        # self.search_results.column("Origin", anchor="center", width=100)
         self.search_results.column("Price", anchor="center", width=50, minwidth=25, stretch=False)
         self.search_results.column("Amount", anchor="center", width=50, minwidth=25, stretch=False)
 
@@ -82,7 +73,6 @@ class Admin_inventory_window(tk.Frame):
         self.search_results.heading("Title [Original title]", text="Title [Original title]", anchor="center")
         self.search_results.heading("Author [Translator]", text="Author [Translator]", anchor="center")
         self.search_results.heading("Edition", text="Edition", anchor="center")
-        # self.search_results.heading("Comment",text="Comment",  anchor="center")
         self.search_results.heading("Language", text="Language", anchor="center")
         self.search_results.heading("Genre", text="Genre", anchor="center")
         self.search_results.heading("Publisher", text="Publisher", anchor="center")
@@ -90,10 +80,6 @@ class Admin_inventory_window(tk.Frame):
         self.search_results.heading("Year", text="Year", anchor="center")
         self.search_results.heading("Pages", text="Pages", anchor="center")
         self.search_results.heading("Place", text="Place", anchor="center")
-        # self.search_results.heading("Section",text="Section",  anchor="center")
-        # self.search_results.heading("Translator",text="Translator",  anchor="center")
-        # self.search_results.heading("Original Title", text="Original Title",  anchor="center")
-        # self.search_results.heading("Origin", text="Origin",  anchor="center")
         self.search_results.heading("Price", text="Price", anchor="center")
         self.search_results.heading("Amount", text="Amount", anchor="center")
 
@@ -298,8 +284,8 @@ class Admin_inventory_window(tk.Frame):
         Sell_Price_label.place(relx=0.5, rely=0.5, relwidth=rel_width, height=row_height, anchor="e")
         self.Sell_Price_text.place(relx=0.5, rely=0.55, relwidth=rel_width, height=row_height, anchor="e")
 
-    # button functions
 
+    # button functions
     def yes_button(self, rel_width, row_height):
         try:
             self.Translator_text.destroy()
@@ -342,9 +328,6 @@ class Admin_inventory_window(tk.Frame):
         self.Origin_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Origin_label = tk.Label(self, text="Origin", width="15")
 
-    def open_employee_window(self):
-        print("to be added")
-
     def add_book(self):
         ISBN = self.Isbn_text.get()
         Title = self.Title_text.get()
@@ -362,9 +345,8 @@ class Admin_inventory_window(tk.Frame):
         Location = self.Location_text.get()
         Section = self.Section_text.get()
         Genre = self.Genre_text.get()
-
         Date = date.today()
-
+        
         Translator = self.Translator_text.get()
         if Translator == "":
             Translator = None
@@ -375,10 +357,7 @@ class Admin_inventory_window(tk.Frame):
         if Origin == "":
             Origin = None
 
-
-
-        resp = messagebox.askquestion('askquestion', 'Are you sure you want to save this book?')
-        # mycursor = db.cursor()
+        resp = messagebox.askquestion('Confirmation', 'Are you sure you want to save this book?')
         if resp == "yes":
             print(Translator, Original_title, Origin)
             Admin_object = Admin(db)
@@ -397,7 +376,7 @@ class Admin_inventory_window(tk.Frame):
         else:
             print("Book has not been added.")
     def commit_save(self):
-        resp = messagebox.askquestion('askquestion', 'Are you sure you want to commit?')
+        resp = messagebox.askquestion('Confirmation', 'Are you sure you want to commit?')
         mycursor = db.cursor()
         if resp=="yes":
             mycursor.execute("commit")
@@ -433,6 +412,7 @@ class Admin_inventory_window(tk.Frame):
             print("Book has been added\nmake this a label that shows up.")
         else:
             print("Book hasn't been added")
+            
     def search(self):
                 for record in self.search_results.get_children():
                     self.search_results.delete(record)
