@@ -1,12 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import Start_window
-# import Admin_inventory_window
-# import Admin_employee_window
-# import Admin_finance_window
-from AdminClass import Admin, add_to_Price_exceptions
-# from datetime import date
-# from tkinter import OptionMenu, messagebox
+from AdminClass import Admin
 from book_search import book_search
 
 emp_id = None
@@ -18,10 +13,6 @@ class Employee_sales_window(tk.Frame):
 
         rel_width = 0.1
         rel_height = 0.05
-        row_height = 20
-        button_height = 45
-        text_height = 20
-        title_height = 30
         button_font = "Helvetica 18 bold"
 
         Search = tk.Button(self, text="Search", command=self.search)

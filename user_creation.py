@@ -49,11 +49,11 @@ def employee_user_addition(db,username,password):
 
 
     except Exception as e:
-        #this error cathes if passsword doesn't satisfy the policy requirements
+        # this error cathes if passsword doesn't satisfy the policy requirements
         if e.errno==1819:
             return e
 
-        #this error catches if user already exists
+        # this error catches if user already exists
         if e.errno==1396:
             my_cursor.execute(f"DROP USER '{username}'@'localhost';")
             return employee_user_addition(db,username,password)
