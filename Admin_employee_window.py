@@ -346,4 +346,33 @@ class Admin_employee_window(tk.Frame):
             self.search_results.insert(parent=parent, index='end', iid=str(count), values=values)
             count += 1
 
+    def log_out(self, controller):
+        controller.show_frame(Start_window.Start_window)
+        try:
+            self.error_label.destroy()
+        except AttributeError:
+            pass
+    def finance(self, controller):
+        controller.show_frame(Admin_finance_window.Admin_finance_window)
+        try:
+            self.error_label.destroy()
+        except AttributeError:
+            pass
+    def inventory(self, controller):
+        controller.show_frame(Admin_inventory_window.Admin_inventory_window)
+        try:
+            self.error_label.destroy()
+        except AttributeError:
+            pass
+    def employee(self, controller):
+        controller.show_frame(Admin_employee_window.Admin_employee_window)
+        try:
+            self.error_label.destroy()
+        except AttributeError:
+            pass
+    def sell(self):
+        book_id = self.Book_text.get()
+        Admin_object = Admin(db)
+        Admin_object.sell(book_id=book_id,employee_id=emp_id)
+
 

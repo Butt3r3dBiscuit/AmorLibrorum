@@ -24,12 +24,12 @@ class Admin_finance_window(tk.Frame):
 
 
         # Tabs
-        Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
+        Log_out = tk.Button(self, text="Log out", command=lambda: self.log_out(controller))
 
-        Employee = tk.Button(self, text="Employee", command=lambda: controller.show_frame(Admin_employee_window.Admin_employee_window))
+        Employee = tk.Button(self, text="Employee", command=lambda: self.employee(controller))
         Finance = tk.Button(self, text="Finance", relief="sunken", state="disabled")
-        Inventory = tk.Button(self, text="Inventory", command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
-        Book_sell = tk.Button(self, text="Sell book", command= lambda: controller.show_frame(Admin_sales_window.Admin_sales_tab))
+        Inventory = tk.Button(self, text="Inventory", command=lambda: self.inventory(controller))
+        Book_sell = tk.Button(self, text="Sell book", command= lambda: self.admin_sales(controller))
 
         # Tabs Placement
         Log_out.place(relx=0, rely=0, relwidth=rel_width, height=button_height, anchor="nw")
@@ -127,7 +127,8 @@ class Admin_finance_window(tk.Frame):
     def deletion(self):
         Admin_object = AdminClass.Admin(db)
         Admin_object.clean()
-        print("here")
+        self.confirmation_label_password_change = tk.Label(self, text="Deleted", width="15", fg="green")
+        self.confirmation_label_password_change.place(relx=0.315, rely=0.75, anchor="e")
 
 
     def transaction_search(self):
@@ -149,3 +150,28 @@ class Admin_finance_window(tk.Frame):
                     values.append('')
             self.search_results.insert(parent=parent, index='end', iid=str(count), values=values)
             count += 1
+
+    def log_out(self, controller):
+        controller.show_frame(Start_window.Start_window)
+        try:
+            self.confirmation_label_password_change.destroy()
+        except AttributeError:
+            pass
+    def inventory(self, controller):
+        controller.show_frame(Admin_inventory_window.Admin_inventory_window)
+        try:
+            self.confirmation_label_password_change.destroy()
+        except AttributeError:
+            pass
+    def employee(self, controller):
+        controller.show_frame(Admin_employee_window.Admin_employee_window)
+        try:
+            self.confirmation_label_password_change.destroy()
+        except AttributeError:
+            pass
+    def admin_sales(self, controller):
+        controller.show_frame(Admin_sales_window.Admin_sales_tab)
+        try:
+            self.confirmation_label_password_change.destroy()
+        except AttributeError:
+            pass

@@ -133,41 +133,39 @@ class Admin_sales_tab(tk.Frame):
             self.search_results.delete(record)
         Book_ID_input = self.Book_text.get()
         b = book_search(book_id=Book_ID_input, db=db)
-        print(b)
-        if b == []:
+        if b == [] or b==1064:
             self.error_label = tk.Label(
                 self, text="Book not found", width="15", fg="red")
             self.error_label.place(relx=0.4, rely=0.335)
-
         try:
             m = len(b)
+            count = 0
+            parent = ''
+            for i in range(m):
+                n = len(b[i])
+                values = []
+                for j in range(n):
+                    if j == 2 or j == 8:
+                        if b[i][j + 1] != None:
+                            values.append(f"{b[i][j]} [{b[i][j + 1]}]")
+                        else:
+                            values.append(b[i][j])
+                    elif j == 4:
+                        if b[i][j + 2] != None:
+                            values.append(f"{b[i][j]} {b[i][j + 1]} [{b[i][j + 2]}]")
+                        else:
+                            values.append(f"{b[i][j]} {b[i][j + 1]}")
+                    elif j == 15:
+                        values.append(f"{b[i][j]}-{b[i][j + 1]}")
+                    elif j not in (3, 5, 6, 9, 16):
+                        if b[i][j] != None:
+                            values.append(b[i][j])
+                        else:
+                            values.append('')
+                self.search_results.insert(parent=parent, index='end', iid=str(count), values=values)
+                count += 1
         except TypeError:
             print("No input")
-        count = 0
-        parent = ''
-        for i in range(m):
-            n = len(b[i])
-            values = []
-            for j in range(n):
-                if j == 2 or j == 8:
-                    if b[i][j + 1] != None:
-                        values.append(f"{b[i][j]} [{b[i][j + 1]}]")
-                    else:
-                        values.append(b[i][j])
-                elif j == 4:
-                    if b[i][j + 2] != None:
-                        values.append(f"{b[i][j]} {b[i][j + 1]} [{b[i][j + 2]}]")
-                    else:
-                        values.append(f"{b[i][j]} {b[i][j + 1]}")
-                elif j == 15:
-                    values.append(f"{b[i][j]}-{b[i][j + 1]}")
-                elif j not in (3, 5, 6, 9, 16):
-                    if b[i][j] != None:
-                        values.append(b[i][j])
-                    else:
-                        values.append('')
-            self.search_results.insert(parent=parent, index='end', iid=str(count), values=values)
-            count += 1
 
     def log_out(self, controller):
         controller.show_frame(Start_window.Start_window)
