@@ -63,10 +63,6 @@ def importing_functions(sql_script, password="MyN3wP4ssw0rd!*"):
 
     mycursor.close()
     db.close()
-# def filling_up(excel_file):
-#     df = pd.read_excel(excel_file)
-
-#     print(df["title"][0])
 
 if __name__=="__main__":
     password = str(input("Type ROOT user password: "))
