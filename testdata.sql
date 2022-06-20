@@ -118,7 +118,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `Price_exceptions` WRITE;
 /*!40000 ALTER TABLE `Price_exceptions` DISABLE KEYS */;
-INSERT INTO `Price_exceptions` VALUES (21, 850, "Book was damaged by a customer");
+INSERT INTO `Price_exceptions` VALUES (1, 850, "Book was damaged by a customer");
 -- INSERT INTO `Price_exceptions` VALUES (20, 900, "test");
 
 /*!40000 ALTER TABLE `Price_exceptions` ENABLE KEYS */;
