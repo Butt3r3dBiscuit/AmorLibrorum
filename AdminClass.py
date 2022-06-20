@@ -275,7 +275,7 @@ class Admin:
 
     def emp_search(self, search):
         self.mycursor.execute("SET sql_mode = ''")
-        self.mycursor.execute("SELECT EMPLOYEE_ID, NAME, SURNAME, EMAIL "
+        self.mycursor.execute("SELECT EMPLOYEE_ID, NAME, SURNAME, EMAIL, POSITION "
                               "FROM EMPLOYEES "
                               f"WHERE EMPLOYEE_ID LIKE '%{search}%' "
                               f"OR NAME LIKE '%{search}%' "

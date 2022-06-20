@@ -136,7 +136,7 @@ class Admin_employee_window(tk.Frame):
         # treeview definition (Object which holds the information about employees)
         self.search_results = ttk.Treeview(self)
         # defining columns of treeview
-        self.search_results['columns'] = ("Employee ID", "First Name", "Last Name", "Email")
+        self.search_results['columns'] = ("Employee ID", "First Name", "Last Name", "Email", "Position")
 
         # definition of columns of the treeview
         self.search_results.column("#0", width=20, stretch=False)
@@ -144,6 +144,8 @@ class Admin_employee_window(tk.Frame):
         self.search_results.column("First Name", anchor="w", width=110, minwidth=50)
         self.search_results.column("Last Name", anchor="w", width=100, minwidth=50)
         self.search_results.column("Email", anchor="w", width=200, minwidth=100)
+        self.search_results.column("Position", anchor="w", width=80, minwidth=100)
+
 
         # definition of headings of the treeview
         self.search_results.heading("#0", text="", anchor="center")
@@ -151,6 +153,8 @@ class Admin_employee_window(tk.Frame):
         self.search_results.heading("First Name", text="First name", anchor="center")
         self.search_results.heading("Last Name", text="Last name", anchor="center")
         self.search_results.heading("Email", text="Email", anchor="center")
+        self.search_results.heading("Position", text="Position", anchor="center")
+
 
         # placing of treeview
         self.search_results.place(relx=0.615, rely=0.45, relheight=0.4)
