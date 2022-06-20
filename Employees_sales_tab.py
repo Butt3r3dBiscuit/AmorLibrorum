@@ -79,10 +79,7 @@ class Employee_sales_window(tk.Frame):
 
 
     def search(self):
-        try:
-            self.error_label.destroy()
-        except AttributeError:
-            pass
+        self.clean_up()
         for record in self.search_results.get_children():
             self.search_results.delete(record)
         Book_ID_input = self.Book_text.get()

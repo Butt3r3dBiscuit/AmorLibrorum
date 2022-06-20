@@ -105,10 +105,7 @@ class Admin_sales_tab(tk.Frame):
         self.search_results.place(relx=0.025, rely=0.55, relwidth=0.95, relheight=0.25)
 
     def search(self):
-        try:
-            self.error_label.destroy()
-        except AttributeError:
-            pass
+        self.clean_up()
         for record in self.search_results.get_children():
             self.search_results.delete(record)
         Book_ID_input = self.Book_text.get()
