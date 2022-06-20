@@ -28,7 +28,8 @@ class login_window(tk.Frame):
         self.password_text.pack()
 
         self.login_button = tk.Button(self, text="Log in", height=2, width=11, command=lambda: self.log_in(controller))
-        self.login_button.bind('<Return>', lambda event: self.log_in(controller)) # this line makes it so that you can "click" on Log in button via Return key on keyboard
+        # this line makes it so that you can "click" on Log in button via Return key on keyboard
+        self.login_button.bind('<Return>', lambda event: self.log_in(controller))
         self.login_button.pack()
 
     def log_in(self, controller):
@@ -63,6 +64,7 @@ class login_window(tk.Frame):
         self.password_text.pack()
         self.login_button.destroy()
         self.login_button = tk.Button(self, text="Log in", height=2, width=11, command=lambda: self.log_in(controller))
+        self.login_button.bind('<Return>', lambda event: self.log_in(controller))
         self.login_button.pack()
 
         if position == "Staff":
@@ -99,6 +101,7 @@ class login_window(tk.Frame):
         self.password_text.pack()
         self.login_button.destroy()
         self.login_button = tk.Button(self, text="Log in", height=2, width=11, command=lambda: self.log_in(controller))
+        self.login_button.bind('<Return>', lambda event: self.log_in(controller))
         self.login_button.pack()
 
         controller.show_frame(Start_window.Start_window)
