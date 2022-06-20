@@ -403,7 +403,7 @@ class Admin_inventory_window(tk.Frame):
         Comment = str(self.Comment_price_exc_entry.get())
         print(Book_ID,New_price, Comment)
         Admin_object = Admin(db)
-        query = Admin_object.add_price_exception(newprice=New_price,ISBN=ISBN,book_id=Book_ID,comment=Comment)
+        query = Admin_object.add_price_exception(newprice=New_price, ISBN=ISBN, book_id=Book_ID, comment=Comment)
         print(query)
         resp = messagebox.askquestion('Confirmation', f'Are you sure, you want to change price of this book to {New_price/100}€ ?')
         mycursor = db.cursor()
