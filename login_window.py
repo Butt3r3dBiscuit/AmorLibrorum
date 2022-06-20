@@ -15,7 +15,7 @@ class login_window(tk.Frame):
 
         back_button = tk.Button(self, text="Return home", height=2, width=11, command= lambda: self.back_button(controller))
         back_button.pack()
-        back_button.place(x=0, y=0)
+        back_button.place(x=0, y=0, relwidth=0.1, height=45)
 
         email_label = tk.Label(self, text="Email Adress", width = "15")
         email_label.pack()
