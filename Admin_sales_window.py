@@ -26,12 +26,12 @@ class Admin_sales_tab(tk.Frame):
         button_font = "Helvetica 18 bold"
 
         # Tabs
-        Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
+        Log_out = tk.Button(self, text="Log out", command=lambda: self.log_out(controller))
         Employee = tk.Button(self, text="Employee",
-                             command=lambda: controller.show_frame(Admin_employee_window.Admin_employee_window))
+                             command=lambda: self.employee(controller))
         Finance = tk.Button(self, text="Finance",
-                            command=lambda: controller.show_frame(Admin_finance_window.Admin_finance_window))
-        Inventory = tk.Button(self, text="Inventory", command=lambda: controller.show_frame(Admin_inventory_window.Admin_inventory_window))
+                            command=lambda: self.finance(controller))
+        Inventory = tk.Button(self, text="Inventory", command=lambda: self.inventory(controller))
         Book_sell = tk.Button(self, text="Sell book", relief="sunken", state="disabled")
 
 
@@ -124,12 +124,21 @@ class Admin_sales_tab(tk.Frame):
 
         self.search_results.place(relx=0.025, rely=0.55, relwidth=0.95, relheight=0.25)
 
-
     def search(self):
+        try:
+            self.error_label.destroy()
+        except AttributeError:
+            pass
         for record in self.search_results.get_children():
             self.search_results.delete(record)
         Book_ID_input = self.Book_text.get()
-        b = book_search(book_id=Book_ID_input,db=db)
+        b = book_search(book_id=Book_ID_input, db=db)
+        print(b)
+        if b == []:
+            self.error_label = tk.Label(
+                self, text="Book not found", width="15", fg="red")
+            self.error_label.place(relx=0.4, rely=0.335)
+
         m = len(b)
         count = 0
         parent = ''
@@ -156,3 +165,28 @@ class Admin_sales_tab(tk.Frame):
                         values.append('')
             self.search_results.insert(parent=parent, index='end', iid=str(count), values=values)
             count += 1
+
+    def log_out(self, controller):
+        controller.show_frame(Start_window.Start_window)
+        try:
+            self.error_label.destroy()
+        except AttributeError:
+            pass
+    def finance(self, controller):
+        controller.show_frame(Admin_finance_window.Admin_finance_window)
+        try:
+            self.error_label.destroy()
+        except AttributeError:
+            pass
+    def inventory(self, controller):
+        controller.show_frame(Admin_inventory_window.Admin_inventory_window)
+        try:
+            self.error_label.destroy()
+        except AttributeError:
+            pass
+    def employee(self, controller):
+        controller.show_frame(Admin_employee_window.Admin_employee_window)
+        try:
+            self.error_label.destroy()
+        except AttributeError:
+            pass
