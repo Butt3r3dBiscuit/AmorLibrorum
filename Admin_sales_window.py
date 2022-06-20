@@ -139,7 +139,10 @@ class Admin_sales_tab(tk.Frame):
                 self, text="Book not found", width="15", fg="red")
             self.error_label.place(relx=0.4, rely=0.335)
 
-        m = len(b)
+        try:
+            m = len(b)
+        except TypeError:
+            print("No input")
         count = 0
         parent = ''
         for i in range(m):
