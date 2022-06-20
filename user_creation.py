@@ -20,7 +20,7 @@ def admin_user_addition(db, username, password):
             # this error cathes if user already exists
             print('here')
             my_cursor.execute(f"DROP USER '{username}'@'localhost';")
-            return admin_user_addition(my_cursor, username, password)
+            return admin_user_addition(db, username, password)
         print(e)
 
 def employee_user_addition(db,username,password):
@@ -49,6 +49,9 @@ def employee_user_addition(db,username,password):
 
         my_cursor.execute(f"GRANT EXECUTE on FUNCTION `Amorlibrorum`.`price_determination` to '{username}'@'localhost'")
 
+        my_cursor.execute(f"GRANT EXECUTE ON PROCEDURE `Amorlibrorum`.`sell` to '{username}'@'localhost'")
+
+
 
         print("user has been added")
 
@@ -63,14 +66,13 @@ def employee_user_addition(db,username,password):
             #this error cathes if user already exists
             print('here')
             my_cursor.execute(f"DROP USER '{username}'@'localhost';")
-            return employee_user_addition(my_cursor,username,password)
+            return employee_user_addition(db,username,password)
         print(e)
 
 if __name__=="__main__":
     db = connect.connect_admin("MyN3wP4ssw0rd!*")
-    my_cursor = db.cursor()
     ## test add user
-    employee_user_addition(my_cursor,"casual@amorlibrorum.boek","YetAn0!herqwertyp4ssword")
-    admin_user_addition(my_cursor, "mytestADmin", "YetAn0!herqwertyp4ssword")
+    employee_user_addition(db,"casual@amorlibrorum.boek","YetAn0!herqwertyp4ssword")
+    admin_user_addition(db, "mytestADmin", "YetAn0!herqwertyp4ssword")
 
 #for dropping

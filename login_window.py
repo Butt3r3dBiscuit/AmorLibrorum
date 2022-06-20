@@ -43,10 +43,10 @@ class login_window(tk.Frame):
             print([email])
         password = self.password_text.get()
         print("password: ", password)
-        # email = "casual@amorlibrorum.boek" #temp
-        # password = "YetAn0!herqwertyp4ssword" #temp
-        email = "frank@amorlibrorum.boek"
-        password = "An0!herqwertyp4ssword"
+        email = "casual@amorlibrorum.boek" #temp
+        password = "YetAn0!herqwertyp4ssword" #temp
+        # email = "frank@amorlibrorum.boek"
+        # password = "An0!herqwertyp4ssword"
         # email = "sjlksofj"
         # password = "Lfjkl9213410!(@*"
         self.db = connect_employee(email, password)
@@ -84,6 +84,7 @@ class login_window(tk.Frame):
             except AttributeError:
                 print("label has not yet been created")
             Employees_sales_tab.emp_id = self.employee_id
+            Employees_sales_tab.db = self.db
             print(Employees_sales_tab.emp_id)
             controller.show_frame(Employees_sales_tab.Employee_sales_window)
         elif position == "Manager":

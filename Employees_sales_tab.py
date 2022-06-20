@@ -4,7 +4,7 @@ import Start_window
 # import Admin_inventory_window
 # import Admin_employee_window
 # import Admin_finance_window
-# from AdminClass import Admin, add_to_Price_exceptions
+from AdminClass import Admin, add_to_Price_exceptions
 # from datetime import date
 # from tkinter import OptionMenu, messagebox
 from book_search import book_search
@@ -27,7 +27,7 @@ class Employee_sales_window(tk.Frame):
         Search = tk.Button(self, text="Search", command=self.search)
         Search.place(relx=0.4, rely=0.35, relwidth=rel_width, height=45, anchor="e")
 
-        Sell = tk.Button(self, text="Sell")
+        Sell = tk.Button(self, text="Sell", command=self.sell)
         Sell.place(relx=1, rely=0.9, relwidth=rel_width, height=45, anchor="e")
 
         Log_out = tk.Button(self, text="Log out", command=lambda: self.log_out(controller))
@@ -153,3 +153,7 @@ class Employee_sales_window(tk.Frame):
             self.error_label.destroy()
         except AttributeError:
             pass
+    def sell(self):
+        book_id = self.Book_text.get()
+        Admin_object = Admin(db)
+        Admin_object.sell(book_id=book_id,employee_id=emp_id)
