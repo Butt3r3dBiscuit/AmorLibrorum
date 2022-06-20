@@ -121,14 +121,13 @@ class Admin_inventory_window(tk.Frame):
         self.Comment_price_exc_entry = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Comment_price_exc_entry.pack()
 
-
-
         Sell_Price_label = tk.Label(self, text="Sell Price", width="15")
         Sell_Price_label.pack()
         self.Sell_Price_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Sell_Price_text.pack()
 
-        Isbn_label = tk.Label(self, text="ISBN", width="15") #for add book
+        # To add the book
+        Isbn_label = tk.Label(self, text="ISBN", width="15")
         Isbn_label.pack()
         self.Isbn_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
 
