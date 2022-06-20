@@ -45,8 +45,8 @@ class login_window(tk.Frame):
         # print("password: ", password)
         # email = "casual@amorlibrorum.boek" #temp
         # password = "YetAn0!herqwertyp4ssword" #temp
-        # # email = "frank@amorlibrorum.boek"
-        # # password = "An0!herqwertyp4ssword"
+        email = "frank@amorlibrorum.boek"
+        password = "An0!herqwertyp4ssword"
         self.db = connect_employee(email, password)
         if self.db == 1045:
             try:
@@ -55,7 +55,6 @@ class login_window(tk.Frame):
             except AttributeError:
                 print("label has not yet been created")
             self.error_label = tk.Label(self, text="User not found!", width = "15", fg = "red")
-            # error_label.pack()
             self.error_label.place(relx=0.5, rely=0.15, anchor="n")
         else:
             self.my_cursor = self.db.cursor()
@@ -66,8 +65,6 @@ class login_window(tk.Frame):
                 self.employee_id = x[1]
                 print("here is the id: ", self.employee_id)
             self.new_window(position,controller)
-            # success_label = tk.Label(self, text=f"User found! Position {position}", width="30", fg="green")
-            # success_label.pack()
 
     def new_window(self,position, controller):
         self.password_text.destroy()
@@ -113,11 +110,3 @@ class login_window(tk.Frame):
         self.login_button.pack()
 
         controller.show_frame(Start_window.Start_window)
-
-
-
-        '''
-         except Exception as e:
-                if e.errno==1045:
-                    #this error catches if user exists
-        '''

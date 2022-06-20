@@ -45,10 +45,10 @@ class Admin_employee_window(tk.Frame):
         Book_sell.place(relx=0.7, relwidth=rel_width, height=button_height, anchor="ne")
 
 
-        # first row - Big label definition - Add Employee
+        # first row - Big label definition and placement - Add Employee
         Add_employee_label = tk.Label(self, text="Add Employee:", font=button_font)
-        # first row - Big label placement
         Add_employee_label.place(relx=0.09, rely=0.1, relwidth=0.15, height=title_height, anchor="nw")
+
         # first row - All labels and their respective entries
         First_name_label3 = tk.Label(self, text="First name", width="15")
         self.First_name__entry3 = tk.Entry(self, width=30, borderwidth=1, relief="groove")
@@ -353,27 +353,29 @@ class Admin_employee_window(tk.Frame):
             self.error_label.destroy()
         except AttributeError:
             pass
+
     def finance(self, controller):
         controller.show_frame(Admin_finance_window.Admin_finance_window)
         try:
             self.error_label.destroy()
         except AttributeError:
             pass
+
     def inventory(self, controller):
         controller.show_frame(Admin_inventory_window.Admin_inventory_window)
         try:
             self.error_label.destroy()
         except AttributeError:
             pass
+
     def employee(self, controller):
         controller.show_frame(Admin_employee_window.Admin_employee_window)
         try:
             self.error_label.destroy()
         except AttributeError:
             pass
+
     def sell(self):
         book_id = self.Book_text.get()
         Admin_object = Admin(db)
         Admin_object.sell(book_id=book_id, employee_id=emp_id)
-
-
