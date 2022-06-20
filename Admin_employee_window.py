@@ -374,6 +374,6 @@ class Admin_employee_window(tk.Frame):
     def sell(self):
         book_id = self.Book_text.get()
         Admin_object = Admin(db)
-        Admin_object.sell(book_id=book_id,employee_id=emp_id)
+        Admin_object.sell(book_id=book_id, employee_id=emp_id)
 
 
