@@ -30,7 +30,7 @@ class Employee_sales_window(tk.Frame):
         Sell = tk.Button(self, text="Sell")
         Sell.place(relx=1, rely=0.9, relwidth=rel_width, height=45, anchor="e")
 
-        Log_out = tk.Button(self, text="Log out", command=lambda: controller.show_frame(Start_window.Start_window))
+        Log_out = tk.Button(self, text="Log out", command=lambda: self.log_out(controller))
         Log_out.place(relx=0, rely=0, relwidth=rel_width, height=45, anchor="nw")
 
 
@@ -106,10 +106,20 @@ class Employee_sales_window(tk.Frame):
 
 
     def search(self):
+        try:
+            self.error_label.destroy()
+        except AttributeError:
+            pass
         for record in self.search_results.get_children():
             self.search_results.delete(record)
         Book_ID_input = self.Book_text.get()
         b = book_search(book_id=Book_ID_input,db=db)
+        print(b)
+        if b == []:
+            self.error_label = tk.Label(
+                self, text="Book not found", width="15", fg="red")
+            self.error_label.place(relx=0.4, rely=0.335)
+
         m = len(b)
         count = 0
         parent = ''
@@ -136,3 +146,10 @@ class Employee_sales_window(tk.Frame):
                         values.append('')
             self.search_results.insert(parent=parent, index='end', iid=str(count), values=values)
             count += 1
+
+    def log_out(self, controller):
+        controller.show_frame(Start_window.Start_window)
+        try:
+            self.error_label.destroy()
+        except AttributeError:
+            pass
