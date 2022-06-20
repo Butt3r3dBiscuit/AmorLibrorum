@@ -42,7 +42,5 @@ class Handler(tk.Tk):
 
 
 if __name__ == '__main__':
-    LARGE_FONT = ("Verdana", 12)
-
     app = Handler()
     app.mainloop()
