@@ -155,11 +155,6 @@ class Admin_employee_window(tk.Frame):
         # placing of treeview
         self.search_results.place(relx=0.615, rely=0.45, relheight=0.4)
 
-    def test_emp_id(self):
-        print(Admin_inventory_window.emp_id)
-        print('this is just to test that we have the emp_id loaded - not sure if we need it here but ye')
-        print("we could make it so that in one of the corners there would be sth like logged as:")
-
     def finance(self, controller):
         controller.show_frame(Admin_finance_window.Admin_finance_window)
         self.clean_up()
@@ -177,7 +172,6 @@ class Admin_employee_window(tk.Frame):
         last_name = self.Last_name_entry3.get()
         email = self.Email_entry.get()
         password = self.Password_entry.get()
-        print(first_name, last_name, email,password)
         addition = user_creation.admin_user_addition(db=db, username=email, password=password)
         if addition is not None:
             try:
@@ -191,7 +185,7 @@ class Admin_employee_window(tk.Frame):
                          "1 number\n"
                          "1 special character", width = "15", fg = "red")
             except AttributeError:
-                print("label has not yet been created")
+                return "label has not yet been created"
             self.error_label = tk.Label(
                     self,
                     text="Password is too weak,\n"
@@ -205,7 +199,7 @@ class Admin_employee_window(tk.Frame):
             try:
                 self.error_label.destroy()
             except AttributeError:
-                print("label has not yet been created")
+                return "label has not yet been created"
             self.confirmation_label = tk.Label(self, text="Manager added", width="15", fg="green")
             self.confirmation_label.place(relx=0.62, rely=0.25, anchor="e")
             query = add_to_employees(Name=first_name, Surname=last_name, position="Manager",email=email)
@@ -220,7 +214,6 @@ class Admin_employee_window(tk.Frame):
         last_name = self.Last_name_entry3.get()
         email = self.Email_entry.get()
         password = self.Password_entry.get()
-        print(first_name, last_name, email, password)
         addition = user_creation.employee_user_addition(db=db, username=email, password=password)
         if addition is not None:
             try:
@@ -234,7 +227,7 @@ class Admin_employee_window(tk.Frame):
                          "1 number\n"
                          "1 special character", width="15", fg="red")
             except AttributeError:
-                print("label has not yet been created")
+                return "label has not yet been created"
             self.error_label = tk.Label(
                 self,
                 text="Password is too weak,\n"
@@ -248,7 +241,7 @@ class Admin_employee_window(tk.Frame):
             try:
                 self.error_label.destroy()
             except AttributeError:
-                print("label has not yet been created")
+                return "label has not yet been created"
             self.confirmation_label = tk.Label(self, text="Employee added", width="15", fg="green")
             self.confirmation_label.place(relx=0.62, rely=0.25, anchor="e")
             query = add_to_employees(Name=first_name, Surname=last_name, position="Staff",email=email)
@@ -257,7 +250,7 @@ class Admin_employee_window(tk.Frame):
                 mycursor.execute(query)
                 mycursor.execute("commit")
             except Exception as e:
-                print(e)
+                return
 
 
     def change_password(self):

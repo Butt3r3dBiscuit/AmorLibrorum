@@ -12,16 +12,12 @@ def admin_user_addition(db, username, password):
     except Exception as e:
         if e.errno == 1819:
             # this error catches if passsword doesn't satisfy the policy requirements
-            print("make a pop up out of this:")
-            print("Your password does not satisfy the current policy requirements")
             return e
 
         if e.errno == 1396:
             # this error cathes if user already exists
-            print('here')
             my_cursor.execute(f"DROP USER '{username}'@'localhost';")
             return admin_user_addition(db, username, password)
-        print(e)
 
 def employee_user_addition(db,username,password):
     my_cursor = db.cursor()
@@ -58,21 +54,10 @@ def employee_user_addition(db,username,password):
     except Exception as e:
         if e.errno==1819:
             #this error cathes if passsword doesn't satisfy the policy requirements
-            print("make a pop up out of this:")
-            print("Your password does not satisfy the current policy requirements")
             return e
 
         if e.errno==1396:
             #this error cathes if user already exists
-            print('here')
             my_cursor.execute(f"DROP USER '{username}'@'localhost';")
             return employee_user_addition(db,username,password)
-        print(e)
 
-if __name__=="__main__":
-    db = connect.connect_admin("MyN3wP4ssw0rd!*")
-    ## test add user
-    employee_user_addition(db,"casual@amorlibrorum.boek","YetAn0!herqwertyp4ssword")
-    admin_user_addition(db, "mytestADmin", "YetAn0!herqwertyp4ssword")
-
-#for dropping
