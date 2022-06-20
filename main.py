@@ -27,7 +27,7 @@ class Handler(tk.Tk):
 
         self.frames = {}
 
-# here we will put names of classes in respective files
+# here we put names of classes in respective files
 
         for F in (Start_window, login_window, Employee_sales_window, Admin_inventory_window, Admin_employee_window, Admin_finance_window, Admin_sales_tab):
             print("here", F)
