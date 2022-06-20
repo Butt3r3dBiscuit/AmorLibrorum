@@ -14,20 +14,15 @@ class Start_window(tk.Frame):
         button_font = "Helvetica 18 bold"
 
         self.search_results = ttk.Treeview(self)
-        # rest = "Title", "Author", "Surname", "Edition", "Comment", "Language", "Publisher", "Year", "Pages", "Book Type", "Location", "Section", "Genre", "Translator", "Original Title", "Original Title", "Origin"
         self.search_results['columns'] = ("Title [Original title]", "Author [Translator]",
                                      "Edition", "Language","Genre", "Publisher",
                                      "Book Type","Year", "Pages", "Place",
-
-                                     # "Translator","Original Title", "Origin",
                                      "Price", "Amount")
 
         self.search_results.column("#0", width=20, stretch=False)
-        # self.search_results.column("ISBN", anchor="center", width=120)
         self.search_results.column("Title [Original title]", anchor="w", width=200, minwidth=100)
         self.search_results.column("Author [Translator]", anchor="w", width=100, minwidth=50)
         self.search_results.column("Edition", anchor="w", width=100, minwidth=50)
-        # self.search_results.column("Comment", anchor="w", width=100)
         self.search_results.column("Language", anchor="w", width=100, minwidth=50)
         self.search_results.column("Genre", anchor="w", width=100, minwidth=50)
         self.search_results.column("Publisher", anchor="w", width=100, minwidth=50)
@@ -35,19 +30,13 @@ class Start_window(tk.Frame):
         self.search_results.column("Year", anchor="center", width=50, minwidth=25, stretch=False)
         self.search_results.column("Pages", anchor="center", width=50, minwidth=25, stretch=False)
         self.search_results.column("Place", anchor="center", width=50, minwidth=25, stretch=False)
-        # self.search_results.column("Section", anchor="center", width=100)
-        # self.search_results.column("Translator", anchor="center", width=100)
-        # self.search_results.column("Original Title", anchor="center", width=100)
-        # self.search_results.column("Origin", anchor="center", width=100)
         self.search_results.column("Price", anchor="center", width=50, minwidth=25, stretch=False)
         self.search_results.column("Amount", anchor="center", width=50, minwidth=25, stretch=False)
 
         self.search_results.heading("#0", text="", anchor="center")
-        # self.search_results.heading("ISBN",text="ISBN",  anchor="center")
         self.search_results.heading("Title [Original title]", text="Title [Original title]", anchor="center")
         self.search_results.heading("Author [Translator]", text="Author [Translator]", anchor="center")
         self.search_results.heading("Edition", text="Edition", anchor="center")
-        # self.search_results.heading("Comment",text="Comment",  anchor="center")
         self.search_results.heading("Language", text="Language", anchor="center")
         self.search_results.heading("Genre", text="Genre", anchor="center")
         self.search_results.heading("Publisher", text="Publisher", anchor="center")
@@ -55,10 +44,6 @@ class Start_window(tk.Frame):
         self.search_results.heading("Year", text="Year", anchor="center")
         self.search_results.heading("Pages", text="Pages", anchor="center")
         self.search_results.heading("Place", text="Place", anchor="center")
-        # self.search_results.heading("Section",text="Section",  anchor="center")
-        # self.search_results.heading("Translator",text="Translator",  anchor="center")
-        # self.search_results.heading("Original Title", text="Original Title",  anchor="center")
-        # self.search_results.heading("Origin", text="Origin",  anchor="center")
         self.search_results.heading("Price", text="Price", anchor="center")
         self.search_results.heading("Amount", text="Amount", anchor="center")
 
