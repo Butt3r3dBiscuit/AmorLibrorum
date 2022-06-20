@@ -42,11 +42,11 @@ class login_window(tk.Frame):
         else:
             print([email])
         password = self.password_text.get()
-        print("password: ", password)
-        email = "casual@amorlibrorum.boek" #temp
-        password = "YetAn0!herqwertyp4ssword" #temp
-        # email = "frank@amorlibrorum.boek"
-        # password = "An0!herqwertyp4ssword"
+        # print("password: ", password)
+        # email = "casual@amorlibrorum.boek" #temp
+        # password = "YetAn0!herqwertyp4ssword" #temp
+        # # email = "frank@amorlibrorum.boek"
+        # # password = "An0!herqwertyp4ssword"
         self.db = connect_employee(email, password)
         if self.db == 1045:
             try:
