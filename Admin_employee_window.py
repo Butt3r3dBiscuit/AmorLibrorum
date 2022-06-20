@@ -176,6 +176,13 @@ class Admin_employee_window(tk.Frame):
         last_name = self.Last_name_entry3.get()
         email = self.Email_entry.get()
         password = self.Password_entry.get()
+        #checks if email exists
+        search_input = email
+        a = Admin(db)
+        b = a.emp_search(search=search_input)
+        if b[0][3] == email:
+            return 'alrady exists'
+
         addition = user_creation.admin_user_addition(db=db, username=email, password=password)
         if addition is not None:
             try:
@@ -218,6 +225,13 @@ class Admin_employee_window(tk.Frame):
         last_name = self.Last_name_entry3.get()
         email = self.Email_entry.get()
         password = self.Password_entry.get()
+        #checks if email exists
+        search_input = email
+        a = Admin(db)
+        b = a.emp_search(search=search_input)
+        if b[0][3]==email:
+            return 'alrady exists'
+
         addition = user_creation.employee_user_addition(db=db, username=email, password=password)
         if addition is not None:
             try:
