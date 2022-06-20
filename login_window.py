@@ -1,5 +1,4 @@
 import tkinter as tk
-
 import Admin_sales_window
 import Start_window
 import Employees_sales_tab
@@ -47,7 +46,7 @@ class login_window(tk.Frame):
                 self.error_label.destroy()
                 self.error_label = tk.Label(self, text="User not found!", width = "15", fg = "red")
             except AttributeError:
-                return "label has not yet been created"
+                print("label has not yet been created")
             self.error_label = tk.Label(self, text="User not found!", width = "15", fg = "red")
             self.error_label.place(relx=0.5, rely=0.15, anchor="n")
         else:
@@ -69,7 +68,7 @@ class login_window(tk.Frame):
             try:
                 self.error_label.destroy()
             except AttributeError:
-                return "label has not yet been created"
+                print("label has not yet been created")
             Employees_sales_tab.emp_id = self.employee_id
             Employees_sales_tab.db = self.db
             controller.show_frame(Employees_sales_tab.Employee_sales_window)
@@ -77,7 +76,7 @@ class login_window(tk.Frame):
             try:
                 self.error_label.destroy()
             except AttributeError:
-                return "label has not yet been created"
+                print("label has not yet been created")
             Admin_inventory_window.emp_id = self.employee_id
             Admin_inventory_window.db = self.db
             Admin_finance_window.emp_id = self.employee_id
@@ -93,7 +92,7 @@ class login_window(tk.Frame):
         try:
             self.error_label.destroy()
         except AttributeError:
-            return "label has not yet been created"
+            print("label has not yet been created")
         self.password_text.destroy()
         self.password_text = tk.Entry(self, width=40, show="*")
         self.password_text.pack()

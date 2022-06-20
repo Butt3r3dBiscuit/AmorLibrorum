@@ -368,23 +368,7 @@ if __name__ == "__main__":
                    employee_id=1, date="2022-06-02", Price=1000, translator="Joanne Rowling",
                    Title_untranslated="Harry Potter and the Philosophers Stone", translated_from="English", edition=1,
                    number_of_copies=3)
-    # #mycursor.execute(f"select * from transactions order by Transaction_ID desc limit 1")
 
-    # print(mycursor.fetchall())
-
-    # call add_price_exception
-    # admin.add_price_exception(newprice=10, ISBN=None, book_id=2, comment="Malfidus broke it >:(")
-
-    # #call set margin procedure
-    # admin.set_margin(margin=1.210)
-
-    # #call search employee procedure
-    # print(admin.search_employee(name="Albus", surname="Dumbledore"))
-
-    # #call search records procedure
-    # print(admin.search_records(ISBN=9780593334833, Employee_id=None, Book_id=None))
-
-    # call clean
     admin.clean()
 
     db.commit()

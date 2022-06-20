@@ -185,7 +185,7 @@ class Admin_employee_window(tk.Frame):
                          "1 number\n"
                          "1 special character", width = "15", fg = "red")
             except AttributeError:
-                return "label has not yet been created"
+                print("label has not yet been created")
             self.error_label = tk.Label(
                     self,
                     text="Password is too weak,\n"
@@ -199,7 +199,7 @@ class Admin_employee_window(tk.Frame):
             try:
                 self.error_label.destroy()
             except AttributeError:
-                return "label has not yet been created"
+                print("label has not yet been created")
             self.confirmation_label = tk.Label(self, text="Manager added", width="15", fg="green")
             self.confirmation_label.place(relx=0.62, rely=0.25, anchor="e")
             query = add_to_employees(Name=first_name, Surname=last_name, position="Manager",email=email)
@@ -227,7 +227,7 @@ class Admin_employee_window(tk.Frame):
                          "1 number\n"
                          "1 special character", width="15", fg="red")
             except AttributeError:
-                return "label has not yet been created"
+                print("label has not yet been created")
             self.error_label = tk.Label(
                 self,
                 text="Password is too weak,\n"
@@ -241,7 +241,7 @@ class Admin_employee_window(tk.Frame):
             try:
                 self.error_label.destroy()
             except AttributeError:
-                return "label has not yet been created"
+                print("label has not yet been created")
             self.confirmation_label = tk.Label(self, text="Employee added", width="15", fg="green")
             self.confirmation_label.place(relx=0.62, rely=0.25, anchor="e")
             query = add_to_employees(Name=first_name, Surname=last_name, position="Staff",email=email)
