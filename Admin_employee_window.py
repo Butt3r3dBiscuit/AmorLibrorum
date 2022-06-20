@@ -11,6 +11,7 @@ from AdminClass import Admin
 
 
 db = None
+emp_id = None
 
 
 # class in which the frame runs

@@ -95,6 +95,7 @@ class login_window(tk.Frame):
             Admin_finance_window.emp_id = self.employee_id
             Admin_finance_window.db = self.db
             Admin_employee_window.db = self.db
+            Admin_employee_window.emp = self.employee_id
             AdminClass.db = self.db
             Admin_sales_window.db = self.db
             Admin_sales_window.emp_id = self.employee_id
