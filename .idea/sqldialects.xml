@@ -3,7 +3,7 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/AmorLibrorum.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/functions_in_sql.sql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/reinstall_DB.py" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/install.py" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/testdata.sql" dialect="MySQL" />
   </component>
 </project>
