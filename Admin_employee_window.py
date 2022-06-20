@@ -250,7 +250,7 @@ class Admin_employee_window(tk.Frame):
                 mycursor.execute(query)
                 mycursor.execute("commit")
             except Exception as e:
-                return
+                return e
 
 
     def change_password(self):
@@ -258,7 +258,6 @@ class Admin_employee_window(tk.Frame):
         Email = f"`{self.New_password_email_entry.get()}`@`localhost`"
         New_password = self.New_password_entry.get()
         mycursor = db.cursor()
-        print(Email)
         try:
             mycursor.execute(f"ALTER USER {Email} IDENTIFIED BY '{New_password}'")
             mycursor.execute("commit")
@@ -277,8 +276,6 @@ class Admin_employee_window(tk.Frame):
                          "1 number\n"
                          "1 special character", width="15", fg="red")
                 self.error_label_password_change.place(relx=0.42, rely=0.605, anchor="e")
-
-                print("Your password does not satisfy the current policy requirements")
 
 
     def user_dismiss(self):
