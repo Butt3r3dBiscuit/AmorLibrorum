@@ -48,7 +48,7 @@ class login_window(tk.Frame):
             except AttributeError:
                 print("label has not yet been created")
             self.error_label = tk.Label(self, text="User not found!", width = "15", fg = "red")
-            self.error_label.place(relx=0.5, rely=0.15, anchor="n")
+            self.error_label.pack()
         else:
             self.my_cursor = self.db.cursor()
             self.my_cursor.execute(f"select position, Employee_ID from employees where email='{email}'")
@@ -64,6 +64,7 @@ class login_window(tk.Frame):
         self.login_button.destroy()
         self.login_button = tk.Button(self, text="Log in", height=2, width=11, command=lambda: self.log_in(controller))
         self.login_button.pack()
+
         if position == "Staff":
             try:
                 self.error_label.destroy()
@@ -96,6 +97,8 @@ class login_window(tk.Frame):
         self.password_text.destroy()
         self.password_text = tk.Entry(self, width=40, show="*")
         self.password_text.pack()
+        self.login_button.destroy()
+        self.login_button = tk.Button(self, text="Log in", height=2, width=11, command=lambda: self.log_in(controller))
         self.login_button.pack()
 
         controller.show_frame(Start_window.Start_window)
