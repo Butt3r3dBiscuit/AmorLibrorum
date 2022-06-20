@@ -333,6 +333,7 @@ class Admin:
     def sell(self, book_id, employee_id):
         arg=(book_id, employee_id)
         self.mycursor.callproc("sell", arg)
+        self.mycursor.execute("commit")
     #return  book procedure
     def return_book(self, book_id, employee_id):
         arg=(book_id, employee_id)

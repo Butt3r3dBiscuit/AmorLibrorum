@@ -97,6 +97,8 @@ class login_window(tk.Frame):
             Admin_finance_window.db = self.db
             Admin_employee_window.db = self.db
             AdminClass.db = self.db
+            Admin_sales_window.db = self.db
+            Admin_sales_window.emp_id = self.employee_id
             print(Admin_inventory_window.emp_id)
             controller.show_frame(Admin_sales_window.Admin_sales_tab)
 
