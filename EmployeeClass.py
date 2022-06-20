@@ -5,21 +5,21 @@ from user_creation import employee_user_addition
 from AdminClass import func_search_records
 
 class Employee:
-    #database cursor
+    # database cursor
     def __init__(self, db):
         self.db = db
         self.mycursor = db.cursor()
-    #sell procedure
+    # sell procedure
     def sell(self, book_id, employee_id):
         arg=(book_id, employee_id)
         self.mycursor.callproc("sell", arg)
-    #return  book procedure
+    # return  book procedure
     def return_book(self, book_id, employee_id):
         arg=(book_id, employee_id)
         self.mycursor.callproc("return_book", arg)
-    #search records
+    # search records
     def search_records(self, ISBN=None, Employee_id=None, Book_id=None):
-        #retrieves records
+        # retrieves records
         search = func_search_records(ISBN=ISBN, Employee_id=Employee_id, Book_id=Book_id)
         self.mycursor.execute(search)
         result_fetch = self.mycursor.fetchall()
