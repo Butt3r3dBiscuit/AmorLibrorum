@@ -82,7 +82,6 @@ class Start_window(tk.Frame):
 
 
 
-
     def search(self):
         for record in self.search_results.get_children():
             self.search_results.delete(record)

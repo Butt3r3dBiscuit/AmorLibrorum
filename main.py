@@ -16,9 +16,7 @@ class Handler(tk.Tk):
         height = tk.Tk.winfo_screenheight(self)
         tk.Tk.geometry(self, f"{width}x{height}")
         tk.Tk.title(self, "Amor Librorum – your favourite book shop")
-        tk.Tk.minsize(self, 800, 400)
-        print(width)
-        print(height)
+        tk.Tk.minsize(self, 800, 600)
         
         container.pack(side="top", fill="both", expand=True)
 
@@ -46,7 +44,6 @@ class Handler(tk.Tk):
 
 if __name__ == '__main__':
     LARGE_FONT = ("Verdana", 12)
-
 
     app = Handler()
     app.mainloop()
