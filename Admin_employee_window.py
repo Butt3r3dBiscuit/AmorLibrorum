@@ -229,8 +229,12 @@ class Admin_employee_window(tk.Frame):
         search_input = email
         a = Admin(db)
         b = a.emp_search(search=search_input)
-        if b[0][3]==email:
-            return 'alrady exists'
+        try:
+            if b[0][3]==email:
+                return 'alrady exists'
+        except IndexError:
+            pass
+
 
         addition = user_creation.employee_user_addition(db=db, username=email, password=password)
         if addition is not None:
