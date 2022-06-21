@@ -121,14 +121,13 @@ class Admin_inventory_window(tk.Frame):
         self.Comment_price_exc_entry = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Comment_price_exc_entry.pack()
 
-
-
         Sell_Price_label = tk.Label(self, text="Sell Price", width="15")
         Sell_Price_label.pack()
         self.Sell_Price_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
         self.Sell_Price_text.pack()
 
-        Isbn_label = tk.Label(self, text="ISBN", width="15") #for add book
+        # To add the book
+        Isbn_label = tk.Label(self, text="ISBN", width="15")
         Isbn_label.pack()
         self.Isbn_text = tk.Entry(self, width=30, borderwidth=1, relief="groove")
 
@@ -403,7 +402,7 @@ class Admin_inventory_window(tk.Frame):
         Comment = str(self.Comment_price_exc_entry.get())
         print(Book_ID,New_price, Comment)
         Admin_object = Admin(db)
-        query = Admin_object.add_price_exception(newprice=New_price,ISBN=ISBN,book_id=Book_ID,comment=Comment)
+        query = Admin_object.add_price_exception(newprice=New_price, ISBN=ISBN, book_id=Book_ID, comment=Comment)
         print(query)
         resp = messagebox.askquestion('Confirmation', f'Are you sure, you want to change price of this book to {New_price/100}€ ?')
         mycursor = db.cursor()
